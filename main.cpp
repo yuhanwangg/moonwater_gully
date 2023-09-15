@@ -4,11 +4,16 @@
 // Compile Command:
 // g++ main.cpp -o main -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath ./lib
 
+
+// using namespace sf (means it doesn't need sf:: before everything)
+using namespace sf;
 int main()
 {
     sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
-    sf::CircleShape shape(100.f);
+    sf::CircleShape shape(10.f);
     shape.setFillColor(sf::Color::Green);
+    shape.setOrigin(Vector2f(5,5));
+    shape.setPosition(Vector2f(100, 100));
 
     while (window.isOpen())
     {
@@ -17,6 +22,19 @@ int main()
         {
             if (event.type == sf::Event::Closed)
                 window.close();
+        }
+
+        if (Keyboard::isKeyPressed(Keyboard::Left)) {
+            Vector2f pose = shape.getPosition();
+            pose.x = pose.x -1;
+            shape.setPosition(pose);
+
+        }else if
+            (Keyboard::isKeyPressed(Keyboard::Right)) {
+            Vector2f pose = shape.getPosition();
+            pose.x = pose.x +1;
+            shape.setPosition(pose);
+            
         }
 
         window.clear();

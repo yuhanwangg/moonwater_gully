@@ -44,7 +44,7 @@ class tile {
 
   void draw(RenderWindow* win) { win->draw(*square); };
 
-  ~tile();
+  ~tile(){};
 };
 
 #endif

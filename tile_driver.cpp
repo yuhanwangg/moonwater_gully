@@ -15,11 +15,8 @@ class tile_driver {
   };
 
   void make_background() {
-    // for (int i = 0; i < 400; i++) {
-    //   background[i] = new tile();
-    // }
-    for (int r = 0; r < 600; r += 30) {
-      for (int c = 0; c < 600; c += 30) {
+    for (int r = 0; r < 600; r += 50) {
+      for (int c = 0; c < 600; c += 50) {
         tile* newTile = new tile(r, c);  // Pass coordinates to tile constructor
         background.push_back(newTile);
       }
@@ -45,6 +42,10 @@ class tile_driver {
     }
   };
   //   ~tile_driver();
+
+  // setters and getters
+
+  std::vector<tile*> get_background() { return background; }
 };
 
 int main() {

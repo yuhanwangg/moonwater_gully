@@ -15,17 +15,14 @@ class tile {
   tile(int _x, int _y) {
     x = _x;
     y = _y;
-    size = 30;
+    size = 60;
     square = new RectangleShape(Vector2f(size, size));
-    grass.loadFromFile("textures/grass_texture.png");
+    grass.loadFromFile("textures/grass_texture_light.png");
     square->setTexture(&grass);
     square->setTextureRect(IntRect(0, 0, size, size));
-    if (!grass.loadFromFile("textures/grass_texture.png")) {
+    if (!grass.loadFromFile("textures/grass_texture_light.png")) {
       std::cout << "error loading texture" << std::endl;
     }
-    // square->setFillColor(
-    //     Color::Green);  // virtual function to set for different child
-    //     classes
     square->setPosition(x, y);
   };
   void set_x(int _x) { x = _x; };
@@ -33,7 +30,7 @@ class tile {
 
   // setter for colour/texture
 
-  tile() : tile(0, 0) { size = 30; };
+  tile() : tile(0, 0) { size = 60; };
 
   void draw(RenderWindow* win) { win->draw(*square); };
 

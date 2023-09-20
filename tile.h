@@ -33,7 +33,7 @@ class tile {
     texture.loadFromFile(Texture_name);
     square->setTexture(&texture);
     square->setTextureRect(IntRect(0, 0, size, size));
-    if (!grass.loadFromFile("textures/grass_texture_light.png")) {
+    if (!texture.loadFromFile(Texture_name)) {
       std::cout << "error loading texture" << std::endl;
     };
   }

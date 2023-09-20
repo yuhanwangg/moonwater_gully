@@ -1,7 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 using namespace sf;
-#include "tile_test.h"
+#include "tile.h"
 
 class tile_driver {
  private:

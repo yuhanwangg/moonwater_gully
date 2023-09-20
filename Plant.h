@@ -7,21 +7,39 @@ using namespace sf;
 
 class Plant: public tile {
     protected:
-        int growTime;
+        int growTime; 
         int seedingTime;
         int costPrice;
         int sellPrice;
-        int hydrationLevel;
+        int hydrationLevel; //value 1 is watered, value 0 needs to be watered, -1 means its now dead
         bool alive = true;
-        int growthStage;
+        int growthStage; // associated with time after planting, needs to be rounded to days to be correlated with growTime
         int yield;
         std::string harvestEquipment;
         std::string imageDescription;
 
     public:
-        Plant();
-        Plant(int _x, int _y, std::string imageDescription): tile::tile(_x,_y, imageDescription){}
+        
+        Plant(int _x, int _y, std::string imageDescription): tile::tile(_x,_y): tile::set_texture(imageDescription){}
+        Plant(): Plant(0, 0, "textures/grass_texture_light.png"){};
         virtual int harvestYield() = 0;
+
+        bool killPlant(int hydrationLevel) {
+            if (hydrationLevel < 0) {
+                alive = false;
+            }
+        };
+
+        // checks plant meets criteria and makes it grow 
+        void grow(std::string imageDescription) {
+            if(hydrationLevel == 1 && alive && growthStage < growTime) {
+                hydrationLevel = 0;
+                growthStage++;
+                this->imageDescription = imageDescription;
+            }
+            return;
+        }
+
 
         // The setters
         void set_growTime(int growTime) {
@@ -56,8 +74,8 @@ class Plant: public tile {
             this->yield= yield;
             return;
         };
-        void set_harvestEquipment(std::string harvestEqipment) {
-            this->harvestEqipment = harvestEqipment;
+        void set_harvestEquipment(std::string harvestEquipment) {
+            this->harvestEquipment = harvestEquipment;
             return;
         };
         void set_imageDescription(std::string imageDescription) {
@@ -91,7 +109,7 @@ class Plant: public tile {
             return yield;
         };
         std::string get_harvestEquipment() {
-            return harvestEqipment;
+            return harvestEquipment;
         };
         std::string get_imageDescription() {
             return imageDescription;

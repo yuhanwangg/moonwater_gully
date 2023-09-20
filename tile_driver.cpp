@@ -6,7 +6,8 @@ using namespace sf;
 class tile_driver {
  private:
   RenderWindow* win;
-  tile** background = new tile*[400];  // array of tile pointers
+  //   tile** background = new tile*[400];  // array of tile pointers
+  std::vector<tile*> background;
 
  public:
   tile_driver(int size, std::string title) {
@@ -14,23 +15,15 @@ class tile_driver {
   };
 
   void make_background() {
-    for (int i = 0; i < 400; i++) {
-      for (int r = 0; r < 600; r = r + 30) {
-        for (int c = 0; c < 600; c = c + 30) {
-          background[i] = new tile(r, c);
-          background[i]->draw(win);
-        }
+    // for (int i = 0; i < 400; i++) {
+    //   background[i] = new tile();
+    // }
+    for (int r = 0; r < 600; r += 30) {
+      for (int c = 0; c < 600; c += 30) {
+        tile* newTile = new tile(r, c);  // Pass coordinates to tile constructor
+        background.push_back(newTile);
       }
     }
-    int count = 0;
-    // for (int r = 0; r < 600; r = r + 30) {
-    //   for (int c = 0; c < 600; c = c + 30) {
-    //     // background[count]->set_x(r);
-    //     // background[count]->set_y(c);
-    //     background[count]->draw(win);
-    //     count++;
-    //   }
-    // }
   };
 
   void run() {
@@ -42,6 +35,12 @@ class tile_driver {
         }
       }
       win->clear();
+
+      // drawing the tiles
+      for (auto tilePtr : background) {
+        tilePtr->draw(win);
+      }
+
       win->display();
     }
   };

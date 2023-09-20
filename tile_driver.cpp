@@ -14,15 +14,23 @@ class tile_driver {
   };
 
   void make_background() {
-    int count = 0;
-    for (int r = 30; r < 500; r = r + 30) {
-      for (int c = 30; c < 500; c = c + 30) {
-        background[count]->set_x(r);
-        background[count]->set_y(c);
-        background[count]->draw(win);
-        count++;
+    for (int i = 0; i < 400; i++) {
+      for (int r = 0; r < 600; r = r + 30) {
+        for (int c = 0; c < 600; c = c + 30) {
+          background[i] = new tile(r, c);
+          background[i]->draw(win);
+        }
       }
     }
+    int count = 0;
+    // for (int r = 0; r < 600; r = r + 30) {
+    //   for (int c = 0; c < 600; c = c + 30) {
+    //     // background[count]->set_x(r);
+    //     // background[count]->set_y(c);
+    //     background[count]->draw(win);
+    //     count++;
+    //   }
+    // }
   };
 
   void run() {

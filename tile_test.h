@@ -22,7 +22,7 @@ class tile {
   void set_x(int _x) { x = _x; };
   void set_y(int _y) { y = _y; };
 
-  tile() : tile(0, 0){};
+  tile() : tile(0, 0) { size = 30; };
 
   void draw(RenderWindow* win) { win->draw(*square); };
 

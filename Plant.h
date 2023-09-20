@@ -5,14 +5,15 @@
 #include "tile.h"
 using namespace sf;
 
+//when making each subclass like blueberries thats when in the constructor you initialise the protected values
 class Plant: public tile {
     protected:
         int growTime; 
-        int seedingTime;
+        int seedingTime; //dont need this?
         int costPrice;
         int sellPrice;
         int hydrationLevel; //value 1 is watered, value 0 needs to be watered, -1 means its now dead
-        bool alive = true;
+        bool alive;
         int growthStage; // associated with time after planting, needs to be rounded to days to be correlated with growTime
         int yield;
         int harvestEquipment;
@@ -20,13 +21,24 @@ class Plant: public tile {
 
     public:
         
-        Plant(int _x, int _y, std::string imageDescription): tile::tile(_x,_y) {tile::set_texture(imageDescription);};
+        Plant(int _x, int _y, std::string imageDescription): tile::tile(_x,_y) {
+            tile::set_texture(imageDescription);
+            growthStage = 0;
+            alive = true;
+            hydrationLevel = 0;
+            };
+
         Plant(): Plant(0, 0, "textures/grass_texture_light.png"){};
         
         // for testing no pure virtual functions allowed
         // virtual int harvestYield() = 0; 
 
-        void killPlant(int hydrationLevel) {
+        void newDayHydratdion() {
+            hydrationLevel--;
+            return;
+        };
+
+        void killPlant() {
             if (hydrationLevel < 0) {
                 alive = false;
             }
@@ -119,7 +131,7 @@ class Plant: public tile {
         };
 
 
-        ~Plant(){};
+        // ~Plant(){};
 
 };
 

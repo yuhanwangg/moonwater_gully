@@ -131,7 +131,7 @@ class Plant: public tile {
         };
 
 
-        // ~Plant(){};
+        ~Plant(){};
 
 };
 

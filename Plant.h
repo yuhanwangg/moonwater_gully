@@ -15,19 +15,22 @@ class Plant: public tile {
         bool alive = true;
         int growthStage; // associated with time after planting, needs to be rounded to days to be correlated with growTime
         int yield;
-        std::string harvestEquipment;
+        int harvestEquipment;
         std::string imageDescription;
 
     public:
         
         Plant(int _x, int _y, std::string imageDescription): tile::tile(_x,_y) {tile::set_texture(imageDescription);};
         Plant(): Plant(0, 0, "textures/grass_texture_light.png"){};
-        virtual int harvestYield() = 0;
+        
+        // for testing no pure virtual functions allowed
+        // virtual int harvestYield() = 0; 
 
-        bool killPlant(int hydrationLevel) {
+        void killPlant(int hydrationLevel) {
             if (hydrationLevel < 0) {
                 alive = false;
             }
+            return;
         };
 
         // checks plant meets criteria and makes it grow 
@@ -74,7 +77,7 @@ class Plant: public tile {
             this->yield= yield;
             return;
         };
-        void set_harvestEquipment(std::string harvestEquipment) {
+        void set_harvestEquipment(int harvestEquipment) {
             this->harvestEquipment = harvestEquipment;
             return;
         };
@@ -108,7 +111,7 @@ class Plant: public tile {
         int get_yield() {
             return yield;
         };
-        std::string get_harvestEquipment() {
+        int get_harvestEquipment() {
             return harvestEquipment;
         };
         std::string get_imageDescription() {
@@ -116,10 +119,7 @@ class Plant: public tile {
         };
 
 
-
-
-        
-
+        ~Plant(){};
 
 };
 

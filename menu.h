@@ -4,6 +4,6 @@
 using namespace sf;
 #include <iostream>
 
-class menu {}
+class menu {};
 
 #endif

@@ -13,3 +13,15 @@ plant_inventory_test: Player_plantInv.h Player_driver.cpp tile.h Plant.h BerryPl
 plant_image: Plant.h Plant.cpp tile.h
 	g++ Plant.cpp -o plant_image -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
 	./plant_image
+
+plant: Plant.cpp Plant.h
+    g++ Plant.cpp -o plant -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
+    ./plant
+
+rootPlant: RootPlant.cpp RootPlant.h Plant.cpp Plant.h
+    g++ RootPlant.cpp -o rootplant -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
+    ./rootplant
+
+berryPlant: BerryPlant.cpp BerryPlant.h Plant.cpp Plant.h
+    g++ BerryPlant.cpp -o berryplant -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
+    ./berryplant

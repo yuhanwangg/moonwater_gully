@@ -23,10 +23,19 @@ class Plant: public tile {
         
         Plant(int _x, int _y, std::string imageDescription): tile::tile(_x,_y) {
             tile::set_texture(imageDescription);
+            // necessary values
             growthStage = 0;
             alive = true;
             hydrationLevel = 0;
             seedingTime = 0;
+            this->imageDescription = imageDescription;
+
+            // arbitrary placeholder values (initialise everything to 0)
+            growTime = 0;
+            costPrice = 0;
+            sellPrice = 0;
+            yield = 0;
+            harvestEquipment = 0;
             };
 
         Plant(): Plant(0, 0, "textures/grass_texture_light.png"){};
@@ -34,7 +43,11 @@ class Plant: public tile {
         // for testing no pure virtual functions allowed
         // virtual int harvestYield() = 0; 
 
+
         void newDayGrowth() {
+            if (hydrationLevel == 0) {
+                alive = false;
+            }
             hydrationLevel--;
             seedingTime++;
             return;

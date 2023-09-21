@@ -22,6 +22,16 @@ class Plant: public tile {
     public:
         
         Plant(int _x, int _y, std::string imageDescription): tile::tile(_x,_y) {
+            // Texture cheese;
+            // int size = 50;
+            // square = new RectangleShape(Vector2f(size, size));
+            // cheese.loadFromFile("textures/cheese.png");
+            // square->setTexture(&cheese);
+            // square->setTextureRect(IntRect(0, 0, size, size));
+            // if (!cheese.loadFromFile("textures/cheese.png")) {
+            //  std::cout << "error loading texture" << std::endl;
+            // }
+            // square->setPosition(_x, _y);
             tile::set_texture(imageDescription);
             // necessary values
             growthStage = 0;
@@ -41,7 +51,7 @@ class Plant: public tile {
         Plant(): Plant(0, 0, "textures/grass_texture_light.png"){};
         
         // for testing no pure virtual functions allowed
-        virtual int harvestYield() = 0; 
+        // virtual int harvestYield() = 0; 
 
 
         void newDayGrowth() {

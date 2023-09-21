@@ -2,7 +2,8 @@
 #include <iostream>
 #include "tile.h"
 #include "Plant.h"
-#include "BerryPlant.h"
+#include "RootPlant.h"
+#include "Carrot.h"
 
 using namespace sf;
 

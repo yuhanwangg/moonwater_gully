@@ -12,7 +12,7 @@ class Player_driver {
   std::vector<tile*> background;
   // creation of player class
   Player* player;
-  BerryPlant berry;
+  BerryPlant* berry;
 
  public:
   Player_driver(int size, std::string title) {
@@ -48,9 +48,9 @@ class Player_driver {
       } else if (Keyboard::isKeyPressed(Keyboard::S)) {
         player->move_down();
       }
-      Plant* inventory = player->get_plant_inventory();
-      std::cout << "Plant in inventory: " << inventory[0].get_growthStage();
-      << std::endl;
+      std::vector<Plant*> inventory = player->get_plant_inventory();
+      std::cout << "Plant in inventory's : " << inventory[0]->get_growthStage()
+                << std::endl;
 
       // drawing the tiles
       for (auto tilePtr : background) {

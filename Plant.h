@@ -9,7 +9,7 @@ using namespace sf;
 class Plant: public tile {
     protected:
         int growTime; 
-        int seedingTime; //dont need this?
+        int seedingTime; // how many days ago it was seeded 
         int costPrice;
         int sellPrice;
         int hydrationLevel; //value 1 is watered, value 0 needs to be watered, -1 means its now dead
@@ -26,6 +26,7 @@ class Plant: public tile {
             growthStage = 0;
             alive = true;
             hydrationLevel = 0;
+            seedingTime = 0;
             };
 
         Plant(): Plant(0, 0, "textures/grass_texture_light.png"){};
@@ -33,8 +34,9 @@ class Plant: public tile {
         // for testing no pure virtual functions allowed
         // virtual int harvestYield() = 0; 
 
-        void newDayHydratdion() {
+        void newDayGrowth() {
             hydrationLevel--;
+            seedingTime++;
             return;
         };
 

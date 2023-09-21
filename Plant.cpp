@@ -73,14 +73,16 @@ int main() {
   p1.set_hydrationLevel(1);
   std::cout << "The plant has hydration level 1:" << p1.get_hydrationLevel() << ", and is alive (should be 1):" << p1.get_alive() << std::endl;
 
+
+  // don't know how to change it so it updates everytime it runs to show first blueberry picture then new grow picture?
   p1.grow("grass_texture_light.png");
 
-  std::cout << "the plant is in growthStage 1:" << p1.get_growthStage() << ", has hydration level 0: " << p1.get_hydrationLevel() << ", and image description grass_texture_light.png" << std::endl;
+  std::cout << "the plant is in growthStage 1:" << p1.get_growthStage() << ", has hydration level 0: " << p1.get_hydrationLevel() << ", and image description grass_texture_light.png:" << p1.get_imageDescription() << std::endl;
 
 
-  p1.newDayHydratdion();
+  p1.newDayGrowth();
   p1.killPlant();
-  std::cout << "The plant has hydration level -1:" << p1.get_hydrationLevel() << " plant is alive (should be 0):" << p1.get_alive() << std::endl;
+  std::cout << "The plant has hydration level -1:" << p1.get_hydrationLevel() << ", The plant was seeded 1 day ago:" << p1.get_seedingTime() <<", plant is alive (should be 0):" << p1.get_alive() << std::endl;
 
 
   tile_driver driver(600, "TEST");

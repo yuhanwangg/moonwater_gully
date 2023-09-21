@@ -60,6 +60,10 @@ int main() {
 
   std::cout << "The root plant has a cost price of 50:" << rp1.get_costPrice() << ", a sell price of 0:" << rp1.get_sellPrice() << ", a growTime of 1:" << rp1.get_growTime() << ", and requires havestEquipment level 0:" << rp1.get_harvestEquipment() << std::endl;
 
+  rp1.harvestYield();
+
+  std::cout << "The root plant has harvest yield of (number 1-3):" << rp1.get_yield() << std::endl;
+  
   rp1.killPlant();
 
   std::cout << "The root plant has hydration level 0:" << rp1.get_hydrationLevel() << ", and is alive (should be 1):" << rp1.get_alive() << std::endl; 

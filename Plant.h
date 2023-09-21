@@ -41,7 +41,7 @@ class Plant: public tile {
         Plant(): Plant(0, 0, "textures/grass_texture_light.png"){};
         
         // for testing no pure virtual functions allowed
-        // virtual int harvestYield() = 0; 
+        virtual int harvestYield() = 0; 
 
 
         void newDayGrowth() {

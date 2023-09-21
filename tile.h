@@ -29,11 +29,11 @@ class tile {
   void set_y(int _y) { y = _y; };
 
   void set_texture(std::string Texture_name) {
-    Texture texture;
-    texture.loadFromFile(Texture_name);
-    square->setTexture(&texture);
+    Texture* texture;
+    texture->loadFromFile(Texture_name);
+    square->setTexture(texture);
     square->setTextureRect(IntRect(0, 0, size, size));
-    if (!texture.loadFromFile(Texture_name)) {
+    if (!texture->loadFromFile(Texture_name)) {
       std::cout << "error loading texture" << std::endl;
     };
   }

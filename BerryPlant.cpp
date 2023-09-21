@@ -58,6 +58,7 @@ class tile_driver {
 int main() {
 
     // need to check that plants  don't exceed max growth, keep growing until they reach their max growth
+  
   BerryPlant bp1(50,50, "textures/cheese.png");
 
   std::cout << "The berry plant has a cost price of 70:" << bp1.get_costPrice() << ", a sell price of 0:" << bp1.get_sellPrice() << ", a growTime of 3:" << bp1.get_growTime() << ", and requires havestEquipment level 0:" << bp1.get_harvestEquipment() << std::endl;
@@ -79,7 +80,6 @@ int main() {
 
   std::cout << "the berryplant is in growthStage 1:" << bp1.get_growthStage() << ", has hydration level 0: " << bp1.get_hydrationLevel() << ", and image description grass_texture_light.png:" << bp1.get_imageDescription() << std::endl;
 
-
   bp1.newDayGrowth();
   std::cout << "The berry plant has hydration level -1:" << bp1.get_hydrationLevel() << ", The root plant was seeded 1 day ago:" << bp1.get_seedingTime() <<", plant is alive (should be 0):" << bp1.get_alive() << std::endl;
 
@@ -87,6 +87,18 @@ int main() {
   std::cout << "the berry plant is in growthStage 1:" << bp1.get_growthStage() << ", has hydration level -1: " << bp1.get_hydrationLevel() << ", and image description grass_texture_light.png:" << bp1.get_imageDescription() << std::endl;
 
 
+  BerryPlant bp2(50,50, "textures/blueberrybush.png");
+  // test to see that it doesn't exceed growth of 3
+  bp2.set_hydrationLevel(1);
+  bp2.grow("textures/grass_texture_light.png");
+  bp2.set_hydrationLevel(1);
+  bp2.grow("textures/grass_texture_light.png");
+  bp2.set_hydrationLevel(1);
+  bp2.grow("textures/grass_texture_light.png");
+//   this should determine if it exceeds growth to 4
+  bp2.set_hydrationLevel(1);
+  bp2.grow("textures/grass_texture_light.png");
+  std::cout << "the berryplant is in growthStage 3:" << bp2.get_growthStage() << std::endl;
 
 
   tile_driver driver(600, "TEST");

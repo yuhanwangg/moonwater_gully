@@ -63,7 +63,7 @@ int main() {
   rp1.harvestYield();
 
   std::cout << "The root plant has harvest yield of (number 1-3):" << rp1.get_yield() << std::endl;
-  
+
   rp1.killPlant();
 
   std::cout << "The root plant has hydration level 0:" << rp1.get_hydrationLevel() << ", and is alive (should be 1):" << rp1.get_alive() << std::endl; 
@@ -85,6 +85,19 @@ int main() {
   std::cout << "the root plant is in growthStage 1:" << rp1.get_growthStage() << ", has hydration level -1: " << rp1.get_hydrationLevel() << ", and image description grass_texture_light.png:" << rp1.get_imageDescription() << std::endl;
 
 
+
+  RootPlant rp2(50,50, "textures/blueberrybush.png");
+  // test to see that it doesn't exceed growth of 3
+  rp2.set_hydrationLevel(1);
+  rp2.grow("textures/grass_texture_light.png");
+  rp2.set_hydrationLevel(1);
+  rp2.grow("textures/grass_texture_light.png");
+  rp2.set_hydrationLevel(1);
+  rp2.grow("textures/grass_texture_light.png");
+//   this should determine if it exceeds growth to 4
+  rp2.set_hydrationLevel(1);
+  rp2.grow("textures/grass_texture_light.png");
+  std::cout << "the rootplant is in growthStage 1:" << rp2.get_growthStage() << std::endl;
 
 
   tile_driver driver(600, "TEST");

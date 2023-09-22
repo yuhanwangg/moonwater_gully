@@ -21,7 +21,7 @@ class tile_driver {
     rp.set_harvestEquipment(2);
     rp.set_hydrationLevel(1);
     
-    ////rp1.grow("textures/potato.png");
+    ////rp.grow();
   };
 
   void make_background() {
@@ -78,15 +78,16 @@ int main() {
 
 
   // don't know how to change it so it updates everytime it runs to show first blueberry picture then new grow picture?
-  rp1.grow("textures/grass_texture_light.png");
-
+  rp1.grow();
+  //DOESN'T OUTPUT THE IMAGE TEXTURE??
   std::cout << "the rootplant is in growthStage 1:" << rp1.get_growthStage() << ", has hydration level 0: " << rp1.get_hydrationLevel() << ", and image description grass_texture_light.png:" << rp1.get_imageDescription() << std::endl;
 
 
   rp1.newDayGrowth();
   std::cout << "The root plant has hydration level -1:" << rp1.get_hydrationLevel() << ", The root plant was seeded 1 day ago:" << rp1.get_seedingTime() <<", plant is alive (should be 0):" << rp1.get_alive() << std::endl;
-
-  rp1.grow("textures/grass_texture_dark.png");
+  
+  //DOESN'T OUTPUT THE IMAGE TEXTURE??
+  rp1.grow();
   std::cout << "the root plant is in growthStage 1:" << rp1.get_growthStage() << ", has hydration level -1: " << rp1.get_hydrationLevel() << ", and image description grass_texture_light.png:" << rp1.get_imageDescription() << std::endl;
 
 
@@ -94,14 +95,14 @@ int main() {
   RootPlant rp2(50,50);
   // test to see that it doesn't exceed growth of 3
   rp2.set_hydrationLevel(1);
-  rp2.grow("textures/grass_texture_light.png");
+  rp2.grow();
   rp2.set_hydrationLevel(1);
-  rp2.grow("textures/grass_texture_light.png");
+  rp2.grow();
   rp2.set_hydrationLevel(1);
-  rp2.grow("textures/grass_texture_light.png");
+  rp2.grow();
 //   this should determine if it exceeds growth to 4
   rp2.set_hydrationLevel(1);
-  rp2.grow("textures/grass_texture_light.png");
+  rp2.grow();
   std::cout << "the rootplant is in growthStage 1:" << rp2.get_growthStage() << std::endl;
 
 

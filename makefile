@@ -18,10 +18,22 @@ rootPlant: RootPlant.cpp RootPlant.h Plant.h Plant.cpp tile.h
 	g++ RootPlant.cpp -o rootplant -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
 	./rootplant
 
-berryplant2: BerryPlant2.cpp BerryPlant.h Plant.h Plant.cpp tile.h 
-	g++ BerryPlant2.cpp -o berry_plant_image -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
+berryPlant: BerryPlant.cpp BerryPlant.h Plant.h Plant.cpp tile.h 
+	g++ BerryPlant.cpp -o berry_plant_image -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
 	./berry_plant_image
 
-carrot: Carrot.cpp Carrot.h RootPlant.cpp RootPlant.h Plant.h Plant.cpp tile.h 
+carrot: Carrot.cpp Carrot.h RootPlant.h Plant.h Plant.cpp tile.h 
 	g++ Carrot.cpp -o carrot -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
 	./carrot
+
+potato: Potato.cpp Potato.h RootPlant.h Plant.h Plant.cpp tile.h 
+	g++ Potato.cpp -o potato -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
+	./potato
+
+blueberry: Blueberry.cpp Blueberry.h BerryPlant.h Plant.h Plant.cpp tile.h 
+	g++ Blueberry.cpp -o blueberry -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
+	./blueberry
+
+strawberry: Strawberry.cpp Strawberry.h BerryPlant.h Plant.h Plant.cpp tile.h 
+	g++ Strawberry.cpp -o strawberry -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
+	./strawberry

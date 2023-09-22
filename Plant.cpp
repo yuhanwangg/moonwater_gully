@@ -24,7 +24,7 @@ class tile_driver {
     p.set_harvestEquipment(2);
     p.set_hydrationLevel(1);
 
-    p.grow("textures/blueberrybush.png");
+    // p.grow();
   };
 
   void make_background() {

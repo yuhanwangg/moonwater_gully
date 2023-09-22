@@ -12,12 +12,12 @@ using namespace sf;
 class BerryPlant: public Plant {
     public:
         BerryPlant(int _x, int _y): Plant( _x, _y) {
-            growTime = 3;
+            growTime = 2;
             costPrice = 70;
-            growthImage.loadFromFile("textures/blueberrybush.png");
+            growthImage.loadFromFile("textures/carrotSeeds.png");
             square->setTexture(&growthImage);
             square->setTextureRect(IntRect(0, 0, size, size));
-            if (!growthImage.loadFromFile("textures/blueberrybush.png")) {
+            if (!growthImage.loadFromFile("textures/carrotSeeds.png")) {
             std::cout << "error loading texture" << std::endl;
             }
             square->setPosition(_x, _y);

@@ -12,8 +12,8 @@ class BuyMenu {
   int length, width;
   bool turnOn;
   int x, y;
-  vector<Text> plant_list;
-  vector<Text> equipment_list;
+  std::vector<Text> plant_list;
+  //   vector<Text> equipment_list;
 
  public:
   BuyMenu(int len, int wid) {
@@ -37,12 +37,24 @@ class BuyMenu {
     title.setString("Buy:");
     title.setCharacterSize(20);
     title.setFillColor(Color::Black);
-    title.setPosition(x, y);
+    title.setPosition(x + 10, y + 5);
+
+    // setting buying items text
+    plant_list.push_back(Text());
+    plant_list[0].setFont(font);
+    plant_list[0].setString("Carrot seed");
+    plant_list[0].setCharacterSize(10);
+    plant_list[0].setFillColor(Color::White);
+    plant_list[0].setPosition(x + 10, 60);
+
+    plant_list.push_back(Text());
+    plant_list[1].setFont(font);
+    plant_list[1].setString("Berry plant seed");
+    plant_list[1].setCharacterSize(10);
+    plant_list[1].setFillColor(Color::White);
+    plant_list[1].setPosition(x + 10, 80);
+
     background->setPosition(x, y);
-
-    // setting buying items
-    plant_list = {"Carrot"};
-
     // turning on and off
     turnOn = false;
   }
@@ -53,6 +65,9 @@ class BuyMenu {
   void draw(RenderWindow* win) {
     win->draw(*background);
     win->draw(title);
+    for (int i = 0; i < 2; i++) {
+      win->draw(plant_list[i]);
+    }
   }
 
   // setters and getters

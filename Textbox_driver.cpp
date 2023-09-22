@@ -1,27 +1,23 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 using namespace sf;
-#include "Plant.h"
 #include "Player.h"
+#include "Text_box.h"
 #include "tile.h"
 
-class Player_driver {
+class Textbox_driver {
  private:
   RenderWindow* win;
   std::vector<tile*> background;
-  // creation of player class
+  Text_box textbox = Text_box(90, 30);
   Player* player;
-  Plant p1 = Plant(50, 50);
+  bool isVisibleText;
 
  public:
-  Player_driver(int size, std::string title) {
+  Textbox_driver(int size, std::string title) {
     win = new sf::RenderWindow(sf::VideoMode(size, size), title);
     player = new Player(10, 50, 50);
-    // player->add_plant(plant);
-    p1.set_costPrice(20);
-    p1.set_sellPrice(40);
-    p1.set_growTime(3);
-    p1.set_harvestEquipment(2);
+    isVisibleText = true;
   };
 
   void make_background() {
@@ -41,6 +37,7 @@ class Player_driver {
           win->close();
         }
       }
+      win->clear();
 
       if (Keyboard::isKeyPressed(Keyboard::A)) {
         player->move_left();
@@ -51,26 +48,34 @@ class Player_driver {
       } else if (Keyboard::isKeyPressed(Keyboard::S)) {
         player->move_down();
       }
-      // Plant* inventory = player->get_plant_inventory();
-      // std::cout << "Plant in inventory: " << inventory[0];
-      // << std::endl;
 
       // drawing the tiles
       for (auto tilePtr : background) {
         tilePtr->draw(win);
-      };
+      }
+
       player->draw(win);
-      p1.draw(win);
+      if (Keyboard::isKeyPressed(Keyboard::T)) {
+        isVisibleText = !isVisibleText;
+        textbox.set_visible(isVisibleText);  // Set visibility
+      }
+
+      if (isVisibleText == true) {
+        textbox.draw(win);
+      }
 
       win->display();
     }
   };
+  //   ~tile_driver();
 
-  std::vector<tile*> get_background() { return background; };
+  // setters and getters
+
+  std::vector<tile*> get_background() { return background; }
 };
 
 int main() {
-  Player_driver driver(600, "TEST");
+  Textbox_driver driver(600, "TEST");
   driver.make_background();
   driver.run();
   return 0;

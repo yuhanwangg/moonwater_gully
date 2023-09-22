@@ -22,12 +22,20 @@ class Player {
     y = _y;
     speed = 0.1;
     // making plant inventory size
-    plant_count = 0;
+    // plant_count = 0;
     body->setRadius(r);
     body->setFillColor(Color::Blue);
     body->setOrigin(r / 2, r / 2);
     body->setPosition(x, y);
   }
+
+  // bool isPlantable(){
+  //     // check if the land that player is on is plantable or not
+  //     // use the text class to show plantable or not through if statement in
+  //     the
+  //     // driver
+  // };
+
   void draw(RenderWindow* win) { win->draw(*body); }
 
   // accessing plant inventory
@@ -37,6 +45,10 @@ class Player {
   void move_left() { body->move(-speed, 0); }
   void move_up() { body->move(0, -speed); }
   void move_down() { body->move(0, speed); }
+
+  // getters and setters
+  int get_x() { return body->getPosition().x; }
+  int get_y() { return body->getPosition().y; }
 };
 
 #endif

@@ -13,6 +13,7 @@ class BuyMenu {
   bool turnOn;
   int x, y;
   std::vector<Text> plant_list;
+  int selected_option;
   //   vector<Text> equipment_list;
 
  public:
@@ -68,12 +69,18 @@ class BuyMenu {
     plant_list[3].setFillColor(Color::White);
     plant_list[3].setPosition(x + 10, 120);
 
+    selected_option = -1;
+
     background->setPosition(x, y);
     // turning on and off
     turnOn = false;
   }
 
   // move up and down values in menu items
+  void MoveUp() {
+    if (selected_option - 1 >= 0) {
+    }
+  }
 
   // draw function
   void draw(RenderWindow* win) {

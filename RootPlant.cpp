@@ -12,21 +12,25 @@ class tile_driver {
   RenderWindow* win;
   //   tile** background = new tile*[400];  // array of tile pointers
   std::vector<tile*> background;
+  RootPlant rp = RootPlant(250, 250);
 
  public:
   tile_driver(int size, std::string title) {
     win = new sf::RenderWindow(sf::VideoMode(size, size), title);
+    rp.set_sellPrice(40);
+    rp.set_harvestEquipment(2);
+    rp.set_hydrationLevel(1);
+    
+    ////rp1.grow("textures/potato.png");
   };
 
   void make_background() {
     for (int r = 0; r < 600; r += 50) {
       for (int c = 0; c < 600; c += 50) {
-        tile* newTile = new tile(r, c);  // Pass coordinates to
-                                         // tile constructor
+        tile* newTile = new tile(r, c);  // Pass coordinates to tile constructor
         background.push_back(newTile);
       }
     }
-    background[20]->set_texture("textures/grass_texture.png");
   };
 
   void run() {
@@ -43,6 +47,7 @@ class tile_driver {
       for (auto tilePtr : background) {
         tilePtr->draw(win);
       }
+      rp.draw(win);
 
       win->display();
     }
@@ -56,7 +61,7 @@ class tile_driver {
 
 int main() {
 
-  RootPlant rp1(50,50, "textures/cheese.png");
+  RootPlant rp1(50,50);
 
   std::cout << "The root plant has a cost price of 50:" << rp1.get_costPrice() << ", a sell price of 0:" << rp1.get_sellPrice() << ", a growTime of 1:" << rp1.get_growTime() << ", and requires havestEquipment level 0:" << rp1.get_harvestEquipment() << std::endl;
 
@@ -86,7 +91,7 @@ int main() {
 
 
 
-  RootPlant rp2(50,50, "textures/blueberrybush.png");
+  RootPlant rp2(50,50);
   // test to see that it doesn't exceed growth of 3
   rp2.set_hydrationLevel(1);
   rp2.grow("textures/grass_texture_light.png");

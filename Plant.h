@@ -22,7 +22,7 @@ class Plant : public tile {
   int yield;
   int harvestEquipment;
   std::string imageDescription;
-  Texture cheese;
+  Texture growthImage;
 
  public:
   Plant(int _x, int _y) : tile::tile(_x, _y) {
@@ -30,10 +30,10 @@ class Plant : public tile {
     y = _y;
     int size = 50;
     square = new RectangleShape(Vector2f(size, size));
-    cheese.loadFromFile("textures/cheese.png");
-    square->setTexture(&cheese);
+    growthImage.loadFromFile("textures/cheese.png");
+    square->setTexture(&growthImage);
     square->setTextureRect(IntRect(0, 0, size, size));
-    if (!cheese.loadFromFile("textures/cheese.png")) {
+    if (!growthImage.loadFromFile("textures/cheese.png")) {
       std::cout << "error loading texture" << std::endl;
     }
     square->setPosition(_x, _y);
@@ -79,6 +79,15 @@ class Plant : public tile {
     if (hydrationLevel == 1 && alive && growthStage < growTime) {
       hydrationLevel = 0;
       growthStage++;
+      int size = 50;
+      square = new RectangleShape(Vector2f(size, size));
+      growthImage.loadFromFile(imageDescription);
+      square->setTexture(&growthImage);
+      square->setTextureRect(IntRect(0, 0, size, size));
+      if (!growthImage.loadFromFile(imageDescription)) {
+        std::cout << "error loading texture" << std::endl;
+      }
+      square->setPosition(x, y);
       this->imageDescription = imageDescription;
     }
     return;

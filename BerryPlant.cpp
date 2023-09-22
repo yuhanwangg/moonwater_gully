@@ -1,33 +1,38 @@
-#include <SFML/Graphics.hpp>
-#include <iostream>
-#include "tile.h"
 #include "Plant.h"
 #include "BerryPlant.h"
 
+#include <SFML/Graphics.hpp>
+#include <iostream>
+
+#include "tile.h"
 using namespace sf;
 
-
-//g++ BerryPlant.cpp -o berryplant -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
+// g++ Plant.cpp -o plant -I include -L lib -l sfml-system -l sfml-window -l
+// sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
 class tile_driver {
  private:
   RenderWindow* win;
   //   tile** background = new tile*[400];  // array of tile pointers
   std::vector<tile*> background;
+  BerryPlant bp = BerryPlant(100, 100);
 
  public:
   tile_driver(int size, std::string title) {
     win = new sf::RenderWindow(sf::VideoMode(size, size), title);
+    bp.set_sellPrice(40);
+    bp.set_harvestEquipment(2);
+    bp.set_hydrationLevel(1);
+    
+    // bp.grow();
   };
 
   void make_background() {
     for (int r = 0; r < 600; r += 50) {
       for (int c = 0; c < 600; c += 50) {
-        tile* newTile = new tile(r, c);  // Pass coordinates to
-                                         // tile constructor
+        tile* newTile = new tile(r, c);  // Pass coordinates to tile constructor
         background.push_back(newTile);
       }
     }
-    background[20]->set_texture("textures/grass_texture.png");
   };
 
   void run() {
@@ -44,6 +49,7 @@ class tile_driver {
       for (auto tilePtr : background) {
         tilePtr->draw(win);
       }
+      bp.draw(win);
 
       win->display();
     }
@@ -56,12 +62,12 @@ class tile_driver {
 };
 
 int main() {
-
+  
     // need to check that plants  don't exceed max growth, keep growing until they reach their max growth
   
-  BerryPlant bp1(50,50, "textures/cheese.png");
+  BerryPlant bp1(50,50);
 
-  std::cout << "The berry plant has a cost price of 70:" << bp1.get_costPrice() << ", a sell price of 0:" << bp1.get_sellPrice() << ", a growTime of 3:" << bp1.get_growTime() << ", and requires havestEquipment level 0:" << bp1.get_harvestEquipment() << std::endl;
+  std::cout << "The berry plant has a cost price of 70:" << bp1.get_costPrice() << ", a sell price of 0:" << bp1.get_sellPrice() << ", a growTime of 2:" << bp1.get_growTime() << ", and requires havestEquipment level 0:" << bp1.get_harvestEquipment() << std::endl;
 
   bp1.harvestYield();
 
@@ -76,30 +82,30 @@ int main() {
 
 
   // don't know how to change it so it updates everytime it runs to show first blueberry picture then new grow picture?
-  bp1.grow("textures/grass_texture_light.png");
+  bp1.grow();
 
-  std::cout << "the berryplant is in growthStage 1:" << bp1.get_growthStage() << ", has hydration level 0: " << bp1.get_hydrationLevel() << ", and image description grass_texture_light.png:" << bp1.get_imageDescription() << std::endl;
+//  NOT OUTPUTTING IMAGE DESCRIPTION??
+  std::cout << "the berryplant is in growthStage 1:" << bp1.get_growthStage() << ", has hydration level 0: " << bp1.get_hydrationLevel() << ", and image description carrotSeeds.png:" << bp1.get_imageDescription() << std::endl;
 
   bp1.newDayGrowth();
-  std::cout << "The berry plant has hydration level -1:" << bp1.get_hydrationLevel() << ", The root plant was seeded 1 day ago:" << bp1.get_seedingTime() <<", plant is alive (should be 0):" << bp1.get_alive() << std::endl;
+  std::cout << "The berry plant has hydration level -1:" << bp1.get_hydrationLevel() << ", The berry plant was seeded 1 day ago:" << bp1.get_seedingTime() <<", plant is alive (should be 0):" << bp1.get_alive() << std::endl;
 
-  bp1.grow("textures/grass_texture_dark.png");
-  std::cout << "the berry plant is in growthStage 1:" << bp1.get_growthStage() << ", has hydration level -1: " << bp1.get_hydrationLevel() << ", and image description grass_texture_light.png:" << bp1.get_imageDescription() << std::endl;
+  bp1.grow();
+  std::cout << "the berry plant is in growthStage 1:" << bp1.get_growthStage() << ", has hydration level -1: " << bp1.get_hydrationLevel() << ", and image description carrotSeeds.png:" << bp1.get_imageDescription() << std::endl;
 
 
-  BerryPlant bp2(50,50, "textures/blueberrybush.png");
+  BerryPlant bp2(50,50);
   // test to see that it doesn't exceed growth of 3
   bp2.set_hydrationLevel(1);
-  bp2.grow("textures/grass_texture_light.png");
+  bp2.grow();
   bp2.set_hydrationLevel(1);
-  bp2.grow("textures/grass_texture_light.png");
+  bp2.grow();
   bp2.set_hydrationLevel(1);
-  bp2.grow("textures/grass_texture_light.png");
+  bp2.grow();
 //   this should determine if it exceeds growth to 4
   bp2.set_hydrationLevel(1);
-  bp2.grow("textures/grass_texture_light.png");
-  std::cout << "the berryplant is in growthStage 5:" << bp2.get_growthStage() << std::endl;
-
+  bp2.grow();
+  std::cout << "the berryplant is in growthStage 2:" << bp2.get_growthStage() << std::endl;
 
   tile_driver driver(600, "TEST");
   driver.make_background();

@@ -1,20 +1,20 @@
 #include <SFML/Graphics.hpp>
-#ifndef CARROT_H
-#define CARROT_H
+#ifndef BLUEBERRY_H
+#define BLUEBERRY_H
 #include <iostream>
 #include "tile.h"
 #include "Plant.h"
-#include "RootPlant.h"
+#include "BerryPlant.h"
 #include <cstdlib>
 #include <ctime>
 
 using namespace sf;
 
-class Carrot: public RootPlant {
+class Blueberry: public BerryPlant {
     public:
-        Carrot(int _x, int _y): RootPlant( _x, _y) {
-            harvestEquipment = 2;
-            sellPrice = 80;
+        Blueberry(int _x, int _y): BerryPlant( _x, _y) {
+            harvestEquipment = 1;
+            sellPrice = 120;
             growthImage.loadFromFile("textures/carrotSeeds.png");
             square->setTexture(&growthImage);
             square->setTextureRect(IntRect(0, 0, size, size));
@@ -24,7 +24,7 @@ class Carrot: public RootPlant {
             square->setPosition(_x, _y);
         };
 
-        Carrot(): RootPlant(0,0){}; 
+        Blueberry(): BerryPlant(0,0){}; 
 
         void grow() {
             if (hydrationLevel == 1 && alive && growthStage < growTime) {
@@ -34,10 +34,11 @@ class Carrot: public RootPlant {
                 square = new RectangleShape(Vector2f(size, size));
                 switch(growthStage) {
                     case 1:
-                        imageDescription = "textures/carrot.png";
+                        imageDescription = "textures/seedling.png";
                         break;
-                    default:
-                        imageDescription = "textures/cheese.png";
+
+                    case 2:
+                        imageDescription = "textures/blueberrybush.png"; // image from https://www.linkedin.com/posts/michael-mollica-47383a175_been-working-for-a-while-on-foliage-for-a-activity-6982498457068482560-dIGK/?trk=public_profile_like_view
                         break;
                 }
                 growthImage.loadFromFile(imageDescription);

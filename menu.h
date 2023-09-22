@@ -4,7 +4,13 @@
 #include <iostream>
 using namespace sf;
 
+<<<<<<< HEAD
 class Menu {
  protected:
  public:
 }
+=======
+class menu {};
+
+#endif
+>>>>>>> main

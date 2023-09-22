@@ -11,12 +11,19 @@ using namespace sf;
 
 class RootPlant: public Plant {
     public:
-        RootPlant(int _x, int _y, std::string imageDescription): Plant( _x, _y, imageDescription) {
+        RootPlant(int _x, int _y): Plant( _x, _y) {
             growTime = 1;
             costPrice = 50;
+            growthImage.loadFromFile("textures/carrotSeeds.png");
+            square->setTexture(&growthImage);
+            square->setTextureRect(IntRect(0, 0, size, size));
+            if (!growthImage.loadFromFile("textures/carrotSeeds.png")) {
+            std::cout << "error loading texture" << std::endl;
+            }
+            square->setPosition(_x, _y);
         };
 
-        RootPlant(): RootPlant(0,0, "textures/grass_texture_light.png"){}; 
+        RootPlant(): RootPlant(0,0){}; 
 
         int harvestYield () {
             srand(time(NULL)); // This code needs to only be put in once, in the main file 

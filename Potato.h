@@ -1,6 +1,6 @@
 #include <SFML/Graphics.hpp>
-#ifndef CARROT_H
-#define CARROT_H
+#ifndef POTATO_H
+#define POTATO_H
 #include <iostream>
 #include "tile.h"
 #include "Plant.h"
@@ -10,11 +10,11 @@
 
 using namespace sf;
 
-class Carrot: public RootPlant {
+class Potato: public RootPlant {
     public:
-        Carrot(int _x, int _y): RootPlant( _x, _y) {
-            harvestEquipment = 2;
-            sellPrice = 80;
+        Potato(int _x, int _y): RootPlant( _x, _y) {
+            harvestEquipment = 3;
+            sellPrice = 100;
             growthImage.loadFromFile("textures/carrotSeeds.png");
             square->setTexture(&growthImage);
             square->setTextureRect(IntRect(0, 0, size, size));
@@ -24,7 +24,7 @@ class Carrot: public RootPlant {
             square->setPosition(_x, _y);
         };
 
-        Carrot(): RootPlant(0,0){}; 
+        Potato(): RootPlant(0,0){}; 
 
         void grow() {
             if (hydrationLevel == 1 && alive && growthStage < growTime) {
@@ -34,10 +34,10 @@ class Carrot: public RootPlant {
                 square = new RectangleShape(Vector2f(size, size));
                 switch(growthStage) {
                     case 1:
-                        imageDescription = "textures/carrot.png";
+                        imageDescription = "textures/potato.png";
                         break;
                     default:
-                        imageDescription = "textures/cheese.png";
+                        imageDescription = "textures/potato.png";
                         break;
                 }
                 growthImage.loadFromFile(imageDescription);
@@ -51,6 +51,7 @@ class Carrot: public RootPlant {
             };
 
         };
+
 };
 
 #endif

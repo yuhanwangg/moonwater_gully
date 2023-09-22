@@ -13,15 +13,18 @@ class tile_driver {
   RenderWindow* win;
   //   tile** background = new tile*[400];  // array of tile pointers
   std::vector<tile*> background;
-  Plant p1 = Plant(50, 50);
+  Plant p = Plant(50, 50);
 
  public:
   tile_driver(int size, std::string title) {
     win = new sf::RenderWindow(sf::VideoMode(size, size), title);
-    p1.set_costPrice(20);
-    p1.set_sellPrice(40);
-    p1.set_growTime(3);
-    p1.set_harvestEquipment(2);
+    p.set_costPrice(20);
+    p.set_sellPrice(40);
+    p.set_growTime(3);
+    p.set_harvestEquipment(2);
+    p.set_hydrationLevel(1);
+
+    // p.grow();
   };
 
   void make_background() {
@@ -47,7 +50,7 @@ class tile_driver {
       for (auto tilePtr : background) {
         tilePtr->draw(win);
       }
-      p1.draw(win);
+      p.draw(win);
 
       win->display();
     }

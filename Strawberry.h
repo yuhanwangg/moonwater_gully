@@ -1,21 +1,21 @@
 #include <SFML/Graphics.hpp>
-#ifndef CARROT_H
-#define CARROT_H
+#ifndef STRAWBERRY_H
+#define STRAWBERRY_H
 #include <iostream>
 #include "tile.h"
 #include "Plant.h"
-#include "RootPlant.h"
+#include "BerryPlant.h"
 #include <cstdlib>
 #include <ctime>
 
 using namespace sf;
 
-class Carrot: public RootPlant {
+class Strawberry: public BerryPlant {
     public:
-        Carrot(int _x, int _y): RootPlant( _x, _y) {
-            harvestEquipment = 2;
-            sellPrice = 80;
-            growthImage.loadFromFile("textures/carrotSeeds.png");
+        Strawberry(int _x, int _y): BerryPlant( _x, _y) {
+            harvestEquipment = 1;
+            sellPrice = 200;
+            growthImage.loadFromFile("textures/carrotSeeds.png"); //change to different seed texture for each plant type
             square->setTexture(&growthImage);
             square->setTextureRect(IntRect(0, 0, size, size));
             if (!growthImage.loadFromFile("textures/carrotSeeds.png")) {
@@ -24,7 +24,7 @@ class Carrot: public RootPlant {
             square->setPosition(_x, _y);
         };
 
-        Carrot(): RootPlant(0,0){}; 
+        Strawberry(): BerryPlant(0,0){}; 
 
         void grow() {
             if (hydrationLevel == 1 && alive && growthStage < growTime) {
@@ -34,10 +34,11 @@ class Carrot: public RootPlant {
                 square = new RectangleShape(Vector2f(size, size));
                 switch(growthStage) {
                     case 1:
-                        imageDescription = "textures/carrot.png";
+                        imageDescription = "textures/seedling.png"; 
                         break;
-                    default:
-                        imageDescription = "textures/cheese.png";
+
+                    case 2:
+                        imageDescription = "textures/strawberry.png"; // image from https://www.istockphoto.com/vector/wild-strawberries-on-a-bush-growing-in-a-bed-pixel-art-icon-old-school-8-bit-gm926753458-254277720
                         break;
                 }
                 growthImage.loadFromFile(imageDescription);

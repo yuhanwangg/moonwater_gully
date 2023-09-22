@@ -22,7 +22,7 @@ class Plant : public tile {
   int yield;
   int harvestEquipment;
   std::string imageDescription;
-  Texture cheese;
+  Texture growthImage;
 
  public:
   Plant(int _x, int _y) : tile::tile(_x, _y) {
@@ -30,10 +30,10 @@ class Plant : public tile {
     y = _y;
     int size = 50;
     square = new RectangleShape(Vector2f(size, size));
-    cheese.loadFromFile("textures/cheese.png");
-    square->setTexture(&cheese);
+    growthImage.loadFromFile("textures/cheese.png");
+    square->setTexture(&growthImage);
     square->setTextureRect(IntRect(0, 0, size, size));
-    if (!cheese.loadFromFile("textures/cheese.png")) {
+    if (!growthImage.loadFromFile("textures/cheese.png")) {
       std::cout << "error loading texture" << std::endl;
     }
     square->setPosition(_x, _y);
@@ -56,12 +56,13 @@ class Plant : public tile {
   Plant() : Plant(0, 0){};
 
   // for testing no pure virtual functions allowed
-  // virtual int harvestYield() = 0;
+  virtual int harvestYield() = 0;
 
   void newDayGrowth() {
     if (hydrationLevel == 0) {
       alive = false;
     }
+    //hydration level may conflict and be taken away twice with the grow() function
     hydrationLevel--;
     seedingTime++;
     return;
@@ -75,11 +76,20 @@ class Plant : public tile {
   };
 
   // checks plant meets criteria and makes it grow
-  void grow(std::string imageDescription) {
+  virtual void grow() {
     if (hydrationLevel == 1 && alive && growthStage < growTime) {
       hydrationLevel = 0;
       growthStage++;
-      this->imageDescription = imageDescription;
+    //   int size = 50;
+    //   square = new RectangleShape(Vector2f(size, size));
+    //   growthImage.loadFromFile(imageDescription);
+    //   square->setTexture(&growthImage);
+    //   square->setTextureRect(IntRect(0, 0, size, size));
+    //   if (!growthImage.loadFromFile(imageDescription)) {
+    //     std::cout << "error loading texture" << std::endl;
+    //   }
+    //   square->setPosition(x, y);
+    //   this->imageDescription = imageDescription;
     }
     return;
   }

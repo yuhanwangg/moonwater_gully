@@ -2,6 +2,7 @@
 #include <iostream>
 using namespace sf;
 #include "BuyMenu.h"
+#include "Menu.h"
 #include "Player.h"
 #include "tile.h"
 
@@ -10,14 +11,23 @@ class BuyMenu_driver {
   RenderWindow* win;
   std::vector<tile*> background;
   Player* player;
+  Menu menu = Menu(300, 150);
   BuyMenu buymenu = BuyMenu(200, 400);
-  bool visible_menu;
+  bool visible_menu = true;
+  bool visible_buy = false;
+  bool htp_vis = false;
+  bool control_vis = false;
+  bool save_vis = false;
 
  public:
   BuyMenu_driver(int size, std::string title) {
     win = new sf::RenderWindow(sf::VideoMode(size, size), title);
     player = new Player(10, 50, 50);
-    visible_menu = false;
+    visible_buy = false;
+    visible_menu = true;
+    htp_vis = false;
+    control_vis = false;
+    save_vis = false;
   };
 
   void make_background() {
@@ -36,6 +46,51 @@ class BuyMenu_driver {
         if (e.type == Event::Closed) {
           win->close();
         }
+
+        if (e.type == Event::KeyPressed) {
+          if (Keyboard::isKeyPressed(Keyboard::Up)) {
+            menu.moveUp();
+            buymenu.moveUp();
+            // break;
+          }
+          if (Keyboard::isKeyPressed(Keyboard::Down)) {
+            menu.moveDown();
+            buymenu.moveDown();
+            // break;
+          }
+          if (Keyboard::isKeyPressed(Keyboard::Return) &&
+              (visible_menu == true)) {
+            // opening the rectangles of the options
+            int selection = menu.menuPressed();
+            if (selection == 0) {
+              // close the menu and access game window
+              visible_menu = false;
+              menu.set_visibility(visible_menu);
+            }
+
+            if (selection == 1) {
+              // open game description
+              visible_menu = false;
+              menu.set_visibility(visible_menu);
+              htp_vis = true;
+              menu.set_htp_visi(htp_vis);
+            }
+            if (selection == 2) {
+              // open controls rectangle
+              visible_menu = false;
+              menu.set_visibility(visible_menu);
+              control_vis = true;
+              menu.set_control_visi(control_vis);
+            }
+            if (selection == 3) {
+              // open save confirmation
+              visible_menu = false;
+              menu.set_visibility(visible_menu);
+              save_vis = true;
+              menu.set_save_visi(save_vis);
+            }
+          }
+        }
       }
       win->clear();
 
@@ -49,26 +104,61 @@ class BuyMenu_driver {
         player->move_down();
       }
 
+      // testing of keyboard for menu toggling
+      if (Keyboard::isKeyPressed(Keyboard::B)) {
+        visible_buy = true;
+        buymenu.set_buyOn(visible_buy);
+      }
+
+      if (Keyboard::isKeyPressed(Keyboard::M)) {
+        if ((control_vis == false) && (htp_vis == false) &&
+            (save_vis == false)) {
+          visible_menu = true;
+          menu.set_visibility(visible_menu);
+        }
+      }
+
       // drawing the tiles
       for (auto tilePtr : background) {
         tilePtr->draw(win);
       }
 
-      // testing of keyboard for menu toggling
-      if (Keyboard::isKeyPressed(Keyboard::B)) {
-        visible_menu = true;
-        buymenu.set_visibility(visible_menu);
-      }
       if (Keyboard::isKeyPressed(Keyboard::Escape)) {
-        visible_menu = false;
-        buymenu.set_visibility(visible_menu);
+        if (visible_buy == false) {
+          control_vis = false;
+          menu.set_control_visi(control_vis);
+          htp_vis = false;
+          menu.set_htp_visi(htp_vis);
+          save_vis = false;
+          menu.set_save_visi(save_vis);
+
+        } else {
+          visible_buy = false;
+          buymenu.set_buyOn(false);
+          visible_menu = false;
+          menu.set_visibility(visible_menu);
+        }
       }
 
       player->draw(win);
 
-      // drawing the menu
+      // drawing the menus
+      if (menu.get_visibility() == true) {
+        menu.draw(win);
+      }
+      // drawing htp pop up
+      if (menu.get_htp_visi() == true) {
+        menu.draw_htp(win);
+      }
+      if (menu.get_control_visi() == true) {
+        menu.draw_control(win);
+      }
 
-      if (buymenu.get_visibility() == true) {
+      if (menu.get_save_visi() == true) {
+        menu.draw_save(win);
+      }
+
+      if (buymenu.get_buyOn() == true) {
         buymenu.draw(win);
       }
 

@@ -46,7 +46,7 @@ text_test: Textbox_driver.cpp Text_box.h tile.h Player.h
 	g++ Textbox_driver.cpp -o text -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
 	./text
 
-buymenu_test: BuyMenu.cpp BuyMenu.h Player.h tile.h
+buymenu_test: BuyMenu.cpp Menu.h BuyMenu.h Player.h
 	g++ BuyMenu.cpp -o buymenu -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
 	./buymenu
 

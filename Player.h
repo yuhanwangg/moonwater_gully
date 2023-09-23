@@ -11,6 +11,7 @@ class Player {
   CircleShape* body;
   int x, y;
   float speed;
+  int shells;
   // inventory for plants
 
   // inventory for equipment
@@ -20,6 +21,7 @@ class Player {
     body = new CircleShape();
     x = _x;
     y = _y;
+    shells = 500;
     speed = 0.1;
     // making plant inventory size
     // plant_count = 0;
@@ -49,6 +51,9 @@ class Player {
   // getters and setters
   int get_x() { return body->getPosition().x; }
   int get_y() { return body->getPosition().y; }
+
+  int get_shells() { return shells; }
+  void set_shells(int shell_no) { shells = shell_no; }
 };
 
 #endif

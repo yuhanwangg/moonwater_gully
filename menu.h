@@ -74,7 +74,7 @@ class Menu {
 
     // buidling the title text
     title.setFont(font);
-    title.setString("Title of Game");
+    title.setString("Moonwater Gulley");
     title.setCharacterSize(20);
     title.setFillColor(Color::Black);
     title.setPosition(x + 15, y + 15);
@@ -129,15 +129,19 @@ class Menu {
 
   void moveDown() {
     // checking array
-    if (selected_option + 1 <= max_option) {
+    if (selected_option + 1 < max_option) {
       // changing text colour
       menu[selected_option].setFillColor(sf::Color::White);
       // iterating array
       selected_option++;
       // changing text colour
       menu[selected_option].setFillColor(sf::Color::Yellow);
-    } else {
+    } else if (selected_option == 3){
+      menu[selected_option].setFillColor(sf::Color::Yellow);
+    }
+      else {
       selected_option = 0;
+      menu[selected_option].setFillColor(sf::Color::Yellow);
     }
   }
   void moveUp() {
@@ -152,7 +156,8 @@ class Menu {
     }
   }
 
-      // changing colour
+      // changing visibility
+
       void set_visibility(bool visible){ turnOn = visible;}
       bool get_visibility() { return turnOn; }
 

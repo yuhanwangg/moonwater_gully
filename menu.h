@@ -18,11 +18,11 @@ class Menu {
   bool control_visible;
   bool save_visible;
   bool isMainMenuOpen;
+  Font font;
+  Text title;
 
   int x, y;
   int selected_option;
-  Font font;
-  Text title;
   int length, width;
   int max_option;
   Text menu[4];
@@ -36,6 +36,7 @@ class Menu {
     y = 25;
     max_option = 4;
     turnOn = true;
+
     how_to_play_visible = false;
     control_visible = false;
     save_visible = false;
@@ -109,7 +110,6 @@ class Menu {
     menu[3].setPosition(x + 15, y + 115);
 
     selected_option = 0;
-    menu[selected_option].setString("play");
     menu[selected_option].setFillColor(Color::Yellow);
   };
 

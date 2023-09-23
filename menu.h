@@ -12,6 +12,8 @@ class Menu {
   RectangleShape* control_bg;
   RectangleShape* save_bg;
 
+  Texture bg_texture;
+
   bool how_to_play_visible;
   bool control_visible;
   bool save_visible;
@@ -41,7 +43,6 @@ class Menu {
 
     // creating background — maybe change into another function
     background = new RectangleShape(Vector2f(length, width));
-    background->setFillColor(Color::Red);
     background->setPosition(x, y);
 
 // how to play image
@@ -55,8 +56,14 @@ class Menu {
     control_bg->setPosition(325, 25);
 
     save_bg = new RectangleShape(Vector2f(length, width));
-    save_bg->setFillColor(Color::Green);
     save_bg->setPosition(150, 150);
+
+    // loading in textures:
+    bg_texture.loadFromFile("textures/main_menu.png");
+    background->setTexture(&bg_texture);
+    save_bg->setTexture(&bg_texture);
+    save_bg->setTextureRect(IntRect(0, 0, len, wid));
+    background->setTextureRect(IntRect(0, 0, len, wid));
 
     // loading font
     font.loadFromFile("textures/font_texture/TTF/dogica.ttf");
@@ -69,7 +76,7 @@ class Menu {
     title.setString("Title of Game");
     title.setCharacterSize(20);
     title.setFillColor(Color::Black);
-    title.setPosition(x + 10, y + 15);
+    title.setPosition(x + 15, y + 15);
 
     // building options for menu
 
@@ -78,30 +85,31 @@ class Menu {
     menu[0].setString("play");
     menu[0].setCharacterSize(15);
     menu[0].setFillColor(Color::White);
-    menu[0].setPosition(x + 10, y + 45);
+    menu[0].setPosition(x + 15, y + 42);
 
     // how to play — opens new rectangle to run tutorial
     menu[1].setFont(font);
     menu[1].setString("how to play");
     menu[1].setCharacterSize(15);
     menu[1].setFillColor(Color::White);
-    menu[1].setPosition(x + 10, y + 70);
+    menu[1].setPosition(x + 15, y + 65);
 
     // controls button — opens new rectangle to show controls
     menu[2].setFont(font);
     menu[2].setString("controls");
     menu[2].setCharacterSize(15);
     menu[2].setFillColor(Color::White);
-    menu[2].setPosition(x + 10, y + 95);
+    menu[2].setPosition(x + 15, y + 90);
 
     // save button
     menu[3].setFont(font);
     menu[3].setString("save");
     menu[3].setCharacterSize(15);
     menu[3].setFillColor(Color::White);
-    menu[3].setPosition(x + 10, y + 120);
+    menu[3].setPosition(x + 15, y + 115);
 
     selected_option = 0;
+    menu[selected_option].setString("play");
     menu[selected_option].setFillColor(Color::Yellow);
   };
 
@@ -120,27 +128,24 @@ class Menu {
   void draw_save(RenderWindow* win) { win->draw(*save_bg); }
 
   void moveDown() {
-    // Move the selection down
-    // Check array bounds
+// checking array
     if (selected_option + 1 <= max_option) {
-      // Change text colour
+      // changing text colour
       menu[selected_option].setFillColor(sf::Color::White);
-      // Iterate array pos
+      // iterating array
       selected_option++;
-      // Change text colour
+      // changing text colour
       menu[selected_option].setFillColor(sf::Color::Yellow);
     } else {
       selected_option = 0;
     }
   }
   void moveUp() {
-    // Move the selection up
-    // Check array bounds
+    // checking array
     if (selected_option - 1 >= 0) {
-      // Set the current item's color to black
       menu[selected_option].setFillColor(sf::Color::White);
       selected_option--;
-      // Set the new selected item's color to yellow
+      // changing colour
       menu[selected_option].setFillColor(sf::Color::Yellow);
     }
   }

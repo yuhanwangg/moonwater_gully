@@ -45,7 +45,7 @@ class BuyMenu_driver {
           if (Keyboard::isKeyPressed(Keyboard::Up)) {
             menu.moveUp();
             buymenu.moveUp();
-            buymenu.set_successCheck(false);
+            buymenu.set_successCheck(false);  // visibility remove
             buymenu.set_failureCheck(false);
           }
           if (Keyboard::isKeyPressed(Keyboard::Down)) {
@@ -95,7 +95,8 @@ class BuyMenu_driver {
                   std::cout << "\n";
                   player->set_shells(wallet - 50);
                   std::cout << "Remaining shells: " << player->get_shells();
-                  std::cout << "\n";
+                  std::cout << "\n";  // next up, add items into the player's
+                                      // inventory
                 } else {
                   buymenu.set_successCheck(false);
                   buymenu.set_failureCheck(true);

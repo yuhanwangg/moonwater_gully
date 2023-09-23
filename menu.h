@@ -45,12 +45,12 @@ class Menu {
     background = new RectangleShape(Vector2f(length, width));
     background->setPosition(x, y);
 
-// how to play image
+    // how to play image
     how_to_play_bg = new RectangleShape(Vector2f(550, 550));
     how_to_play_bg->setFillColor(Color::White);
     how_to_play_bg->setPosition(x, y);
 
-// controls image
+    // controls image
     control_bg = new RectangleShape(Vector2f(250, 450));
     control_bg->setFillColor(Color::Blue);
     control_bg->setPosition(325, 25);
@@ -128,7 +128,7 @@ class Menu {
   void draw_save(RenderWindow* win) { win->draw(*save_bg); }
 
   void moveDown() {
-// checking array
+    // checking array
     if (selected_option + 1 <= max_option) {
       // changing text colour
       menu[selected_option].setFillColor(sf::Color::White);
@@ -145,27 +145,27 @@ class Menu {
     if (selected_option - 1 >= 0) {
       menu[selected_option].setFillColor(sf::Color::White);
       selected_option--;
-      // changing colour
+      // changing text colour
       menu[selected_option].setFillColor(sf::Color::Yellow);
+    } else {
+      selected_option = 0;
     }
   }
 
-  // visibility function
+      // changing colour
+      void set_visibility(bool visible){ turnOn = visible;}
+      bool get_visibility() { return turnOn; }
 
-  void set_visibility(bool visible) { turnOn = visible; }
-  bool get_visibility() { return turnOn; }
+      void set_htp_visi(bool visible) { how_to_play_visible = visible; }
+      bool get_htp_visi() { return how_to_play_visible; }
 
-  void set_htp_visi(bool visible) { how_to_play_visible = visible; }
-  bool get_htp_visi() { return how_to_play_visible; }
+      void set_control_visi(bool visible) { control_visible = visible; }
+      bool get_control_visi() { return control_visible; }
 
-  void set_control_visi(bool visible) { control_visible = visible; }
-  bool get_control_visi() { return control_visible; }
-
-  void set_save_visi(bool visible) { save_visible = visible; }
-  bool get_save_visi() { return save_visible; }
-  void setPressed(int selected) { selected_option = selected; }
-  int menuPressed() { return selected_option; };
-
-  // ~Menu();
-};
+      void set_save_visi(bool visible) { save_visible = visible; }
+      bool get_save_visi() { return save_visible; }
+      void setPressed(int selected) { selected_option = selected; }
+      int menuPressed() { return selected_option; }
+    // ~Menu();
+  };
 #endif

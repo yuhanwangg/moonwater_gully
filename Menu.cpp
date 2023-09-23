@@ -10,7 +10,7 @@ class Menu_driver {
   RenderWindow* win;
   std::vector<tile*> background;
   Player* player;
-  Menu menu = Menu(100, 100);
+  Menu menu = Menu(400, 400);
   bool visible_menu = true;
   bool htp_vis = false;
   bool control_vis = false;

@@ -30,8 +30,8 @@ class Menu {
   Menu(int len, int wid) {
     length = len;
     width = wid;
-    x = 100;
-    y = 100;
+    x = 25;
+    y = 25;
     max_option = 4;
     turnOn = true;
     how_to_play_visible = false;
@@ -44,17 +44,19 @@ class Menu {
     background->setFillColor(Color::Red);
     background->setPosition(x, y);
 
-    how_to_play_bg = new RectangleShape(Vector2f(length, width));
+// how to play image
+    how_to_play_bg = new RectangleShape(Vector2f(550, 550));
     how_to_play_bg->setFillColor(Color::White);
     how_to_play_bg->setPosition(x, y);
 
-    control_bg = new RectangleShape(Vector2f(length, width));
+// controls image
+    control_bg = new RectangleShape(Vector2f(250, 450));
     control_bg->setFillColor(Color::Blue);
-    control_bg->setPosition(x, y);
+    control_bg->setPosition(325, 25);
 
     save_bg = new RectangleShape(Vector2f(length, width));
     save_bg->setFillColor(Color::Green);
-    save_bg->setPosition(x, y);
+    save_bg->setPosition(150, 150);
 
     // loading font
     font.loadFromFile("textures/font_texture/TTF/dogica.ttf");
@@ -65,39 +67,39 @@ class Menu {
     // buidling the title text
     title.setFont(font);
     title.setString("Title of Game");
-    title.setCharacterSize(10);
+    title.setCharacterSize(20);
     title.setFillColor(Color::Black);
-    title.setPosition(x + 10, y + 10);
+    title.setPosition(x + 10, y + 15);
 
     // building options for menu
 
     // play button — closes menu and let's you play
     menu[0].setFont(font);
     menu[0].setString("play");
-    menu[0].setCharacterSize(10);
+    menu[0].setCharacterSize(15);
     menu[0].setFillColor(Color::White);
-    menu[0].setPosition(x + 10, y + 30);
+    menu[0].setPosition(x + 10, y + 45);
 
     // how to play — opens new rectangle to run tutorial
     menu[1].setFont(font);
     menu[1].setString("how to play");
-    menu[1].setCharacterSize(10);
+    menu[1].setCharacterSize(15);
     menu[1].setFillColor(Color::White);
-    menu[1].setPosition(x + 10, y + 50);
+    menu[1].setPosition(x + 10, y + 70);
 
     // controls button — opens new rectangle to show controls
     menu[2].setFont(font);
     menu[2].setString("controls");
-    menu[2].setCharacterSize(10);
+    menu[2].setCharacterSize(15);
     menu[2].setFillColor(Color::White);
-    menu[2].setPosition(x + 10, y + 70);
+    menu[2].setPosition(x + 10, y + 95);
 
     // save button
     menu[3].setFont(font);
     menu[3].setString("save");
-    menu[3].setCharacterSize(10);
+    menu[3].setCharacterSize(15);
     menu[3].setFillColor(Color::White);
-    menu[3].setPosition(x + 10, y + 90);
+    menu[3].setPosition(x + 10, y + 120);
 
     selected_option = 0;
     menu[selected_option].setFillColor(Color::Yellow);

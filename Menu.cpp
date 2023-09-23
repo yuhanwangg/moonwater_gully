@@ -10,7 +10,7 @@ class Menu_driver {
   RenderWindow* win;
   std::vector<tile*> background;
   Player* player;
-  Menu menu = Menu(400, 400);
+  Menu menu = Menu(300, 150);
   bool visible_menu = true;
   bool htp_vis = false;
   bool control_vis = false;
@@ -106,6 +106,7 @@ class Menu_driver {
         visible_menu = true;
         menu.set_visibility(true);
       }
+
       if (Keyboard::isKeyPressed(Keyboard::M)) {
         visible_menu = true;
         menu.set_visibility(true);
@@ -115,6 +116,9 @@ class Menu_driver {
       for (auto tilePtr : background) {
         tilePtr->draw(win);
       }
+
+      player->draw(win);
+
       // drawing the menu
       if (menu.get_visibility() == true) {
         menu.draw(win);
@@ -130,8 +134,6 @@ class Menu_driver {
       if (menu.get_save_visi() == true) {
         menu.draw_save(win);
       }
-
-      player->draw(win);
 
       // drawing the menu
 

@@ -12,9 +12,9 @@ using namespace sf;
 class RootPlant: public Plant {
     public:
         RootPlant(int _x, int _y): Plant( _x, _y) {
-            growTime = 1;
-            costPrice = 50;
-            growthImage.loadFromFile("textures/carrotSeeds.png");
+            growTime = 1; // takes 1 day to grow
+            costPrice = 50; // costs 50 shells to buy seeds
+            growthImage.loadFromFile("textures/carrotSeeds.png"); // orignial seeding image
             square->setTexture(&growthImage);
             square->setTextureRect(IntRect(0, 0, size, size));
             if (!growthImage.loadFromFile("textures/carrotSeeds.png")) {
@@ -25,6 +25,7 @@ class RootPlant: public Plant {
 
         RootPlant(): RootPlant(0,0){}; 
 
+        // harvest yield is random value between 1-3
         int harvestYield () {
             srand(time(NULL)); // This code needs to only be put in once, in the main file 
             yield = (rand() %3 ) +1;

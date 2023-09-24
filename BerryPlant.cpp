@@ -63,8 +63,6 @@ class tile_driver {
 
 int main() {
   
-    // need to check that plants  don't exceed max growth, keep growing until they reach their max growth
-  
   BerryPlant bp1(50,50);
 
   std::cout << "The berry plant has a cost price of 70:" << bp1.get_costPrice() << ", a sell price of 0:" << bp1.get_sellPrice() << ", a growTime of 2:" << bp1.get_growTime() << ", and requires havestEquipment level 0:" << bp1.get_harvestEquipment() << std::endl;

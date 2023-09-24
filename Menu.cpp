@@ -1,7 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 using namespace sf;
-#include "menu.h"
+#include "Menu.h"
 #include "Player.h"
 #include "tile.h"
 

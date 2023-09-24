@@ -14,6 +14,7 @@ class BerryPlant: public Plant {
         BerryPlant(int _x, int _y): Plant( _x, _y) {
             growTime = 2; // takes 2 days to grow
             costPrice = 70; // cost 70 shells to buy
+            imageDescription = "textures/carrotSeeds.png";
             growthImage.loadFromFile("textures/carrotSeeds.png");  // starting seed image
             square->setTexture(&growthImage);
             square->setTextureRect(IntRect(0, 0, size, size));

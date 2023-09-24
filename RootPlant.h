@@ -14,6 +14,7 @@ class RootPlant: public Plant {
         RootPlant(int _x, int _y): Plant( _x, _y) {
             growTime = 1; // takes 1 day to grow
             costPrice = 50; // costs 50 shells to buy seeds
+            imageDescription = "textures/carrotSeeds.png";
             growthImage.loadFromFile("textures/carrotSeeds.png"); // orignial seeding image
             square->setTexture(&growthImage);
             square->setTextureRect(IntRect(0, 0, size, size));

@@ -88,7 +88,7 @@ int main() {
   
   //DOESN'T OUTPUT THE IMAGE TEXTURE??
   rp1.grow();
-  std::cout << "the root plant is in growthStage 1:" << rp1.get_growthStage() << ", has hydration level -1: " << rp1.get_hydrationLevel() << ", and image description grass_texture_light.png:" << rp1.get_imageDescription() << std::endl;
+  std::cout << "the root plant is in growthStage 1:" << rp1.get_growthStage() << ", has hydration level -1: " << rp1.get_hydrationLevel() << std::endl;
 
 
 

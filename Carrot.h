@@ -15,6 +15,7 @@ class Carrot: public RootPlant {
         Carrot(int _x, int _y): RootPlant( _x, _y) {
             harvestEquipment = 2; // need level 2 harvest equipment to harvest
             sellPrice = 80; // sells for 80 bells
+            imageDescription = "textures/carrotSeeds.png";
             growthImage.loadFromFile("textures/carrotSeeds.png");
             square->setTexture(&growthImage);
             square->setTextureRect(IntRect(0, 0, size, size));
@@ -36,7 +37,7 @@ class Carrot: public RootPlant {
                 // sets the growth image depending on its growth stage
                 switch(growthStage) {
                     case 1: 
-                        imageDescription = "textures/carrot.png";
+                        imageDescription = "textures/carrotGrown.png";
                         break;
                     default: // to know when it breaks it plants cheese
                         imageDescription = "textures/cheese.png";

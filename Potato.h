@@ -15,10 +15,11 @@ class Potato: public RootPlant {
         Potato(int _x, int _y): RootPlant( _x, _y) {
             harvestEquipment = 3; // need harvest equipment level 3 to harvest
             sellPrice = 100; // sells for 100 shells
-            growthImage.loadFromFile("textures/carrotSeeds.png"); // this image can change later to correct seed colour
+            imageDescription = "textures/potatoSeeds.png";
+            growthImage.loadFromFile("textures/potatoSeeds.png"); // this image can change later to correct seed colour
             square->setTexture(&growthImage);
             square->setTextureRect(IntRect(0, 0, size, size));
-            if (!growthImage.loadFromFile("textures/carrotSeeds.png")) {
+            if (!growthImage.loadFromFile("textures/potatoSeeds.png")) {
             std::cout << "error loading texture" << std::endl;
             }
             square->setPosition(_x, _y);
@@ -36,7 +37,7 @@ class Potato: public RootPlant {
                 // sets image to new growth image
                 switch(growthStage) {
                     case 1: 
-                        imageDescription = "textures/potato.png";
+                        imageDescription = "textures/potatoGrown.png";
                         break;
                     default: // checks to see if program broke by planting cheese
                         imageDescription = "textures/cheese.png";

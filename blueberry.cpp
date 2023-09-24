@@ -20,6 +20,7 @@ class tile_driver {
     win = new sf::RenderWindow(sf::VideoMode(size, size), title);
     b.set_hydrationLevel(1);
     
+    // uncomment to see each growth stage
     // b.grow();
     // b.set_hydrationLevel(1);
     // b.grow();
@@ -64,7 +65,7 @@ int main() {
 
   Blueberry b1(50,50);
 
-  std::cout << "The blueberry plant has a cost price of 70:" << b1.get_costPrice() << ", a sell price of 120:" << b1.get_sellPrice() << ", a growTime of 2:" << b1.get_growTime() << ", and requires havestEquipment level 1:" << b1.get_harvestEquipment() << std::endl;
+  std::cout << "The blueberry plant has a cost price of 70:" << b1.get_costPrice() << ", a sell price of 120:" << b1.get_sellPrice() << ", a growTime of 2:" << b1.get_growTime() << ", requires havestEquipment level 1:" << b1.get_harvestEquipment() << ", and has image description textures/blueberrySeeds.png:" << b1.get_imageDescription() << std::endl;
 
   b1.harvestYield();
 
@@ -81,7 +82,7 @@ int main() {
   // don't know how to change it so it updates everytime it runs to show first blueberry picture then new grow picture?
   b1.grow();
 
-  std::cout << "the blueberry is in growthStage 1:" << b1.get_growthStage() << ", has hydration level 0: " << b1.get_hydrationLevel() << ", and image description seedling.png:" << b1.get_imageDescription() << std::endl;
+  std::cout << "the blueberry is in growthStage 1:" << b1.get_growthStage() << ", has hydration level 0: " << b1.get_hydrationLevel() << ", and image description blueberrySeedling.png:" << b1.get_imageDescription() << std::endl;
 
 
   b1.newDayGrowth();
@@ -90,7 +91,7 @@ int main() {
   b1.set_alive(true);
   b1.set_hydrationLevel(1);
   b1.grow();
-  std::cout << "the blueberry plant is in growthStage 2:" << b1.get_growthStage() << ", has hydration level 0: " << b1.get_hydrationLevel() << ", and image description blueberrybush.png:" << b1.get_imageDescription() << std::endl;
+  std::cout << "the blueberry plant is in growthStage 2:" << b1.get_growthStage() << ", has hydration level 0: " << b1.get_hydrationLevel() << ", and image description blueberrybushGrown.png:" << b1.get_imageDescription() << std::endl;
 
   Blueberry b2(50,50);
   // test to see that it doesn't exceed growth of 3

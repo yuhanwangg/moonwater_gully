@@ -15,10 +15,11 @@ class Blueberry: public BerryPlant {
         Blueberry(int _x, int _y): BerryPlant( _x, _y) {
             harvestEquipment = 1; // need level 1 harvest equipment to harvest
             sellPrice = 120; // sells for 120 shells
-            growthImage.loadFromFile("textures/carrotSeeds.png");
+            imageDescription = "textures/blueberrySeeds.png";
+            growthImage.loadFromFile("textures/blueberrySeeds.png");
             square->setTexture(&growthImage);
             square->setTextureRect(IntRect(0, 0, size, size));
-            if (!growthImage.loadFromFile("textures/carrotSeeds.png")) {
+            if (!growthImage.loadFromFile("textures/blueberrySeeds.png")) {
             std::cout << "error loading texture" << std::endl;
             }
             square->setPosition(_x, _y);
@@ -36,11 +37,11 @@ class Blueberry: public BerryPlant {
                 // sets new growth image for each stage of growth
                 switch(growthStage) {
                     case 1:
-                        imageDescription = "textures/seedling.png";
+                        imageDescription = "textures/blueberrySeedling.png";
                         break;
 
                     case 2:
-                        imageDescription = "textures/blueberrybush.png"; // image from https://www.linkedin.com/posts/michael-mollica-47383a175_been-working-for-a-while-on-foliage-for-a-activity-6982498457068482560-dIGK/?trk=public_profile_like_view
+                        imageDescription = "textures/blueberrybushGrown.png"; // image from https://www.linkedin.com/posts/michael-mollica-47383a175_been-working-for-a-while-on-foliage-for-a-activity-6982498457068482560-dIGK/?trk=public_profile_like_view
                         break;
                     
                     default: // to know when it breaks it plants cheese

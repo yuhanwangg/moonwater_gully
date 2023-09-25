@@ -29,6 +29,8 @@ class tile {
     }
     square->setPosition(x, y);
   };
+
+  virtual void grow(){};
   void set_x(int _x) { x = _x; };
   void set_y(int _y) { y = _y; };
   void set_isPlantable(bool isPlantable) {

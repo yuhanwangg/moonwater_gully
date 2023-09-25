@@ -43,17 +43,17 @@ class PlayerInteraction_driver {
         if (e.type == Event::KeyPressed) {
           if (Keyboard::isKeyPressed(Keyboard::Num1)) {
             PI.waterPlant(*player, &background);
-            std::cout << "watered plant" << std::endl;
 
+            //see if plant can grow
             int player_x = (floor(player->get_x()/50)*50);
             int player_y = (floor(player->get_y()/50)*50);
 
             for (int i = 0; i < 144; i++) {
-              if (background[i]->get_x() == player_x && background[i]->get_y() == player_y) {
-                (*background[i]).grow();
-              }
-            }
-            
+                tile* currentTile = (background)[i];
+                // determine which tile the player is on
+                if (currentTile->get_x() == player_x && currentTile->get_y() == player_y) {
+                  (*background[i]).grow();
+                }
           }
         }
       }
@@ -79,9 +79,10 @@ class PlayerInteraction_driver {
       win->display();
     }
   };
-
-  std::vector<tile*> get_background() { return background; };
 };
+
+std::vector<tile*> get_background() { return background; };
+
 
 
 int main() {
@@ -89,5 +90,6 @@ int main() {
     driver.make_background();
     driver.run();
     return 0;
-};
+}
 
+};

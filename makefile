@@ -55,5 +55,5 @@ menu_test: Menu.cpp menu.h tile.h Player.h
 	./menu
 
 playerInteraction_test: PlayerInteraction.cpp PlayerInteraction.h tile.h Player.h Carrot.h
-	g++ PlayerInteraction.cpp -o playerInteraction -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
+	clang++ PlayerInteraction.cpp -o playerInteraction -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
 	./playerInteraction

@@ -100,8 +100,9 @@ class PlayerInteraction {
                 // determine which tile the player is on
                 if (currentTile->get_x() == player_x && currentTile->get_y() == player_y){
                     (*backgroundTiles)[i]->set_hydrationLevel(1);
+                    break;
                 }
-                break;
+                
             }
             return;
         };

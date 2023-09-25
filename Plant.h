@@ -78,23 +78,23 @@ class Plant : public tile {
   };
 
   // checks plant meets criteria and makes it grow
-  virtual void grow() {
-    if (hydrationLevel == 1 && alive && growthStage < growTime) {
-      hydrationLevel = 0;
-      growthStage++;
-    //   int size = 50;
-    //   square = new RectangleShape(Vector2f(size, size));
-    //   growthImage.loadFromFile(imageDescription);
-    //   square->setTexture(&growthImage);
-    //   square->setTextureRect(IntRect(0, 0, size, size));
-    //   if (!growthImage.loadFromFile(imageDescription)) {
-    //     std::cout << "error loading texture" << std::endl;
-    //   }
-    //   square->setPosition(x, y);
-    //   this->imageDescription = imageDescription;
-    }
-    return;
-  }
+  // virtual void grow() {
+  //   if (hydrationLevel == 1 && alive && growthStage < growTime) {
+  //     hydrationLevel = 0;
+  //     growthStage++;
+  //   //   int size = 50;
+  //   //   square = new RectangleShape(Vector2f(size, size));
+  //   //   growthImage.loadFromFile(imageDescription);
+  //   //   square->setTexture(&growthImage);
+  //   //   square->setTextureRect(IntRect(0, 0, size, size));
+  //   //   if (!growthImage.loadFromFile(imageDescription)) {
+  //   //     std::cout << "error loading texture" << std::endl;
+  //   //   }
+  //   //   square->setPosition(x, y);
+  //   //   this->imageDescription = imageDescription;
+  //   }
+  //   return;
+  // }
 
   // The setters
   void set_growTime(int growTime) {

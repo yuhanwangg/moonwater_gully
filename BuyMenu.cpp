@@ -189,11 +189,14 @@ class BuyMenu_driver {
       // player movement
       if (Keyboard::isKeyPressed(Keyboard::A)) {
         player->move_left();
-      } else if (Keyboard::isKeyPressed(Keyboard::D)) {
+      }
+      if (Keyboard::isKeyPressed(Keyboard::D)) {
         player->move_right();
-      } else if (Keyboard::isKeyPressed(Keyboard::W)) {
+      }
+      if (Keyboard::isKeyPressed(Keyboard::W)) {
         player->move_up();
-      } else if (Keyboard::isKeyPressed(Keyboard::S)) {
+      }
+      if (Keyboard::isKeyPressed(Keyboard::S)) {
         player->move_down();
       }
 

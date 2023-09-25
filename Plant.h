@@ -29,6 +29,7 @@ class Plant : public tile {
     x = _x;
     y = _y;
     int size = 50;
+    isPlantable = false; //cannot plant ontop of another plant tile
     square = new RectangleShape(Vector2f(size, size));
     growthImage.loadFromFile("textures/cheese.png");
     square->setTexture(&growthImage);

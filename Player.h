@@ -4,9 +4,10 @@
 #include <iostream>
 using namespace sf;
 #include "Plant.h"
+// #include "PlayerInteraction.h"
 
 
-class Player {
+class Player{
  private:
   std::string name;
   CircleShape* body;

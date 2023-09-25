@@ -127,7 +127,7 @@ class Menu {
 
   void draw_save(RenderWindow* win) { win->draw(*save_bg); }
 
-  void moveDown() {
+  virtual void moveDown() {
     // checking array
     if (selected_option + 1 < max_option) {
       // changing text colour
@@ -136,15 +136,14 @@ class Menu {
       selected_option++;
       // changing text colour
       menu[selected_option].setFillColor(sf::Color::Yellow);
-    } else if (selected_option == 3){
+    } else if (selected_option == 3) {
       menu[selected_option].setFillColor(sf::Color::Yellow);
-    }
-      else {
+    } else {
       selected_option = 0;
       menu[selected_option].setFillColor(sf::Color::Yellow);
     }
   }
-  void moveUp() {
+  virtual void moveUp() {
     // checking array
     if (selected_option - 1 >= 0) {
       menu[selected_option].setFillColor(sf::Color::White);
@@ -156,21 +155,21 @@ class Menu {
     }
   }
 
-      // changing visibility
+  // changing visibility
 
-      void set_visibility(bool visible){ turnOn = visible;}
-      bool get_visibility() { return turnOn; }
+  void set_visibility(bool visible) { turnOn = visible; }
+  bool get_visibility() { return turnOn; }
 
-      void set_htp_visi(bool visible) { how_to_play_visible = visible; }
-      bool get_htp_visi() { return how_to_play_visible; }
+  void set_htp_visi(bool visible) { how_to_play_visible = visible; }
+  bool get_htp_visi() { return how_to_play_visible; }
 
-      void set_control_visi(bool visible) { control_visible = visible; }
-      bool get_control_visi() { return control_visible; }
+  void set_control_visi(bool visible) { control_visible = visible; }
+  bool get_control_visi() { return control_visible; }
 
-      void set_save_visi(bool visible) { save_visible = visible; }
-      bool get_save_visi() { return save_visible; }
-      void setPressed(int selected) { selected_option = selected; }
-      int menuPressed() { return selected_option; }
-    // ~Menu();
-  };
+  void set_save_visi(bool visible) { save_visible = visible; }
+  bool get_save_visi() { return save_visible; }
+  void setPressed(int selected) { selected_option = selected; }
+  int menuPressed() { return selected_option; }
+  // ~Menu();
+};
 #endif

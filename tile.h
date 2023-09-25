@@ -11,6 +11,7 @@ class tile {
   RectangleShape* square;
   Texture grass;
   bool isPlantable;
+  int hydrationLevel;
   // texture placeholder
  public:
   tile(int _x, int _y) {
@@ -18,6 +19,7 @@ class tile {
     y = _y;
     size = 50;
     isPlantable = true;
+    hydrationLevel = 0;
     square = new RectangleShape(Vector2f(size, size));
     grass.loadFromFile("textures/grass_texture_light.png");
     square->setTexture(&grass);
@@ -33,6 +35,7 @@ class tile {
     this->isPlantable = isPlantable;
   };
   void set_size(int size) {this->size = size;};
+  void set_hydrationLevel(int hydrationLevel) {this->hydrationLevel = hydrationLevel;};
 
 
   int get_x() {return x;};
@@ -41,6 +44,7 @@ class tile {
     return isPlantable;
   };
   int get_size() {return size;};
+  int get_hydrationLevel() {return hydrationLevel;}
 
 
 

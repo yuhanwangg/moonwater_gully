@@ -14,7 +14,7 @@ class Plant : public tile {
   int seedingTime;  // how many days ago it was seeded
   int costPrice;
   int sellPrice;
-  int hydrationLevel;  // value 1 is watered, value 0 needs to be watered, -1
+  // int hydrationLevel;  // value 1 is watered, value 0 needs to be watered, -1
                        // means its now dead
   bool alive;
   int growthStage;  // associated with time after planting, needs to be rounded
@@ -113,10 +113,10 @@ class Plant : public tile {
     this->sellPrice = sellPrice;
     return;
   };
-  void set_hydrationLevel(int hydrationLevel) {
-    this->hydrationLevel = hydrationLevel;
-    return;
-  };
+  // void set_hydrationLevel(int hydrationLevel) {
+  //   this->hydrationLevel = hydrationLevel;
+  //   return;
+  // };
   void set_alive(bool alive) {
     this->alive = alive;
     return;

@@ -36,7 +36,14 @@ class PlayerInteraction_driver {
 
         if (e.type == Event::KeyPressed) {
           if (Keyboard::isKeyPressed(Keyboard::P)) {
-            PI.seedPlant(1, *player, &background);
+            PI.seedPlant(2, *player, &background);
+          }
+        }
+
+        if (e.type == Event::KeyPressed) {
+          if (Keyboard::isKeyPressed(Keyboard::Num1)) {
+            PI.waterPlant(*player, &background);
+            
           }
         }
       }

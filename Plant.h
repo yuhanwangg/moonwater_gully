@@ -57,7 +57,8 @@ class Plant : public tile {
   Plant() : Plant(0, 0){};
 
   // for testing no pure virtual functions allowed
-  //virtual int harvestYield() = 0;
+  // may need to be changed into just a virtual function in the tile class
+  virtual int harvestYield() = 0;
 
   // plant growth for each new day
   void newDayGrowth() {
@@ -143,7 +144,7 @@ class Plant : public tile {
   int get_seedingTime() { return seedingTime; };
   int get_costPrice() { return costPrice; };
   int get_sellPrice() { return sellPrice; };
-  int get_hydrationLevel() { return hydrationLevel; };
+  // int get_hydrationLevel() { return hydrationLevel; };
   bool get_alive() { return alive; };
   int get_growthStage() { return growthStage; };
   int get_yield() { return yield; };

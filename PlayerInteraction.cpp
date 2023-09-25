@@ -36,7 +36,7 @@ class PlayerInteraction_driver {
 
         if (e.type == Event::KeyPressed) {
           if (Keyboard::isKeyPressed(Keyboard::P)) {
-            PI.seedPlant(2, *player, &background);
+            PI.seedPlant(8, *player, &background);
           }
         }
 

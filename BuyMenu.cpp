@@ -1,14 +1,16 @@
-#include <SFML/Graphics.hpp>
-#include <iostream>
-using namespace sf;
 #include "BuyMenu.h"
 #include "Menu.h"
 #include "Player.h"
 #include "tile.h"
 
+#include <SFML/Graphics.hpp>
+#include <iostream>
+
+using namespace sf;
+
 class BuyMenu_driver {
  private:
-  RenderWindow* win;
+  sf::RenderWindow* win;
   std::vector<tile*> background;
   Player* player;
   Menu menu = Menu(300, 150);

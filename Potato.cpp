@@ -20,6 +20,7 @@ class tile_driver {
     win = new sf::RenderWindow(sf::VideoMode(size, size), title);
     p.set_hydrationLevel(1);
     
+    //uncomment to see potato grow
     //p.grow();
   };
 
@@ -62,7 +63,7 @@ int main() {
 
   Potato p1(50,50);
 
-  std::cout << "The potato plant has a cost price of 50:" << p1.get_costPrice() << ", a sell price of 100:" << p1.get_sellPrice() << ", a growTime of 1:" << p1.get_growTime() << ", and requires havestEquipment level 3:" << p1.get_harvestEquipment() << std::endl;
+  std::cout << "The potato plant has a cost price of 50:" << p1.get_costPrice() << ", a sell price of 100:" << p1.get_sellPrice() << ", a growTime of 1:" << p1.get_growTime() << ", requires havestEquipment level 1:" << p1.get_harvestEquipment() << ", and has image description textures/potatoSeeds.png:" << p1.get_imageDescription() << std::endl;
 
   p1.harvestYield();
 
@@ -79,7 +80,7 @@ int main() {
   // don't know how to change it so it updates everytime it runs to show first blueberry picture then new grow picture?
   p1.grow();
 
-  std::cout << "the potato is in growthStage 1:" << p1.get_growthStage() << ", has hydration level 0: " << p1.get_hydrationLevel() << ", and image description textures/potato.png:" << p1.get_imageDescription() << std::endl;
+  std::cout << "the potato is in growthStage 1:" << p1.get_growthStage() << ", has hydration level 0: " << p1.get_hydrationLevel() << ", and image description textures/potatoGrown.png:" << p1.get_imageDescription() << std::endl;
 
 
   p1.newDayGrowth();
@@ -87,7 +88,7 @@ int main() {
 
 
   p1.grow();
-  std::cout << "the potato plant is in growthStage 1:" << p1.get_growthStage() << ", has hydration level -1: " << p1.get_hydrationLevel() << ", and image description textures/potato.png:" << p1.get_imageDescription() << std::endl;
+  std::cout << "the potato plant is in growthStage 1:" << p1.get_growthStage() << ", has hydration level -1: " << p1.get_hydrationLevel() << ", and image description textures/potatGrown.png:" << p1.get_imageDescription() << std::endl;
 
 
 

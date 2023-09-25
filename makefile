@@ -50,6 +50,6 @@ buymenu_test: BuyMenu.cpp Menu.h BuyMenu.h Player.h
 	g++ BuyMenu.cpp -o buymenu -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
 	./buymenu
 
-menu_test: Menu.cpp Menu.h tile.h Player.h
+menu_test: Menu.cpp menu.h tile.h Player.h
 	g++ Menu.cpp -o menu -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
 	./menu

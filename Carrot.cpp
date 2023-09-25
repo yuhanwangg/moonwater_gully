@@ -20,6 +20,7 @@ class tile_driver {
     win = new sf::RenderWindow(sf::VideoMode(size, size), title);
     c.set_hydrationLevel(1);
     
+    //uncomment to see carrot grow
     //c.grow();
   };
 
@@ -62,7 +63,7 @@ int main() {
 
   Carrot c1(50,50);
 
-  std::cout << "The carrot plant has a cost price of 50:" << c1.get_costPrice() << ", a sell price of 80:" << c1.get_sellPrice() << ", a growTime of 1:" << c1.get_growTime() << ", and requires havestEquipment level 2:" << c1.get_harvestEquipment() << std::endl;
+  std::cout << "The carrot plant has a cost price of 50:" << c1.get_costPrice() << ", a sell price of 80:" << c1.get_sellPrice() << ", a growTime of 1:" << c1.get_growTime() << ", and requires havestEquipment level 2:" << c1.get_harvestEquipment() << ", and has image description textures/carrotSeeds.png:" << c1.get_imageDescription() << std::endl;
 
   c1.harvestYield();
 
@@ -79,14 +80,14 @@ int main() {
   // don't know how to change it so it updates everytime it runs to show first blueberry picture then new grow picture?
   c1.grow();
 
-  std::cout << "the carrot is in growthStage 1:" << c1.get_growthStage() << ", has hydration level 0: " << c1.get_hydrationLevel() << ", and image description textures/carrot.png:" << c1.get_imageDescription() << std::endl;
+  std::cout << "the carrot is in growthStage 1:" << c1.get_growthStage() << ", has hydration level 0: " << c1.get_hydrationLevel() << ", and image description textures/carrotGrown.png:" << c1.get_imageDescription() << std::endl;
 
 
   c1.newDayGrowth();
   std::cout << "The carrot plant has hydration level -1:" << c1.get_hydrationLevel() << ", The root plant was seeded 1 day ago:" << c1.get_seedingTime() <<", plant is alive (should be 0):" << c1.get_alive() << std::endl;
 
   c1.grow();
-  std::cout << "the carrot plant is in growthStage 1:" << c1.get_growthStage() << ", has hydration level -1: " << c1.get_hydrationLevel() << ", and image description textures/carrot.png:" << c1.get_imageDescription() << std::endl;
+  std::cout << "the carrot plant is in growthStage 1:" << c1.get_growthStage() << ", has hydration level -1: " << c1.get_hydrationLevel() << ", and image description textures/carrotGrown.png:" << c1.get_imageDescription() << std::endl;
 
 
 

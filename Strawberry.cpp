@@ -19,10 +19,10 @@ class tile_driver {
   tile_driver(int size, std::string title) {
     win = new sf::RenderWindow(sf::VideoMode(size, size), title);
     s.set_hydrationLevel(1);
-    
-    s.grow();
-    s.set_hydrationLevel(1);
-    s.grow();
+    // uncomment to see strawberry growth
+    // s.grow();
+    // s.set_hydrationLevel(1);
+    // s.grow();
   };
 
   void make_background() {
@@ -64,7 +64,7 @@ int main() {
 
   Strawberry s1(50,50);
 
-  std::cout << "The strawbery plant has a cost price of 70:" << s1.get_costPrice() << ", a sell price of 200:" << s1.get_sellPrice() << ", a growTime of 2:" << s1.get_growTime() << ", and requires havestEquipment level 1:" << s1.get_harvestEquipment() << std::endl;
+  std::cout << "The strawbery plant has a cost price of 70:" << s1.get_costPrice() << ", a sell price of 200:" << s1.get_sellPrice() << ", a growTime of 2:" << s1.get_growTime() << ", requires havestEquipment level 1:" << s1.get_harvestEquipment() << ", and has image description textures/strawberrySeeds.png:" << s1.get_imageDescription() << std::endl;
 
   s1.harvestYield();
 
@@ -81,7 +81,7 @@ int main() {
   // don't know how to change it so it updates everytime it runs to show first blueberry picture then new grow picture?
   s1.grow();
 
-  std::cout << "the strawberry is in growthStage 1:" << s1.get_growthStage() << ", has hydration level 0: " << s1.get_hydrationLevel() << ", and image description seedling.png:" << s1.get_imageDescription() << std::endl;
+  std::cout << "the strawberry is in growthStage 1:" << s1.get_growthStage() << ", has hydration level 0: " << s1.get_hydrationLevel() << ", and image description strawberrySeedling.png:" << s1.get_imageDescription() << std::endl;
 
 
   s1.newDayGrowth();
@@ -90,7 +90,7 @@ int main() {
   s1.set_alive(true);
   s1.set_hydrationLevel(1);
   s1.grow();
-  std::cout << "the strawberry plant is in growthStage 2:" << s1.get_growthStage() << ", has hydration level 0: " << s1.get_hydrationLevel() << ", and image description strawberry.png:" << s1.get_imageDescription() << std::endl;
+  std::cout << "the strawberry plant is in growthStage 2:" << s1.get_growthStage() << ", has hydration level 0: " << s1.get_hydrationLevel() << ", and image description strawberrybushGrown.png:" << s1.get_imageDescription() << std::endl;
 
   Strawberry s2(50,50);
   // test to see that it doesn't exceed growth of 3

@@ -58,6 +58,7 @@ class Plant : public tile {
   // for testing no pure virtual functions allowed
   virtual int harvestYield() = 0;
 
+  // plant growth for each new day
   void newDayGrowth() {
     if (hydrationLevel == 0) {
       alive = false;

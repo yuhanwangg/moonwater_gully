@@ -78,8 +78,7 @@ int main() {
   std::cout << "The plant has hydration level 1:" << p1.get_hydrationLevel()
             << ", and is alive (should be 1):" << p1.get_alive() << std::endl;
 
-  // don't know how to change it so it updates everytime it runs to show
-  first
+  // don't know how to change it so it updates everytime it runs to show first
       // blueberry picture then new grow picture?
       p1.grow("textures/grass_texture_light.png");
 

@@ -29,9 +29,20 @@ class tile {
   };
   void set_x(int _x) { x = _x; };
   void set_y(int _y) { y = _y; };
+  void set_isPlantable(bool isPlantable) {
+    this->isPlantable = isPlantable;
+  };
+  void set_size(int size) {this->size = size;};
+
 
   int get_x() {return x;};
   int get_y() {return y;};
+  bool get_isPlantable() {
+    return isPlantable;
+  };
+  int get_size() {return size;};
+
+
 
   void set_texture(std::string Texture_name) {
     Texture* texture;

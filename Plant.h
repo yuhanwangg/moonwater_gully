@@ -56,7 +56,7 @@ class Plant : public tile {
   Plant() : Plant(0, 0){};
 
   // for testing no pure virtual functions allowed
-  virtual int harvestYield() = 0;
+  //virtual int harvestYield() = 0;
 
   // plant growth for each new day
   void newDayGrowth() {

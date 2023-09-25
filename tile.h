@@ -10,12 +10,14 @@ class tile {
   int size;
   RectangleShape* square;
   Texture grass;
+  bool isPlantable;
   // texture placeholder
  public:
   tile(int _x, int _y) {
     x = _x;
     y = _y;
     size = 50;
+    isPlantable = true;
     square = new RectangleShape(Vector2f(size, size));
     grass.loadFromFile("textures/grass_texture_light.png");
     square->setTexture(&grass);
@@ -27,6 +29,9 @@ class tile {
   };
   void set_x(int _x) { x = _x; };
   void set_y(int _y) { y = _y; };
+
+  int get_x() {return x;};
+  int get_y() {return y;};
 
   void set_texture(std::string Texture_name) {
     Texture* texture;

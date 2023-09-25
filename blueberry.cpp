@@ -21,9 +21,9 @@ class tile_driver {
     b.set_hydrationLevel(1);
     
     // uncomment to see each growth stage
-    // b.grow();
-    // b.set_hydrationLevel(1);
-    // b.grow();
+    b.grow();
+    b.set_hydrationLevel(1);
+    b.grow();
   };
 
   void make_background() {

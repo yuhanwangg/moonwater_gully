@@ -53,3 +53,7 @@ buymenu_test: BuyMenu.cpp Menu.h BuyMenu.h Player.h
 menu_test: Menu.cpp menu.h tile.h Player.h
 	g++ Menu.cpp -o menu -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
 	./menu
+
+inventory_test: Inventory.cpp Inventory.h Player.h tile.h BuyMenu.h
+	g++ Inventory.cpp -o inventory -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
+	./inventory

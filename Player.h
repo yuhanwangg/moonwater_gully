@@ -14,7 +14,7 @@ class Player {
   int x, y;
   float speed;
   int shells;
-  Inventory* inventory = new Inventory(550, 50);
+  // Inventory* inventory = new Inventory(550, 50);
 
  public:
   Player(int r, int _x, int _y) {
@@ -32,7 +32,7 @@ class Player {
 
   void draw(RenderWindow* win) {
     win->draw(*body);
-    inventory->drawInventory(win);
+    // inventory->drawInventory(win);
   }
 
   // movement of the player
@@ -42,7 +42,7 @@ class Player {
   void move_down() { body->move(0, speed); }
 
   // getters and setters
-  std::vector<int> get_inventory() { return inventory->get_inventory(); }
+  // std::vector<int> get_inventory() { return inventory->get_inventory(); }
   int get_x() { return body->getPosition().x; }
   int get_y() { return body->getPosition().y; }
 

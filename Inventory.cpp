@@ -19,8 +19,10 @@ class Inventory_driver {
 
   int carrotSeeds_count = 0;
   int potatoSeeds_count = 0;
-  int blueberrySeeds_count;
-  int strawberrySeeds_count;
+  int blueberrySeeds_count = 0;
+  int strawberrySeeds_count = 0;
+  int shovel_count = 0;
+  int gloves_count = 0;
 
  public:
   Inventory_driver(int size, std::string title) {
@@ -141,11 +143,16 @@ class Inventory_driver {
                   buymenu.set_successCheck(true);
                   buymenu.set_failureCheck(false);
                   int wallet = player->get_shells();
+                  strawberrySeeds_count++;
                   std::cout << "Shells: " << wallet;
                   std::cout << "\n";
                   player->set_shells(wallet - 70);
                   std::cout << "Remaining shells: " << player->get_shells();
                   std::cout << "\n";
+                  std::vector<int> inventory = player->get_inventory();
+                  inventory[4] = strawberrySeeds_count;
+                  std::cout << "Strawberry seeds in inventory: " << inventory[4]
+                            << std::endl;
                 } else {
                   buymenu.set_successCheck(false);
                   buymenu.set_failureCheck(true);
@@ -156,11 +163,16 @@ class Inventory_driver {
                   buymenu.set_successCheck(true);
                   buymenu.set_failureCheck(false);
                   int wallet = player->get_shells();
+                  blueberrySeeds_count++;
                   std::cout << "Shells: " << wallet;
                   std::cout << "\n";
                   player->set_shells(wallet - 70);
                   std::cout << "Remaining shells: " << player->get_shells();
                   std::cout << "\n";
+                  std::vector<int> inventory = player->get_inventory();
+                  inventory[2] = blueberrySeeds_count;
+                  std::cout << "Blueberry seeds in inventory: " << inventory[2]
+                            << std::endl;
                 } else {
                   buymenu.set_successCheck(false);
                   buymenu.set_failureCheck(true);
@@ -171,11 +183,16 @@ class Inventory_driver {
                   buymenu.set_successCheck(true);
                   buymenu.set_failureCheck(false);
                   int wallet = player->get_shells();
+                  shovel_count++;
                   std::cout << "Shells: " << wallet;
                   std::cout << "\n";
                   player->set_shells(wallet - 300);
                   std::cout << "Remaining shells: " << player->get_shells();
                   std::cout << "\n";
+                  std::vector<int> inventory = player->get_inventory();
+                  inventory[0] = shovel_count;
+                  std::cout << "Shovels in inventory: " << inventory[0]
+                            << std::endl;
                 } else {
                   buymenu.set_successCheck(false);
                   buymenu.set_failureCheck(true);
@@ -186,11 +203,16 @@ class Inventory_driver {
                   buymenu.set_successCheck(true);
                   buymenu.set_failureCheck(false);
                   int wallet = player->get_shells();
+                  gloves_count++;
                   std::cout << "Shells: " << wallet;
                   std::cout << "\n";
                   player->set_shells(wallet - 150);
                   std::cout << "Remaining shells: " << player->get_shells();
                   std::cout << "\n";
+                  std::vector<int> inventory = player->get_inventory();
+                  inventory[1] = gloves_count;
+                  std::cout << "Gloves in inventory: " << inventory[1]
+                            << std::endl;
                 } else {
                   buymenu.set_successCheck(false);
                   buymenu.set_failureCheck(true);

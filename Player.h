@@ -7,15 +7,14 @@ using namespace sf;
 #include "Plant.h"
 // #include "PlayerInteraction.h"
 
-
-class Player{
+class Player {
  private:
   std::string name;
   CircleShape* body;
   int x, y;
   float speed;
   int shells;
-  Inventory* inventory = new Inventory(500, 50);
+  Inventory* inventory = new Inventory(550, 50);
 
  public:
   Player(int r, int _x, int _y) {

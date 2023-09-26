@@ -14,7 +14,7 @@ class Plant : public tile {
   int seedingTime;  // how many days ago it was seeded
   int costPrice;
   int sellPrice;
-  int hydrationLevel;  // value 1 is watered, value 0 needs to be watered, -1
+  // int hydrationLevel;  // value 1 is watered, value 0 needs to be watered, -1
                        // means its now dead
   bool alive;
   int growthStage;  // associated with time after planting, needs to be rounded
@@ -29,6 +29,7 @@ class Plant : public tile {
     x = _x;
     y = _y;
     int size = 50;
+    isPlantable = false; //cannot plant ontop of another plant tile
     square = new RectangleShape(Vector2f(size, size));
     growthImage.loadFromFile("textures/cheese.png");
     square->setTexture(&growthImage);
@@ -56,7 +57,8 @@ class Plant : public tile {
   Plant() : Plant(0, 0){};
 
   // for testing no pure virtual functions allowed
-  //virtual int harvestYield() = 0;
+  // may need to be changed into just a virtual function in the tile class
+  virtual int harvestYield() = 0;
 
   // plant growth for each new day
   void newDayGrowth() {
@@ -77,23 +79,23 @@ class Plant : public tile {
   };
 
   // checks plant meets criteria and makes it grow
-  virtual void grow() {
-    if (hydrationLevel == 1 && alive && growthStage < growTime) {
-      hydrationLevel = 0;
-      growthStage++;
-    //   int size = 50;
-    //   square = new RectangleShape(Vector2f(size, size));
-    //   growthImage.loadFromFile(imageDescription);
-    //   square->setTexture(&growthImage);
-    //   square->setTextureRect(IntRect(0, 0, size, size));
-    //   if (!growthImage.loadFromFile(imageDescription)) {
-    //     std::cout << "error loading texture" << std::endl;
-    //   }
-    //   square->setPosition(x, y);
-    //   this->imageDescription = imageDescription;
-    }
-    return;
-  }
+  // virtual void grow() {
+  //   if (hydrationLevel == 1 && alive && growthStage < growTime) {
+  //     hydrationLevel = 0;
+  //     growthStage++;
+  //   //   int size = 50;
+  //   //   square = new RectangleShape(Vector2f(size, size));
+  //   //   growthImage.loadFromFile(imageDescription);
+  //   //   square->setTexture(&growthImage);
+  //   //   square->setTextureRect(IntRect(0, 0, size, size));
+  //   //   if (!growthImage.loadFromFile(imageDescription)) {
+  //   //     std::cout << "error loading texture" << std::endl;
+  //   //   }
+  //   //   square->setPosition(x, y);
+  //   //   this->imageDescription = imageDescription;
+  //   }
+  //   return;
+  // }
 
   // The setters
   void set_growTime(int growTime) {
@@ -112,10 +114,10 @@ class Plant : public tile {
     this->sellPrice = sellPrice;
     return;
   };
-  void set_hydrationLevel(int hydrationLevel) {
-    this->hydrationLevel = hydrationLevel;
-    return;
-  };
+  // void set_hydrationLevel(int hydrationLevel) {
+  //   this->hydrationLevel = hydrationLevel;
+  //   return;
+  // };
   void set_alive(bool alive) {
     this->alive = alive;
     return;
@@ -142,7 +144,7 @@ class Plant : public tile {
   int get_seedingTime() { return seedingTime; };
   int get_costPrice() { return costPrice; };
   int get_sellPrice() { return sellPrice; };
-  int get_hydrationLevel() { return hydrationLevel; };
+  // int get_hydrationLevel() { return hydrationLevel; };
   bool get_alive() { return alive; };
   int get_growthStage() { return growthStage; };
   int get_yield() { return yield; };

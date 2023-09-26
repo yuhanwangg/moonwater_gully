@@ -143,7 +143,7 @@ class Menu_driver {
 
   // setters and getters
 
-  std::vector<tile*> get_background() { return background; }
+  std::vector<tile*> get_background() { return background; };
 };
 
 int main() {

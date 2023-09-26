@@ -3,19 +3,19 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 using namespace sf;
+#include "Inventory.h"
 #include "Plant.h"
+// #include "PlayerInteraction.h"
 
 
-class Player {
+class Player{
  private:
   std::string name;
   CircleShape* body;
   int x, y;
   float speed;
   int shells;
-  // inventory for plants
-
-  // inventory for equipment
+  Inventory* inventory = new Inventory(500, 50);
 
  public:
   Player(int r, int _x, int _y) {
@@ -24,24 +24,17 @@ class Player {
     y = _y;
     shells = 500;
     speed = 0.1;
-    // making plant inventory size
-    // plant_count = 0;
+
     body->setRadius(r);
     body->setFillColor(Color::Blue);
     body->setOrigin(r / 2, r / 2);
     body->setPosition(x, y);
   }
 
-  // bool isPlantable(){
-  //     // check if the land that player is on is plantable or not
-  //     // use the text class to show plantable or not through if statement in
-  //     the
-  //     // driver
-  // };
-
-  void draw(RenderWindow* win) { win->draw(*body); }
-
-  // accessing plant inventory
+  void draw(RenderWindow* win) {
+    win->draw(*body);
+    inventory->drawInventory(win);
+  }
 
   // movement of the player
   void move_right() { body->move(speed, 0); }
@@ -50,6 +43,7 @@ class Player {
   void move_down() { body->move(0, speed); }
 
   // getters and setters
+  std::vector<int> get_inventory() { return inventory->get_inventory(); }
   int get_x() { return body->getPosition().x; }
   int get_y() { return body->getPosition().y; }
 

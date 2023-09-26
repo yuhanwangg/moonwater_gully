@@ -96,17 +96,6 @@ class Inventory {
     inventory_name[9].setPosition(475, y + 10);
 
     inventory = std::vector<int>(inventory_size, 0);
-
-    // inventory[0] = 0;  // number of shovels
-    // inventory[1] = 0;  // number of gloves
-    // inventory[2] = 0;  // number of blueberry seeds
-    // inventory[3] = 0;  // number of blueberries
-    // inventory[4] = 0;  // number of strawberry seeds
-    // inventory[5] = 0;  // number of strawberries
-    // inventory[6] = 0;  // number of potato seeds
-    // inventory[7] = 0;  // number of potatos
-    // inventory[8] = 0;  // number of carrot seeds
-    // inventory[9] = 0;  // number of carrots
   }
 
   void scrollInventory() {
@@ -117,6 +106,10 @@ class Inventory {
       inventory_index++;
       if (inventory_index >= inventory_size) {
         inventory_index = 0;
+      }
+
+      if (inventory_index == 0) {
+        inventory_name[inventory_index].setFillColor(Color::Green);
       }
       inventory_name[inventory_index].setFillColor(Color::Green);
     }

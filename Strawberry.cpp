@@ -13,7 +13,7 @@ class tile_driver {
   RenderWindow* win;
   //   tile** background = new tile*[400];  // array of tile pointers
   std::vector<tile*> background;
-  Strawberry s = Strawberry(150, 150);
+  Strawberry s = Strawberry(50, 0);
 
  public:
   tile_driver(int size, std::string title) {

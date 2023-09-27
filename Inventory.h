@@ -96,6 +96,8 @@ class Inventory {
     inventory_name[9].setPosition(475, y + 10);
 
     inventory = std::vector<int>(inventory_size, 0);
+
+    inventory_name[inventory_index].setFillColor(Color::Green);
   }
 
   void scrollInventory() {

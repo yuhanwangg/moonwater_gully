@@ -95,7 +95,8 @@ class Inventory {
     inventory_name[9].setFillColor(Color::White);
     inventory_name[9].setPosition(475, y + 10);
 
-    inventory = std::vector<int>(inventory_size, 0);
+    inventory = std::vector<int>(inventory_size,
+                                 0);  // initialising inventory values as 0
 
     inventory_name[inventory_index].setFillColor(Color::Green);
   }
@@ -127,6 +128,40 @@ class Inventory {
   // getters and setters
   std::vector<int> get_inventory() { return inventory; }
   int get_inventoryIndex() { return inventory_index; }
+  void set_inventoryIndex(int ind) { inventory_index = ind; }
+
+  int get_shovelCount() { return inventory[0]; }
+  int get_gloveCount() { return inventory[1]; }
+  int get_blueberrySeedsCount() { return inventory[2]; }
+  int get_blueberryCount() { return inventory[3]; }
+  int get_strawberrySeedsCount() { return inventory[4]; }
+  int get_strawberryCount() { return inventory[5]; }
+  int get_potatoSeedsCount() { return inventory[6]; }
+  int get_potatoCount() { return inventory[7]; }
+  int get_carrotSeedsCount() { return inventory[8]; }
+  int get_carrotCount() { return inventory[9]; }
+
+  void set_shovelCount(int shovel) { inventory[0] = shovel; }
+  void set_gloveCount(int glove) { inventory[1] = glove; }
+  void set_blueberrySeedsCount(int blue_seeds) { inventory[2] = blue_seeds; }
+  void set_blueberryCount(int blue) { inventory[3] = blue; }
+  void set_strawberrySeedsCount(int straw_seeds) { inventory[4] = straw_seeds; }
+  void set_strawberryCount(int straw) { inventory[5] = straw; }
+  void set_potatoSeedsCount(int potato_seed) { inventory[6] = potato_seed; }
+  void set_potatoCount(int potato) { inventory[7] = potato; }
+  void set_carrotSeedsCount(int carrot_seed) { inventory[8] = carrot_seed; }
+  void set_carrotCount(int carrot) { inventory[9] = carrot; }
+
+  void add_shovelCount() { inventory[0] += 1; }
+  void add_gloveCount() { inventory[1] += 1; }
+  void add_blueberrySeedsCount() { inventory[2] += 1; }
+  void add_blueberryCount() { inventory[3] += 1; }
+  void add_strawberrySeedsCount() { inventory[4] += 1; }
+  void add_strawberryCount() { inventory[5] += 1; }
+  void add_potatoSeedsCount() { inventory[6] += 1; }
+  void add_potatoCount() { inventory[7] += 1; }
+  void add_carrotSeedsCount() { inventory[8] += 1; }
+  void add_carrotCount() { inventory[9] += 1; }
 
   //   ~Inventory() { delete[] inventory; }
 };

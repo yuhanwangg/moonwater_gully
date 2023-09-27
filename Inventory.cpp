@@ -97,10 +97,10 @@ class Inventory_driver {
                 if (buymenu.purchase_status(player, 0) == true) {
                   buymenu.set_successCheck(true);
                   buymenu.set_failureCheck(false);
-                  int wallet = player->get_shells();
-                  std::cout << "Shells: " << wallet;
+
+                  std::cout << "Shells: " << player->get_shells();
                   std::cout << "\n";
-                  player->set_shells(wallet - 50);
+                  player->subtract_50shells();
                   std::cout << "Remaining shells: " << player->get_shells();
                   std::cout << "\n";  // next up, add items into the player's
                                       // inventory
@@ -116,11 +116,10 @@ class Inventory_driver {
                 if (buymenu.purchase_status(player, 1) == true) {
                   buymenu.set_successCheck(true);
                   buymenu.set_failureCheck(false);
-                  int wallet = player->get_shells();
 
-                  std::cout << "Shells: " << wallet;
+                  std::cout << "Shells: " << player->get_shells();
                   std::cout << "\n";
-                  player->set_shells(wallet - 50);
+                  player->subtract_50shells();
                   std::cout << "Remaining shells: " << player->get_shells();
                   std::cout << "\n";
 
@@ -136,11 +135,10 @@ class Inventory_driver {
                 if (buymenu.purchase_status(player, 2) == true) {
                   buymenu.set_successCheck(true);
                   buymenu.set_failureCheck(false);
-                  int wallet = player->get_shells();
 
-                  std::cout << "Shells: " << wallet;
+                  std::cout << "Shells: " << player->get_shells();
                   std::cout << "\n";
-                  player->set_shells(wallet - 70);
+                  player->subtract_70shells();
                   std::cout << "Remaining shells: " << player->get_shells();
                   std::cout << "\n";
 
@@ -158,11 +156,10 @@ class Inventory_driver {
                 if (buymenu.purchase_status(player, 3) == true) {
                   buymenu.set_successCheck(true);
                   buymenu.set_failureCheck(false);
-                  int wallet = player->get_shells();
 
-                  std::cout << "Shells: " << wallet;
+                  std::cout << "Shells: " << player->get_shells();
                   std::cout << "\n";
-                  player->set_shells(wallet - 70);
+                  player->subtract_70shells();
                   std::cout << "Remaining shells: " << player->get_shells();
                   std::cout << "\n";
 
@@ -179,11 +176,10 @@ class Inventory_driver {
                 if (buymenu.purchase_status(player, 4) == true) {
                   buymenu.set_successCheck(true);
                   buymenu.set_failureCheck(false);
-                  int wallet = player->get_shells();
 
-                  std::cout << "Shells: " << wallet;
+                  std::cout << "Shells: " << player->get_shells();
                   std::cout << "\n";
-                  player->set_shells(wallet - 300);
+                  player->subtract_400shells();
                   std::cout << "Remaining shells: " << player->get_shells();
                   std::cout << "\n";
 
@@ -200,11 +196,10 @@ class Inventory_driver {
                 if (buymenu.purchase_status(player, 5) == true) {
                   buymenu.set_successCheck(true);
                   buymenu.set_failureCheck(false);
-                  int wallet = player->get_shells();
 
-                  std::cout << "Shells: " << wallet;
+                  std::cout << "Shells: " << player->get_shells();
                   std::cout << "\n";
-                  player->set_shells(wallet - 150);
+                  player->subtract_150shells();
                   std::cout << "Remaining shells: " << player->get_shells();
                   std::cout << "\n";
 

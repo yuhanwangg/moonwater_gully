@@ -46,6 +46,16 @@ class Player {
   int get_x() { return body->getPosition().x; }
   int get_y() { return body->getPosition().y; }
 
+  void add_80shells() { shells += 80; }
+  void add_100shells() { shells += 100; }
+  void add_120shells() { shells += 120; }
+  void add_200shells() { shells += 200; }
+
+  void subtract_50shells() { shells -= 50; }
+  void subtract_70shells() { shells -= 70; }
+  void subtract_400shells() { shells -= 400; }
+  void subtract_150shells() { shells -= 150; }
+
   int get_shells() { return shells; }
   void set_shells(int shell_no) { shells = shell_no; }
 };

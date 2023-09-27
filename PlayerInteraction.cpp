@@ -4,12 +4,16 @@ using namespace sf;
 #include "Player.h"
 #include "PlayerInteraction.h"
 #include "tile.h"
+#include <cmath>
+
 class PlayerInteraction_driver {
  private:
   RenderWindow* win;
   std::vector<tile*> background;
   Player* player;
   PlayerInteraction PI;
+
+   
 
  public:
   PlayerInteraction_driver(int size, std::string title) {
@@ -27,6 +31,10 @@ class PlayerInteraction_driver {
   };
 
   void run() {
+
+    sf::Clock clock;
+    const sf::Time targetFrameTime = sf::seconds(1.0f / 60.0f);
+
     while (win->isOpen()) {
       Event e;
       while (win->pollEvent(e)) {
@@ -36,7 +44,7 @@ class PlayerInteraction_driver {
 
         if (e.type == Event::KeyPressed) {
           if (Keyboard::isKeyPressed(Keyboard::P)) {
-            PI.seedPlant(8, *player, &background);
+            player->seedPlant(6, &background);
           }
         }
 
@@ -77,8 +85,19 @@ class PlayerInteraction_driver {
       player->draw(win);
 
       win->display();
+
+      // limit fps to 60:
+
+      sf::Time elapsed = clock.getElapsedTime();
+      if (elapsed < targetFrameTime) {
+        sf::sleep(targetFrameTime - elapsed);
+      }
+      clock.restart();
+
     }
   };
+
+  
 
   std::vector<tile*> get_background() { return background; };
 };

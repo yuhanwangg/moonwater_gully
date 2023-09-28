@@ -65,3 +65,7 @@ inventory_test: Inventory.cpp Inventory.h Player.h tile.h BuyMenu.h
 playerInteraction_test: PlayerInteraction.cpp PlayerInteraction.h tile.h Player.h Carrot.h
 	clang++ PlayerInteraction.cpp -o playerInteraction -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
 	./playerInteraction
+
+day_test: Day.cpp Day.h tile.h Player.h
+	clang++ Day.cpp -o day -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
+	./day

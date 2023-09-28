@@ -1,18 +1,19 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 using namespace sf;
+#include "Day.h"
 #include "Player.h"
-#include "PlayerInteraction.h"
 #include "tile.h"
-class PlayerInteraction_driver {
+
+class Day_driver {
  private:
   RenderWindow* win;
   std::vector<tile*> background;
   Player* player;
-  PlayerInteraction PI;
+  Day day;
 
  public:
-  PlayerInteraction_driver(int size, std::string title) {
+  Day_driver(int size, std::string title) {
     win = new sf::RenderWindow(sf::VideoMode(size, size), title);
     player = new Player(10, 50, 50);
   };
@@ -33,33 +34,9 @@ class PlayerInteraction_driver {
         if (e.type == Event::Closed) {
           win->close();
         }
-
-        if (e.type == Event::KeyPressed) {
-          if (Keyboard::isKeyPressed(Keyboard::P)) {
-            PI.seedPlant(2, *player, &background);
-          }
-        }
-
-        if (e.type == Event::KeyPressed) {
-          if (Keyboard::isKeyPressed(Keyboard::Num1)) {
-            PI.waterPlant(*player, &background);
-            std::cout << "watered plant" << std::endl;
-
-            int player_x = (floor(player->get_x()/50)*50);
-            int player_y = (floor(player->get_y()/50)*50);
-
-            for (int i = 0; i < 144; i++) {
-              if (background[i]->get_x() == player_x && background[i]->get_y() == player_y) {
-                (*background[i]).grow();
-              }
-            }
-            
-          }
-        }
       }
       win->clear();
 
-      // player movement
       if (Keyboard::isKeyPressed(Keyboard::A)) {
         player->move_left();
       } else if (Keyboard::isKeyPressed(Keyboard::D)) {
@@ -74,20 +51,27 @@ class PlayerInteraction_driver {
       for (auto tilePtr : background) {
         tilePtr->draw(win);
       }
+
+
       player->draw(win);
+
+      // drawing the clock
+      day.drawDayDracker(win);
+      day.dayCountdown();
+
 
       win->display();
     }
   };
 
+  // setters and getters
+
   std::vector<tile*> get_background() { return background; };
 };
 
-
 int main() {
-    PlayerInteraction_driver driver(600, "TEST");
-    driver.make_background();
-    driver.run();
-    return 0;
-};
-
+  Day_driver driver(600, "TEST");
+  driver.make_background();
+  driver.run();
+  return 0;
+}

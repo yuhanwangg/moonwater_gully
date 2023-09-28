@@ -115,6 +115,32 @@ class Day {
 
         void drawDayDracker(RenderWindow* win){
             std::cout<< "timeInSec: " << timeInSec << " , timeInSecString: " <<timeInSecString << ", dayCount: " << dayCount << ", dayCountString: " << dayCountString <<std::endl;
+            timeLeftWord.setFont(font);
+            timeLeftWord.setString("Time left: ");
+            timeLeftWord.setCharacterSize(10);
+            timeLeftWord.setFillColor(Color::Black);
+            timeLeftWord.setPosition(x + 15, y + 10);
+
+            timeLeftValue.setFont(font);
+            timeLeftValue.setString(timeInSecString);
+            timeLeftValue.setCharacterSize(10);
+            timeLeftValue.setFillColor(Color::Black);
+            timeLeftValue.setPosition(x + 125, y + 10);
+
+            currentDayWord.setFont(font);
+            currentDayWord.setString("Day ");
+            currentDayWord.setCharacterSize(10);
+            currentDayWord.setFillColor(Color::Black);
+            currentDayWord.setPosition(x + 15, y + 25);
+
+            currentDayValue.setFont(font);
+            currentDayValue.setString(dayCountString);
+            currentDayValue.setCharacterSize(10);
+            currentDayValue.setFillColor(Color::Black);
+            currentDayValue.setPosition(x + 65, y + 25);
+
+            
+            
             win->draw(*dayClock_bg);
             win->draw(timeLeftWord);
             win->draw(currentDayWord);

@@ -114,7 +114,7 @@ class Day {
         };
 
         void drawDayDracker(RenderWindow* win){
-            std::cout<< "timeInSec: " << timeInSec << " , timeInSecString: " <<timeInSecString << ", dayCount: " << dayCount << ", dayCountString: " << dayCountString <<std::endl;
+            //std::cout<< "timeInSec: " << timeInSec << " , timeInSecString: " <<timeInSecString << ", dayCount: " << dayCount << ", dayCountString: " << dayCountString <<std::endl;
             timeLeftWord.setFont(font);
             timeLeftWord.setString("Time left: ");
             timeLeftWord.setCharacterSize(10);

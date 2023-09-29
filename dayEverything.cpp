@@ -66,26 +66,42 @@ class everything_driver {
                 if (inventory.get_blueberrySeedsCount() > 0) {
                   PI.seedPlant(2, *player, &background);
                   inventory.subtract_blueberrySeedsCount();
+                } else {
+                  std::cout
+                      << "No blueberry seeds! You can buy some from the shop.";
+                  std::cout "\n";
                 }
                 break;
-              case 4;
+              case 4:
                 if (inventory.get_strawberrySeedsCount() > 0) {
-              PI.seedPlant(4, *player, &background);
-              inventory.subtract_strawberrySeedsCount();
-            }
-              break;
-              case 6;
+                  PI.seedPlant(4, *player, &background);
+                  inventory.subtract_strawberrySeedsCount();
+                } else {
+                  std::cout
+                      << "No strawberry seeds! You can buy some from the shop.";
+                  std::cout "\n";
+                }
+                break;
+              case 6:
                 if (inventory.get_potatoSeedsCount() > 0) {
-              PI.seedPlant(6, *player, &background);
-              inventory.subtract_potatoSeedsCount();
-            }
-              break;
-              case 8;
+                  PI.seedPlant(6, *player, &background);
+                  inventory.subtract_potatoSeedsCount();
+                } else {
+                  std::cout
+                      << "No potato seeds! You can buy some from the shop.";
+                  std::cout "\n";
+                }
+                break;
+              case 8:
                 if (inventory.get_carrotSeedsCount() > 0) {
-              PI.seedPlant(8, *player, &background);
-              inventory.subtract_SeedsCount();
-            }
-              break
+                  PI.seedPlant(8, *player, &background);
+                  inventory.subtract_carrotSeedsCount();
+                } else {
+                  std::cout
+                      << "No carrot seeds! You can buy some from the shop.";
+                  std::cout "\n";
+                }
+                break;
             }
           }
         }

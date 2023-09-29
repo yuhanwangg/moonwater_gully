@@ -69,7 +69,7 @@ class everything_driver {
                 } else {
                   std::cout
                       << "No blueberry seeds! You can buy some from the shop.";
-                  std::cout "\n";
+                  std::cout << "\n";
                 }
                 break;
               case 4:
@@ -79,7 +79,7 @@ class everything_driver {
                 } else {
                   std::cout
                       << "No strawberry seeds! You can buy some from the shop.";
-                  std::cout "\n";
+                  std::cout << "\n";
                 }
                 break;
               case 6:
@@ -89,7 +89,7 @@ class everything_driver {
                 } else {
                   std::cout
                       << "No potato seeds! You can buy some from the shop.";
-                  std::cout "\n";
+                  std::cout << "\n";
                 }
                 break;
               case 8:
@@ -99,7 +99,7 @@ class everything_driver {
                 } else {
                   std::cout
                       << "No carrot seeds! You can buy some from the shop.";
-                  std::cout "\n";
+                  std::cout << "\n";
                 }
                 break;
             }

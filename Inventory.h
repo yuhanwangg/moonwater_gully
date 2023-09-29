@@ -163,6 +163,17 @@ class Inventory {
   void add_carrotSeedsCount() { inventory[8] += 1; }
   void add_carrotCount() { inventory[9] += 1; }
 
+  void subtract_shovelCount() { inventory[0] -= 1; }
+  void subtract_gloveCount() { inventory[1] -= 1; }
+  void subtract_blueberrySeedsCount() { inventory[2] -= 1; }
+  void subtract_blueberryCount() { inventory[3] -= 1; }
+  void subtract_strawberrySeedsCount() { inventory[4] -= 1; }
+  void subtract_strawberryCount() { inventory[5] -= 1; }
+  void subtract_potatoSeedsCount() { inventory[6] -= 1; }
+  void subtract_potatoCount() { inventory[7] -= 1; }
+  void subtract_carrotSeedsCount() { inventory[8] -= 1; }
+  void subtract_carrotCount() { inventory[9] -= 1; }
+
   //   ~Inventory() { delete[] inventory; }
 };
 

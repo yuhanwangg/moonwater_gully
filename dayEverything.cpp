@@ -1,18 +1,19 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 using namespace sf;
-#include "BuyMenu.h"
-#include "Menu.h"
-#include "Player.h"
-#include "tile.h"
-#include "PlayerInteraction.h"
-#include "Day.h"
-#include "Carrot.h"
-#include "Potato.h"
-#include "Strawberry.h"
-#include "Blueberry.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
+
+#include "Blueberry.h"
+#include "BuyMenu.h"
+#include "Carrot.h"
+#include "Day.h"
+#include "Menu.h"
+#include "Player.h"
+#include "PlayerInteraction.h"
+#include "Potato.h"
+#include "Strawberry.h"
+#include "tile.h"
 using namespace sf;
 #include "BuyMenu.h"
 #include "Inventory.h"
@@ -60,7 +61,32 @@ class everything_driver {
 
         if (e.type == Event::KeyPressed) {
           if (Keyboard::isKeyPressed(Keyboard::P)) {
-            PI.seedPlant(2, *player, &background);
+            switch (inventory.get_inventoryIndex()) {
+              case 2:
+                if (inventory.get_blueberrySeedsCount() > 0) {
+                  PI.seedPlant(2, *player, &background);
+                  inventory.subtract_blueberrySeedsCount();
+                }
+                break;
+              case 4;
+                if (inventory.get_strawberrySeedsCount() > 0) {
+              PI.seedPlant(4, *player, &background);
+              inventory.subtract_strawberrySeedsCount();
+            }
+              break;
+              case 6;
+                if (inventory.get_potatoSeedsCount() > 0) {
+              PI.seedPlant(6, *player, &background);
+              inventory.subtract_potatoSeedsCount();
+            }
+              break;
+              case 8;
+                if (inventory.get_carrotSeedsCount() > 0) {
+              PI.seedPlant(8, *player, &background);
+              inventory.subtract_SeedsCount();
+            }
+              break
+            }
           }
         }
 
@@ -69,15 +95,15 @@ class everything_driver {
             PI.waterPlant(*player, &background);
             std::cout << "watered plant" << std::endl;
 
-            int player_x = (floor(player->get_x()/50)*50);
-            int player_y = (floor(player->get_y()/50)*50);
+            int player_x = (floor(player->get_x() / 50) * 50);
+            int player_y = (floor(player->get_y() / 50) * 50);
 
             for (int i = 0; i < 144; i++) {
-              if (background[i]->get_x() == player_x && background[i]->get_y() == player_y) {
+              if (background[i]->get_x() == player_x &&
+                  background[i]->get_y() == player_y) {
                 (*background[i]).grow();
               }
             }
-            
           }
         }
 
@@ -340,7 +366,7 @@ class everything_driver {
       if (buymenu.get_successCheck() == true) {
         buymenu.draw_purchaseSuccess(win);
       }
-      
+
       // drawing the clock
       day.drawDayDracker(win);
       day.dayCountdown();

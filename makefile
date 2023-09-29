@@ -70,6 +70,10 @@ day_test: Day.cpp Day.h tile.h Player.h
 	clang++ Day.cpp -o day -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
 	./day
 
+sellmenu_test: SellMenu.cpp Menu.h BuyMenu.h Player.h SellMenu.h
+	g++ SellMenu.cpp -o sellmenu -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
+	./sellmenu
+
 # has everything i.e. inventory, can plant plants, water plants, clock et.
 everythingday_test: dayEverything.cpp Day.h PlayerInteraction.h BuyMenu.h menu.h Player.h Strawberry.h Blueberry.h Carrot.h Potato.h RootPlant.h BerryPlant.h Plant.h tile.h 
 	clang++ dayEverything.cpp -o everythingDay -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib

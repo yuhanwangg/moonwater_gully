@@ -14,7 +14,7 @@ class BuyMenu : public Menu {
   bool buyOn;
   Text catalogue[6];
   Text title_buy;
-  Text purchase[3];
+  Text purchase[3];  // successfull purchase or not
   int buy_select;
 
   bool success_check;
@@ -24,8 +24,8 @@ class BuyMenu : public Menu {
   BuyMenu(int len, int wid) : Menu(len, wid) {
     x = 25;
     y = 25;
-    length = len;
-    width = wid;
+    length = len;  // 250
+    width = wid;   // 400
     max_option = 6;
 
     success_check = false;
@@ -151,6 +151,7 @@ class BuyMenu : public Menu {
     switch (item_no) {
       case 0:  // carrot
         if (player->get_shells() >= 50) {
+          player->subtract_50shells();
           return true;
         } else {
           return false;
@@ -171,20 +172,20 @@ class BuyMenu : public Menu {
         }
         break;
       case 3:  // blueberry
-        if (player->get_shells() >= 50) {
+        if (player->get_shells() >= 70) {
           return true;
         } else {
           return false;
         }
         break;
       case 4:  // shovel
-        if (player->get_shells() >= 300) {
+        if (player->get_shells() >= 400) {
           return true;
         } else {
           return false;
         }
         break;
-      case 5:  // blueberry
+      case 5:  // gloves
         if (player->get_shells() >= 150) {
           return true;
         } else {

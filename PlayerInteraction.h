@@ -11,6 +11,7 @@ using namespace sf;
 #include "Strawberry.h"
 #include "Text_box.h"
 #include "tile.h"
+#include <cmath>
 
 class PlayerInteraction {
  protected:

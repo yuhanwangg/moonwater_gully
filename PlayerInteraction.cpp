@@ -11,7 +11,7 @@ class PlayerInteraction_driver {
   RenderWindow* win;
   std::vector<tile*> background;
   Player* player;
-  PlayerInteraction PI;
+  // PlayerInteraction PI;
 
    
 
@@ -50,7 +50,7 @@ class PlayerInteraction_driver {
 
         if (e.type == Event::KeyPressed) {
           if (Keyboard::isKeyPressed(Keyboard::Num1)) {
-            PI.waterPlant(*player, &background);
+            player->waterPlant(&background);
             std::cout << "watered plant" << std::endl;
 
             int player_x = (floor(player->get_x()/50)*50);

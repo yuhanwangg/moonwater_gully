@@ -44,10 +44,26 @@ class Player{
   }
 
   // movement of the player
-  void move_right() { body->move(speed, 0); }
-  void move_left() { body->move(-speed, 0); }
-  void move_up() { body->move(0, -speed); }
-  void move_down() { body->move(0, speed); }
+  void move_right() { 
+    if(body->getPosition().x < 590){
+      body->move(speed, 0);
+    }
+  }
+  void move_left() {
+    if(body->getPosition().x > 0){
+      body->move(-speed, 0);
+    }
+  }
+  void move_up() {
+    if(body->getPosition().y > 0){
+      body->move(0, -speed);
+    }
+  }
+  void move_down() {
+    if(body->getPosition().y < 590){
+      body->move(0, speed);
+    }
+  }
 
 
   // Seeding plant

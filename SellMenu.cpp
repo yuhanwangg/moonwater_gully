@@ -295,7 +295,7 @@ class SellMenu_driver {
         buymenu.set_buyOn(visible_buy);
       }
 
-      if (Keyboard::isKeyPressed(Keyboard::O) && (visible_menu == false) &&
+      if (Keyboard::isKeyPressed(Keyboard::N) && (visible_menu == false) &&
           (visible_buy == false)) {
         visible_sell = true;
         sellmenu.set_sellOn(visible_sell);

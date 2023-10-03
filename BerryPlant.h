@@ -1,10 +1,12 @@
-#include <SFML/Graphics.hpp>
 #ifndef BERRYPLANT_H
 #define BERRYPLANT_H
+
+#include <SFML/Graphics.hpp>
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
 
+#include "BerryPlant.h"
 #include "Plant.h"
 #include "tile.h"
 
@@ -36,5 +38,4 @@ class BerryPlant : public Plant {
     return yield;
   }
 };
-
 #endif

@@ -75,6 +75,6 @@ sellmenu_test: SellMenu.cpp Menu.h BuyMenu.h Player.h SellMenu.h
 	./sellmenu
 
 # has everything i.e. inventory, can plant plants, water plants, clock et.
-everythingday_test: dayEverything.cpp Day.h PlayerInteraction.h BuyMenu.h menu.h Player.h Strawberry.h Blueberry.h Carrot.h Potato.h RootPlant.h BerryPlant.h Plant.h tile.h 
+everythingday_test: dayEverything.cpp Day.h BuyMenu.h menu.h Player.h Strawberry.h Blueberry.h Carrot.h Potato.h RootPlant.h BerryPlant.h Plant.h tile.h 
 	clang++ dayEverything.cpp -o everythingDay -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
 	./everythingDay

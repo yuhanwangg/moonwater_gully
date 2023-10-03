@@ -276,7 +276,7 @@ class BuyMenu_driver {
 };
 
 int main() {
-  SellMenu_driver driver(600, "TEST");
+  BuyMenu_driver driver(600, "TEST");
   driver.make_background();
   driver.run();
   return 0;

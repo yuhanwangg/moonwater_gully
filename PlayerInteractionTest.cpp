@@ -4,7 +4,7 @@ using namespace sf;
 #include "Player.h"
 #include "PlayerInteraction.h"
 #include "tile.h"
-class PlayerInteraction_driver {
+class PlayerInteractionDriver {
  private:
   RenderWindow* win;
   std::vector<tile*> background;
@@ -12,7 +12,7 @@ class PlayerInteraction_driver {
   PlayerInteraction PI;
 
  public:
-  PlayerInteraction_driver(int size, std::string title) {
+  PlayerInteractionDriver(int size, std::string title) {
     win = new sf::RenderWindow(sf::VideoMode(size, size), title);
     player = new Player(10, 50, 50);
   };
@@ -85,7 +85,7 @@ class PlayerInteraction_driver {
 
 
 int main() {
-    PlayerInteraction_driver driver(600, "TEST");
+    PlayerInteractionDriver driver(600, "TEST");
     driver.make_background();
     driver.run();
     return 0;

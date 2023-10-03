@@ -2,14 +2,14 @@
 #include <iostream>
 using namespace sf;
 #include "Player.h"
-#include "Text_box.h"
+#include "TextBox.h"
 #include "tile.h"
 
 class Textbox_driver {
  private:
   RenderWindow* win;
   std::vector<tile*> background;
-  Text_box textbox = Text_box(90, 30);
+  TextBox textbox = TextBox(90, 30);
   Player* player;
   bool isVisibleText;
 

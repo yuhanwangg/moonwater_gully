@@ -9,7 +9,7 @@ using namespace sf;
 #include "Player.h"
 #include "Potato.h"
 #include "Strawberry.h"
-#include "Text_box.h"
+#include "TextBox.h"
 #include "tile.h"
 
 class PlayerInteraction {

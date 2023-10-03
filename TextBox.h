@@ -1,10 +1,10 @@
-#ifndef TEXT_BOX_H
-#define TEXT_BOX_H
+#ifndef TEXTBOX_H
+#define TEXTBOX_H
 #include <SFML/Graphics.hpp>
 #include <iostream>
 using namespace sf;
 
-class Text_box {
+class TextBox {
  protected:
   RectangleShape* textbox;
   Text text;
@@ -13,7 +13,7 @@ class Text_box {
   bool isVisible;
 
  public:
-  Text_box(float len, float wid) {
+  TextBox(float len, float wid) {
     length = len;
     width = wid;
     textbox = new RectangleShape(Vector2f(length, width));
@@ -34,7 +34,7 @@ class Text_box {
     // }
   };
 
-  ~Text_box() { delete[] textbox; };
+  ~TextBox() { delete[] textbox; };
 
   // getters and setters
   Text get_text() { return text; }

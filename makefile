@@ -1,80 +1,80 @@
-tile_test: tile_test.h tile_driver.cpp
-	g++ tile_driver.cpp -o tile -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
+tile_test: tileTest.h tileTest.cpp
+	g++ tileTest.cpp -o tile -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
 	./tile
 
-player_test: Player.h Player_driver.cpp tile_test.h 
-	g++ Player_driver.cpp -o player -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
+player_test: Player.h PlayerTest.cpp tileTest.h 
+	g++ PlayerTest.cpp -o player -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
 	./player
 
-plant_inventory_test: Player_plantInv.h Player_driver.cpp tile.h Plant.h BerryPlant.h
-	g++ Player_driver.cpp -o plant_inventory -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
+plant_inventory_test: PlayerPlantInv.h PlayerTest.cpp tile.h Plant.h BerryPlant.h
+	g++ PlayerTest.cpp -o plant_inventory -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
 	./plant_inventory
 
-plant_image: Plant.h Plant.cpp tile.h
-	g++ Plant.cpp -o plant_image -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
+plant_image: Plant.h PlantTest.cpp tile.h
+	g++ PlantTest.cpp -o plant_image -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
 	./plant_image
 
-rootPlant: RootPlant.cpp RootPlant.h Plant.h Plant.cpp tile.h 
-	g++ RootPlant.cpp -o rootplant -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
+rootPlant: RootPlantTest.cpp RootPlant.h Plant.h Plant.cpp tile.h 
+	g++ RootPlantTest.cpp -o rootplant -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
 	./rootplant
 
-berryPlant: BerryPlant.cpp BerryPlant.h Plant.h Plant.cpp tile.h 
-	g++ BerryPlant.cpp -o berry_plant_image -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
+berryPlant: BerryPlantTest.cpp BerryPlant.h Plant.h Plant.cpp tile.h 
+	g++ BerryPlantTest.cpp -o berry_plant_image -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
 	./berry_plant_image
 
-carrot: Carrot.cpp Carrot.h RootPlant.h Plant.h Plant.cpp tile.h 
-	g++ Carrot.cpp -o carrot -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
+carrot: CarrotTest.cpp Carrot.h RootPlant.h Plant.h Plant.cpp tile.h 
+	g++ CarrotTest.cpp -o carrot -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
 	./carrot
 
-potato: Potato.cpp Potato.h RootPlant.h Plant.h Plant.cpp tile.h 
-	g++ Potato.cpp -o potato -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
+potato: PotatoTest.cpp Potato.h RootPlant.h Plant.h Plant.cpp tile.h 
+	g++ PotatoTest.cpp -o potato -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
 	./potato
 
-blueberry: Blueberry.cpp Blueberry.h BerryPlant.h Plant.h Plant.cpp tile.h 
-	g++ Blueberry.cpp -o blueberry -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
+blueberry: BlueberryTest.cpp Blueberry.h BerryPlant.h Plant.h Plant.cpp tile.h 
+	g++ BlueberryTest.cpp -o blueberry -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
 	./blueberry
 
-strawberry: Strawberry.cpp Strawberry.h BerryPlant.h Plant.h Plant.cpp tile.h 
-	g++ Strawberry.cpp -o strawberry -I /include -L /lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
+strawberry: StrawberryTest.cpp Strawberry.h BerryPlant.h Plant.h Plant.cpp tile.h 
+	g++ StrawberryTest.cpp -o strawberry -I /include -L /lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
 	./strawberry
 
-plant_and_player_test: Player_plantInv.h Player_driver.cpp tile.h Plant.h
-	g++ Player_driver.cpp -o plant_move -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
+plant_and_player_test: PlayerPlantInv.h PlayerTest.cpp tile.h Plant.h
+	g++ PlayerTest.cpp -o plant_move -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
 	./plant_move
 
-text_test: Textbox_driver.cpp Text_box.h tile.h Player.h
-	g++ Textbox_driver.cpp -o text -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
+text_test: TextboxTest.cpp TextBox.h tile.h Player.h
+	g++ TextboxTest.cpp -o text -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
 	./text
 
-buymenu_test: BuyMenu.cpp Menu.h BuyMenu.h Player.h
-	g++ BuyMenu.cpp -o buymenu -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
+buymenu_test: BuyMenuTest.cpp Menu.h BuyMenu.h Player.h
+	g++ BuyMenuTest.cpp -o buymenu -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
 	./buymenu
 
-menu_test: Menu.cpp menu.h tile.h Player.h
-	g++ Menu.cpp -o menu -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
+menu_test: MenuTest.cpp menu.h tile.h Player.h
+	g++ MenuTest.cpp -o menu -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
 	./menu
 
-# playerInteraction_test: PlayerInteraction.cpp PlayerInteraction.h tile.h Player.h Carrot.h
-# 	clang++ PlayerInteraction.cpp -o playerInteraction -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
+# playerInteraction_test: PlayerInteractionTest.cpp PlayerInteraction.h tile.h Player.h Carrot.h
+# 	clang++ PlayerInteractionTest.cpp -o playerInteraction -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
 # 	./playerInteraction
 
-inventory_test: Inventory.cpp Inventory.h Player.h tile.h BuyMenu.h
-	g++ Inventory.cpp -o inventory -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
+inventory_test: InventoryTest.cpp Inventory.h Player.h tile.h BuyMenu.h
+	g++ InventoryTest.cpp -o inventory -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
 	./inventory
 
-playerInteraction_test: PlayerInteraction.cpp PlayerInteraction.h tile.h Player.h Carrot.h
-	clang++ PlayerInteraction.cpp -o playerInteraction -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
+playerInteraction_test: PlayerInteractionTest.cpp PlayerInteraction.h tile.h Player.h Carrot.h
+	clang++ PlayerInteractionTest.cpp -o playerInteraction -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
 	./playerInteraction
 
-day_test: Day.cpp Day.h tile.h Player.h
-	clang++ Day.cpp -o day -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
+day_test: DayTest.cpp Day.h tile.h Player.h
+	clang++ DayTest.cpp -o day -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
 	./day
 
-sellmenu_test: SellMenu.cpp Menu.h BuyMenu.h Player.h SellMenu.h
-	g++ SellMenu.cpp -o sellmenu -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
+sellmenu_test: SellMenuTest.cpp Menu.h BuyMenu.h Player.h SellMenu.h
+	g++ SellMenuTest.cpp -o sellmenu -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
 	./sellmenu
 
 # has everything i.e. inventory, can plant plants, water plants, clock et.
-everythingday_test: dayEverything.cpp Day.h BuyMenu.h menu.h Player.h Strawberry.h Blueberry.h Carrot.h Potato.h RootPlant.h BerryPlant.h Plant.h tile.h 
-	clang++ dayEverything.cpp -o everythingDay -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
+everythingday_test: dayEverythingTest.cpp Day.h BuyMenu.h menu.h Player.h Strawberry.h Blueberry.h Carrot.h Potato.h RootPlant.h BerryPlant.h Plant.h tile.h 
+	clang++ dayEverythingTest.cpp -o everythingDay -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
 	./everythingDay

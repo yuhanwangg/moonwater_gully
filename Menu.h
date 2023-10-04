@@ -51,9 +51,9 @@ class Menu {
     background->setPosition(x, y);
 
     // how to play image
-    how_to_play_bg = new RectangleShape(Vector2f(550, 550));
+    how_to_play_bg = new RectangleShape(Vector2f(550, 500));
     how_to_play_bg->setFillColor(Color::White);
-    how_to_play_bg->setPosition(x, y);
+    how_to_play_bg->setPosition(x, 80);
 
     // controls image
     control_bg = new RectangleShape(Vector2f(250, 450));
@@ -131,31 +131,31 @@ class Menu {
     "Using the buy menu you can buy different plant seeds!\n\n\n"
     "Be careful not to use all your money on seeds, some plants need \n\n\n"
     "certain harvest equipment:\n\n\n"
-    "\n\n\n\n\n"
+    "\n\n\n"
     "Potatoes need a shovel to dig up.\n\n\n"
     "Carrots needs gloves to pull up. \n\n\n"
     "All berries need no harvest equipment. \n\n\n"
-    "\n\n\n\n\n"
+    "\n\n\n"
     "You can move your player and plant the plant seeds where you \n\n\n"
     "stand (make sure the right seeds are highlighted in your \n\n\n"
     "hotbar to plant!)\n\n\n"
-    "\n\n\n\n\n"
+    "\n\n\n"
     "Don't forget to water your seeds once you plant them. Water \n\n\n"
     "plants daily by standing over the plant, the plant will grow  \n\n\n"
     "at the start of a new day. If a plant wasn't watered it will \n\n\n"
     "die and vanish.\n\n\n"
-    "\n\n\n\n\n"
+    "\n\n\n"
     "Once a plant has reached full growth you can harvest when \n\n\n"
     "standing over the plant (don't forget to have the right harvest \n\n\n"
     "equipment highlighted in the hotbar!).\n\n\n"
-    "\n\n\n\n\n"
+    "\n\n\n"
     "You can sell your harvested plants in the sell menu (make sure \n\n\n"
     "you have the right plant highlighted in the hotbar). \n\n\n"
-    "\n\n\n\n\n"
+    "\n\n\n"
     "Enjoy the game!");
     howToPlayText.setCharacterSize(8);
     howToPlayText.setFillColor(Color::Black);
-    howToPlayText.setPosition(40,40);
+    howToPlayText.setPosition(40,90);
     win->draw(*how_to_play_bg);
     win->draw(howToPlayText);
     

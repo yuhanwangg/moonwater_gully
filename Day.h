@@ -152,7 +152,31 @@ class Day {
             win->draw(currentDayWord);
             win->draw(timeLeftValue);
             win->draw(currentDayValue);
+
+            return;
         };
+
+        void daySkip(std::vector<tile*>* background) {
+            timeInSec = 180;
+            newDayTime = time(NULL);
+            oneSecond = time(NULL);
+            dayCount++;
+            dayCountString = std::to_string(dayCount);
+
+            // makes all the plants grow at the beginning of each day
+            for (int i = 0; i < 144; i++) {
+                (*background)[i]->grow();
+            }
+            std::cout << "day has been skipped" << std::endl;
+
+            // newDayTime = time(NULL);
+            // oneSecond = time(NULL);
+            // dayCount++;
+            // dayCountString = std::to_string(dayCount);
+
+            return;
+        }
+
 
         // void drawDayTime(){
 

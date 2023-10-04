@@ -41,7 +41,7 @@ class Day {
             dayCountString = std::to_string(dayCount);
             timeInSecString = std::to_string(timeInSec);
 
-            x = 425;
+            x = 410;
             y = 25;
 
              // clock image

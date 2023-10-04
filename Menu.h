@@ -30,7 +30,7 @@ class Menu {
 
   // The text information for each window
   Text howToPlayText;
-  Text controlsText;
+  Text controlText;
 
  public:
   Menu(int len, int wid) {
@@ -56,9 +56,9 @@ class Menu {
     how_to_play_bg->setPosition(x, 80);
 
     // controls image
-    control_bg = new RectangleShape(Vector2f(250, 450));
+    control_bg = new RectangleShape(Vector2f(330, 400));
     control_bg->setFillColor(Color::Blue);
-    control_bg->setPosition(325, 25);
+    control_bg->setPosition(245, 85);
 
     save_bg = new RectangleShape(Vector2f(length, width));
     save_bg->setPosition(150, 150);
@@ -161,7 +161,33 @@ class Menu {
     
     }
 
-  void draw_control(RenderWindow* win) { win->draw(*control_bg); }
+  void draw_control(RenderWindow* win) {
+    controlText.setFont(font);
+    controlText.setString("Controls: Press special keys to activate\n\n\n\n\n"
+    "Arrows: navigate menus \n\n\n\n" 
+    "Enter: commits choice \n\n\n\n"
+    "Escape: exit menus \n\n\n\n"
+    "M: re-enter main menu \n\n\n\n" 
+    "B: buy menu \n\n\n\n" 
+    "N: sell menu \n\n\n\n"  
+    "P: plant seed \n\n\n\n" 
+    "1: water plant\n\n\n\n" 
+    "2: harvest plant \n\n\n\n"
+    "0: skip to next day \n\n\n\n"
+    "Space bar: loop through inventory \n\n\n\n"  
+    "\n\n"
+    "Player Movement: \n\n\n"
+    "W: up \n\n\n" 
+    "A: left \n\n\n"  
+    "S: down \n\n\n"
+    "D: right \n\n\n");
+
+    controlText.setCharacterSize(8);
+    controlText.setFillColor(Color::Black);
+    controlText.setPosition(250,90);
+    win->draw(*control_bg);
+    win->draw(controlText); 
+    }
 
   void draw_save(RenderWindow* win) { win->draw(*save_bg); }
 

@@ -30,7 +30,7 @@ class everything_driver {
   Menu menu = Menu(300, 150);
   BuyMenu buymenu = BuyMenu(250, 400);
   SellMenu sellmenu = SellMenu(250, 300);
-  Inventory inventory = Inventory(550, 50);
+  Inventory inventory = Inventory(550, 55);
   Day day;
   PlayerInteraction PI;
   bool visible_menu = true;

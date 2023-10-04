@@ -118,12 +118,12 @@ class everything_driver {
             int player_x = (floor(player->get_x() / 50) * 50);
             int player_y = (floor(player->get_y() / 50) * 50);
 
-            for (int i = 0; i < 144; i++) {
-              if (background[i]->get_x() == player_x &&
-                  background[i]->get_y() == player_y) {
-                (*background[i]).grow();
-              }
-            }
+            // for (int i = 0; i < 144; i++) {
+            //   if (background[i]->get_x() == player_x &&
+            //       background[i]->get_y() == player_y) {
+            //     (*background[i]).grow();
+            //   }
+            // }
           }
         }
 
@@ -504,7 +504,7 @@ class everything_driver {
 
       // drawing the clock
       day.drawDayDracker(win);
-      day.dayCountdown();
+      day.dayCountdown(&background);
 
       inventory.drawInventory(win);
 

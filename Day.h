@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <ctime>
+#include "tile.h"
 using namespace sf;
 
 class Day {
@@ -90,7 +91,7 @@ class Day {
         };
 
         
-        void dayCountdown(){
+        void dayCountdown(std::vector<tile*>* background){
             //check if 3 mins has passed
             if (timeInSec > 0) {
                 //updating time to countdown every second
@@ -108,6 +109,11 @@ class Day {
                 oneSecond = time(NULL);
                 dayCount++;
                 dayCountString = std::to_string(dayCount);
+
+                // makes all the plants grow at the beginning of each day
+                for (int i = 0; i < 144; i++) {
+                    (*background)[i]->grow();
+                }
 
             }
             return;

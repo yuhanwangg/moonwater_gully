@@ -57,7 +57,7 @@ class Day_driver {
 
       // drawing the clock
       day.drawDayDracker(win);
-      day.dayCountdown();
+      day.dayCountdown(&background);
 
 
       win->display();

@@ -48,11 +48,10 @@ class PlayerInteractionDriver {
             int player_x = (floor(player->get_x()/50)*50);
             int player_y = (floor(player->get_y()/50)*50);
 
-            for (int i = 0; i < 144; i++) {
-              if (background[i]->get_x() == player_x && background[i]->get_y() == player_y) {
-                (*background[i]).grow();
-              }
-            }
+            // moving to day function
+            // for (int i = 0; i < 144; i++) {
+            //     (*background[i]).grow();
+            // }
             
           }
         }

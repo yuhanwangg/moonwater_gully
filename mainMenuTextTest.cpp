@@ -32,11 +32,10 @@ class everything_driver {
   SellMenu sellmenu = SellMenu(250, 300);
   Inventory inventory = Inventory(550, 55);
   Day day;
-  PlayerInteraction PI;
   bool visible_menu = true;
   bool visible_buy = false;
   bool visible_sell = false;
-  bool visible_inventory = true;
+  bool visibleInventory = true;
 
  public:
   everything_driver(int size, std::string title) {
@@ -45,6 +44,7 @@ class everything_driver {
     visible_buy = false;
     visible_menu = true;
     visible_sell = false;
+    visibleInventory = true;
   };
 
   void make_background() {
@@ -69,7 +69,7 @@ class everything_driver {
             switch (inventory.get_inventoryIndex()) {
               case 2:
                 if (inventory.get_blueberrySeedsCount() > 0) {
-                  PI.seedPlant(2, *player, &background);
+                  player->seedPlant(2, &background);
                   inventory.subtract_blueberrySeedsCount();
                 } else {
                   std::cout
@@ -79,7 +79,7 @@ class everything_driver {
                 break;
               case 4:
                 if (inventory.get_strawberrySeedsCount() > 0) {
-                  PI.seedPlant(4, *player, &background);
+                  player->seedPlant(4, &background);
                   inventory.subtract_strawberrySeedsCount();
                 } else {
                   std::cout
@@ -89,7 +89,7 @@ class everything_driver {
                 break;
               case 6:
                 if (inventory.get_potatoSeedsCount() > 0) {
-                  PI.seedPlant(6, *player, &background);
+                  player->seedPlant(6, &background);
                   inventory.subtract_potatoSeedsCount();
                 } else {
                   std::cout
@@ -99,7 +99,7 @@ class everything_driver {
                 break;
               case 8:
                 if (inventory.get_carrotSeedsCount() > 0) {
-                  PI.seedPlant(8, *player, &background);
+                  player->seedPlant(8, &background);
                   inventory.subtract_carrotSeedsCount();
                 } else {
                   std::cout
@@ -181,21 +181,25 @@ class everything_driver {
                 // close the menu and access game window
                 visible_menu = false;
                 menu.set_visibility(visible_menu);
+                inventory.set_visibility(true);
                 break;
               case 1:
                 // open game description
                 menu.set_visibility(false);
                 menu.set_htp_visi(true);
+                inventory.set_visibility(false);
                 break;
               case 2:
                 // open controls rectangle
                 menu.set_visibility(false);
                 menu.set_control_visi(true);
+                inventory.set_visibility(true);
                 break;
               case 3:
                 // open save confirmation
                 menu.set_visibility(false);
                 menu.set_save_visi(true);
+                inventory.set_visibility(true);
                 break;
             }
           }
@@ -450,6 +454,7 @@ class everything_driver {
 
       // visibility of menus
       if (Keyboard::isKeyPressed(Keyboard::Escape)) {
+        inventory.set_visibility(true);
         if (buymenu.get_buyOn() == false && sellmenu.get_sellOn() == false) {
           menu.set_control_visi(false);
           menu.set_htp_visi(false);
@@ -511,11 +516,15 @@ class everything_driver {
       }
 
       // drawing the clock
+      
       day.drawDayDracker(win);
       day.dayCountdown(&background);
 
-      inventory.drawInventory(win);
-      inventory.drawCounter(win);
+      if (inventory.get_visibility() == true) {
+        inventory.drawInventory(win);
+        inventory.drawCounter(win);
+      }
+      
 
       win->display();
     }

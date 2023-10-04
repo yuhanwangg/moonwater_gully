@@ -18,6 +18,7 @@ class Day {
         std::time_t oneSecond;
 
         int x, y;
+        bool visible;
 
         Font font;
         Text timeLeftWord;
@@ -280,6 +281,9 @@ class Day {
             this->dayClock_bg = dayClock_bg;
             return;
         };
+
+        void set_visibility(bool visible) { this->visible = visible; }
+        bool get_visibility() { return visible; }
 
 
 };

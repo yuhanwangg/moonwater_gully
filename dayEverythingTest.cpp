@@ -166,7 +166,7 @@ class everything_driver {
           }
 
           if (Keyboard::isKeyPressed(Keyboard::Return) &&
-              (visible_menu == true)) {
+              (menu.get_visibility() == true)) {
             // opening the rectangles of the options
             int selection = menu.menuPressed();
             switch (selection) {

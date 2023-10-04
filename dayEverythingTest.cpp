@@ -127,6 +127,13 @@ class everything_driver {
         }
 
         if (e.type == Event::KeyPressed) {
+          if (Keyboard::isKeyPressed(Keyboard::Num0)) {
+            day.daySkip(&background);
+          }
+        }
+
+
+        if (e.type == Event::KeyPressed) {
           if (Keyboard::isKeyPressed(Keyboard::Up)) {
             if (menu.get_visibility() == true) {
               menu.moveUp();

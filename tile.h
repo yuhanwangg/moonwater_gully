@@ -31,6 +31,8 @@ class tile {
   };
 
   virtual void grow(){};
+  virtual void newDayGrowth(){};
+  // virtual void killPlant(tile *backgroundTilePtr){};
   void set_x(int _x) { x = _x; };
   void set_y(int _y) { y = _y; };
   void set_isPlantable(bool isPlantable) {

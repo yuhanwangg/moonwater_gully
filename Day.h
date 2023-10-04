@@ -113,7 +113,16 @@ class Day {
 
                 // makes all the plants grow at the beginning of each day
                 for (int i = 0; i < 144; i++) {
+                    (*background)[i]->newDayGrowth();
                     (*background)[i]->grow();
+
+                    //killing plant if required
+                    if ((*background)[i]->get_hydrationLevel() < 0) {
+                        tile* farmland = new tile((*background)[i]->get_x(), (*background)[i]->get_y());
+                        delete (*background)[i];
+                        (*background)[i] = farmland;
+
+                    }
                 }
 
             }
@@ -166,7 +175,18 @@ class Day {
 
             // makes all the plants grow at the beginning of each day
             for (int i = 0; i < 144; i++) {
+                
+                (*background)[i]->newDayGrowth();
                 (*background)[i]->grow();
+
+                // killing plant if required
+                if ((*background)[i]->get_hydrationLevel() < 0) {
+                    tile* farmland = new tile((*background)[i]->get_x(), (*background)[i]->get_y());
+                    delete (*background)[i];
+                    (*background)[i] = farmland;
+
+                }
+                
             }
             std::cout << "day has been skipped" << std::endl;
 
@@ -177,7 +197,6 @@ class Day {
 
             return;
         }
-
 
         // void drawDayTime(){
 

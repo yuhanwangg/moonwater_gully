@@ -29,9 +29,21 @@ class Carrot: public RootPlant {
 
         // changes growth image and plant values if growth criteria has been met
         void grow() {
-            if (hydrationLevel == 1 && alive && growthStage < growTime) {
-                hydrationLevel = 0;
-                growthStage++;
+            std::cout << "hydration level: " << hydrationLevel << " alive: " << alive << std::endl;
+            // if (hydrationLevel == 0) {
+            //     std::cout << "hydradtion level working" << std::endl;
+            // }
+            // if (alive) {
+            //     std::cout << "alive working" << std::endl;
+            // }
+
+            // if (growthStage < growTime) {
+            //     std::cout << "growStage working" << std::endl;
+            // }
+            if (hydrationLevel == 0 && alive && growthStage <= growTime) {
+                // std::cout << "growing" << std::endl;
+                // hydrationLevel = 0;
+                // growthStage++;
                 int size = 50;
                 square = new RectangleShape(Vector2f(size, size));
                 // sets the growth image depending on its growth stage
@@ -52,9 +64,20 @@ class Carrot: public RootPlant {
                 }
                 square->setPosition(x, y);
                 
-            };
+            } 
+            //else if (hydrationLevel == 0){
 
-        };
+            //     killPlant();
+            //     growthImage.loadFromFile(imageDescription);
+            //     square->setTexture(&growthImage);
+            //     square->setTextureRect(IntRect(0, 0, size, size));
+            //     if (!growthImage.loadFromFile(imageDescription)) {
+            //         std::cout << "error loading texture" << std::endl;
+            //     }
+            //     square->setPosition(x, y);
+            // }
+
+        }; 
 };
 
 #endif

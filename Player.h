@@ -139,6 +139,21 @@ class Player {
     return;
   };
 
+  // kill plant (becaues it hasn't been watered)
+  // void killPlant(std::vector<tile*>* backgroundTiles) {
+  //   for (int i = 0; i < 144; i++) {
+  //       tile* currentTile = (*backgroundTiles)[i];  // Access the current tile
+  //                                                   // pointer in the vector
+
+  //       // determine which tile the player is on
+  //       if (currentTile->get_hydrationLevel() < 0) {
+  //           delete currentTile;
+  //           tile* farmland = new tile(currentTile->get_x(), currentTile->get_y());
+  //           (*backgroundTiles)[i] = farmland;
+  //       }
+  //   }
+  // };
+
   // movement of the player
   void move_right() { body->move(speed, 0); }
   void move_left() { body->move(-speed, 0); }

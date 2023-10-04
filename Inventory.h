@@ -17,6 +17,7 @@ class Inventory {
   int length, width;
   int x, y;
   int inventory_size;
+  bool visible;
   Font font;
   Text inventory_name[10];
   Texture hotBarTexture;
@@ -30,6 +31,8 @@ class Inventory {
     y = 500;
     length = len;  // 550
     width = wid;   // 50
+
+    visible = true;
 
     item_counter.resize(10);
 
@@ -167,6 +170,9 @@ class Inventory {
   int get_inventoryIndex() { return inventory_index; }
   void set_inventoryIndex(int ind) { inventory_index = ind; }
 
+  void set_visibility(bool visible) { this->visible = visible; }
+  bool get_visibility() { return visible; }
+
   int get_shovelCount() { return inventory[0]; }
   int get_gloveCount() { return inventory[1]; }
   int get_blueberrySeedsCount() { return inventory[2]; }
@@ -211,6 +217,7 @@ class Inventory {
   void subtract_carrotSeedsCount() { inventory[8] -= 1; }
   void subtract_carrotCount() { inventory[9] -= 1; }
 
+  
   //   ~Inventory() { delete[] inventory; }
 };
 

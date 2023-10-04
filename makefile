@@ -78,3 +78,7 @@ sellmenu_test: SellMenuTest.cpp Menu.h BuyMenu.h Player.h SellMenu.h
 everythingday_test: dayEverythingTest.cpp Day.h BuyMenu.h menu.h Player.h Strawberry.h Blueberry.h Carrot.h Potato.h RootPlant.h BerryPlant.h Plant.h tile.h 
 	clang++ dayEverythingTest.cpp -o everythingDay -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
 	./everythingDay
+
+inventoryImage_test: InventoryImageTest.cpp InventoryItems.h tile.h
+	g++ InventoryImageTest.cpp -o inven -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
+	./inven

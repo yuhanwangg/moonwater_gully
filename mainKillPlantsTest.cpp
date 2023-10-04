@@ -68,6 +68,7 @@ class everything_driver {
           if (Keyboard::isKeyPressed(Keyboard::P)) {
             switch (inventory.get_inventoryIndex()) {
               case 2:
+              // the is plantable function only checks when planting the plant, so we need to check again when subtracting from inventory
                 if (inventory.get_blueberrySeedsCount() > 0) {
                   player->seedPlant(2, &background);
                   inventory.subtract_blueberrySeedsCount();

@@ -49,6 +49,7 @@ class InventoryImageTest {
         tilePtr->draw(win);
       }
       inventory.drawInventory(win);
+      inventory.drawCounter(win);
       win->display();
     }
   }

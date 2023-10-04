@@ -2,6 +2,7 @@
 #define INVENTORY_H
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include <string>
 #include <vector>
 
 #include "InventoryItems.h"
@@ -20,6 +21,8 @@ class Inventory {
   Text inventory_name[10];
   Texture hotBarTexture;
   int inventory_index;
+  std::vector<String> item_counter;  // string
+  Text itemText[10];
 
  public:
   Inventory(int len, int wid) {
@@ -27,6 +30,8 @@ class Inventory {
     y = 500;
     length = len;  // 550
     width = wid;   // 50
+
+    item_counter.resize(10);
 
     for (int i = 0; i < 10; i++) {
       InventoryItems* item = new InventoryItems((i * 55) + 25, 500, i);
@@ -140,10 +145,21 @@ class Inventory {
     for (auto itemPtr : hotBar) {
       itemPtr->drawInventoryItems(win);
     }
-    // for (int i = 0; i < 10; i++) {
-    //   win->draw(inventory_name[i]);
-    // }
     win->draw(*selection);
+  }
+
+  void drawCounter(RenderWindow* win) {
+    for (int i = 0; i < 10; i++) {
+      item_counter[i] = std::to_string(inventory[i]);
+      itemText[i].setFont(font);
+      itemText[i].setString(item_counter[i]);
+      itemText[i].setCharacterSize(10);
+      itemText[i].setFillColor(Color::White);
+      itemText[i].setPosition(
+          x + (i * 55), y - 5);  // Adjust the position based on the item index
+
+      win->draw(itemText[i]);
+    }
   }
 
   // getters and setters

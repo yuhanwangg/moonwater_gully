@@ -514,6 +514,7 @@ class everything_driver {
       day.dayCountdown(&background);
 
       inventory.drawInventory(win);
+      inventory.drawCounter(win);
 
       win->display();
     }

@@ -30,8 +30,9 @@ class everything_driver {
   Menu menu = Menu(300, 150);
   BuyMenu buymenu = BuyMenu(250, 400);
   SellMenu sellmenu = SellMenu(250, 300);
-  Inventory inventory = Inventory(550, 50);
+  Inventory inventory = Inventory(550, 55);
   Day day;
+  PlayerInteraction PI;
   bool visible_menu = true;
   bool visible_buy = false;
   bool visible_sell = false;
@@ -67,7 +68,7 @@ class everything_driver {
             switch (inventory.get_inventoryIndex()) {
               case 2:
                 if (inventory.get_blueberrySeedsCount() > 0) {
-                  player->seedPlant(2, &background);
+                  PI.seedPlant(2, *player, &background);
                   inventory.subtract_blueberrySeedsCount();
                 } else {
                   std::cout
@@ -77,7 +78,7 @@ class everything_driver {
                 break;
               case 4:
                 if (inventory.get_strawberrySeedsCount() > 0) {
-                  player->seedPlant(4, &background);
+                  PI.seedPlant(4, *player, &background);
                   inventory.subtract_strawberrySeedsCount();
                 } else {
                   std::cout
@@ -87,7 +88,7 @@ class everything_driver {
                 break;
               case 6:
                 if (inventory.get_potatoSeedsCount() > 0) {
-                  player->seedPlant(6, &background);
+                  PI.seedPlant(6, *player, &background);
                   inventory.subtract_potatoSeedsCount();
                 } else {
                   std::cout
@@ -97,7 +98,7 @@ class everything_driver {
                 break;
               case 8:
                 if (inventory.get_carrotSeedsCount() > 0) {
-                  player->seedPlant(8, &background);
+                  PI.seedPlant(8, *player, &background);
                   inventory.subtract_carrotSeedsCount();
                 } else {
                   std::cout
@@ -111,27 +112,20 @@ class everything_driver {
 
         if (e.type == Event::KeyPressed) {
           if (Keyboard::isKeyPressed(Keyboard::Num1)) {
-            player->waterPlant(&background);
+            PI.waterPlant(*player, &background);
             std::cout << "watered plant" << std::endl;
 
             int player_x = (floor(player->get_x() / 50) * 50);
             int player_y = (floor(player->get_y() / 50) * 50);
 
-            // for (int i = 0; i < 144; i++) {
-            //   if (background[i]->get_x() == player_x &&
-            //       background[i]->get_y() == player_y) {
-            //     (*background[i]).grow();
-            //   }
-            // }
+            for (int i = 0; i < 144; i++) {
+              if (background[i]->get_x() == player_x &&
+                  background[i]->get_y() == player_y) {
+                (*background[i]).grow();
+              }
+            }
           }
         }
-
-        if (e.type == Event::KeyPressed) {
-          if (Keyboard::isKeyPressed(Keyboard::Num0)) {
-            day.daySkip(&background);
-          }
-        }
-
 
         if (e.type == Event::KeyPressed) {
           if (Keyboard::isKeyPressed(Keyboard::Up)) {
@@ -199,7 +193,7 @@ class everything_driver {
             }
           }
           if (Keyboard::isKeyPressed(Keyboard::Return) &&
-              (visible_buy == true)) {
+              (buymenu.get_buyOn() == true)) {
             // opening the rectangles of the options
             int item_no = buymenu.get_buySelect();
             switch (item_no) {
@@ -327,7 +321,7 @@ class everything_driver {
           }
 
           if (Keyboard::isKeyPressed(Keyboard::Return) &&
-              (visible_sell == true)) {
+              (sellmenu.get_sellOn() == true)) {
             // opening the rectangles of the options
             int item_no_sell = sellmenu.get_sellSelect();
             switch (item_no_sell) {
@@ -420,20 +414,21 @@ class everything_driver {
 
       // testing of keyboard for menu toggling
 
-      if (Keyboard::isKeyPressed(Keyboard::B) && (visible_menu == false) &&
-          (visible_sell == false)) {
+      if (Keyboard::isKeyPressed(Keyboard::B) &&
+          (menu.get_visibility() == false) &&
+          (sellmenu.get_sellOn() == false)) {
         visible_buy = true;
         buymenu.set_buyOn(visible_buy);
       }
 
-      if (Keyboard::isKeyPressed(Keyboard::N) && (visible_menu == false) &&
-          (visible_buy == false)) {
+      if (Keyboard::isKeyPressed(Keyboard::N) &&
+          (buymenu.get_buyOn() == false) && (menu.get_visibility() == false)) {
         visible_sell = true;
         sellmenu.set_sellOn(true);
       }
 
-      if (Keyboard::isKeyPressed(Keyboard::M) && (visible_buy == false) &&
-          (visible_sell == false)) {
+      if (Keyboard::isKeyPressed(Keyboard::M) &&
+          (buymenu.get_buyOn() == false) && (sellmenu.get_sellOn() == false)) {
         if ((menu.get_control_visi() == false) &&
             (menu.get_htp_visi() == false) && (menu.get_save_visi() == false)) {
           visible_menu = true;
@@ -448,7 +443,7 @@ class everything_driver {
 
       // visibility of menus
       if (Keyboard::isKeyPressed(Keyboard::Escape)) {
-        if (visible_buy == false && visible_sell == false) {
+        if (buymenu.get_buyOn() == false && sellmenu.get_sellOn() == false) {
           menu.set_control_visi(false);
           menu.set_htp_visi(false);
           menu.set_save_visi(false);

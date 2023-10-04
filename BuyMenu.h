@@ -35,7 +35,7 @@ class BuyMenu : public Menu {
     buy_background = new RectangleShape(Vector2f(length, width));
     buy_background->setFillColor(Color::Red);
 
-    purchase_box = new RectangleShape(Vector2f(200, 100));
+    purchase_box = new RectangleShape(Vector2f(230, 100));
     purchase_box->setFillColor(Color::Blue);
 
     // setting buying items text
@@ -85,22 +85,22 @@ class BuyMenu : public Menu {
     purchase[0].setString("purchase item?");
     purchase[0].setCharacterSize(10);
     purchase[0].setFillColor(Color::White);
-    purchase[0].setPosition(290, 35);
+    purchase[0].setPosition(290, 35+300);
 
     purchase[1].setFont(font);
     purchase[1].setString("insufficient funds!");
     purchase[1].setCharacterSize(10);
     purchase[1].setFillColor(Color::White);
-    purchase[1].setPosition(310, 50);
+    purchase[1].setPosition(310, 50+300);
 
     purchase[2].setFont(font);
     purchase[2].setString("purchase success!");
     purchase[2].setCharacterSize(10);
     purchase[2].setFillColor(Color::White);
-    purchase[2].setPosition(310, 50);
+    purchase[2].setPosition(310, 50+300);
 
     buy_background->setPosition(x, y);
-    purchase_box->setPosition(280, 25);
+    purchase_box->setPosition(280, 25+300);
     // turning on and off
     buyOn = false;
   }

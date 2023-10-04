@@ -32,7 +32,6 @@ class everything_driver {
   SellMenu sellmenu = SellMenu(250, 300);
   Inventory inventory = Inventory(550, 50);
   Day day;
-  PlayerInteraction PI;
   bool visible_menu = true;
   bool visible_buy = false;
   bool visible_sell = false;
@@ -68,7 +67,7 @@ class everything_driver {
             switch (inventory.get_inventoryIndex()) {
               case 2:
                 if (inventory.get_blueberrySeedsCount() > 0) {
-                  PI.seedPlant(2, *player, &background);
+                  player->seedPlant(2, &background);
                   inventory.subtract_blueberrySeedsCount();
                 } else {
                   std::cout
@@ -78,7 +77,7 @@ class everything_driver {
                 break;
               case 4:
                 if (inventory.get_strawberrySeedsCount() > 0) {
-                  PI.seedPlant(4, *player, &background);
+                  player->seedPlant(4, &background);
                   inventory.subtract_strawberrySeedsCount();
                 } else {
                   std::cout
@@ -88,7 +87,7 @@ class everything_driver {
                 break;
               case 6:
                 if (inventory.get_potatoSeedsCount() > 0) {
-                  PI.seedPlant(6, *player, &background);
+                  player->seedPlant(6, &background);
                   inventory.subtract_potatoSeedsCount();
                 } else {
                   std::cout
@@ -98,7 +97,7 @@ class everything_driver {
                 break;
               case 8:
                 if (inventory.get_carrotSeedsCount() > 0) {
-                  PI.seedPlant(8, *player, &background);
+                  player->seedPlant(8, &background);
                   inventory.subtract_carrotSeedsCount();
                 } else {
                   std::cout
@@ -112,7 +111,7 @@ class everything_driver {
 
         if (e.type == Event::KeyPressed) {
           if (Keyboard::isKeyPressed(Keyboard::Num1)) {
-            PI.waterPlant(*player, &background);
+            player->waterPlant(&background);
             std::cout << "watered plant" << std::endl;
 
             int player_x = (floor(player->get_x() / 50) * 50);

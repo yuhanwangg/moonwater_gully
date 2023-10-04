@@ -107,7 +107,7 @@ class Inventory {
       inventory_name[inventory_index].setFillColor(Color::White);
       // iterating through array
       inventory_index++;
-      if (inventory_index >= inventory_size) {
+      if (inventory_index >= inventory_size - 1) {
         inventory_index = 0;
       }
 

@@ -118,12 +118,12 @@ class everything_driver {
             int player_x = (floor(player->get_x() / 50) * 50);
             int player_y = (floor(player->get_y() / 50) * 50);
 
-            // for (int i = 0; i < 144; i++) {
-            //   if (background[i]->get_x() == player_x &&
-            //       background[i]->get_y() == player_y) {
-            //     (*background[i]).grow();
-            //   }
-            // }
+            for (int i = 0; i < 144; i++) {
+              if (background[i]->get_x() == player_x &&
+                  background[i]->get_y() == player_y) {
+                (*background[i]).grow();
+              }
+            }
           }
         }
 
@@ -193,7 +193,7 @@ class everything_driver {
             }
           }
           if (Keyboard::isKeyPressed(Keyboard::Return) &&
-              (visible_buy == true)) {
+              (buymenu.get_buyOn() == true)) {
             // opening the rectangles of the options
             int item_no = buymenu.get_buySelect();
             switch (item_no) {
@@ -321,7 +321,7 @@ class everything_driver {
           }
 
           if (Keyboard::isKeyPressed(Keyboard::Return) &&
-              (visible_sell == true)) {
+              (sellmenu.get_sellOn() == true)) {
             // opening the rectangles of the options
             int item_no_sell = sellmenu.get_sellSelect();
             switch (item_no_sell) {
@@ -414,20 +414,21 @@ class everything_driver {
 
       // testing of keyboard for menu toggling
 
-      if (Keyboard::isKeyPressed(Keyboard::B) && (visible_menu == false) &&
-          (visible_sell == false)) {
+      if (Keyboard::isKeyPressed(Keyboard::B) &&
+          (menu.get_visibility() == false) &&
+          (sellmenu.get_sellOn() == false)) {
         visible_buy = true;
         buymenu.set_buyOn(visible_buy);
       }
 
-      if (Keyboard::isKeyPressed(Keyboard::N) && (visible_menu == false) &&
-          (visible_buy == false)) {
+      if (Keyboard::isKeyPressed(Keyboard::N) &&
+          (buymenu.get_buyOn() == false) && (menu.get_visibility() == false)) {
         visible_sell = true;
         sellmenu.set_sellOn(true);
       }
 
-      if (Keyboard::isKeyPressed(Keyboard::M) && (visible_buy == false) &&
-          (visible_sell == false)) {
+      if (Keyboard::isKeyPressed(Keyboard::M) &&
+          (buymenu.get_buyOn() == false) && (sellmenu.get_sellOn() == false)) {
         if ((menu.get_control_visi() == false) &&
             (menu.get_htp_visi() == false) && (menu.get_save_visi() == false)) {
           visible_menu = true;
@@ -442,7 +443,7 @@ class everything_driver {
 
       // visibility of menus
       if (Keyboard::isKeyPressed(Keyboard::Escape)) {
-        if (visible_buy == false && visible_sell == false) {
+        if (buymenu.get_buyOn() == false && sellmenu.get_sellOn() == false) {
           menu.set_control_visi(false);
           menu.set_htp_visi(false);
           menu.set_save_visi(false);

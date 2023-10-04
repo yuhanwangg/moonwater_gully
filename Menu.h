@@ -28,6 +28,10 @@ class Menu {
   Text menu[4];
   bool turnOn;
 
+  // The text information for each window
+  Text howToPlayText;
+  Text controlsText;
+
  public:
   Menu(int len, int wid) {
     length = len;
@@ -117,11 +121,32 @@ class Menu {
     win->draw(*background);
     win->draw(title);
     for (int i = 0; i < max_option; i++) {
+      howToPlayText.setFont(font);
+      howToPlayText.setString("How To Play \n"
+      "Using the buy menu you can buy different plant seeds!\n"
+      "Be careful not to use all your money on seeds,\n "
+      "to harvest certain you needs particular harvest equipment.\n "
+      "Potatoes need a shovel to dig up.\n"
+      "Carrots needs gloves to pull up. \n"
+      "All berries needs no harvest equipment. \n"
+      "You can move your player and plant the plant seeds where you stand, \n" 
+      "make sure the right seeds are highlighted in your hotbar to plant!"
+      "Don't forget to water your seeds once you plant them. \n" 
+      "Water plants daily by standing over the plant, the plant will grow at the start of a new day. \n"
+      "If a plant wasn't watered it will die and vanish. \n"
+      "Once a plant has reached full growth you can harvest by standing over the plant!\n"
+      "Don't forget to have the right harvest equipment highlighted in the hotbar when harvesting.\n"
+      "You can sell your harvested plants in the sell menu!\n" 
+      "Make sure you have the right plant highlighted in the hotbar to sell. \n"
+      "Enjoy the game!");
       win->draw(menu[i]);
     }
   };
 
-  void draw_htp(RenderWindow* win) { win->draw(*how_to_play_bg); }
+  void draw_htp(RenderWindow* win) { 
+    
+    win->draw(*how_to_play_bg);
+    }
 
   void draw_control(RenderWindow* win) { win->draw(*control_bg); }
 

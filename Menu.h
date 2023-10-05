@@ -136,7 +136,7 @@ class Menu {
 
   void draw_htp(RenderWindow* win) { 
     howToPlayText.setFont(font);
-    howToPlayText.setString("How To Play: \n\n\n"
+    howToPlayText.setString("\n\n\nHow To Play: \n\n\n"
     "Using the buy menu you can buy different plant seeds!\n\n\n"
     "Be careful not to use all your money on seeds, some plants need \n\n\n"
     "certain harvest equipment:\n\n\n"
@@ -164,7 +164,7 @@ class Menu {
     "Enjoy the game!");
     howToPlayText.setCharacterSize(8);
     howToPlayText.setFillColor(Color::Black);
-    howToPlayText.setPosition(40,90);
+    howToPlayText.setPosition(46,90);
     win->draw(*how_to_play_bg);
     win->draw(howToPlayText);
     

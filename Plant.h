@@ -21,7 +21,6 @@ class Plant : public tile {
                     // to days to be correlated with growTime
   int yield;
   int harvestEquipment;
-  std::string imageDescription;
   Texture growthImage;
 
  public:
@@ -134,10 +133,10 @@ class Plant : public tile {
     this->harvestEquipment = harvestEquipment;
     return;
   };
-  void set_imageDescription(std::string imageDescription) {
-    this->imageDescription = imageDescription;
-    return;
-  };
+  // void set_imageDescription(std::string imageDescription) {
+  //   this->imageDescription = imageDescription;
+  //   return;
+  // };
 
   // The getters
   int get_growTime() { return growTime; };
@@ -149,7 +148,6 @@ class Plant : public tile {
   int get_growthStage() { return growthStage; };
   int get_yield() { return yield; };
   int get_harvestEquipment() { return harvestEquipment; };
-  std::string get_imageDescription() { return imageDescription; };
 
   ~Plant(){};
 };

@@ -12,6 +12,8 @@ class tile {
   Texture grass;
   bool isPlantable;
   int hydrationLevel;
+  std::string imageDescription;
+  std::string className;
   // texture placeholder
  public:
   tile(int _x, int _y) {
@@ -20,11 +22,13 @@ class tile {
     size = 50;
     isPlantable = true;
     hydrationLevel = 0;
+    imageDescription = "textures/grass_texture_light.png";
+    className = "tile";
     square = new RectangleShape(Vector2f(size, size));
-    grass.loadFromFile("textures/grass_texture_light.png");
+    grass.loadFromFile(imageDescription);
     square->setTexture(&grass);
     square->setTextureRect(IntRect(0, 0, size, size));
-    if (!grass.loadFromFile("textures/grass_texture_light.png")) {
+    if (!grass.loadFromFile(imageDescription)) {
       std::cout << "error loading texture" << std::endl;
     }
     square->setPosition(x, y);
@@ -67,6 +71,23 @@ class tile {
   void draw(RenderWindow* win) { win->draw(*square); };
 
   ~tile(){};
+
+
+  // Getters and Setters
+
+  void set_imageDescription(std::string imageDescription) {
+    this->imageDescription = imageDescription;
+    return;
+  };
+
+  void set_className(std::string className) {
+    this->className = className;
+    return;
+  }
+
+  std::string get_imageDescription() { return imageDescription; };
+  std::string get_className() {return className; };
+  
 };
 
 #endif

@@ -16,6 +16,7 @@ class Strawberry: public BerryPlant {
             harvestEquipment = 1; // requires harvest equipment level 1
             sellPrice = 200; // sells for 200 shells
             imageDescription = "textures/strawberrySeeds.png";
+            className = "Strawberry";
             growthImage.loadFromFile("textures/strawberrySeeds.png"); //change to different seed texture for each plant type
             square->setTexture(&growthImage);
             square->setTextureRect(IntRect(0, 0, size, size));

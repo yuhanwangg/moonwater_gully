@@ -16,6 +16,7 @@ class Blueberry: public BerryPlant {
             harvestEquipment = 1; // need level 1 harvest equipment to harvest
             sellPrice = 120; // sells for 120 shells
             imageDescription = "textures/blueberrySeeds.png";
+            className = "Blueberry";
             growthImage.loadFromFile("textures/blueberrySeeds.png");
             square->setTexture(&growthImage);
             square->setTextureRect(IntRect(0, 0, size, size));

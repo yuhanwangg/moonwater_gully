@@ -16,6 +16,7 @@ class Potato: public RootPlant {
             harvestEquipment = 3; // need harvest equipment level 3 to harvest
             sellPrice = 100; // sells for 100 shells
             imageDescription = "textures/potatoSeeds.png";
+            className = "Potato";
             growthImage.loadFromFile("textures/potatoSeeds.png"); // this image can change later to correct seed colour
             square->setTexture(&growthImage);
             square->setTextureRect(IntRect(0, 0, size, size));

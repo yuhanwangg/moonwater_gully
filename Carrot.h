@@ -16,6 +16,7 @@ class Carrot: public RootPlant {
             harvestEquipment = 2; // need level 2 harvest equipment to harvest
             sellPrice = 80; // sells for 80 bells
             imageDescription = "textures/carrotSeeds.png";
+            className = "Carrot";
             growthImage.loadFromFile("textures/carrotSeeds.png");
             square->setTexture(&growthImage);
             square->setTextureRect(IntRect(0, 0, size, size));

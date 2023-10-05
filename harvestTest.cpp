@@ -59,6 +59,10 @@ class everything_driver {
   void run() {
     while (win->isOpen()) {
       Event e;
+
+      sf::Clock clock;
+      const sf::Time targetFrameTime = sf::seconds(1.0f / 100.0f);
+
       while (win->pollEvent(e)) {
         if (e.type == Event::Closed) {
           win->close();
@@ -66,50 +70,53 @@ class everything_driver {
 
         if (e.type == Event::KeyPressed) {
           if (Keyboard::isKeyPressed(Keyboard::P)) {
-            switch (inventory.get_inventoryIndex()) {
-              case 2:
-                // the is plantable function only checks when planting the
-                // plant, so we need to check again when subtracting from
-                // inventory
-                if (inventory.get_blueberrySeedsCount() > 0) {
-                  player->seedPlant(2, &background);
-                  inventory.subtract_blueberrySeedsCount();
-                } else {
-                  std::cout
-                      << "No blueberry seeds! You can buy some from the shop.";
-                  std::cout << "\n";
+            // std::cout << background[floor(player->get_x() / 50) * 12 + floor(player->get_y() / 50)]->get_isPlantable() << std::endl;
+            if(background[player->get_x() / 50 * 12 + player->get_y() / 50]->get_isPlantable() == true){
+                switch (inventory.get_inventoryIndex()) {
+                case 2:
+                    // the is plantable function only checks when planting the
+                    // plant, so we need to check again when subtracting from
+                    // inventory
+                    if (inventory.get_blueberrySeedsCount() > 0) {
+                    player->seedPlant(2, &background);
+                    inventory.subtract_blueberrySeedsCount();
+                    } else {
+                    std::cout
+                        << "No blueberry seeds! You can buy some from the shop.";
+                    std::cout << "\n";
+                    }
+                    break;
+                case 4:
+                    if (inventory.get_strawberrySeedsCount() > 0) {
+                    player->seedPlant(4, &background);
+                    inventory.subtract_strawberrySeedsCount();
+                    } else {
+                    std::cout
+                        << "No strawberry seeds! You can buy some from the shop.";
+                    std::cout << "\n";
+                    }
+                    break;
+                case 6:
+                    if (inventory.get_potatoSeedsCount() > 0) {
+                    player->seedPlant(6, &background);
+                    inventory.subtract_potatoSeedsCount();
+                    } else {
+                    std::cout
+                        << "No potato seeds! You can buy some from the shop.";
+                    std::cout << "\n";
+                    }
+                    break;
+                case 8:
+                    if (inventory.get_carrotSeedsCount() > 0) {
+                    player->seedPlant(8, &background);
+                    inventory.subtract_carrotSeedsCount();
+                    } else {
+                    std::cout
+                        << "No carrot seeds! You can buy some from the shop.";
+                    std::cout << "\n";
+                    }
+                    break;
                 }
-                break;
-              case 4:
-                if (inventory.get_strawberrySeedsCount() > 0) {
-                  player->seedPlant(4, &background);
-                  inventory.subtract_strawberrySeedsCount();
-                } else {
-                  std::cout
-                      << "No strawberry seeds! You can buy some from the shop.";
-                  std::cout << "\n";
-                }
-                break;
-              case 6:
-                if (inventory.get_potatoSeedsCount() > 0) {
-                  player->seedPlant(6, &background);
-                  inventory.subtract_potatoSeedsCount();
-                } else {
-                  std::cout
-                      << "No potato seeds! You can buy some from the shop.";
-                  std::cout << "\n";
-                }
-                break;
-              case 8:
-                if (inventory.get_carrotSeedsCount() > 0) {
-                  player->seedPlant(8, &background);
-                  inventory.subtract_carrotSeedsCount();
-                } else {
-                  std::cout
-                      << "No carrot seeds! You can buy some from the shop.";
-                  std::cout << "\n";
-                }
-                break;
             }
           }
         }
@@ -548,6 +555,13 @@ class everything_driver {
       }
 
       win->display();
+
+
+      sf::Time elapsed = clock.getElapsedTime();
+      if (elapsed < targetFrameTime) {
+        sf::sleep(targetFrameTime - elapsed);
+      }
+      clock.restart();
     }
   };
 

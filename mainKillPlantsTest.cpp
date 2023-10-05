@@ -68,7 +68,9 @@ class everything_driver {
           if (Keyboard::isKeyPressed(Keyboard::P)) {
             switch (inventory.get_inventoryIndex()) {
               case 2:
-              // the is plantable function only checks when planting the plant, so we need to check again when subtracting from inventory
+                // the is plantable function only checks when planting the
+                // plant, so we need to check again when subtracting from
+                // inventory
                 if (inventory.get_blueberrySeedsCount() > 0) {
                   player->seedPlant(2, &background);
                   inventory.subtract_blueberrySeedsCount();
@@ -174,7 +176,9 @@ class everything_driver {
           }
 
           if (Keyboard::isKeyPressed(Keyboard::Return) &&
-              (menu.get_visibility() == true)) {
+              (menu.get_visibility() == true) &&
+              (buymenu.get_buyOn() == false) &&
+              (sellmenu.get_sellOn() == false)) {
             // opening the rectangles of the options
             int selection = menu.menuPressed();
             switch (selection) {
@@ -205,7 +209,9 @@ class everything_driver {
             }
           }
           if (Keyboard::isKeyPressed(Keyboard::Return) &&
-              (buymenu.get_buyOn() == true)) {
+              (buymenu.get_buyOn() == true) &&
+              (menu.get_visibility() == false) &&
+              (sellmenu.get_sellOn() == false)) {
             // opening the rectangles of the options
             int item_no = buymenu.get_buySelect();
             switch (item_no) {
@@ -333,7 +339,9 @@ class everything_driver {
           }
 
           if (Keyboard::isKeyPressed(Keyboard::Return) &&
-              (sellmenu.get_sellOn() == true)) {
+              (sellmenu.get_sellOn() == true) &&
+              (buymenu.get_buyOn() == false) &&
+              (menu.get_visibility() == false)) {
             // opening the rectangles of the options
             int item_no_sell = sellmenu.get_sellSelect();
             switch (item_no_sell) {
@@ -427,14 +435,18 @@ class everything_driver {
       // testing of keyboard for menu toggling
 
       if (Keyboard::isKeyPressed(Keyboard::B) &&
-          (menu.get_visibility() == false) &&
+          (menu.get_visibility() == false) && (menu.get_htp_visi() == false) &&
+          (menu.get_save_visi() == false) &&
+          (menu.get_control_visi() == false) &&
           (sellmenu.get_sellOn() == false)) {
         visible_buy = true;
         buymenu.set_buyOn(visible_buy);
       }
 
       if (Keyboard::isKeyPressed(Keyboard::N) &&
-          (buymenu.get_buyOn() == false) && (menu.get_visibility() == false)) {
+          (buymenu.get_buyOn() == false) && (menu.get_visibility() == false) &&
+          (menu.get_htp_visi() == false) && (menu.get_save_visi() == false) &&
+          (menu.get_control_visi() == false)) {
         visible_sell = true;
         sellmenu.set_sellOn(true);
       }
@@ -517,7 +529,7 @@ class everything_driver {
       }
 
       // drawing the clock
-      
+
       day.drawDayDracker(win);
       day.dayCountdown(&background);
 
@@ -525,7 +537,6 @@ class everything_driver {
         inventory.drawInventory(win);
         inventory.drawCounter(win);
       }
-      
 
       win->display();
     }

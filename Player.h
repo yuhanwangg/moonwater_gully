@@ -34,7 +34,7 @@ class Player {
     x = _x;
     y = _y;
     shells = 5000;
-    speed = 2;
+    speed = 0.2;
 
     body->setRadius(r);
     body->setFillColor(Color::Blue);

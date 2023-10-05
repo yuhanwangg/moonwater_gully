@@ -32,7 +32,7 @@ class Strawberry: public BerryPlant {
         void grow() {
             if (hydrationLevel == 0 && alive && growthStage <= growTime) {
                 // hydrationLevel = 0;
-                // growthStage++;
+                growthStage++;
                 int size = 50;
                 square = new RectangleShape(Vector2f(size, size));
                 // sets new image for each growth stage

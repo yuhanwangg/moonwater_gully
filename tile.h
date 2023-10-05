@@ -14,6 +14,7 @@ class tile {
   int hydrationLevel;
   std::string imageDescription;
   std::string className;
+  int yield;
   // texture placeholder
  public:
   tile(int _x, int _y) {
@@ -22,6 +23,7 @@ class tile {
     size = 50;
     isPlantable = true;
     hydrationLevel = 0;
+    yield = 0;
     imageDescription = "textures/grass_texture_light.png";
     className = "tile";
     square = new RectangleShape(Vector2f(size, size));
@@ -87,8 +89,12 @@ class tile {
     return;
   }
 
+  // needed to move this here to allow the function to view the harvest yeald
+  virtual int harvestYield(){ return 0;};
+
   std::string get_imageDescription() { return imageDescription; };
   std::string get_className() {return className; };
+  int get_yield() { return yield; };
   
 };
 

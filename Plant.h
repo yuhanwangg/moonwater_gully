@@ -19,7 +19,6 @@ class Plant : public tile {
   bool alive;
   int growthStage;  // associated with time after planting, needs to be rounded
                     // to days to be correlated with growTime
-  int yield;
   int harvestEquipment;
   Texture growthImage;
 
@@ -57,6 +56,7 @@ class Plant : public tile {
 
   // for testing no pure virtual functions allowed
   // may need to be changed into just a virtual function in the tile class
+  
   virtual int harvestYield() = 0;
 
   // plant growth for each new day
@@ -64,68 +64,23 @@ class Plant : public tile {
     if (hydrationLevel == 0) {
       alive = false;
     }
-
-    if (growthStage < growTime && alive == true) {
-      growthStage++;
-    }
     //hydration level may conflict and be taken away twice with the grow() function
     hydrationLevel--;
     seedingTime++;
     return;
   };
 
-  // void killPlant(tile *backgroundTilePtr) {
-  //   if (backgroundTilePtr->get_hydrationLevel() < 0) {
-  //     //create normal grass tile with original positions of old tile
-  //     tile* farmland = new tile(backgroundTilePtr->get_x(), backgroundTilePtr->get_y());
-  //     delete *backgroundTilePtr;
-  //     backgroundTilePtr = farmland;
+  void killPlant() {
+    if (hydrationLevel < 0) {
+      alive = false;
+    }
+    return;
+  };
 
-      
-  //   }
 
-  //   if (backgroundTiilePtr->gehydrationLevel < 0) {
-      
-      
-  //     tile* farmland = new tile(backgroundTile->get_x(), backgroundTile->get_y());
-      
-  //     backgroundTile = farmland;
+  // Identifying the name of the plant:
 
-  //   }
-  //   // for (int i = 0; i < 144; i++) {
-  //   //     tile* currentTile = (*backgroundTiles)[i];  // Access the current tile
-  //   //                                                 // pointer in the vector
 
-  //   //     // determine which tile the player is on
-  //   //     if (currentTile->get_hydrationLevel() < 0) {
-  //   //         delete currentTile;
-  //   //         tile* farmland = new tile(currentTile->get_x(), currentTile->get_y());
-  //   //         (*backgroundTiles)[i] = farmland;
-  //   //     }
-  //   // }
-  // };
-
-  // void killPlant(std::vector<tile*>* backgroundTiles) {
-  //   for (int i = 0; i < 144; i++) {
-  //     tile* currentTile = (*backgroundTiles)[i];  // Access the current tile
-  //                                                 // pointer in the vector
-
-  //     // determine which tile the player is on
-  //     if (currentTile->get_hydrationLevel() < 0) {
-  //       delete currentTile;
-  //       currentTile->
-  //       Tile* farmland = new Tile(currentTile->get_x, currentTile->get_y)
-  //       (*backgroundTiles)[i] = farmland;
-  //     }
-  //   }
-  // };
-
-  // void killPlant() {
-  //   if (hydrationLevel < 0) {
-  //     alive = false;
-  //   }
-  //   return;
-  // };
 
   // checks plant meets criteria and makes it grow
   // virtual void grow() {

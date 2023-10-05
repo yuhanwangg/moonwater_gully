@@ -183,6 +183,7 @@ class Inventory {
   int get_potatoCount() { return inventory[7]; }
   int get_carrotSeedsCount() { return inventory[8]; }
   int get_carrotCount() { return inventory[9]; }
+  int get_fromPos(int i) { return inventory[i]; }
 
   void set_shovelCount(int shovel) { inventory[0] = shovel; }
   void set_gloveCount(int glove) { inventory[1] = glove; }
@@ -194,6 +195,7 @@ class Inventory {
   void set_potatoCount(int potato) { inventory[7] = potato; }
   void set_carrotSeedsCount(int carrot_seed) { inventory[8] = carrot_seed; }
   void set_carrotCount(int carrot) { inventory[9] = carrot; }
+  void set_fromPos(int index, int value) { inventory[index] = value; }
 
   void add_shovelCount() { inventory[0] += 1; }
   void add_gloveCount() { inventory[1] += 1; }

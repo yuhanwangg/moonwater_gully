@@ -44,7 +44,7 @@ class Carrot: public RootPlant {
             if (hydrationLevel == 0 && alive && growthStage <= growTime) {
                 // std::cout << "growing" << std::endl;
                 // hydrationLevel = 0;
-                // growthStage++;
+                growthStage++;
                 int size = 50;
                 square = new RectangleShape(Vector2f(size, size));
                 // sets the growth image depending on its growth stage

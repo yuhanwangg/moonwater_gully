@@ -13,6 +13,8 @@ class Menu {
   RectangleShape* save_bg;
 
   Texture bg_texture;
+  Texture howToPlayTexture;
+  Texture controlTexture;
 
   bool how_to_play_visible;
   bool control_visible;
@@ -47,17 +49,17 @@ class Menu {
     isMainMenuOpen = false;
 
     // creating background — maybe change into another function
-    background = new RectangleShape(Vector2f(length, width));
-    background->setPosition(x, y);
+    background = new RectangleShape(Vector2f(360, 150));
+    background->setPosition(x-5, y);
 
     // how to play image
     how_to_play_bg = new RectangleShape(Vector2f(550, 500));
-    how_to_play_bg->setFillColor(Color::White);
+    // how_to_play_bg->setFillColor(Color::White);
     how_to_play_bg->setPosition(x, 80);
 
     // controls image
     control_bg = new RectangleShape(Vector2f(330, 400));
-    control_bg->setFillColor(Color::Blue);
+    // control_bg->setFillColor(Color::Blue);
     control_bg->setPosition(245, 85);
 
     save_bg = new RectangleShape(Vector2f(length, width));
@@ -65,10 +67,17 @@ class Menu {
 
     // loading in textures:
     bg_texture.loadFromFile("textures/main_menu.png");
+    howToPlayTexture.loadFromFile("textures/howToPlay.png");
+    controlTexture.loadFromFile("textures/control.png");
     background->setTexture(&bg_texture);
+    how_to_play_bg->setTexture(&howToPlayTexture);
+    control_bg->setTexture(&bg_texture);
     save_bg->setTexture(&bg_texture);
-    save_bg->setTextureRect(IntRect(0, 0, len, wid));
     background->setTextureRect(IntRect(0, 0, len, wid));
+    how_to_play_bg->setTextureRect(IntRect(0, 0, 550, 500));
+    control_bg->setTextureRect(IntRect(0, 0, 330, 400));
+    save_bg->setTextureRect(IntRect(0, 0, len, wid));
+    
 
     // loading font
     font.loadFromFile("textures/font_texture/TTF/dogica.ttf");

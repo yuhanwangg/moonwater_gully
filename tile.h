@@ -87,6 +87,7 @@ class tile {
     return;
   }
 
+  virtual int get_growthStage(){return 0;};
   std::string get_imageDescription() { return imageDescription; };
   std::string get_className() {return className; };
   

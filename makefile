@@ -90,3 +90,7 @@ menuTextTest: mainMenuTextTest.cpp Day.h BuyMenu.h menu.h Player.h Strawberry.h 
 killPlantsTest: mainKillPlantsTest.cpp Day.h BuyMenu.h menu.h Player.h Strawberry.h Blueberry.h Carrot.h Potato.h RootPlant.h BerryPlant.h Plant.h tile.h InventoryItems.h
 	clang++ mainKillPlantsTest.cpp -o killPlants -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
 	./killPlants
+
+harvestPlantsTest: harvestTest.cpp Day.h BuyMenu.h menu.h Player.h Strawberry.h Blueberry.h Carrot.h Potato.h RootPlant.h BerryPlant.h Plant.h tile.h InventoryItems.h
+	clang++ harvestTest.cpp -o harvestTest -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
+	./harvestTest

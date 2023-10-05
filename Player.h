@@ -28,6 +28,14 @@ class Player {
   std::unordered_map<std::string, int> plantLocationMap{
       {"Carrot", 9}, {"Potato", 7}, {"Strawberry", 5}, {"Blueberry", 3}};
 
+  // Doing the useless map
+  Carrot* carrot = new Carrot(650, 650);
+  Potato* potato = new Potato(650, 650);
+  Strawberry* strawberry = new Strawberry(650,650);
+  Blueberry* blueberry = new Blueberry(650,650);
+  std::unordered_map<std::string, Plant*> plantMap{
+    {"Carrot", carrot} , {"Potato", potato} , {"Strawberry", strawberry} , {"Blueberry", blueberry}};
+
  public:
   Player(int r, int _x, int _y) {
     body = new CircleShape();
@@ -189,6 +197,7 @@ class Player {
   // Water plant
 
   void waterPlant(std::vector<tile*>* backgroundTiles) {
+    
     // changes the x and y coordinates of the player to valid tile positions
     int player_x = (floor(body->getPosition().x / 50));
     int player_y = (floor(body->getPosition().y / 50));
@@ -199,15 +208,6 @@ class Player {
 
   void harvestPlant(std::vector<tile*>* backgroundTiles, Inventory* inventory){
 
-  // inventory){ std::cout << (*backgroundTiles)[1]->get_className() <<
-  // std::endl;
-
-  // Cha
-
-  // Oi Mischa, put this in inventory so you don't have so many getters and
-  // setters: void set_anyCount(std::string name, int amount) {
-  // inventoryMap[name] = amount}
-
   // Use a map once you have the type of function
 
     int player_x = (floor(body->getPosition().x / 50));
@@ -217,29 +217,38 @@ class Player {
     int plantYield;
     int plantPos;
 
+    // Setting a constant for easier readability. "currentPlant" just contains an object
+    // of the same class as the plant the player is standing on.
+
+    Plant* currentPlant = plantMap[(*backgroundTiles)[player_x * 12 + player_y]->get_className()];
+
+    // Making sure all conditions are met
     if((*backgroundTiles)[player_x * 12 + player_y]->get_className() == "tile"){
       std::cout << "Land cannot be harvested" << std::endl;
       return;
     }
-    // else if((*backgroundTiles)[player_x * 12 + player_y]->get_growthStage() != (*backgroundTiles)[player_x * 12 + player_y]->get_growTime()){
-    //     std::cout << "Please wait until plant is fully grown" << std::endl;
-    //     return;
-    // }
-    // else if((*backgroundTiles)[player_x * 12 + player_y]->get_className() == "Blueberry" ||
-    //  (*backgroundTiles)[player_x * 12 + player_y]->get_className() == "Strawberry" &&
-    //   inventory->get_inventoryIndex() != 1){
-    //     std::cout << "Must hold gloves to harvest these plants" << std::endl;
-    //     return;
-    // }
-    // else if((*backgroundTiles)[player_x * 12 + player_y]->get_className() == "Carrot" ||
-    //  (*backgroundTiles)[player_x * 12 + player_y]->get_className() == "Potato" &&
-    //   inventory->get_inventoryIndex() != 0){
-    //     std::cout << "Must hold a shovel to harvest these plants" << std::endl;
-    //     return;
-    // }
-    
+    else if((*backgroundTiles)[player_x * 12 + player_y]->get_growthStage() != currentPlant->get_growTime()){
+        std::cout << "Please wait until plant is fully grown" << std::endl;
+        return;
+    }
+    else if((*backgroundTiles)[player_x * 12 + player_y]->get_className() == "Blueberry" ||
+     (*backgroundTiles)[player_x * 12 + player_y]->get_className() == "Strawberry" &&
+      inventory->get_inventoryIndex() == 1 && inventory->get_gloveCount() > 0){
+        std::cout << "Must hold gloves to harvest these plants" << std::endl;
+        return;
+    }
+    else if((*backgroundTiles)[player_x * 12 + player_y]->get_className() == "Carrot" ||
+     (*backgroundTiles)[player_x * 12 + player_y]->get_className() == "Potato" &&
+      inventory->get_inventoryIndex() == 0 && inventory->get_shovelCount() > 0){
+        std::cout << "Must hold a shovel to harvest these plants" << std::endl;
+        return;
+    }
 
-    plantYield = 3;
+    
+    
+    // Getting yield and inventory position
+
+    plantYield = plantMap[(*backgroundTiles)[player_x * 12 + player_y]->get_className()]->harvestYield();
     plantPos = plantLocationMap[(*backgroundTiles)[player_x * 12 + player_y]->get_className()];
 
     // Adding plants to the Inventory
@@ -259,10 +268,26 @@ class Player {
 
 
   // movement of the player
-  void move_right() { body->move(speed, 0); }
-  void move_left() { body->move(-speed, 0); }
-  void move_up() { body->move(0, -speed); }
-  void move_down() { body->move(0, speed); }
+  void move_right() { 
+    if(body->getPosition().x < 590){
+      body->move(speed, 0); 
+    }
+  }
+  void move_left() {
+    if(body->getPosition().x > 0){
+      body->move(-speed, 0);
+    }
+  }
+  void move_up() {
+    if(body->getPosition().y > 0){
+      body->move(0, -speed);
+    }
+  }
+  void move_down() {
+    if(body->getPosition().y < 590){
+      body->move(0, speed);
+    }
+  }
 
   // getters and setters
   // std::vector<int> get_inventory() { return inventory->get_inventory(); }

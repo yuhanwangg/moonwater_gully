@@ -197,36 +197,29 @@ class Player {
     return;
   };
 
-  // void harvestPlant(std::vector<tile*>* backgroundTiles, Inventory* inventory){
-  //   // std::cout << (*backgroundTiles)[1]->get_className() << std::endl;
+  void harvestPlant(std::vector<tile*>* backgroundTiles, Inventory* inventory){
+    // std::cout << (*backgroundTiles)[1]->get_className() << std::endl;
 
-  //   // Cha
+    // Cha
 
 
-  //   // Oi Mischa, put this in inventory so you don't have so many getters and setters:
-  //   // void set_anyCount(std::string name, int amount) { inventoryMap[name] = amount}
+    // Oi Mischa, put this in inventory so you don't have so many getters and setters:
+    // void set_anyCount(std::string name, int amount) { inventoryMap[name] = amount}
 
-  //   // Use a map once you have the type of function
+    // Use a map once you have the type of function
 
-  //   int plantYield;
-  //   int plantPos;
+    int player_x = (floor(body->getPosition().x / 50));
+    int player_y = (floor(body->getPosition().y / 50));
 
-  //   for (int i = 0; i < 144; i++) {
-  //     tile* currentTile = (*backgroundTiles)[i];  // Access the current tile
-  //                                                 // pointer in the vector
+    int plantYield;
+    int plantPos;
 
-  //     // determine which tile the player is on
-  //     if (currentTile->get_x() == player_x &&
-  //         currentTile->get_y() == player_y) {
-  //       plantYield = currentTile->get_yield();
-  //       plantPos = plantLocationMap[currentTile->get_className()];
-  //       break;
-  //     }
-  //   }
+    plantYield = (*backgroundTiles)[player_x * 12 + player_y]->get_yield();
+    plantPos = plantLocationMap[(*backgroundTiles)[player_x * 12 + player_y]];
 
-  //   inventory->
+    inventory->
 
-  // }
+  }
 
   // movement of the player
   void move_right() { body->move(speed, 0); }

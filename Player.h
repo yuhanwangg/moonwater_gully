@@ -197,7 +197,8 @@ class Player {
     return;
   };
 
-  // void harvestPlant(std::vector<tile*>* backgroundTiles, Inventory*
+  void harvestPlant(std::vector<tile*>* backgroundTiles, Inventory* inventory){
+
   // inventory){ std::cout << (*backgroundTiles)[1]->get_className() <<
   // std::endl;
 
@@ -209,36 +210,53 @@ class Player {
 
   // Use a map once you have the type of function
 
-  //   int player_x = (floor(body->getPosition().x / 50));
-  //   int player_y = (floor(body->getPosition().y / 50));
+    int player_x = (floor(body->getPosition().x / 50));
+    int player_y = (floor(body->getPosition().y / 50));
 
-  //   int plantYield;
-  //   int plantPos;
+    // Getting yield and inventory position
+    int plantYield;
+    int plantPos;
 
-  //   plantYield = (*backgroundTiles)[player_x * 12 + player_y]->get_yield();
-  //   plantPos = plantLocationMap[(*backgroundTiles)[player_x * 12 +
-  //   player_y]];
+    if((*backgroundTiles)[player_x * 12 + player_y]->get_className() == "tile"){
+      std::cout << "Land cannot be harvested" << std::endl;
+      return;
+    }
+    // else if((*backgroundTiles)[player_x * 12 + player_y]->get_growthStage() != (*backgroundTiles)[player_x * 12 + player_y]->get_growTime()){
+    //     std::cout << "Please wait until plant is fully grown" << std::endl;
+    //     return;
+    // }
+    // else if((*backgroundTiles)[player_x * 12 + player_y]->get_className() == "Blueberry" ||
+    //  (*backgroundTiles)[player_x * 12 + player_y]->get_className() == "Strawberry" &&
+    //   inventory->get_inventoryIndex() != 1){
+    //     std::cout << "Must hold gloves to harvest these plants" << std::endl;
+    //     return;
+    // }
+    // else if((*backgroundTiles)[player_x * 12 + player_y]->get_className() == "Carrot" ||
+    //  (*backgroundTiles)[player_x * 12 + player_y]->get_className() == "Potato" &&
+    //   inventory->get_inventoryIndex() != 0){
+    //     std::cout << "Must hold a shovel to harvest these plants" << std::endl;
+    //     return;
+    // }
+    
 
-  //   inventory->
+    plantYield = 3;
+    plantPos = plantLocationMap[(*backgroundTiles)[player_x * 12 + player_y]->get_className()];
 
-  // }
+    // Adding plants to the Inventory
 
-  // kill plant (becaues it hasn't been watered)
-  // void killPlant(std::vector<tile*>* backgroundTiles) {
-  //   for (int i = 0; i < 144; i++) {
-  //       tile* currentTile = (*backgroundTiles)[i];  // Access the current
-  //       tile
-  //                                                   // pointer in the vector
+    std::cout << plantYield << std::endl;
 
-  //       // determine which tile the player is on
-  //       if (currentTile->get_hydrationLevel() < 0) {
-  //           delete currentTile;
-  //           tile* farmland = new tile(currentTile->get_x(),
-  //           currentTile->get_y());
-  //           (*backgroundTiles)[i] = farmland;
-  //       }
-  //   }
-  // };
+    inventory->set_fromPos(plantPos, inventory->get_fromPos(plantPos) + plantYield);
+
+    // resetting position as a tile
+
+    delete (*backgroundTiles)[player_x * 12 + player_y];
+
+    (*backgroundTiles)[player_x * 12 + player_y] = new tile(player_x * 50,player_y * 50);
+
+  }
+
+
 
   // movement of the player
   void move_right() { body->move(speed, 0); }

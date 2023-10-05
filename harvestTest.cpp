@@ -30,11 +30,12 @@ class everything_driver {
   Menu menu = Menu(300, 150);
   BuyMenu buymenu = BuyMenu(250, 400);
   SellMenu sellmenu = SellMenu(250, 300);
-  Inventory inventory = Inventory(550, 50);
+  Inventory inventory = Inventory(550, 55);
   Day day;
   bool visible_menu = true;
   bool visible_buy = false;
   bool visible_sell = false;
+  bool visibleInventory = true;
 
  public:
   everything_driver(int size, std::string title) {
@@ -43,6 +44,7 @@ class everything_driver {
     visible_buy = false;
     visible_menu = true;
     visible_sell = false;
+    visibleInventory = true;
   };
 
   void make_background() {
@@ -66,6 +68,9 @@ class everything_driver {
           if (Keyboard::isKeyPressed(Keyboard::P)) {
             switch (inventory.get_inventoryIndex()) {
               case 2:
+                // the is plantable function only checks when planting the
+                // plant, so we need to check again when subtracting from
+                // inventory
                 if (inventory.get_blueberrySeedsCount() > 0) {
                   player->seedPlant(2, &background);
                   inventory.subtract_blueberrySeedsCount();
@@ -106,8 +111,6 @@ class everything_driver {
                 }
                 break;
             }
-
-            // player->harvestPlant(&background,&inventory);
           }
         }
 
@@ -125,6 +128,21 @@ class everything_driver {
             //     (*background[i]).grow();
             //   }
             // }
+          }
+        }
+
+        
+        if (e.type == Event::KeyPressed) {
+          if (Keyboard::isKeyPressed(Keyboard::H)) {
+            player->harvestPlant(&background, &inventory);
+            std::cout << "Harvested Plant" << std::endl;
+          }
+        }
+        
+
+        if (e.type == Event::KeyPressed) {
+          if (Keyboard::isKeyPressed(Keyboard::Num0)) {
+            day.daySkip(&background);
           }
         }
 
@@ -167,7 +185,9 @@ class everything_driver {
           }
 
           if (Keyboard::isKeyPressed(Keyboard::Return) &&
-              (visible_menu == true)) {
+              (menu.get_visibility() == true) &&
+              (buymenu.get_buyOn() == false) &&
+              (sellmenu.get_sellOn() == false)) {
             // opening the rectangles of the options
             int selection = menu.menuPressed();
             switch (selection) {
@@ -175,26 +195,32 @@ class everything_driver {
                 // close the menu and access game window
                 visible_menu = false;
                 menu.set_visibility(visible_menu);
+                inventory.set_visibility(true);
                 break;
               case 1:
                 // open game description
                 menu.set_visibility(false);
                 menu.set_htp_visi(true);
+                inventory.set_visibility(false);
                 break;
               case 2:
                 // open controls rectangle
                 menu.set_visibility(false);
                 menu.set_control_visi(true);
+                inventory.set_visibility(true);
                 break;
               case 3:
                 // open save confirmation
                 menu.set_visibility(false);
                 menu.set_save_visi(true);
+                inventory.set_visibility(true);
                 break;
             }
           }
           if (Keyboard::isKeyPressed(Keyboard::Return) &&
-              (visible_buy == true)) {
+              (buymenu.get_buyOn() == true) &&
+              (menu.get_visibility() == false) &&
+              (sellmenu.get_sellOn() == false)) {
             // opening the rectangles of the options
             int item_no = buymenu.get_buySelect();
             switch (item_no) {
@@ -322,7 +348,9 @@ class everything_driver {
           }
 
           if (Keyboard::isKeyPressed(Keyboard::Return) &&
-              (visible_sell == true)) {
+              (sellmenu.get_sellOn() == true) &&
+              (buymenu.get_buyOn() == false) &&
+              (menu.get_visibility() == false)) {
             // opening the rectangles of the options
             int item_no_sell = sellmenu.get_sellSelect();
             switch (item_no_sell) {
@@ -415,20 +443,25 @@ class everything_driver {
 
       // testing of keyboard for menu toggling
 
-      if (Keyboard::isKeyPressed(Keyboard::B) && (visible_menu == false) &&
-          (visible_sell == false)) {
+      if (Keyboard::isKeyPressed(Keyboard::B) &&
+          (menu.get_visibility() == false) && (menu.get_htp_visi() == false) &&
+          (menu.get_save_visi() == false) &&
+          (menu.get_control_visi() == false) &&
+          (sellmenu.get_sellOn() == false)) {
         visible_buy = true;
         buymenu.set_buyOn(visible_buy);
       }
 
-      if (Keyboard::isKeyPressed(Keyboard::N) && (visible_menu == false) &&
-          (visible_buy == false)) {
+      if (Keyboard::isKeyPressed(Keyboard::N) &&
+          (buymenu.get_buyOn() == false) && (menu.get_visibility() == false) &&
+          (menu.get_htp_visi() == false) && (menu.get_save_visi() == false) &&
+          (menu.get_control_visi() == false)) {
         visible_sell = true;
         sellmenu.set_sellOn(true);
       }
 
-      if (Keyboard::isKeyPressed(Keyboard::M) && (visible_buy == false) &&
-          (visible_sell == false)) {
+      if (Keyboard::isKeyPressed(Keyboard::M) &&
+          (buymenu.get_buyOn() == false) && (sellmenu.get_sellOn() == false)) {
         if ((menu.get_control_visi() == false) &&
             (menu.get_htp_visi() == false) && (menu.get_save_visi() == false)) {
           visible_menu = true;
@@ -443,7 +476,8 @@ class everything_driver {
 
       // visibility of menus
       if (Keyboard::isKeyPressed(Keyboard::Escape)) {
-        if (visible_buy == false && visible_sell == false) {
+        inventory.set_visibility(true);
+        if (buymenu.get_buyOn() == false && sellmenu.get_sellOn() == false) {
           menu.set_control_visi(false);
           menu.set_htp_visi(false);
           menu.set_save_visi(false);
@@ -504,10 +538,14 @@ class everything_driver {
       }
 
       // drawing the clock
+
       day.drawDayDracker(win);
       day.dayCountdown(&background);
 
-      inventory.drawInventory(win);
+      if (inventory.get_visibility() == true) {
+        inventory.drawInventory(win);
+        inventory.drawCounter(win);
+      }
 
       win->display();
     }

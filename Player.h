@@ -233,12 +233,12 @@ class Player {
         return;
     }
     else if((*backgroundTiles)[player_x * 12 + player_y]->get_className() == "Carrot"
-      && inventory->get_inventoryIndex() != 1 && inventory->get_gloveCount() > 0){
+      && (inventory->get_inventoryIndex() != 1 || inventory->get_gloveCount() == 0)){
         std::cout << "Must hold gloves to harvest this plant" << std::endl;
         return;
     }
     else if((*backgroundTiles)[player_x * 12 + player_y]->get_className() == "Potato" &&
-      inventory->get_inventoryIndex() != 0 && inventory->get_shovelCount() > 0){
+      (inventory->get_inventoryIndex() != 0 || inventory->get_shovelCount() == 0)){
         std::cout << "Must hold a shovel to harvest this plant" << std::endl;
         return;
     }

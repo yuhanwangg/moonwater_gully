@@ -47,8 +47,8 @@ class Menu {
     isMainMenuOpen = false;
 
     // creating background — maybe change into another function
-    background = new RectangleShape(Vector2f(length, width));
-    background->setPosition(x, y);
+    background = new RectangleShape(Vector2f(360, 150));
+    background->setPosition(x-5, y);
 
     // how to play image
     how_to_play_bg = new RectangleShape(Vector2f(550, 500));

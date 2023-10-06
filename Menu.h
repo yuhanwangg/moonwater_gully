@@ -86,7 +86,7 @@ class Menu {
 
     // buidling the title text
     title.setFont(font);
-    title.setString("Moonwater Gulley");
+    title.setString("Moonwater Gully");
     title.setCharacterSize(20);
     title.setFillColor(Color::Black);
     title.setPosition(x + 15, y + 15);

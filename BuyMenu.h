@@ -20,6 +20,8 @@ class BuyMenu : public Menu {
   bool success_check;
   bool failure_check;
 
+  Texture bg_texture;
+
  public:
   BuyMenu(int len, int wid) : Menu(len, wid) {
     x = 25;
@@ -33,10 +35,14 @@ class BuyMenu : public Menu {
 
     // creating background
     buy_background = new RectangleShape(Vector2f(length, width));
-    buy_background->setFillColor(Color::Red);
+    buy_background->setFillColor(Color::White);
 
     purchase_box = new RectangleShape(Vector2f(230, 100));
-    purchase_box->setFillColor(Color::Blue);
+    purchase_box->setFillColor(Color::White);
+
+    bg_texture.loadFromFile("textures/beigeBackground.png");
+    buy_background->setTexture(&bg_texture);
+    purchase_box->setTexture(&bg_texture);
 
     // setting buying items text
     int text_x = 35;

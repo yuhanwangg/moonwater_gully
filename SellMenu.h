@@ -20,6 +20,8 @@ class SellMenu : public Menu {
   bool success_check;
   bool failure_check;
 
+  Texture bg_texture;
+
  public:
   SellMenu(int len, int wid) : Menu(len, wid) {
     x = 25;
@@ -33,10 +35,15 @@ class SellMenu : public Menu {
 
     // background boxes
     sell_background = new RectangleShape(Vector2f(length, width));
-    sell_background->setFillColor(Color::Green);
+    sell_background->setFillColor(Color::White);
 
-    sell_box = new RectangleShape(Vector2f(200, 100));
-    sell_box->setFillColor(Color::Blue);
+    sell_box = new RectangleShape(Vector2f(230, 100));
+    sell_box->setFillColor(Color::White);
+
+    // loading in textures:
+    bg_texture.loadFromFile("textures/beigeBackground.png");
+    sell_background->setTexture(&bg_texture);
+    sell_box->setTexture(&bg_texture);
 
     // setting the selling menu
     int text_x = 35;
@@ -68,8 +75,8 @@ class SellMenu : public Menu {
     sell_success[0].setFont(font);
     sell_success[0].setString("sell item?");
     sell_success[0].setCharacterSize(10);
-    sell_success[0].setFillColor(Color::White);
-    sell_success[0].setPosition(290, 35);
+    sell_success[0].setFillColor(Color::Black);
+    sell_success[0].setPosition(290, 35+200);
 
     sell_success[1].setFont(font);
     sell_success[1].setString("sold!");
@@ -81,10 +88,10 @@ class SellMenu : public Menu {
     sell_success[2].setString("you don't have any of this item to sell!");
     sell_success[2].setCharacterSize(10);
     sell_success[2].setFillColor(Color::White);
-    sell_success[2].setPosition(310, 50);
+    sell_success[2].setPosition(310, 50+200);
 
     sell_background->setPosition(x, y);
-    sell_box->setPosition(280, 25);
+    sell_box->setPosition(280, 25+200);
     // turning on and off
     sellOn = false;
   }

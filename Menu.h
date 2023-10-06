@@ -67,7 +67,7 @@ class Menu {
 
     // loading in textures:
     bg_texture.loadFromFile("textures/main_menu.png");
-    howToPlayTexture.loadFromFile("textures/howToPlay.png");
+    howToPlayTexture.loadFromFile("textures/howToPlay2.png");
     controlTexture.loadFromFile("textures/control.png");
     background->setTexture(&bg_texture);
     how_to_play_bg->setTexture(&howToPlayTexture);

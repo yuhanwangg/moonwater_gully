@@ -76,7 +76,7 @@ class SellMenu : public Menu {
     sell_success[0].setString("sell item?");
     sell_success[0].setCharacterSize(10);
     sell_success[0].setFillColor(Color::Black);
-    sell_success[0].setPosition(290, 35+200);
+    sell_success[0].setPosition(290, 35 + 200);
 
     sell_success[1].setFont(font);
     sell_success[1].setString("sold!");
@@ -88,10 +88,10 @@ class SellMenu : public Menu {
     sell_success[2].setString("you don't have any of this item to sell!");
     sell_success[2].setCharacterSize(10);
     sell_success[2].setFillColor(Color::White);
-    sell_success[2].setPosition(310, 50+200);
+    sell_success[2].setPosition(310, 50 + 200);
 
     sell_background->setPosition(x, y);
-    sell_box->setPosition(280, 25+200);
+    sell_box->setPosition(280, 25 + 200);
     // turning on and off
     sellOn = false;
   }
@@ -113,13 +113,16 @@ class SellMenu : public Menu {
   }
   void moveUp() {
     // checking array
-    if (sell_select - 1 >= 0) {
+    if (sell_select - 1 >= 0 && sell_select < max_option) {
       sell_catalogue[sell_select].setFillColor(sf::Color::White);
       sell_select--;
       // changing text colour
       sell_catalogue[sell_select].setFillColor(sf::Color::Yellow);
+    } else if (sell_select == 0) {
+      sell_catalogue[sell_select].setFillColor(sf::Color::Yellow);
     } else {
       sell_select = 0;
+      sell_catalogue[sell_select].setFillColor(sf::Color::Yellow);
     }
   }
 

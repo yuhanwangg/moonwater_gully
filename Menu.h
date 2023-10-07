@@ -1,7 +1,11 @@
 #ifndef MENU_H
 #define MENU_H
 #include <SFML/Graphics.hpp>
+#include <fstream>
 #include <iostream>
+#include <string>
+
+#include "Player.h"
 using namespace sf;
 
 class Menu {
@@ -20,8 +24,12 @@ class Menu {
   bool control_visible;
   bool save_visible;
   bool isMainMenuOpen;
+  bool walletVisibility;
   Font font;
   Text title;
+  Text wallet;
+
+  std::string wallet_number;
 
   int x, y;
   int selected_option;
@@ -47,10 +55,11 @@ class Menu {
     control_visible = false;
     save_visible = false;
     isMainMenuOpen = false;
+    walletVisibility = false;
 
     // creating background — maybe change into another function
     background = new RectangleShape(Vector2f(360, 150));
-    background->setPosition(x-5, y);
+    background->setPosition(x - 5, y);
 
     // how to play image
     how_to_play_bg = new RectangleShape(Vector2f(550, 500));
@@ -133,71 +142,83 @@ class Menu {
     }
   };
 
-  void draw_htp(RenderWindow* win) { 
+  void draw_htp(RenderWindow* win) {
     howToPlayText.setFont(font);
-    howToPlayText.setString("How To Play: \n\n\n"
-    "Using the buy menu you can buy different plant seeds!\n\n\n"
-    "Be careful not to use all your money on seeds, some plants need \n\n\n"
-    "certain harvest equipment:\n\n\n"
-    "\n\n\n"
-    "Potatoes need a shovel to dig up.\n\n\n"
-    "Carrots needs gloves to pull up. \n\n\n"
-    "All berries need no harvest equipment. \n\n\n"
-    "\n\n\n"
-    "You can move your player and plant the plant seeds where you \n\n\n"
-    "stand (make sure the right seeds are highlighted in your \n\n\n"
-    "hotbar to plant!)\n\n\n"
-    "\n\n\n"
-    "Don't forget to water your seeds once you plant them. Water \n\n\n"
-    "plants daily by standing over the plant, the plant will grow  \n\n\n"
-    "at the start of a new day. If a plant wasn't watered it will \n\n\n"
-    "die and vanish.\n\n\n"
-    "\n\n\n"
-    "Once a plant has reached full growth you can harvest when \n\n\n"
-    "standing over the plant (don't forget to have the right harvest \n\n\n"
-    "equipment highlighted in the hotbar!).\n\n\n"
-    "\n\n\n"
-    "You can sell your harvested plants in the sell menu (make sure \n\n\n"
-    "you have the right plant highlighted in the hotbar). \n\n\n"
-    "\n\n\n"
-    "Enjoy the game!");
+    howToPlayText.setString(
+        "How To Play: \n\n\n"
+        "Using the buy menu you can buy different plant seeds!\n\n\n"
+        "Be careful not to use all your money on seeds, some plants need \n\n\n"
+        "certain harvest equipment:\n\n\n"
+        "\n\n\n"
+        "Potatoes need a shovel to dig up.\n\n\n"
+        "Carrots needs gloves to pull up. \n\n\n"
+        "All berries need no harvest equipment. \n\n\n"
+        "\n\n\n"
+        "You can move your player and plant the plant seeds where you \n\n\n"
+        "stand (make sure the right seeds are highlighted in your \n\n\n"
+        "hotbar to plant!)\n\n\n"
+        "\n\n\n"
+        "Don't forget to water your seeds once you plant them. Water \n\n\n"
+        "plants daily by standing over the plant, the plant will grow  \n\n\n"
+        "at the start of a new day. If a plant wasn't watered it will \n\n\n"
+        "die and vanish.\n\n\n"
+        "\n\n\n"
+        "Once a plant has reached full growth you can harvest when \n\n\n"
+        "standing over the plant (don't forget to have the right harvest \n\n\n"
+        "equipment highlighted in the hotbar!).\n\n\n"
+        "\n\n\n"
+        "You can sell your harvested plants in the sell menu (make sure \n\n\n"
+        "you have the right plant highlighted in the hotbar). \n\n\n"
+        "\n\n\n"
+        "Enjoy the game!");
     howToPlayText.setCharacterSize(8);
     howToPlayText.setFillColor(Color::Black);
-    howToPlayText.setPosition(40,90);
+    howToPlayText.setPosition(40, 90);
     win->draw(*how_to_play_bg);
     win->draw(howToPlayText);
-    
-    }
+  }
 
   void draw_control(RenderWindow* win) {
     controlText.setFont(font);
-    controlText.setString("Controls: Press special keys to activate\n\n\n\n\n"
-    "Arrows: navigate menus \n\n\n\n" 
-    "Enter: commits choice \n\n\n\n"
-    "Escape: exit menus \n\n\n\n"
-    "M: re-enter main menu \n\n\n\n" 
-    "B: buy menu \n\n\n\n" 
-    "N: sell menu \n\n\n\n"  
-    "P: plant seed \n\n\n\n" 
-    "1: water plant\n\n\n\n" 
-    "2: harvest plant \n\n\n\n"
-    "0: skip to next day \n\n\n\n"
-    "Space bar: loop through inventory \n\n\n\n"  
-    "\n\n"
-    "Player Movement: \n\n\n"
-    "W: up \n\n\n" 
-    "A: left \n\n\n"  
-    "S: down \n\n\n"
-    "D: right \n\n\n");
+    controlText.setString(
+        "Controls: Press special keys to activate\n\n\n\n\n"
+        "Arrows: navigate menus \n\n\n\n"
+        "Enter: commits choice \n\n\n\n"
+        "Escape: exit menus \n\n\n\n"
+        "M: re-enter main menu \n\n\n\n"
+        "B: buy menu \n\n\n\n"
+        "N: sell menu \n\n\n\n"
+        "P: plant seed \n\n\n\n"
+        "1: water plant\n\n\n\n"
+        "2: harvest plant \n\n\n\n"
+        "0: skip to next day \n\n\n\n"
+        "Space bar: loop through inventory \n\n\n\n"
+        "\n\n"
+        "Player Movement: \n\n\n"
+        "W: up \n\n\n"
+        "A: left \n\n\n"
+        "S: down \n\n\n"
+        "D: right \n\n\n");
 
     controlText.setCharacterSize(8);
     controlText.setFillColor(Color::Black);
-    controlText.setPosition(250,90);
+    controlText.setPosition(250, 90);
     win->draw(*control_bg);
-    win->draw(controlText); 
-    }
+    win->draw(controlText);
+  }
 
   void draw_save(RenderWindow* win) { win->draw(*save_bg); }
+
+  void draw_wallet(RenderWindow* win, Player* player) {
+    int tempNo = player->get_shells();
+    wallet_number = std::to_string(tempNo);  // converting int to string
+    wallet.setFont(font);
+    wallet.setString("shells: " + wallet_number);  // concatenating the string
+    wallet.setCharacterSize(10);
+    wallet.setFillColor(Color::White);
+    wallet.setPosition(290, 275);
+    win->draw(wallet);
+  }
 
   virtual void moveDown() {
     // checking array
@@ -227,7 +248,41 @@ class Menu {
     }
   }
 
+  // saving game
+  void saveGame(tile* background, Inventory* inventory, Player* player) {
+    // create text file
+    std::fstream saveFile("save.txt");
+    if (!saveFile) {
+      std::cout << "file could not be saved";
+      std::cout << "\n";
+    }
+
+    // save a vector of tiles
+    for (int i = 0; i < background->get_size(); i++) {
+      saveFile << background[i].get_className() << ",";
+      saveFile << to_string(background[i].get_growthStage())
+               << ",";  // converting to string to be read into text file
+      saveFile << to_string(background[i].get_hydrationLevel()) << ",";
+    }
+    // breaking up tile data from inventory data
+    std::cout << "\n";
+
+    // save inventory count of each item
+    std::vector<int*> temp_inv = inventory;
+    for (int i = 0; temp_inv->get_size(); i++) {
+      saveFile << temp_inv[i] << ",";
+    }
+
+    // save player shell number
+    saveFile << player->get_shells() << std::endl;
+  }
+
+  void loadGame() {}
+
   // changing visibility
+
+  bool get_walletVisibility() { return walletVisibility; }
+  void set_walletVisibility(bool visible) { walletVisibility = visible; }
 
   void set_visibility(bool visible) { turnOn = visible; }
   bool get_visibility() { return turnOn; }

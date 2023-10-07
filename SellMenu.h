@@ -82,13 +82,13 @@ class SellMenu : public Menu {
     sell_success[1].setString("sold!");
     sell_success[1].setCharacterSize(10);
     sell_success[1].setFillColor(Color::White);
-    sell_success[1].setPosition(310, 50);
+    sell_success[1].setPosition(290, 50 + 200);
 
     sell_success[2].setFont(font);
     sell_success[2].setString("you don't have any of this item to sell!");
     sell_success[2].setCharacterSize(10);
     sell_success[2].setFillColor(Color::White);
-    sell_success[2].setPosition(310, 50 + 200);
+    sell_success[2].setPosition(290, 50 + 200);
 
     sell_background->setPosition(x, y);
     sell_box->setPosition(280, 25 + 200);
@@ -130,6 +130,7 @@ class SellMenu : public Menu {
     switch (item_no) {
       case 0:  // carrot
         if (inventory->get_carrotCount() >= 1) {
+          inventory->subtract_carrotCount();
           return true;
         } else {
           return false;
@@ -137,6 +138,7 @@ class SellMenu : public Menu {
         break;
       case 1:  // potato
         if (inventory->get_potatoCount() >= 1) {
+          inventory->subtract_potatoCount();
           return true;
         } else {
           return false;
@@ -144,6 +146,7 @@ class SellMenu : public Menu {
         break;
       case 2:  // strawberry
         if (inventory->get_strawberryCount() >= 1) {
+          inventory->subtract_strawberryCount();
           return true;
         } else {
           return false;
@@ -151,6 +154,7 @@ class SellMenu : public Menu {
         break;
       case 3:  // blueberry
         if (inventory->get_blueberryCount() >= 1) {
+          inventory->subtract_blueberryCount();
           return true;
         } else {
           return false;

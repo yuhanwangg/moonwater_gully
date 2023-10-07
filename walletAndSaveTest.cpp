@@ -457,6 +457,7 @@ class everything_driver {
           (menu.get_control_visi() == false) &&
           (sellmenu.get_sellOn() == false)) {
         visible_buy = true;
+        menu.set_walletVisibility(true);
         buymenu.set_buyOn(visible_buy);
       }
 
@@ -465,6 +466,7 @@ class everything_driver {
           (menu.get_htp_visi() == false) && (menu.get_save_visi() == false) &&
           (menu.get_control_visi() == false)) {
         visible_sell = true;
+        menu.set_walletVisibility(true);
         sellmenu.set_sellOn(true);
       }
 
@@ -495,6 +497,7 @@ class everything_driver {
           buymenu.set_failureCheck(false);
           buymenu.set_successCheck(false);
           buymenu.set_buyOn(false);
+          menu.set_walletVisibility(false);
 
           visible_sell = false;
           sellmenu.set_failureCheck(false);
@@ -528,6 +531,9 @@ class everything_driver {
       }
       if (sellmenu.get_sellOn() == true) {
         sellmenu.draw(win);
+      }
+      if (menu.get_walletVisibility() == true) {
+        menu.draw_wallet(win, player);
       }
 
       // drawing purchase success or failure

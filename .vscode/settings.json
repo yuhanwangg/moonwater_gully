@@ -65,6 +65,10 @@
         "compare": "cpp",
         "concepts": "cpp",
         "algorithm": "cpp",
-        "charconv": "cpp"
+        "charconv": "cpp",
+        "deque": "cpp",
+        "fstream": "cpp",
+        "iomanip": "cpp",
+        "stack": "cpp"
     }
 }

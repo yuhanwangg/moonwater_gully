@@ -5,7 +5,7 @@ using namespace sf;
 #include "Player.h"
 #include "tile.h"
 
-class Day_driver {
+class DayDriver {
  private:
   RenderWindow* win;
   std::vector<tile*> background;
@@ -13,12 +13,12 @@ class Day_driver {
   Day day;
 
  public:
-  Day_driver(int size, std::string title) {
+  DayDriver(int size, std::string title) {
     win = new sf::RenderWindow(sf::VideoMode(size, size), title);
     player = new Player(10, 50, 50);
   };
 
-  void make_background() {
+  void makeBackground() {
     for (int r = 0; r < 600; r += 50) {
       for (int c = 0; c < 600; c += 50) {
         tile* newTile = new tile(r, c);  // Pass coordinates to tile constructor
@@ -38,13 +38,13 @@ class Day_driver {
       win->clear();
 
       if (Keyboard::isKeyPressed(Keyboard::A)) {
-        player->move_left();
+        player->moveLeft();
       } else if (Keyboard::isKeyPressed(Keyboard::D)) {
-        player->move_right();
+        player->moveRight();
       } else if (Keyboard::isKeyPressed(Keyboard::W)) {
-        player->move_up();
+        player->moveUp();
       } else if (Keyboard::isKeyPressed(Keyboard::S)) {
-        player->move_down();
+        player->moveDown();
       }
 
       // drawing the tiles
@@ -70,8 +70,8 @@ class Day_driver {
 };
 
 int main() {
-  Day_driver driver(600, "TEST");
-  driver.make_background();
+  DayDriver driver(600, "TEST");
+  driver.makeBackground();
   driver.run();
   return 0;
 }

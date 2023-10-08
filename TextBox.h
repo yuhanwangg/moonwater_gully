@@ -9,7 +9,7 @@ class TextBox {
   RectangleShape* textbox;
   Text text;
   float length, width;
-  Texture text_texture;
+  Texture textTexture;
   bool isVisible;
 
  public:
@@ -17,10 +17,10 @@ class TextBox {
     length = len;
     width = wid;
     textbox = new RectangleShape(Vector2f(length, width));
-    text_texture.loadFromFile("textures/text_box_texture.png");
-    textbox->setTexture(&text_texture);
+    textTexture.loadFromFile("textures/text_box_texture.png");
+    textbox->setTexture(&textTexture);
     textbox->setTextureRect(IntRect(0, 0, length, width));
-    if (!text_texture.loadFromFile("textures/text_box_texture.png")) {
+    if (!textTexture.loadFromFile("textures/text_box_texture.png")) {
       std::cout << "error loading texture" << std::endl;
     }
     textbox->setPosition(500, 500);

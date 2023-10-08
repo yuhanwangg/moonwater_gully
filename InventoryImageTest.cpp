@@ -22,7 +22,7 @@ class InventoryImageTest {
   InventoryImageTest(int size, std::string title) {
     win = new sf::RenderWindow(sf::VideoMode(size, size), title);
   }
-  void make_background() {
+  void makeBackground() {
     for (int r = 0; r < 600; r += 50) {
       for (int c = 0; c < 600; c += 50) {
         tile* newTile = new tile(r, c);  // Pass coordinates to tile constructor
@@ -57,7 +57,7 @@ class InventoryImageTest {
 
 int main() {
   InventoryImageTest driver(600, "please");
-  driver.make_background();
+  driver.makeBackground();
   driver.run();
   return 0;
   

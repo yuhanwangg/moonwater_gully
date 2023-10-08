@@ -16,13 +16,13 @@ class Inventory {
   Texture selectionTexture;
   int length, width;
   int x, y;
-  int inventory_size;
+  int inventorySize;
   bool visible;
   Font font;
-  Text inventory_name[10];
+  Text inventoryName[10];
   Texture hotBarTexture;
-  int inventory_index;
-  std::vector<String> item_counter;  // string
+  int inventoryIndex;
+  std::vector<String> itemCounter;  // string
   Text itemText[10];
 
  public:
@@ -34,7 +34,7 @@ class Inventory {
 
     visible = true;
 
-    item_counter.resize(10);
+    itemCounter.resize(10);
 
     for (int i = 0; i < 10; i++) {
       InventoryItems* item = new InventoryItems((i * 55) + 25, 500, i);
@@ -50,8 +50,8 @@ class Inventory {
     selection->setTextureRect(IntRect(0, 0, 65, 65));
     selection->setPosition(x - 5, y - 5);
 
-    inventory_size = 10;
-    inventory_index = 0;
+    inventorySize = 10;
+    inventoryIndex = 0;
 
     // loading font
     font.loadFromFile("textures/font_texture/TTF/dogica.ttf");
@@ -59,88 +59,88 @@ class Inventory {
       std::cout << "error loading font" << std::endl;  // error testing
     }
 
-    inventory_name[0].setFont(font);
-    inventory_name[0].setString("shovel");
-    inventory_name[0].setCharacterSize(6);
-    inventory_name[0].setFillColor(Color::White);
-    inventory_name[0].setPosition(30, y + 45);
+    inventoryName[0].setFont(font);
+    inventoryName[0].setString("shovel");
+    inventoryName[0].setCharacterSize(6);
+    inventoryName[0].setFillColor(Color::White);
+    inventoryName[0].setPosition(30, y + 45);
 
-    inventory_name[1].setFont(font);
-    inventory_name[1].setString("glove");
-    inventory_name[1].setCharacterSize(6);
-    inventory_name[1].setFillColor(Color::White);
-    inventory_name[1].setPosition(85, y + 45);
+    inventoryName[1].setFont(font);
+    inventoryName[1].setString("glove");
+    inventoryName[1].setCharacterSize(6);
+    inventoryName[1].setFillColor(Color::White);
+    inventoryName[1].setPosition(85, y + 45);
 
-    inventory_name[2].setFont(font);
-    inventory_name[2].setString("blueberry seeds");
-    inventory_name[2].setCharacterSize(6);
-    inventory_name[2].setFillColor(Color::White);
-    inventory_name[2].setPosition(135, y - 5);
+    inventoryName[2].setFont(font);
+    inventoryName[2].setString("blueberry seeds");
+    inventoryName[2].setCharacterSize(6);
+    inventoryName[2].setFillColor(Color::White);
+    inventoryName[2].setPosition(135, y - 5);
 
-    inventory_name[3].setFont(font);
-    inventory_name[3].setString("blueberries");
-    inventory_name[3].setCharacterSize(6);
-    inventory_name[3].setFillColor(Color::White);
-    inventory_name[3].setPosition(185, y + 45);
+    inventoryName[3].setFont(font);
+    inventoryName[3].setString("blueberries");
+    inventoryName[3].setCharacterSize(6);
+    inventoryName[3].setFillColor(Color::White);
+    inventoryName[3].setPosition(185, y + 45);
 
-    inventory_name[4].setFont(font);
-    inventory_name[4].setString("strawberry seeds");
-    inventory_name[4].setCharacterSize(6);
-    inventory_name[4].setFillColor(Color::White);
-    inventory_name[4].setPosition(235, y + 45);
+    inventoryName[4].setFont(font);
+    inventoryName[4].setString("strawberry seeds");
+    inventoryName[4].setCharacterSize(6);
+    inventoryName[4].setFillColor(Color::White);
+    inventoryName[4].setPosition(235, y + 45);
 
-    inventory_name[5].setFont(font);
-    inventory_name[5].setString("strawberries");
-    inventory_name[5].setCharacterSize(6);
-    inventory_name[5].setFillColor(Color::White);
-    inventory_name[5].setPosition(285, y + 45);
+    inventoryName[5].setFont(font);
+    inventoryName[5].setString("strawberries");
+    inventoryName[5].setCharacterSize(6);
+    inventoryName[5].setFillColor(Color::White);
+    inventoryName[5].setPosition(285, y + 45);
 
-    inventory_name[6].setFont(font);
-    inventory_name[6].setString("potato seeds");
-    inventory_name[6].setCharacterSize(6);
-    inventory_name[6].setFillColor(Color::White);
-    inventory_name[6].setPosition(335, y + 45);
+    inventoryName[6].setFont(font);
+    inventoryName[6].setString("potato seeds");
+    inventoryName[6].setCharacterSize(6);
+    inventoryName[6].setFillColor(Color::White);
+    inventoryName[6].setPosition(335, y + 45);
 
-    inventory_name[7].setFont(font);
-    inventory_name[7].setString("potato");
-    inventory_name[7].setCharacterSize(6);
-    inventory_name[7].setFillColor(Color::White);
-    inventory_name[7].setPosition(385, y + 45);
+    inventoryName[7].setFont(font);
+    inventoryName[7].setString("potato");
+    inventoryName[7].setCharacterSize(6);
+    inventoryName[7].setFillColor(Color::White);
+    inventoryName[7].setPosition(385, y + 45);
 
-    inventory_name[8].setFont(font);
-    inventory_name[8].setString("carrot seeds");
-    inventory_name[8].setCharacterSize(6);
-    inventory_name[8].setFillColor(Color::White);
-    inventory_name[8].setPosition(435, y + 45);
+    inventoryName[8].setFont(font);
+    inventoryName[8].setString("carrot seeds");
+    inventoryName[8].setCharacterSize(6);
+    inventoryName[8].setFillColor(Color::White);
+    inventoryName[8].setPosition(435, y + 45);
 
-    inventory_name[9].setFont(font);
-    inventory_name[9].setString("carrot");
-    inventory_name[9].setCharacterSize(6);
-    inventory_name[9].setFillColor(Color::White);
-    inventory_name[9].setPosition(485, y + 45);
+    inventoryName[9].setFont(font);
+    inventoryName[9].setString("carrot");
+    inventoryName[9].setCharacterSize(6);
+    inventoryName[9].setFillColor(Color::White);
+    inventoryName[9].setPosition(485, y + 45);
 
-    inventory = std::vector<int>(inventory_size,
+    inventory = std::vector<int>(inventorySize,
                                  0);  // initialising inventory values as 0
 
-    inventory_name[inventory_index].setFillColor(Color::Green);
+    inventoryName[inventoryIndex].setFillColor(Color::Green);
   }
 
   void scrollInventory() {
     // using space bar
-    if (inventory_index + 1 <= inventory_size) {
-      inventory_name[inventory_index].setFillColor(Color::White);
-      selection->setPosition(x + ((inventory_index + 1) * 55) - 5, y - 5);
+    if (inventoryIndex + 1 <= inventorySize) {
+      inventoryName[inventoryIndex].setFillColor(Color::White);
+      selection->setPosition(x + ((inventoryIndex + 1) * 55) - 5, y - 5);
       // iterating through array
-      inventory_index++;
-      if (inventory_index > inventory_size - 1) {
-        inventory_index = 0;
+      inventoryIndex++;
+      if (inventoryIndex > inventorySize - 1) {
+        inventoryIndex = 0;
         selection->setPosition(x - 5, y - 5);
       }
 
-      if (inventory_index == 0) {
-        inventory_name[inventory_index].setFillColor(Color::Green);
+      if (inventoryIndex == 0) {
+        inventoryName[inventoryIndex].setFillColor(Color::Green);
       }
-      inventory_name[inventory_index].setFillColor(Color::Green);
+      inventoryName[inventoryIndex].setFillColor(Color::Green);
     }
   }
 
@@ -153,9 +153,9 @@ class Inventory {
 
   void drawCounter(RenderWindow* win) {
     for (int i = 0; i < 10; i++) {
-      item_counter[i] = std::to_string(inventory[i]);
+      itemCounter[i] = std::to_string(inventory[i]);
       itemText[i].setFont(font);
-      itemText[i].setString(item_counter[i]);
+      itemText[i].setString(itemCounter[i]);
       itemText[i].setCharacterSize(10);
       itemText[i].setFillColor(Color::White);
       itemText[i].setPosition(
@@ -167,8 +167,8 @@ class Inventory {
 
   // getters and setters
   std::vector<int> get_inventory() { return inventory; }
-  int get_inventoryIndex() { return inventory_index; }
-  void set_inventoryIndex(int ind) { inventory_index = ind; }
+  int get_inventoryIndex() { return inventoryIndex; }
+  void set_inventoryIndex(int ind) { inventoryIndex = ind; }
 
   void set_visibility(bool visible) { this->visible = visible; }
   bool get_visibility() { return visible; }
@@ -197,28 +197,28 @@ class Inventory {
   void set_carrotCount(int carrot) { inventory[9] = carrot; }
   void set_fromPos(int plantPos, int amount) { inventory[plantPos] = amount; }
 
-  void add_shovelCount() { inventory[0] += 1; }
-  void add_gloveCount() { inventory[1] += 1; }
-  void add_blueberrySeedsCount() { inventory[2] += 1; }
-  void add_blueberryCount() { inventory[3] += 1; }
-  void add_strawberrySeedsCount() { inventory[4] += 1; }
-  void add_strawberryCount() { inventory[5] += 1; }
-  void add_potatoSeedsCount() { inventory[6] += 1; }
-  void add_potatoCount() { inventory[7] += 1; }
-  void add_carrotSeedsCount() { inventory[8] += 1; }
-  void add_carrotCount() { inventory[9] += 1; }
+  void addShovelCount() { inventory[0] += 1; }
+  void addGloveCount() { inventory[1] += 1; }
+  void addBlueberrySeedsCount() { inventory[2] += 1; }
+  void addBlueberryCount() { inventory[3] += 1; }
+  void addStrawberrySeedsCount() { inventory[4] += 1; }
+  void addstrawberryCount() { inventory[5] += 1; }
+  void addPotatoSeedsCount() { inventory[6] += 1; }
+  void addPotatoCount() { inventory[7] += 1; }
+  void addCarrotSeedsCount() { inventory[8] += 1; }
+  void addCarrotCount() { inventory[9] += 1; }
   
 
-  void subtract_shovelCount() { inventory[0] -= 1; }
-  void subtract_gloveCount() { inventory[1] -= 1; }
-  void subtract_blueberrySeedsCount() { inventory[2] -= 1; }
-  void subtract_blueberryCount() { inventory[3] -= 1; }
-  void subtract_strawberrySeedsCount() { inventory[4] -= 1; }
-  void subtract_strawberryCount() { inventory[5] -= 1; }
-  void subtract_potatoSeedsCount() { inventory[6] -= 1; }
-  void subtract_potatoCount() { inventory[7] -= 1; }
-  void subtract_carrotSeedsCount() { inventory[8] -= 1; }
-  void subtract_carrotCount() { inventory[9] -= 1; }
+  void subtractShovelCount() { inventory[0] -= 1; }
+  void subtractGloveCount() { inventory[1] -= 1; }
+  void subtractBlueberrySeedsCount() { inventory[2] -= 1; }
+  void subtractBlueberryCount() { inventory[3] -= 1; }
+  void subtractStrawberrySeedsCount() { inventory[4] -= 1; }
+  void subtractStrawberryCount() { inventory[5] -= 1; }
+  void subtractPotatoSeedsCount() { inventory[6] -= 1; }
+  void subtractPotatoCount() { inventory[7] -= 1; }
+  void subtractCarrotSeedsCount() { inventory[8] -= 1; }
+  void subtractCarrotCount() { inventory[9] -= 1; }
 
   
   //   ~Inventory() { delete[] inventory; }

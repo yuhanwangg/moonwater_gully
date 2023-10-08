@@ -8,7 +8,7 @@ using namespace sf;
 
 
 //g++ RootPlant.cpp -o rootplant -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
-class tile_driver {
+class tileDriver {
  private:
   RenderWindow* win;
   //   tile** background = new tile*[400];  // array of tile pointers
@@ -16,7 +16,7 @@ class tile_driver {
   Blueberry b = Blueberry(100, 100);
 
  public:
-  tile_driver(int size, std::string title) {
+  tileDriver(int size, std::string title) {
     win = new sf::RenderWindow(sf::VideoMode(size, size), title);
     b.set_hydrationLevel(1);
     
@@ -26,7 +26,7 @@ class tile_driver {
     b.grow();
   };
 
-  void make_background() {
+  void makeBackground() {
     for (int r = 0; r < 600; r += 50) {
       for (int c = 0; c < 600; c += 50) {
         tile* newTile = new tile(r, c);  // Pass coordinates to tile constructor
@@ -54,7 +54,7 @@ class tile_driver {
       win->display();
     }
   };
-  //   ~tile_driver();
+  //   ~tileDriver();
 
   // setters and getters
 
@@ -71,44 +71,45 @@ int main() {
 
   std::cout << "The blueberry plant has harvest yield of (number 3-6):" << b1.get_yield() << std::endl;
 
-  b1.killPlant();
+  // b1.killPlant();
 
   std::cout << "The blueberry plant has hydration level 0:" << b1.get_hydrationLevel() << ", and is alive (should be 1):" << b1.get_alive() << std::endl; 
 
   b1.set_hydrationLevel(1);
-  std::cout << "The bluebery plant has hydration level 1:" << b1.get_hydrationLevel() << ", and is alive (should be 1):" << b1.get_alive() << std::endl;
+  std::cout << "The blueberry plant has hydration level 1:" << b1.get_hydrationLevel() << ", and is alive (should be 1):" << b1.get_alive() << std::endl;
 
 
-  // don't know how to change it so it updates everytime it runs to show first blueberry picture then new grow picture?
+  b1.newDayGrowth();
   b1.grow();
+  
 
   std::cout << "the blueberry is in growthStage 1:" << b1.get_growthStage() << ", has hydration level 0: " << b1.get_hydrationLevel() << ", and image description blueberrySeedling.png:" << b1.get_imageDescription() << std::endl;
 
 
   b1.newDayGrowth();
-  std::cout << "The blueberry plant has hydration level -1:" << b1.get_hydrationLevel() << ", The blueberry plant was seeded 1 day ago:" << b1.get_seedingTime() <<", plant is alive (should be 0):" << b1.get_alive() << std::endl;
+  std::cout << "The blueberry plant has hydration level -1:" << b1.get_hydrationLevel() << ", The blueberry plant was seeded 2 days ago:" << b1.get_seedingTime() <<", plant is alive (should be 0):" << b1.get_alive() << std::endl;
 
   b1.set_alive(true);
   b1.set_hydrationLevel(1);
+  b1.newDayGrowth();
   b1.grow();
   std::cout << "the blueberry plant is in growthStage 2:" << b1.get_growthStage() << ", has hydration level 0: " << b1.get_hydrationLevel() << ", and image description blueberrybushGrown.png:" << b1.get_imageDescription() << std::endl;
 
   Blueberry b2(50,50);
-  // test to see that it doesn't exceed growth of 3
+  // test to see that it doesn't exceed growth of 2
   b2.set_hydrationLevel(1);
-  b2.grow();
+  b2.newDayGrowth();
   b2.set_hydrationLevel(1);
-  b2.grow();
+  b2.newDayGrowth();
   b2.set_hydrationLevel(1);
-  b2.grow();
-//   this should determine if it exceeds growth to 4
+  b2.newDayGrowth();
   b2.set_hydrationLevel(1);
-  b2.grow();
+  b2.newDayGrowth();
   std::cout << "the blueberry is in growthStage 2:" << b2.get_growthStage() << std::endl;
 
 
-  tile_driver driver(600, "TEST");
-  driver.make_background();
+  tileDriver driver(600, "TEST");
+  driver.makeBackground();
   driver.run();
   return 0;
 }

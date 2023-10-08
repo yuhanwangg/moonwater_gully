@@ -30,16 +30,16 @@ class PlayerInteraction {
                               // tiles)
 
     // changes the x and y coordinates of the player to valid tile positions
-    int player_x = (floor(p.get_x() / 50) * 50);
-    int player_y = (floor(p.get_y() / 50) * 50);
+    int playerX = (floor(p.get_x() / 50) * 50);
+    int playerY = (floor(p.get_y() / 50) * 50);
 
     for (int i = 0; i < 144; i++) {
       tile* currentTile = (*backgroundTiles)[i];  // Access the current tile
                                                   // pointer in the vector
 
       // determine which tile the player is on
-      if (currentTile->get_x() == player_x &&
-          currentTile->get_y() == player_y) {
+      if (currentTile->get_x() == playerX &&
+          currentTile->get_y() == playerY) {
         if (currentTile->get_isPlantable() == true) {
           switch (seedType) {
             case 2:  // type 2 is blueberry seeds in inventory position 2
@@ -47,7 +47,7 @@ class PlayerInteraction {
               // create a new bluebbery tile (in the heap) with cooridnates of
               // player position and set blueberry as a pointer to the blueberry
               // tile
-              Blueberry* blueberry = new Blueberry(player_x, player_y);
+              Blueberry* blueberry = new Blueberry(playerX, playerY);
               // remove old tile from vector and replace with new carrot tile
               delete currentTile;
               // sets the current tile player is on to be a carrot tile
@@ -60,7 +60,7 @@ class PlayerInteraction {
               // create a new strawberry tile (in the heap) with cooridnates of
               // player position and set strawberry as a pointer to the
               // strawberry tile
-              Strawberry* strawberry = new Strawberry(player_x, player_y);
+              Strawberry* strawberry = new Strawberry(playerX, playerY);
               // remove old tile from vector and replace with new carrot tile
               delete currentTile;
               // sets the current tile player is on to be a carrot tile
@@ -72,7 +72,7 @@ class PlayerInteraction {
             {
               // create a new potato tile (in the heap) with cooridnates of
               // player position and set potato as a pointer to the potato tile
-              Potato* potato = new Potato(player_x, player_y);
+              Potato* potato = new Potato(playerX, playerY);
               // remove old tile from vector and replace with new carrot tile
               delete currentTile;
               // sets the current tile player is on to be a carrot tile
@@ -84,7 +84,7 @@ class PlayerInteraction {
             {
               // create a new carrot tile (in the heap) with cooridnates of
               // player position and set carrot as a pointer to the carrot tile
-              Carrot* carrot = new Carrot(player_x, player_y);
+              Carrot* carrot = new Carrot(playerX, playerY);
               // remove old tile from vector and replace with new carrot tile
               delete currentTile;
               // sets the current tile player is on to be a carrot tile
@@ -105,16 +105,16 @@ class PlayerInteraction {
 
   void waterPlant(Player p, std::vector<tile*>* backgroundTiles) {
     // changes the x and y coordinates of the player to valid tile positions
-    int player_x = (floor(p.get_x() / 50) * 50);
-    int player_y = (floor(p.get_y() / 50) * 50);
+    int playerX = (floor(p.get_x() / 50) * 50);
+    int playerY = (floor(p.get_y() / 50) * 50);
 
     for (int i = 0; i < 144; i++) {
       tile* currentTile = (*backgroundTiles)[i];  // Access the current tile
                                                   // pointer in the vector
 
       // determine which tile the player is on
-      if (currentTile->get_x() == player_x &&
-          currentTile->get_y() == player_y) {
+      if (currentTile->get_x() == playerX &&
+          currentTile->get_y() == playerY) {
         (*backgroundTiles)[i]->set_hydrationLevel(1);
         break;
       }

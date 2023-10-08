@@ -12,8 +12,8 @@ class Player {
   int x, y;
   float speed;
   // inventory for plants
-  int plant_count;
-  std::vector<Plant*> plant_inventory;
+  int plantCount;
+  std::vector<Plant*> plantInventory;
   // inventory for equipment
 
  public:
@@ -23,7 +23,7 @@ class Player {
     y = _y;
     speed = 0.1;
     // making plant inventory size
-    plant_count = 0;
+    plantCount = 0;
 
     body->setRadius(r);
     body->setFillColor(Color::Blue);
@@ -32,24 +32,24 @@ class Player {
   }
   void draw(RenderWindow* win) { win->draw(*body); }
 
-  void add_plant(Plant* plant) {
-    if (plant_inventory.size() < 10) {
-      plant_inventory.push_back(plant);
+  void addPlant(Plant* plant) {
+    if (plantInventory.size() < 10) {
+      plantInventory.push_back(plant);
     } else {
       std::cout << "Inventory is full. Cannot add more plants." << std::endl;
     }
   }
 
   // movement of the player
-  void move_right() { body->move(speed, 0); }
-  void move_left() { body->move(-speed, 0); }
-  void move_up() { body->move(0, -speed); }
-  void move_down() { body->move(0, speed); }
+  void moveRight() { body->move(speed, 0); }
+  void moveLeft() { body->move(-speed, 0); }
+  void moveUp() { body->move(0, -speed); }
+  void moveDown() { body->move(0, speed); }
 
   // getters and setters
-  int get_plant_count() { return plant_count; }
+  int get_plantCount() { return plantCount; }
   // accessing plant inventory
-  std::vector<Plant*>& get_plant_inventory() { return plant_inventory; }
+  std::vector<Plant*>& get_plantInventory() { return plantInventory; }
 };
 
 #endif

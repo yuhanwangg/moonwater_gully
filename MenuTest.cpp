@@ -5,28 +5,28 @@ using namespace sf;
 #include "Player.h"
 #include "tile.h"
 
-class Menu_driver {
+class MenuDriver {
  private:
   RenderWindow* win;
   std::vector<tile*> background;
   Player* player;
   Menu menu = Menu(300, 150);
-  bool visible_menu = true;
-  bool htp_vis = false;
-  bool control_vis = false;
-  bool save_vis = false;
+  bool visibleMenu = true;
+  bool htpVis = false;
+  bool controlVis = false;
+  bool saveVis = false;
 
  public:
-  Menu_driver(int size, std::string title) {
+  MenuDriver(int size, std::string title) {
     win = new sf::RenderWindow(sf::VideoMode(size, size), title);
     player = new Player(10, 50, 50);
-    visible_menu = true;
-    htp_vis = false;
-    control_vis = false;
-    save_vis = false;
+    visibleMenu = true;
+    htpVis = false;
+    controlVis = false;
+    saveVis = false;
   };
 
-  void make_background() {
+  void makeBackground() {
     for (int r = 0; r < 600; r += 50) {
       for (int c = 0; c < 600; c += 50) {
         tile* newTile = new tile(r, c);  // Pass coordinates to tile constructor
@@ -56,30 +56,30 @@ class Menu_driver {
             int selection = menu.menuPressed();
             if (selection == 0) {
               // close the menu and access game window
-              visible_menu = false;
-              menu.set_visibility(visible_menu);
+              visibleMenu = false;
+              menu.set_visibility(visibleMenu);
             }
 
             if (selection == 1) {
               // open game description
-              visible_menu = false;
-              menu.set_visibility(visible_menu);
-              htp_vis = true;
-              menu.set_htp_visi(htp_vis);
+              visibleMenu = false;
+              menu.set_visibility(visibleMenu);
+              htpVis = true;
+              menu.set_htpVisi(htpVis);
             }
             if (selection == 2) {
               // open controls rectangle
-              visible_menu = false;
-              menu.set_visibility(visible_menu);
-              control_vis = true;
-              menu.set_control_visi(control_vis);
+              visibleMenu = false;
+              menu.set_visibility(visibleMenu);
+              controlVis = true;
+              menu.set_controlVisi(controlVis);
             }
             if (selection == 3) {
               // open save confirmation
-              visible_menu = false;
-              menu.set_visibility(visible_menu);
-              save_vis = true;
-              menu.set_save_visi(save_vis);
+              visibleMenu = false;
+              menu.set_visibility(visibleMenu);
+              saveVis = true;
+              menu.set_saveVisi(saveVis);
             }
           }
         }
@@ -87,28 +87,28 @@ class Menu_driver {
       win->clear();
 
       if (Keyboard::isKeyPressed(Keyboard::A)) {
-        player->move_left();
+        player->moveLeft();
       } else if (Keyboard::isKeyPressed(Keyboard::D)) {
-        player->move_right();
+        player->moveRight();
       } else if (Keyboard::isKeyPressed(Keyboard::W)) {
-        player->move_up();
+        player->moveUp();
       } else if (Keyboard::isKeyPressed(Keyboard::S)) {
-        player->move_down();
+        player->moveDown();
       }
 
       if (Keyboard::isKeyPressed(Keyboard::Escape)) {
-        control_vis = false;
-        menu.set_control_visi(control_vis);
-        htp_vis = false;
-        menu.set_htp_visi(htp_vis);
-        save_vis = false;
-        menu.set_save_visi(save_vis);
-        visible_menu = true;
+        controlVis = false;
+        menu.set_controlVisi(controlVis);
+        htpVis = false;
+        menu.set_htpVisi(htpVis);
+        saveVis = false;
+        menu.set_saveVisi(saveVis);
+        visibleMenu = true;
         menu.set_visibility(true);
       }
 
       if (Keyboard::isKeyPressed(Keyboard::M)) {
-        visible_menu = true;
+        visibleMenu = true;
         menu.set_visibility(true);
       }
 
@@ -124,15 +124,15 @@ class Menu_driver {
         menu.draw(win);
       }
       // drawing htp pop up
-      if (menu.get_htp_visi() == true) {
-        menu.draw_htp(win);
+      if (menu.get_htpVisi() == true) {
+        menu.drawHtp(win);
       }
-      if (menu.get_control_visi() == true) {
-        menu.draw_control(win);
+      if (menu.get_controlVisi() == true) {
+        menu.drawControl(win);
       }
 
-      if (menu.get_save_visi() == true) {
-        menu.draw_save(win);
+      if (menu.get_saveVisi() == true) {
+        menu.drawSave(win);
       }
 
       // drawing the menu
@@ -147,8 +147,8 @@ class Menu_driver {
 };
 
 int main() {
-  Menu_driver driver(600, "TEST");
-  driver.make_background();
+  MenuDriver driver(600, "TEST");
+  driver.makeBackground();
   driver.run();
   return 0;
 }

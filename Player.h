@@ -58,20 +58,20 @@ class Player {
   // Seeding plant
 
   void seedPlant(int seedType, std::vector<tile*>* backgroundTiles) {
-    int player_x = (floor(body->getPosition().x / 50));
-    int player_y = (floor(body->getPosition().y / 50));
-    if ((*backgroundTiles)[player_x * 12 + player_y]->get_isPlantable() == true) {
+    int playerX = (floor(body->getPosition().x / 50));
+    int playerY = (floor(body->getPosition().y / 50));
+    if ((*backgroundTiles)[playerX * 12 + playerY]->get_isPlantable() == true) {
       switch (seedType) {
         case 2:  // type 2 is blueberry seeds in inventory position 2
         {
           // create a new bluebbery tile (in the heap) with cooridnates of
           // player position and set blueberry as a pointer to the blueberry
           // tile
-          Blueberry* blueberry = new Blueberry(player_x * 50, player_y * 50);
+          Blueberry* blueberry = new Blueberry(playerX * 50, playerY * 50);
           // remove old tile from vector and replace with new carrot tile
-          delete (*backgroundTiles)[player_x * 12 + player_y];
+          delete (*backgroundTiles)[playerX * 12 + playerY];
           // sets the current tile player is on to be a carrot tile
-          (*backgroundTiles)[player_x * 12 + player_y] = blueberry;
+          (*backgroundTiles)[playerX * 12 + playerY] = blueberry;
           break;
         }
 
@@ -80,11 +80,11 @@ class Player {
           // create a new strawberry tile (in the heap) with cooridnates of
           // player position and set strawberry as a pointer to the
           // strawberry tile
-          Strawberry* strawberry = new Strawberry(player_x * 50, player_y * 50);
+          Strawberry* strawberry = new Strawberry(playerX * 50, playerY * 50);
           // remove old tile from vector and replace with new carrot tile
-          delete (*backgroundTiles)[player_x * 12 + player_y];
+          delete (*backgroundTiles)[playerX * 12 + playerY];
           // sets the current tile player is on to be a carrot tile
-          (*backgroundTiles)[player_x * 12 + player_y] = strawberry;
+          (*backgroundTiles)[playerX * 12 + playerY] = strawberry;
           break;
         }
 
@@ -92,11 +92,11 @@ class Player {
         {
           // create a new potato tile (in the heap) with cooridnates of
           // player position and set potato as a pointer to the potato tile
-          Potato* potato = new Potato(player_x * 50, player_y * 50);
+          Potato* potato = new Potato(playerX * 50, playerY * 50);
           // remove old tile from vector and replace with new carrot tile
-          delete (*backgroundTiles)[player_x * 12 + player_y];
+          delete (*backgroundTiles)[playerX * 12 + playerY];
           // sets the current tile player is on to be a carrot tile
-          (*backgroundTiles)[player_x * 12 + player_y] = potato;
+          (*backgroundTiles)[playerX * 12 + playerY] = potato;
           break;
         }
 
@@ -104,11 +104,11 @@ class Player {
         {
           // create a new carrot tile (in the heap) with cooridnates of
           // player position and set carrot as a pointer to the carrot tile
-          Carrot* carrot = new Carrot(player_x * 50, player_y * 50);
+          Carrot* carrot = new Carrot(playerX * 50, playerY * 50);
           // remove old tile from vector and replace with new carrot tile
-          delete (*backgroundTiles)[player_x * 12 + player_y];
+          delete (*backgroundTiles)[playerX * 12 + playerY];
           // sets the current tile player is on to be a carrot tile
-          (*backgroundTiles)[player_x * 12 + player_y] = carrot;
+          (*backgroundTiles)[playerX * 12 + playerY] = carrot;
           break;
         }
 
@@ -119,16 +119,16 @@ class Player {
   }
 
   // void seedPlant(int seedType, std::vector<tile*>* backgroundTiles) {
-  //   int player_x = (floor(body->getPosition().x / 50) * 50);
-  //   int player_y = (floor(body->getPosition().y / 50) * 50);
+  //   int playerX = (floor(body->getPosition().x / 50) * 50);
+  //   int playerY = (floor(body->getPosition().y / 50) * 50);
 
   //   for (int i = 0; i < 144; i++) {
   //     tile* currentTile = (*backgroundTiles)[i];  // Access the current tile
   //                                                 // pointer in the vector
 
   //     // determine which tile the player is on
-  //     if (currentTile->get_x() == player_x &&
-  //         currentTile->get_y() == player_y) {
+  //     if (currentTile->get_x() == playerX &&
+  //         currentTile->get_y() == playerY) {
   //       if (currentTile->get_isPlantable() == true) {
   //         switch (seedType) {
   //           case 2:  // type 2 is blueberry seeds in inventory position 2
@@ -138,7 +138,7 @@ class Player {
   //             // player position and set blueberry as a pointer to the
   //             blueberry
   //             // tile
-  //             Blueberry* blueberry = new Blueberry(player_x, player_y);
+  //             Blueberry* blueberry = new Blueberry(playerX, playerY);
   //             // remove old tile from vector and replace with new carrot tile
   //             delete currentTile;
   //             // sets the current tile player is on to be a carrot tile
@@ -152,7 +152,7 @@ class Player {
   //             of
   //             // player position and set strawberry as a pointer to the
   //             // strawberry tile
-  //             Strawberry* strawberry = new Strawberry(player_x, player_y);
+  //             Strawberry* strawberry = new Strawberry(playerX, playerY);
   //             // remove old tile from vector and replace with new carrot tile
   //             delete currentTile;
   //             // sets the current tile player is on to be a carrot tile
@@ -164,7 +164,7 @@ class Player {
   //           {
   //             // create a new potato tile (in the heap) with cooridnates of
   //             // player position and set potato as a pointer to the potato
-  //             tile Potato* potato = new Potato(player_x, player_y);
+  //             tile Potato* potato = new Potato(playerX, playerY);
   //             // remove old tile from vector and replace with new carrot tile
   //             delete currentTile;
   //             // sets the current tile player is on to be a carrot tile
@@ -176,7 +176,7 @@ class Player {
   //           {
   //             // create a new carrot tile (in the heap) with cooridnates of
   //             // player position and set carrot as a pointer to the carrot
-  //             tile Carrot* carrot = new Carrot(player_x, player_y);
+  //             tile Carrot* carrot = new Carrot(playerX, playerY);
   //             // remove old tile from vector and replace with new carrot tile
   //             delete currentTile;
   //             // sets the current tile player is on to be a carrot tile
@@ -200,10 +200,10 @@ class Player {
   void waterPlant(std::vector<tile*>* backgroundTiles) {
     
     // changes the x and y coordinates of the player to valid tile positions
-    int player_x = (floor(body->getPosition().x / 50));
-    int player_y = (floor(body->getPosition().y / 50));
+    int playerX = (floor(body->getPosition().x / 50));
+    int playerY = (floor(body->getPosition().y / 50));
 
-    (*backgroundTiles)[player_x * 12 + player_y]->set_hydrationLevel(1);
+    (*backgroundTiles)[playerX * 12 + playerY]->set_hydrationLevel(1);
     return;
   };
 
@@ -211,8 +211,8 @@ class Player {
 
   // Use a map once you have the type of function
 
-    int player_x = (floor(body->getPosition().x / 50));
-    int player_y = (floor(body->getPosition().y / 50));
+    int playerX = (floor(body->getPosition().x / 50));
+    int playerY = (floor(body->getPosition().y / 50));
 
     // Getting yield and inventory position
     int plantYield;
@@ -221,23 +221,23 @@ class Player {
     // Setting a constant for easier readability. "currentPlant" just contains an object
     // of the same class as the plant the player is standing on.
 
-    Plant* currentPlant = plantMap[(*backgroundTiles)[player_x * 12 + player_y]->get_className()];
+    Plant* currentPlant = plantMap[(*backgroundTiles)[playerX * 12 + playerY]->get_className()];
 
     // Making sure all conditions are met
-    if((*backgroundTiles)[player_x * 12 + player_y]->get_className() == "tile"){
+    if((*backgroundTiles)[playerX * 12 + playerY]->get_className() == "tile"){
       std::cout << "Land cannot be harvested" << std::endl;
       return;
     }
-    else if((*backgroundTiles)[player_x * 12 + player_y]->get_growthStage() != currentPlant->get_growTime()){
+    else if((*backgroundTiles)[playerX * 12 + playerY]->get_growthStage() != currentPlant->get_growTime()){
         std::cout << "Please wait until plant is fully grown" << std::endl;
         return;
     }
-    else if((*backgroundTiles)[player_x * 12 + player_y]->get_className() == "Carrot"
+    else if((*backgroundTiles)[playerX * 12 + playerY]->get_className() == "Carrot"
       && (inventory->get_inventoryIndex() != 1 || inventory->get_gloveCount() == 0)){
         std::cout << "Must hold gloves to harvest this plant" << std::endl;
         return;
     }
-    else if((*backgroundTiles)[player_x * 12 + player_y]->get_className() == "Potato" &&
+    else if((*backgroundTiles)[playerX * 12 + playerY]->get_className() == "Potato" &&
       (inventory->get_inventoryIndex() != 0 || inventory->get_shovelCount() == 0)){
         std::cout << "Must hold a shovel to harvest this plant" << std::endl;
         return;
@@ -247,8 +247,8 @@ class Player {
     
     // Getting yield and inventory position
 
-    plantYield = plantMap[(*backgroundTiles)[player_x * 12 + player_y]->get_className()]->harvestYield();
-    plantPos = plantLocationMap[(*backgroundTiles)[player_x * 12 + player_y]->get_className()];
+    plantYield = plantMap[(*backgroundTiles)[playerX * 12 + playerY]->get_className()]->harvestYield();
+    plantPos = plantLocationMap[(*backgroundTiles)[playerX * 12 + playerY]->get_className()];
 
     // Adding plants to the Inventory
 
@@ -258,31 +258,31 @@ class Player {
 
     // resetting position as a tile
 
-    delete (*backgroundTiles)[player_x * 12 + player_y];
+    delete (*backgroundTiles)[playerX * 12 + playerY];
 
-    (*backgroundTiles)[player_x * 12 + player_y] = new tile(player_x * 50,player_y * 50);
+    (*backgroundTiles)[playerX * 12 + playerY] = new tile(playerX * 50,playerY * 50);
 
   }
 
 
 
   // movement of the player
-  void move_right() { 
+  void moveRight() { 
     if(body->getPosition().x < 590){
       body->move(speed, 0); 
     }
   }
-  void move_left() {
+  void moveLeft() {
     if(body->getPosition().x > 0){
       body->move(-speed, 0);
     }
   }
-  void move_up() {
+  void moveUp() {
     if(body->getPosition().y > 0){
       body->move(0, -speed);
     }
   }
-  void move_down() {
+  void moveDown() {
     if(body->getPosition().y < 590){
       body->move(0, speed);
     }
@@ -293,18 +293,18 @@ class Player {
   int get_x() { return body->getPosition().x; }
   int get_y() { return body->getPosition().y; }
 
-  void add_80shells() { shells += 80; }
-  void add_100shells() { shells += 100; }
-  void add_120shells() { shells += 120; }
-  void add_200shells() { shells += 200; }
+  void add80shells() { shells += 80; }
+  void add100shells() { shells += 100; }
+  void add120shells() { shells += 120; }
+  void add200shells() { shells += 200; }
 
-  void subtract_50shells() { shells -= 50; }
-  void subtract_70shells() { shells -= 70; }
-  void subtract_400shells() { shells -= 400; }
-  void subtract_150shells() { shells -= 150; }
+  void subtract50shells() { shells -= 50; }
+  void subtract70shells() { shells -= 70; }
+  void subtract400shells() { shells -= 400; }
+  void subtract150shells() { shells -= 150; }
 
   int get_shells() { return shells; }
-  void set_shells(int shell_no) { shells = shell_no; }
+  void set_shells(int shellNo) { shells = shellNo; }
 };
 
 #endif

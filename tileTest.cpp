@@ -3,18 +3,18 @@
 using namespace sf;
 #include "tile.h"
 
-class tile_driver {
+class tileDriver {
  private:
   RenderWindow* win;
   //   tile** background = new tile*[400];  // array of tile pointers
   std::vector<tile*> background;
 
  public:
-  tile_driver(int size, std::string title) {
+  tileDriver(int size, std::string title) {
     win = new sf::RenderWindow(sf::VideoMode(size, size), title);
   };
 
-  void make_background() {
+  void makeBackground() {
     for (int r = 0; r < 600; r += 50) {
       for (int c = 0; c < 600; c += 50) {
         tile* newTile = new tile(r, c);  // Pass coordinates to
@@ -43,7 +43,7 @@ class tile_driver {
       win->display();
     }
   };
-  //   ~tile_driver();
+  //   ~tileDriver();
 
   // setters and getters
 
@@ -51,8 +51,8 @@ class tile_driver {
 };
 
 int main() {
-  tile_driver driver(600, "TEST");
-  driver.make_background();
+  tileDriver driver(600, "TEST");
+  driver.makeBackground();
   driver.run();
   return 0;
 }

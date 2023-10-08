@@ -5,7 +5,7 @@ using namespace sf;
 #include "Player.h"
 #include "tile.h"
 
-class Player_driver {
+class PlayerDriver {
  private:
   RenderWindow* win;
   std::vector<tile*> background;
@@ -14,17 +14,17 @@ class Player_driver {
   Plant p1 = Plant(50, 50);
 
  public:
-  Player_driver(int size, std::string title) {
+  PlayerDriver(int size, std::string title) {
     win = new sf::RenderWindow(sf::VideoMode(size, size), title);
     player = new Player(10, 50, 50);
-    // player->add_plant(plant);
+    // player->addPlant(plant);
     p1.set_costPrice(20);
     p1.set_sellPrice(40);
     p1.set_growTime(3);
     p1.set_harvestEquipment(2);
   };
 
-  void make_background() {
+  void makeBackground() {
     for (int r = 0; r < 600; r += 50) {
       for (int c = 0; c < 600; c += 50) {
         tile* newTile = new tile(r, c);  // Pass coordinates to tile constructor
@@ -43,15 +43,15 @@ class Player_driver {
       }
 
       if (Keyboard::isKeyPressed(Keyboard::A)) {
-        player->move_left();
+        player->moveLeft();
       } else if (Keyboard::isKeyPressed(Keyboard::D)) {
-        player->move_right();
+        player->moveRight();
       } else if (Keyboard::isKeyPressed(Keyboard::W)) {
-        player->move_up();
+        player->moveUp();
       } else if (Keyboard::isKeyPressed(Keyboard::S)) {
-        player->move_down();
+        player->moveDown();
       }
-      // Plant* inventory = player->get_plant_inventory();
+      // Plant* inventory = player->get_plantInventory();
       // std::cout << "Plant in inventory: " << inventory[0];
       // << std::endl;
 
@@ -70,8 +70,8 @@ class Player_driver {
 };
 
 int main() {
-  Player_driver driver(600, "TEST");
-  driver.make_background();
+  PlayerDriver driver(600, "TEST");
+  driver.makeBackground();
   driver.run();
   return 0;
 }

@@ -25,10 +25,10 @@ class Day {
         Text currentDayWord;
         Text timeLeftValue;
         Text currentDayValue;
-        Texture day_texture;
+        Texture dayTexture;
 
         // rectangle shape for clock size
-        RectangleShape* dayClock_bg;
+        RectangleShape* dayClockBg;
     
     public:
         Day(){
@@ -45,16 +45,16 @@ class Day {
             y = 25;
 
              // clock image
-            dayClock_bg = new RectangleShape(Vector2f(165, 50));
-            dayClock_bg->setFillColor(Color::White);
-            dayClock_bg->setPosition(x, y);
+            dayClockBg = new RectangleShape(Vector2f(165, 50));
+            dayClockBg->setFillColor(Color::White);
+            dayClockBg->setPosition(x, y);
 
              // loading in textures:
-            day_texture.loadFromFile("textures/clock_bg.png");
-            dayClock_bg->setTexture(&day_texture);
+            dayTexture.loadFromFile("textures/clock_bg.png");
+            dayClockBg->setTexture(&dayTexture);
 
             // try re-sizing the image, then setting it to 0,0,160,50)
-            dayClock_bg->setTextureRect(IntRect(0, 0, 165, 50));
+            dayClockBg->setTextureRect(IntRect(0, 0, 165, 50));
 
 
             // loading font
@@ -157,7 +157,7 @@ class Day {
 
             
             
-            win->draw(*dayClock_bg);
+            win->draw(*dayClockBg);
             win->draw(timeLeftWord);
             win->draw(currentDayWord);
             win->draw(timeLeftValue);
@@ -289,15 +289,15 @@ class Day {
             return;
         };
 
-        Texture get_day_texture() {return day_texture;};
-        void set_day_texture(Texture day_texture) {
-            this->day_texture = day_texture;
+        Texture get_dayTexture() {return dayTexture;};
+        void set_dayTexture(Texture dayTexture) {
+            this->dayTexture = dayTexture;
             return;
         };
 
-        RectangleShape* get_dayClock_bg() {return dayClock_bg;};
-        void set_dayClock_bg(RectangleShape* dayClock_bg) {
-            this->dayClock_bg = dayClock_bg;
+        RectangleShape* get_dayClockBg() {return dayClockBg;};
+        void set_dayClockBg(RectangleShape* dayClockBg) {
+            this->dayClockBg = dayClockBg;
             return;
         };
 

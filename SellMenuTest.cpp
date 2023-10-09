@@ -7,7 +7,7 @@ using namespace sf;
 #include "SellMenu.h"
 #include "tile.h"
 
-class SellMenu_driver {
+class SellMenuDriver {
  private:
   RenderWindow* win;
   std::vector<tile*> background;
@@ -16,20 +16,20 @@ class SellMenu_driver {
   BuyMenu buymenu = BuyMenu(250, 400);
   SellMenu sellmenu = SellMenu(250, 300);
   Inventory inventory = Inventory(550, 50);
-  bool visible_menu = true;
-  bool visible_buy = false;
-  bool visible_sell = false;
+  bool visibleMenu = true;
+  bool visibleBuy = false;
+  bool visibleSell = false;
 
  public:
-  SellMenu_driver(int size, std::string title) {
+  SellMenuDriver(int size, std::string title) {
     win = new sf::RenderWindow(sf::VideoMode(size, size), title);
     player = new Player(10, 50, 50);
-    visible_buy = false;
-    visible_menu = true;
-    visible_sell = false;
+    visibleBuy = false;
+    visibleMenu = true;
+    visibleSell = false;
   };
 
-  void make_background() {
+  void makeBackground() {
     for (int r = 0; r < 600; r += 50) {
       for (int c = 0; c < 600; c += 50) {
         tile* newTile = new tile(r, c);  // Pass coordinates to tile constructor
@@ -68,39 +68,39 @@ class SellMenu_driver {
             sellmenu.set_failureCheck(false);
           }
           if (Keyboard::isKeyPressed(Keyboard::Return) &&
-              (visible_menu == true)) {
+              (visibleMenu == true)) {
             // opening the rectangles of the options
             int selection = menu.menuPressed();
             switch (selection) {
               case 0:
                 // close the menu and access game window
-                visible_menu = false;
-                menu.set_visibility(visible_menu);
+                visibleMenu = false;
+                menu.set_visibility(visibleMenu);
                 break;
               case 1:
                 // open game description
                 menu.set_visibility(false);
-                menu.set_htp_visi(true);
+                menu.set_htpVisi(true);
                 break;
               case 2:
                 // open controls rectangle
                 menu.set_visibility(false);
-                menu.set_control_visi(true);
+                menu.set_controlVisi(true);
                 break;
               case 3:
                 // open save confirmation
                 menu.set_visibility(false);
-                menu.set_save_visi(true);
+                menu.set_saveVisi(true);
                 break;
             }
           }
           if (Keyboard::isKeyPressed(Keyboard::Return) &&
-              (visible_buy == true)) {
+              (visibleBuy == true)) {
             // opening the rectangles of the options
-            int item_no = buymenu.get_buySelect();
-            switch (item_no) {
+            int itemNo = buymenu.get_buySelect();
+            switch (itemNo) {
               case 0:
-                if (buymenu.purchase_status(player, 0) == true) {
+                if (buymenu.purchaseStatus(player, 0) == true) {
                   buymenu.set_successCheck(true);
                   buymenu.set_failureCheck(false);
                   int wallet = player->get_shells();
@@ -116,7 +116,7 @@ class SellMenu_driver {
                 }
                 break;
               case 1:
-                if (buymenu.purchase_status(player, 1) == true) {
+                if (buymenu.purchaseStatus(player, 1) == true) {
                   buymenu.set_successCheck(true);
                   buymenu.set_failureCheck(false);
                   int wallet = player->get_shells();
@@ -131,7 +131,7 @@ class SellMenu_driver {
                 }
                 break;
               case 2:
-                if (buymenu.purchase_status(player, 2) == true) {
+                if (buymenu.purchaseStatus(player, 2) == true) {
                   buymenu.set_successCheck(true);
                   buymenu.set_failureCheck(false);
                   int wallet = player->get_shells();
@@ -146,7 +146,7 @@ class SellMenu_driver {
                 }
                 break;
               case 3:
-                if (buymenu.purchase_status(player, 3) == true) {
+                if (buymenu.purchaseStatus(player, 3) == true) {
                   buymenu.set_successCheck(true);
                   buymenu.set_failureCheck(false);
                   int wallet = player->get_shells();
@@ -161,7 +161,7 @@ class SellMenu_driver {
                 }
                 break;
               case 4:
-                if (buymenu.purchase_status(player, 4) == true) {
+                if (buymenu.purchaseStatus(player, 4) == true) {
                   buymenu.set_successCheck(true);
                   buymenu.set_failureCheck(false);
                   int wallet = player->get_shells();
@@ -176,7 +176,7 @@ class SellMenu_driver {
                 }
                 break;
               case 5:
-                if (buymenu.purchase_status(player, 5) == true) {
+                if (buymenu.purchaseStatus(player, 5) == true) {
                   buymenu.set_successCheck(true);
                   buymenu.set_failureCheck(false);
                   int wallet = player->get_shells();
@@ -196,18 +196,18 @@ class SellMenu_driver {
           }
 
           if (Keyboard::isKeyPressed(Keyboard::Return) &&
-              (visible_sell == true)) {
+              (visibleSell == true)) {
             // opening the rectangles of the options
-            int item_no = sellmenu.get_sellSelect();
-            switch (item_no) {
+            int itemNo = sellmenu.get_sellSelect();
+            switch (itemNo) {
               case 0:
-                if (sellmenu.purchase_status(&inventory, 0) == true) {
+                if (sellmenu.purchaseStatus(&inventory, 0) == true) {
                   sellmenu.set_successCheck(true);
                   sellmenu.set_failureCheck(false);
 
                   std::cout << "Shells: " << player->get_shells();
                   std::cout << "\n";
-                  player->add_100shells();
+                  player->add100shells();
                   std::cout << "Remaining shells: " << player->get_shells();
                   std::cout << "\n";  // next up, add items into the player's
                                       // inventory
@@ -217,13 +217,13 @@ class SellMenu_driver {
                 }
                 break;
               case 1:
-                if (sellmenu.purchase_status(&inventory, 1) == true) {
+                if (sellmenu.purchaseStatus(&inventory, 1) == true) {
                   sellmenu.set_successCheck(true);
                   sellmenu.set_failureCheck(false);
 
                   std::cout << "Shells: " << player->get_shells();
                   std::cout << "\n";
-                  player->add_80shells();
+                  player->add80shells();
                   std::cout << "Remaining shells: " << player->get_shells();
                   std::cout << "\n";  // next up, add items into the player's
                                       // inventory
@@ -233,13 +233,13 @@ class SellMenu_driver {
                 }
                 break;
               case 2:
-                if (sellmenu.purchase_status(&inventory, 2) == true) {
+                if (sellmenu.purchaseStatus(&inventory, 2) == true) {
                   sellmenu.set_successCheck(true);
                   sellmenu.set_failureCheck(false);
 
                   std::cout << "Shells: " << player->get_shells();
                   std::cout << "\n";
-                  player->add_200shells();
+                  player->add200shells();
                   std::cout << "Remaining shells: " << player->get_shells();
                   std::cout << "\n";  // next up, add items into the player's
                                       // inventory
@@ -249,13 +249,13 @@ class SellMenu_driver {
                 }
                 break;
               case 3:
-                if (sellmenu.purchase_status(&inventory, 3) == true) {
+                if (sellmenu.purchaseStatus(&inventory, 3) == true) {
                   sellmenu.set_successCheck(true);
                   sellmenu.set_failureCheck(false);
 
                   std::cout << "Shells: " << player->get_shells();
                   std::cout << "\n";
-                  player->add_120shells();
+                  player->add120shells();
                   std::cout << "Remaining shells: " << player->get_shells();
                   std::cout << "\n";  // next up, add items into the player's
                                       // inventory
@@ -275,37 +275,37 @@ class SellMenu_driver {
 
       // player movement
       if (Keyboard::isKeyPressed(Keyboard::A)) {
-        player->move_left();
+        player->moveLeft();
       }
       if (Keyboard::isKeyPressed(Keyboard::D)) {
-        player->move_right();
+        player->moveRight();
       }
       if (Keyboard::isKeyPressed(Keyboard::W)) {
-        player->move_up();
+        player->moveUp();
       }
       if (Keyboard::isKeyPressed(Keyboard::S)) {
-        player->move_down();
+        player->moveDown();
       }
 
       // testing of keyboard for menu toggling
 
-      if (Keyboard::isKeyPressed(Keyboard::B) && (visible_menu == false) &&
-          (visible_sell == false)) {
-        visible_buy = true;
-        buymenu.set_buyOn(visible_buy);
+      if (Keyboard::isKeyPressed(Keyboard::B) && (visibleMenu == false) &&
+          (visibleSell == false)) {
+        visibleBuy = true;
+        buymenu.set_buyOn(visibleBuy);
       }
 
-      if (Keyboard::isKeyPressed(Keyboard::N) && (visible_menu == false) &&
-          (visible_buy == false)) {
-        visible_sell = true;
-        sellmenu.set_sellOn(visible_sell);
+      if (Keyboard::isKeyPressed(Keyboard::N) && (visibleMenu == false) &&
+          (visibleBuy == false)) {
+        visibleSell = true;
+        sellmenu.set_sellOn(visibleSell);
       }
 
-      if (Keyboard::isKeyPressed(Keyboard::M) && (visible_buy == false)) {
-        if ((menu.get_control_visi() == false) &&
-            (menu.get_htp_visi() == false) && (menu.get_save_visi() == false)) {
-          visible_menu = true;
-          menu.set_visibility(visible_menu);
+      if (Keyboard::isKeyPressed(Keyboard::M) && (visibleBuy == false)) {
+        if ((menu.get_controlVisi() == false) &&
+            (menu.get_htpVisi() == false) && (menu.get_saveVisi() == false)) {
+          visibleMenu = true;
+          menu.set_visibility(visibleMenu);
         }
       }
 
@@ -316,24 +316,24 @@ class SellMenu_driver {
 
       // visibility of menus
       if (Keyboard::isKeyPressed(Keyboard::Escape)) {
-        if (visible_buy == false) {
-          menu.set_control_visi(false);
-          menu.set_htp_visi(false);
-          menu.set_save_visi(false);
+        if (visibleBuy == false) {
+          menu.set_controlVisi(false);
+          menu.set_htpVisi(false);
+          menu.set_saveVisi(false);
 
         } else {
-          visible_buy = false;
+          visibleBuy = false;
           buymenu.set_failureCheck(false);
           buymenu.set_successCheck(false);
           buymenu.set_buyOn(false);
 
-          visible_sell = false;
+          visibleSell = false;
           sellmenu.set_failureCheck(false);
           sellmenu.set_successCheck(false);
           sellmenu.set_sellOn(false);
 
-          visible_menu = false;
-          menu.set_visibility(visible_menu);
+          visibleMenu = false;
+          menu.set_visibility(visibleMenu);
         }
       }
 
@@ -345,14 +345,14 @@ class SellMenu_driver {
         menu.draw(win);
       }
       // drawing htp pop up
-      if (menu.get_htp_visi() == true) {
-        menu.draw_htp(win);
+      if (menu.get_htpVisi() == true) {
+        menu.drawHtp(win);
       }
-      if (menu.get_control_visi() == true) {
-        menu.draw_control(win);
+      if (menu.get_controlVisi() == true) {
+        menu.drawControl(win);
       }
-      if (menu.get_save_visi() == true) {
-        menu.draw_save(win);
+      if (menu.get_saveVisi() == true) {
+        menu.drawSave(win);
       }
       if (buymenu.get_buyOn() == true) {
         buymenu.draw(win);
@@ -364,18 +364,18 @@ class SellMenu_driver {
 
       // drawing purchase success or failure
       if (buymenu.get_failureCheck() == true) {
-        buymenu.draw_purchaseError(win);
+        buymenu.drawPurchaseError(win);
       }
       if (buymenu.get_successCheck() == true) {
-        buymenu.draw_purchaseSuccess(win);
+        buymenu.drawPurchaseSuccess(win);
       }
 
       // drawing selling success or failure
       if (sellmenu.get_failureCheck() == true) {
-        sellmenu.draw_sellFailure(win);
+        sellmenu.drawSellFailure(win);
       }
       if (sellmenu.get_successCheck() == true) {
-        sellmenu.draw_sellSuccess(win);
+        sellmenu.drawSellSuccess(win);
       }
 
       inventory.drawInventory(win);
@@ -390,8 +390,8 @@ class SellMenu_driver {
 };
 
 int main() {
-  SellMenu_driver driver(600, "TEST");
-  driver.make_background();
+  SellMenuDriver driver(600, "TEST");
+  driver.makeBackground();
   driver.run();
   return 0;
 }

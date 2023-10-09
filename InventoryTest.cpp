@@ -7,26 +7,26 @@ using namespace sf;
 #include "Player.h"
 #include "tile.h"
 
-class Inventory_driver {
+class InventoryDriver {
  private:
   RenderWindow* win;
   std::vector<tile*> background;
   Player* player;
   Menu menu = Menu(300, 150);
   BuyMenu buymenu = BuyMenu(250, 400);
-  bool visible_menu = true;
-  bool visible_buy = false;
+  bool visibleMenu = true;
+  bool visibleBuy = false;
   Inventory inventory = Inventory(550, 50);
 
  public:
-  Inventory_driver(int size, std::string title) {
+  InventoryDriver(int size, std::string title) {
     win = new sf::RenderWindow(sf::VideoMode(size, size), title);
     player = new Player(10, 50, 50);
-    visible_buy = false;
-    visible_menu = true;
+    visibleBuy = false;
+    visibleMenu = true;
   };
 
-  void make_background() {
+  void makeBackground() {
     for (int r = 0; r < 600; r += 50) {
       for (int c = 0; c < 600; c += 50) {
         tile* newTile = new tile(r, c);  // Pass coordinates to tile constructor
@@ -62,49 +62,49 @@ class Inventory_driver {
           }
 
           if (Keyboard::isKeyPressed(Keyboard::Return) &&
-              (visible_menu == true)) {
+              (visibleMenu == true)) {
             // opening the rectangles of the options
             int selection = menu.menuPressed();
             switch (selection) {
               case 0:
                 // close the menu and access game window
-                visible_menu = false;
-                menu.set_visibility(visible_menu);
+                visibleMenu = false;
+                menu.set_visibility(visibleMenu);
                 break;
               case 1:
                 // open game description
                 menu.set_visibility(false);
-                menu.set_htp_visi(true);
+                menu.set_htpVisi(true);
                 break;
               case 2:
                 // open controls rectangle
                 menu.set_visibility(false);
-                menu.set_control_visi(true);
+                menu.set_controlVisi(true);
                 break;
               case 3:
                 // open save confirmation
                 menu.set_visibility(false);
-                menu.set_save_visi(true);
+                menu.set_saveVisi(true);
                 break;
             }
           }
           if (Keyboard::isKeyPressed(Keyboard::Return) &&
-              (visible_buy == true)) {
+              (visibleBuy == true)) {
             // opening the rectangles of the options
-            int item_no = buymenu.get_buySelect();
-            switch (item_no) {
+            int itemNo = buymenu.get_buySelect();
+            switch (itemNo) {
               case 0:
-                if (buymenu.purchase_status(player, 0) == true) {
+                if (buymenu.purchaseStatus(player, 0) == true) {
                   buymenu.set_successCheck(true);
                   buymenu.set_failureCheck(false);
 
                   std::cout << "Shells: " << player->get_shells();
                   std::cout << "\n";
-                  player->subtract_50shells();
+                  player->subtract50shells();
                   std::cout << "Remaining shells: " << player->get_shells();
                   std::cout << "\n";  // next up, add items into the player's
                                       // inventory
-                  inventory.add_carrotSeedsCount();
+                  inventory.addCarrotSeedsCount();
                   std::cout << "Carrot seeds in inventory: "
                             << inventory.get_carrotSeedsCount() << std::endl;
                 } else {
@@ -113,17 +113,17 @@ class Inventory_driver {
                 }
                 break;
               case 1:
-                if (buymenu.purchase_status(player, 1) == true) {
+                if (buymenu.purchaseStatus(player, 1) == true) {
                   buymenu.set_successCheck(true);
                   buymenu.set_failureCheck(false);
 
                   std::cout << "Shells: " << player->get_shells();
                   std::cout << "\n";
-                  player->subtract_50shells();
+                  player->subtract50shells();
                   std::cout << "Remaining shells: " << player->get_shells();
                   std::cout << "\n";
 
-                  inventory.add_potatoSeedsCount();
+                  inventory.addPotatoSeedsCount();
                   std::cout << "Potato seeds in inventory: "
                             << inventory.get_potatoSeedsCount() << std::endl;
                 } else {
@@ -132,17 +132,17 @@ class Inventory_driver {
                 }
                 break;
               case 2:
-                if (buymenu.purchase_status(player, 2) == true) {
+                if (buymenu.purchaseStatus(player, 2) == true) {
                   buymenu.set_successCheck(true);
                   buymenu.set_failureCheck(false);
 
                   std::cout << "Shells: " << player->get_shells();
                   std::cout << "\n";
-                  player->subtract_70shells();
+                  player->subtract70shells();
                   std::cout << "Remaining shells: " << player->get_shells();
                   std::cout << "\n";
 
-                  inventory.add_strawberrySeedsCount();
+                  inventory.addStrawberrySeedsCount();
 
                   std::cout << "Strawberry seeds in inventory: "
                             << inventory.get_strawberrySeedsCount()
@@ -153,17 +153,17 @@ class Inventory_driver {
                 }
                 break;
               case 3:
-                if (buymenu.purchase_status(player, 3) == true) {
+                if (buymenu.purchaseStatus(player, 3) == true) {
                   buymenu.set_successCheck(true);
                   buymenu.set_failureCheck(false);
 
                   std::cout << "Shells: " << player->get_shells();
                   std::cout << "\n";
-                  player->subtract_70shells();
+                  player->subtract70shells();
                   std::cout << "Remaining shells: " << player->get_shells();
                   std::cout << "\n";
 
-                  inventory.add_blueberrySeedsCount();
+                  inventory.addBlueberrySeedsCount();
 
                   std::cout << "Blueberry seeds in inventory: "
                             << inventory.get_blueberrySeedsCount() << std::endl;
@@ -173,17 +173,17 @@ class Inventory_driver {
                 }
                 break;
               case 4:
-                if (buymenu.purchase_status(player, 4) == true) {
+                if (buymenu.purchaseStatus(player, 4) == true) {
                   buymenu.set_successCheck(true);
                   buymenu.set_failureCheck(false);
 
                   std::cout << "Shells: " << player->get_shells();
                   std::cout << "\n";
-                  player->subtract_400shells();
+                  player->subtract400shells();
                   std::cout << "Remaining shells: " << player->get_shells();
                   std::cout << "\n";
 
-                  inventory.add_shovelCount();
+                  inventory.addShovelCount();
                   std::cout
                       << "Shovels in inventory: " << inventory.get_shovelCount()
                       << std::endl;
@@ -193,17 +193,17 @@ class Inventory_driver {
                 }
                 break;
               case 5:
-                if (buymenu.purchase_status(player, 5) == true) {
+                if (buymenu.purchaseStatus(player, 5) == true) {
                   buymenu.set_successCheck(true);
                   buymenu.set_failureCheck(false);
 
                   std::cout << "Shells: " << player->get_shells();
                   std::cout << "\n";
-                  player->subtract_150shells();
+                  player->subtract150shells();
                   std::cout << "Remaining shells: " << player->get_shells();
                   std::cout << "\n";
 
-                  inventory.add_gloveCount();
+                  inventory.addGloveCount();
                   std::cout
                       << "Gloves in inventory: " << inventory.get_gloveCount()
                       << std::endl;
@@ -223,30 +223,30 @@ class Inventory_driver {
 
       // player movement
       if (Keyboard::isKeyPressed(Keyboard::A)) {
-        player->move_left();
+        player->moveLeft();
       }
       if (Keyboard::isKeyPressed(Keyboard::D)) {
-        player->move_right();
+        player->moveRight();
       }
       if (Keyboard::isKeyPressed(Keyboard::W)) {
-        player->move_up();
+        player->moveUp();
       }
       if (Keyboard::isKeyPressed(Keyboard::S)) {
-        player->move_down();
+        player->moveDown();
       }
 
       // testing of keyboard for menu toggling
 
-      if (Keyboard::isKeyPressed(Keyboard::B) && (visible_menu == false)) {
-        visible_buy = true;
-        buymenu.set_buyOn(visible_buy);
+      if (Keyboard::isKeyPressed(Keyboard::B) && (visibleMenu == false)) {
+        visibleBuy = true;
+        buymenu.set_buyOn(visibleBuy);
       }
 
-      if (Keyboard::isKeyPressed(Keyboard::M) && (visible_buy == false)) {
-        if ((menu.get_control_visi() == false) &&
-            (menu.get_htp_visi() == false) && (menu.get_save_visi() == false)) {
-          visible_menu = true;
-          menu.set_visibility(visible_menu);
+      if (Keyboard::isKeyPressed(Keyboard::M) && (visibleBuy == false)) {
+        if ((menu.get_controlVisi() == false) &&
+            (menu.get_htpVisi() == false) && (menu.get_saveVisi() == false)) {
+          visibleMenu = true;
+          menu.set_visibility(visibleMenu);
         }
       }
 
@@ -259,18 +259,18 @@ class Inventory_driver {
 
       // visibility of menus
       if (Keyboard::isKeyPressed(Keyboard::Escape)) {
-        if (visible_buy == false) {
-          menu.set_control_visi(false);
-          menu.set_htp_visi(false);
-          menu.set_save_visi(false);
+        if (visibleBuy == false) {
+          menu.set_controlVisi(false);
+          menu.set_htpVisi(false);
+          menu.set_saveVisi(false);
 
         } else {
-          visible_buy = false;
+          visibleBuy = false;
           buymenu.set_failureCheck(false);
           buymenu.set_successCheck(false);
           buymenu.set_buyOn(false);
-          visible_menu = false;
-          menu.set_visibility(visible_menu);
+          visibleMenu = false;
+          menu.set_visibility(visibleMenu);
         }
       }
 
@@ -282,14 +282,14 @@ class Inventory_driver {
         menu.draw(win);
       }
       // drawing htp pop up
-      if (menu.get_htp_visi() == true) {
-        menu.draw_htp(win);
+      if (menu.get_htpVisi() == true) {
+        menu.drawHtp(win);
       }
-      if (menu.get_control_visi() == true) {
-        menu.draw_control(win);
+      if (menu.get_controlVisi() == true) {
+        menu.drawControl(win);
       }
-      if (menu.get_save_visi() == true) {
-        menu.draw_save(win);
+      if (menu.get_saveVisi() == true) {
+        menu.drawSave(win);
       }
       if (buymenu.get_buyOn() == true) {
         buymenu.draw(win);
@@ -297,10 +297,10 @@ class Inventory_driver {
 
       // drawing purchase success or failure
       if (buymenu.get_failureCheck() == true) {
-        buymenu.draw_purchaseError(win);
+        buymenu.drawPurchaseError(win);
       }
       if (buymenu.get_successCheck() == true) {
-        buymenu.draw_purchaseSuccess(win);
+        buymenu.drawPurchaseSuccess(win);
       }
 
       win->display();
@@ -313,8 +313,8 @@ class Inventory_driver {
 };
 
 int main() {
-  Inventory_driver driver(600, "TEST");
-  driver.make_background();
+  InventoryDriver driver(600, "TEST");
+  driver.makeBackground();
   driver.run();
   return 0;
 }

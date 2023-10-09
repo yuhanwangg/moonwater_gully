@@ -248,37 +248,6 @@ class Menu {
     }
   }
 
-  // saving game
-  void saveGame(tile* background, Inventory* inventory, Player* player) {
-    // create text file
-    std::fstream saveFile("save.txt");
-    if (!saveFile) {
-      std::cout << "file could not be saved";
-      std::cout << "\n";
-    }
-
-    // save a vector of tiles
-    for (int i = 0; i < background->get_size(); i++) {
-      saveFile << background[i].get_className() << ",";
-      saveFile << to_string(background[i].get_growthStage())
-               << ",";  // converting to string to be read into text file
-      saveFile << to_string(background[i].get_hydrationLevel()) << ",";
-    }
-    // breaking up tile data from inventory data
-    std::cout << "\n";
-
-    // save inventory count of each item
-    std::vector<int*> temp_inv = inventory;
-    for (int i = 0; temp_inv->get_size(); i++) {
-      saveFile << temp_inv[i] << ",";
-    }
-
-    // save player shell number
-    saveFile << player->get_shells() << std::endl;
-  }
-
-  void loadGame() {}
-
   // changing visibility
 
   bool get_walletVisibility() { return walletVisibility; }

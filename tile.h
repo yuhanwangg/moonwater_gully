@@ -56,12 +56,12 @@ class tile {
 
 
 
-  void set_texture(std::string Texture_name) {
+  void set_texture(std::string TextureName) {
     Texture* texture;
-    texture->loadFromFile(Texture_name);
+    texture->loadFromFile(TextureName);
     square->setTexture(texture);
     square->setTextureRect(IntRect(0, 0, size, size));
-    if (!texture->loadFromFile(Texture_name)) {
+    if (!texture->loadFromFile(TextureName)) {
       std::cout << "error loading texture" << std::endl;
     };
   }

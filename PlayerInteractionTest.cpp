@@ -17,7 +17,7 @@ class PlayerInteractionDriver {
     player = new Player(10, 50, 50);
   };
 
-  void make_background() {
+  void makeBackground() {
     for (int r = 0; r < 600; r += 50) {
       for (int c = 0; c < 600; c += 50) {
         tile* newTile = new tile(r, c);  // Pass coordinates to tile constructor
@@ -45,8 +45,8 @@ class PlayerInteractionDriver {
             PI.waterPlant(*player, &background);
             std::cout << "watered plant" << std::endl;
 
-            int player_x = (floor(player->get_x()/50)*50);
-            int player_y = (floor(player->get_y()/50)*50);
+            int playerX = (floor(player->get_x()/50)*50);
+            int playerY = (floor(player->get_y()/50)*50);
 
             // moving to day function
             // for (int i = 0; i < 144; i++) {
@@ -60,13 +60,13 @@ class PlayerInteractionDriver {
 
       // player movement
       if (Keyboard::isKeyPressed(Keyboard::A)) {
-        player->move_left();
+        player->moveLeft();
       } else if (Keyboard::isKeyPressed(Keyboard::D)) {
-        player->move_right();
+        player->moveRight();
       } else if (Keyboard::isKeyPressed(Keyboard::W)) {
-        player->move_up();
+        player->moveUp();
       } else if (Keyboard::isKeyPressed(Keyboard::S)) {
-        player->move_down();
+        player->moveDown();
       }
 
       // drawing the tiles
@@ -85,7 +85,7 @@ class PlayerInteractionDriver {
 
 int main() {
     PlayerInteractionDriver driver(600, "TEST");
-    driver.make_background();
+    driver.makeBackground();
     driver.run();
     return 0;
 };

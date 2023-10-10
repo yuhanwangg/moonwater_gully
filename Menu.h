@@ -1,3 +1,4 @@
+Menu
 #ifndef MENU_H
 #define MENU_H
 #include <SFML/Graphics.hpp>
@@ -6,7 +7,7 @@
 #include <string>
 
 #include "Player.h"
-using namespace sf;
+    using namespace sf;
 
 class Menu {
  protected:
@@ -20,16 +21,16 @@ class Menu {
   Texture howToPlayTexture;
   Texture controlTexture;
 
-  bool how_to_play_visible;
-  bool control_visible;
-  bool save_visible;
+  bool howToPlayVisible;
+  bool controlVisible;
+  bool saveVisible;
   bool isMainMenuOpen;
   bool walletVisibility;
   Font font;
   Text title;
   Text wallet;
 
-  std::string wallet_number;
+  std::string walletNumber;
 
   int x, y;
   int selected_option;
@@ -211,9 +212,9 @@ class Menu {
 
   void draw_wallet(RenderWindow* win, Player* player) {
     int tempNo = player->get_shells();
-    wallet_number = std::to_string(tempNo);  // converting int to string
+    walletNumber = std::to_string(tempNo);  // converting int to string
     wallet.setFont(font);
-    wallet.setString("shells: " + wallet_number);  // concatenating the string
+    wallet.setString("shells: " + walletNumber);  // concatenating the string
     wallet.setCharacterSize(10);
     wallet.setFillColor(Color::White);
     wallet.setPosition(290, 275);

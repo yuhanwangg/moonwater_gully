@@ -27,7 +27,6 @@ int main() {
   Player* player;
   Inventory inventory = Inventory(550, 55);
   Day day;
-  SaveGame save = SaveGame(background, &inventory, player, &day);
 
   player = new Player(10, 50, 50);
 
@@ -37,6 +36,7 @@ int main() {
       background.push_back(newTile);
     }
   }
+  SaveGame save = SaveGame(background, &inventory, player, &day);
 
   save.open_saveFile();
 }

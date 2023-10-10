@@ -207,7 +207,6 @@ class Inventory {
   void addPotatoCount() { inventory[7] += 1; }
   void addCarrotSeedsCount() { inventory[8] += 1; }
   void addCarrotCount() { inventory[9] += 1; }
-  
 
   void subtractShovelCount() { inventory[0] -= 1; }
   void subtractGloveCount() { inventory[1] -= 1; }
@@ -220,7 +219,6 @@ class Inventory {
   void subtractCarrotSeedsCount() { inventory[8] -= 1; }
   void subtractCarrotCount() { inventory[9] -= 1; }
 
-  
   //   ~Inventory() { delete[] inventory; }
 };
 

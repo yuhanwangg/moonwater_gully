@@ -1,4 +1,3 @@
-Menu
 #ifndef MENU_H
 #define MENU_H
 #include <SFML/Graphics.hpp>
@@ -7,7 +6,7 @@ Menu
 #include <string>
 
 #include "Player.h"
-    using namespace sf;
+using namespace sf;
 
 class Menu {
  protected:
@@ -35,7 +34,7 @@ class Menu {
   int x, y;
   int selected_option;
   int length, width;
-  int max_option;
+  int maxOption;
   Text menu[4];
   bool turnOn;
 
@@ -49,12 +48,12 @@ class Menu {
     width = wid;
     x = 25;
     y = 25;
-    max_option = 4;
+    maxOption = 4;
     turnOn = true;
 
-    how_to_play_visible = false;
-    control_visible = false;
-    save_visible = false;
+    howToPlayVisible = false;
+    controlVisible = false;
+    saveVisible = false;
     isMainMenuOpen = false;
     walletVisibility = false;
 
@@ -138,12 +137,12 @@ class Menu {
   void draw(RenderWindow* win) {
     win->draw(*background);
     win->draw(title);
-    for (int i = 0; i < max_option; i++) {
+    for (int i = 0; i < maxOption; i++) {
       win->draw(menu[i]);
     }
   };
 
-  void draw_htp(RenderWindow* win) {
+  void drawHtp(RenderWindow* win) {
     howToPlayText.setFont(font);
     howToPlayText.setString(
         "How To Play: \n\n\n"
@@ -179,7 +178,7 @@ class Menu {
     win->draw(howToPlayText);
   }
 
-  void draw_control(RenderWindow* win) {
+  void drawControl(RenderWindow* win) {
     controlText.setFont(font);
     controlText.setString(
         "Controls: Press special keys to activate\n\n\n\n\n"
@@ -208,9 +207,9 @@ class Menu {
     win->draw(controlText);
   }
 
-  void draw_save(RenderWindow* win) { win->draw(*save_bg); }
+  void drawSave(RenderWindow* win) { win->draw(*save_bg); }
 
-  void draw_wallet(RenderWindow* win, Player* player) {
+  void drawWallet(RenderWindow* win, Player* player) {
     int tempNo = player->get_shells();
     walletNumber = std::to_string(tempNo);  // converting int to string
     wallet.setFont(font);
@@ -223,7 +222,7 @@ class Menu {
 
   virtual void moveDown() {
     // checking array
-    if (selected_option + 1 < max_option) {
+    if (selected_option + 1 < maxOption) {
       // changing text colour
       menu[selected_option].setFillColor(sf::Color::White);
       // iterating array
@@ -257,14 +256,14 @@ class Menu {
   void set_visibility(bool visible) { turnOn = visible; }
   bool get_visibility() { return turnOn; }
 
-  void set_htp_visi(bool visible) { how_to_play_visible = visible; }
-  bool get_htp_visi() { return how_to_play_visible; }
+  void set_htpVisi(bool visible) { howToPlayVisible = visible; }
+  bool get_htpVisi() { return howToPlayVisible; }
 
-  void set_control_visi(bool visible) { control_visible = visible; }
-  bool get_control_visi() { return control_visible; }
+  void set_controlVisi(bool visible) { controlVisible = visible; }
+  bool get_controlVisi() { return controlVisible; }
 
-  void set_save_visi(bool visible) { save_visible = visible; }
-  bool get_save_visi() { return save_visible; }
+  void set_saveVisi(bool visible) { saveVisible = visible; }
+  bool get_saveVisi() { return saveVisible; }
   void setPressed(int selected) { selected_option = selected; }
   int menuPressed() { return selected_option; }
   // ~Menu();

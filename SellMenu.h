@@ -26,9 +26,9 @@ class SellMenu : public Menu {
   SellMenu(int len, int wid) : Menu(len, wid) {
     x = 25;
     y = 25;
-    length = len;    // 200
-    width = wid;     // 300
-    max_option = 4;  // only sell blueberries, strawberries, potatos and carrots
+    length = len;   // 200
+    width = wid;    // 300
+    maxOption = 4;  // only sell blueberries, strawberries, potatos and carrots
 
     success_check = false;
     failure_check = false;
@@ -97,7 +97,7 @@ class SellMenu : public Menu {
   }
   void moveDown() {
     // checking array
-    if (sell_select + 1 < max_option) {
+    if (sell_select + 1 < maxOption) {
       // changing text colour
       sell_catalogue[sell_select].setFillColor(sf::Color::White);
       // iterating array
@@ -113,7 +113,7 @@ class SellMenu : public Menu {
   }
   void moveUp() {
     // checking array
-    if (sell_select - 1 >= 0 && sell_select < max_option) {
+    if (sell_select - 1 >= 0 && sell_select < maxOption) {
       sell_catalogue[sell_select].setFillColor(sf::Color::White);
       sell_select--;
       // changing text colour
@@ -126,7 +126,7 @@ class SellMenu : public Menu {
     }
   }
 
-  bool purchase_status(Inventory* inventory, int item_no) {
+  bool purchaseStatus(Inventory* inventory, int item_no) {
     switch (item_no) {
       case 0:  // carrot
         if (inventory->get_carrotCount() >= 1) {
@@ -163,14 +163,14 @@ class SellMenu : public Menu {
   void draw(RenderWindow* win) {
     win->draw(*sell_background);
     win->draw(*sell_box);
-    for (int i = 0; i < max_option; i++) {
+    for (int i = 0; i < maxOption; i++) {
       win->draw(sell_catalogue[i]);
     }
     win->draw(sell_success[0]);
   }
 
-  void draw_sellSuccess(RenderWindow* win) { win->draw(sell_success[1]); }
-  void draw_sellFailure(RenderWindow* win) { win->draw(sell_success[2]); };
+  void drawSellSuccess(RenderWindow* win) { win->draw(sell_success[1]); }
+  void drawSellFailure(RenderWindow* win) { win->draw(sell_success[2]); };
 
   // setters and getters
   bool get_successCheck() { return success_check; }
@@ -181,8 +181,8 @@ class SellMenu : public Menu {
   void set_sellSelect(int select) { sell_select = select; }
   int get_sellSelect() { return sell_select; }
 
-  void set_maxOption(int max) { max_option = max; }
-  int get_maxOption() { return max_option; }
+  void set_maxOption(int max) { maxOption = max; }
+  int get_maxOption() { return maxOption; }
 
   bool get_sellOn() { return sellOn; }
   void set_sellOn(bool visible) { sellOn = visible; }

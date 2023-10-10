@@ -98,3 +98,7 @@ harvestPlantsTest: harvestTest.cpp Day.h BuyMenu.h menu.h Player.h Strawberry.h 
 walletTest: walletAndSaveTest.cpp Day.h BuyMenu.h menu.h Player.h Strawberry.h Blueberry.h Carrot.h Potato.h RootPlant.h BerryPlant.h Plant.h tile.h InventoryItems.h
 	clang++ walletAndSaveTest.cpp -o harvestTest -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
 	./harvestTest
+
+saveTest: SaveGameTest.cpp SaveGame.h Day.h BuyMenu.h menu.h Player.h Strawberry.h Blueberry.h Carrot.h Potato.h RootPlant.h BerryPlant.h Plant.h tile.h InventoryItems.h
+	clang++ SaveGameTest.cpp -o saveTest -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
+	./saveTest

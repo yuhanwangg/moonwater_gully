@@ -13,6 +13,7 @@
 class SaveGame {
  protected:
   std::fstream saveFile;
+  RectangleShape* loadAsk;
 
  public:
   // saving game
@@ -129,6 +130,11 @@ class SaveGame {
     // Close the file after loading
     saveFile.close();
     std::cout << "LOADING WORKS" << std::endl;
+  }
+
+  clearFile() {
+    saveFile.open("save.txt", std::ofstream::out | std::ofstream::trunc);
+    saveFile.close();
   }
 };
 #endif

@@ -30,12 +30,16 @@ int main() {
 
   player = new Player(10, 50, 50);
 
-  for (int r = 0; r < 600; r += 50) {
-    for (int c = 0; c < 600; c += 50) {
-      tile* newTile = new tile(r, c);  // Pass coordinates to tile constructor
-      background.push_back(newTile);
-    }
-  }
+  player->set_shells(500);
+  day.set_dayCount(3);
+
+  //   for (int r = 0; r < 600; r += 50) {
+  //     for (int c = 0; c < 600; c += 50) {
+  //       tile* newTile = new tile(r, c);  // Pass coordinates to tile
+  //       constructor background.push_back(newTile);
+  //     }
+  //   }
   int size = background.size();
   SaveGame save = SaveGame(background, size, &inventory, player, &day);
+  save.loadGame(background, &inventory, player, &day);
 }

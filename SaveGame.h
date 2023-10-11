@@ -68,13 +68,15 @@ class SaveGame {
                 Player* player, Day* day) {
     saveFile.open("save.txt", std::ios::in);
 
+    int r = 0;
+    int c = 0;
     if (!saveFile.is_open()) {
       std::cout << "File could not be opened for loading." << std::endl;
-      return;  // Handle the error and return if the file couldn't be opened.
+      return;  // check error
     }
 
     std::string line;
-    bool readTiles = false;  // To track when to start reading tiles
+    bool readTiles = false;  // track when to read tiles
 
     while (std::getline(saveFile, line)) {
       if (line == "newTile") {
@@ -87,7 +89,7 @@ class SaveGame {
       }
 
       if (readTiles) {
-        // Parse and create tile objects
+        // create the tile objects
         std::vector<std::string> tileData;
         size_t pos = 0;
         while ((pos = line.find(',')) != std::string::npos) {
@@ -95,15 +97,16 @@ class SaveGame {
           line.erase(0, pos + 1);
         }
 
-        // Create and populate a tile instance
-        if (tileData.size() >= 3) {
+        // populate tile instance
+        if ((tileData.size() >= 3) && (r < 600) && (c < 600)) {
           std::string className = tileData[0];
           int growthStage = std::stoi(tileData[1]);
           int hydrationLevel = std::stoi(tileData[2]);
 
-          // Create a new tile object and add it to the background vector
-          tile* newTileObject =
-              new tile(className, growthStage, hydrationLevel);
+          // create tile object and put in background
+          tile* newTileObject = new tile(r, c);
+          r += 50;
+          c += 50;
           background.push_back(newTileObject);
         }
       } else {
@@ -125,6 +128,7 @@ class SaveGame {
 
     // Close the file after loading
     saveFile.close();
+    std::cout << "LOADING WORKS" << std::endl;
   }
 };
 #endif

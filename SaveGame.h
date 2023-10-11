@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include <fstream>
 #include <iostream>
+#include <sstream>
 #include <string>
 
 #include "Day.h"
@@ -20,6 +21,7 @@ class SaveGame {
   Text confirm[2];
   int selection;
   Font font;
+  std::vector<int> temp_inv;
 
  public:
   // saving game
@@ -93,8 +95,8 @@ class SaveGame {
       return;  // Handle the error and return if the file couldn't be opened.
     }
 
-    saveFile << "newTile";  // in file when reading through to load, check if
-                            // newTile then get next tile to load info
+    saveFile << "newTile,";  // in file when reading through to load, check if
+                             // newTile then get next tile to load info
     // save a vector of tiles
     for (int i = 0; i < size; i++) {
       saveFile << background[i]->get_className()
@@ -104,53 +106,53 @@ class SaveGame {
     }
 
     saveFile << "\n";
-    saveFile << "inventory: ";  // in file， check when u see "inventory"
+    saveFile << "inventory,";  // in file， check when u see "inventory"
     // save inventory count of each item
-    for (int i = 0; i < inventory->get_inventorySize(); i++) {
+    for (int i = 0; i < (inventory->get_inventorySize()); i++) {
       saveFile << inventory->get_inventory()[i] << ",";
     }
-    std::cout << "shellNumber";
+    saveFile << "shellNumber,";
 
     // save player shell number
     saveFile << player->get_shells() << std::endl;
 
     // save day number
 
-    std::cout << "DayCount";
+    saveFile << "DayCount,";
     saveFile << day->get_dayCount() << std::endl;
 
     // save time left in day
-    std::cout << "DayTime";
+    saveFile << "DayTime,";
     saveFile << day->get_timeInSec() << std::endl;
 
     saveFile.close();
+    std::cout << "Game saved,";
   };
 
-  void loadGame(std::vector<tile*>& background, Inventory* inventory,
+  void loadGame(std::vector<tile*> background, Inventory* inventory,
                 Player* player, Day* day) {
     saveFile.open("save.txt", std::ios::in);
 
-    int r = 0;
-    int c = 0;
     if (!saveFile.is_open()) {
       std::cout << "File could not be opened for loading." << std::endl;
-      return;  // check error
+      return;  // error handling
     }
 
+    int itemCount = 0;  // tracking inventory
     std::string line;
-    bool readTiles = false;  // track when to read tiles
-
+    bool readTiles = false;  // tracking tiles
     while (std::getline(saveFile, line)) {
-      if (line == "newTile") {
+      if (line == "newTile,") {
         readTiles = true;
         continue;
-      } else if (line == "inventory:") {
-        // Start reading inventory
+      } else if (line == "inventory,") {
+        // when to read inventory
         readTiles = false;
+        itemCount = 0;
         continue;
       }
 
-      if (readTiles) {
+      if (readTiles == true) {
         // create the tile objects
         std::vector<std::string> tileData;
         size_t pos = 0;
@@ -159,38 +161,52 @@ class SaveGame {
           line.erase(0, pos + 1);
         }
 
-        // populate tile instance
-        if ((tileData.size() >= 3) && (r < 600) && (c < 600)) {
+        if (tileData.size() >= 3 && itemCount < background.size()) {
           std::string className = tileData[0];
           int growthStage = std::stoi(tileData[1]);
           int hydrationLevel = std::stoi(tileData[2]);
 
-          // create tile object and put in background
-          tile* newTileObject = new tile(r, c);
-          r += 50;
-          c += 50;
-          background.push_back(newTileObject);
+          // updating tile objects from tile data
+          background[itemCount]->set_className(className);
+          background[itemCount]->set_hydrationLevel(hydrationLevel);
+
+          itemCount++;
         }
       } else {
-        if (line.find("shellNumber") != std::string::npos) {
-          line = line.substr(11);  // Remove "shellNumber"
+        if (line.find("shellNumber,") != std::string::npos) {
+          // setting shell number
+          line = line.substr(12);
           int shells = std::stoi(line);
           player->set_shells(shells);
-        } else if (line.find("DayCount") != std::string::npos) {
-          line = line.substr(8);  // Remove "DayCount"
+        } else if (line.find("DayCount,") != std::string::npos) {
+          // reading and setting day
+          line = line.substr(10);
           int dayCount = std::stoi(line);
           day->set_dayCount(dayCount);
-        } else if (line.find("DayTime") != std::string::npos) {
-          line = line.substr(8);  // Remove "DayTime"
+        } else if (line.find("DayTime,") != std::string::npos) {
+          // reading day time
+          line = line.substr(9);
           int timeInSec = std::stoi(line);
           day->set_timeInSec(timeInSec);
+        } else if (line.find("inventory,") != std::string::npos) {
+          std::istringstream iss(line);
+          std::string item;
+          temp_inv.clear();
+          while (std::getline(iss, item, ',') && itemCount < 10) {
+            // Parse the inventory item as an integer
+            int inventoryItem = std::stoi(item);
+            // adding to temp inv
+            temp_inv.push_back(inventoryItem);
+            itemCount++;
+          }
+          inventory->set_inventory(temp_inv);
         }
       }
     }
 
-    // Close the file after loading
+    // closing and checking the load worked
     saveFile.close();
-    std::cout << "LOADING WORKS" << std::endl;
+    std::cout << "LoaDING WORKS." << std::endl;
   }
 
   void clearFile() {

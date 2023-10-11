@@ -167,6 +167,7 @@ class Inventory {
 
   // getters and setters
   std::vector<int> get_inventory() { return inventory; }
+  void set_inventory(std::vector<int> invent) { inventory = invent; }
   int get_inventorySize() { return inventorySize; }
   int get_inventoryIndex() { return inventoryIndex; }
   void set_inventoryIndex(int ind) { inventoryIndex = ind; }

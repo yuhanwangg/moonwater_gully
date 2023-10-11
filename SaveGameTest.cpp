@@ -44,7 +44,7 @@ class EverythingDriver {
     win = new sf::RenderWindow(sf::VideoMode(size, size), title);
     player = new Player(10, 50, 50);
     visibleBuy = false;
-    visibleMenu = true;
+    visibleMenu = false;
     visibleSell = false;
     visibleInventory = true;
   };
@@ -69,6 +69,8 @@ class EverythingDriver {
         if (e.type == Event::Closed) {
           win->close();
         }
+
+        // iterating space
         if (e.type == Event::KeyPressed) {
           if (Keyboard::isKeyPressed(Keyboard::Space) &&
               (saver.get_loadVisibility() == false)) {
@@ -77,10 +79,11 @@ class EverythingDriver {
                      (saver.get_loadVisibility() == true)) {
             saver.scrollLoad();
           }
+
           if (Keyboard::isKeyPressed(Keyboard::Return) &&
               (sellmenu.get_sellOn() == false) &&
               (buymenu.get_buyOn() == false) &&
-              (menu.get_visibility() == true) &&
+              (menu.get_visibility() == false) &&
               (saver.get_loadVisibility() == true)) {
             int select = saver.get_select();
             switch (select) {
@@ -218,6 +221,12 @@ class EverythingDriver {
             }
           }
 
+          // scrolling through save options
+          if ((Keyboard::isKeyPressed(Keyboard::Space)) &&
+              (menu.get_saveVisi() == true)) {
+            menu.scrollSave();
+          }
+
           if (Keyboard::isKeyPressed(Keyboard::Return) &&
               (menu.get_visibility() == true) &&
               (buymenu.get_buyOn() == false) &&
@@ -248,10 +257,33 @@ class EverythingDriver {
                 // open save confirmation
                 menu.set_visibility(false);
                 menu.set_saveVisi(true);
-                inventory.set_visibility(true);
+                inventory.set_visibility(false);
                 break;
             }
           }
+
+          if ((menu.get_saveVisi() == true) && (buymenu.get_buyOn() == false) &&
+              (menu.get_visibility() == false) &&
+              (sellmenu.get_sellOn() == false) &&
+              (Keyboard::isKeyPressed(Keyboard::Return))) {
+            int saveSelect = menu.get_saveSelect();
+            menu.set_saveSelect(0);
+            switch (saveSelect) {
+              case 0:
+                saver.save(background, 144, &inventory, player,
+                           &day);  // saving game into save.txt
+                                   // otherwise, exiting
+                menu.set_saveSuccess(true);
+                menu.set_saveFail(false);
+                break;
+              case 1:
+                menu.set_visibility(false);  // otherwise, exiting
+                menu.set_saveVisi(false);
+                menu.set_saveSuccess(false);
+                break;
+            }
+          }
+
           if (Keyboard::isKeyPressed(Keyboard::Return) &&
               (buymenu.get_buyOn() == true) &&
               (menu.get_visibility() == false) &&
@@ -267,8 +299,8 @@ class EverythingDriver {
                   std::cout << "Shells: " << player->get_shells();
                   std::cout << "\n";
                   std::cout << "Remaining shells: " << player->get_shells();
-                  std::cout << "\n";  // next up, add items into the player's
-                                      // inventory
+                  std::cout << "\n";  // next up, add items into the
+                                      // player's inventory
                   inventory.addCarrotSeedsCount();
                   std::cout << "Carrot seeds in inventory: "
                             << inventory.get_carrotSeedsCount() << std::endl;
@@ -400,8 +432,8 @@ class EverythingDriver {
                   player->add100shells();
                   inventory.subtractCarrotCount();
                   std::cout << "Remaining shells: " << player->get_shells();
-                  std::cout << "\n";  // next up, add items into the player's
-                                      // inventory
+                  std::cout << "\n";  // next up, add items into the
+                                      // player's inventory
                 } else {
                   sellmenu.set_successCheck(false);
                   sellmenu.set_failureCheck(true);
@@ -417,8 +449,8 @@ class EverythingDriver {
                   player->add80shells();
                   inventory.subtractPotatoCount();
                   std::cout << "Remaining shells: " << player->get_shells();
-                  std::cout << "\n";  // next up, add items into the player's
-                                      // inventory
+                  std::cout << "\n";  // next up, add items into the
+                                      // player's inventory
                 } else {
                   sellmenu.set_successCheck(false);
                   sellmenu.set_failureCheck(true);
@@ -434,8 +466,8 @@ class EverythingDriver {
                   player->add200shells();
                   inventory.subtractStrawberryCount();
                   std::cout << "Remaining shells: " << player->get_shells();
-                  std::cout << "\n";  // next up, add items into the player's
-                                      // inventory
+                  std::cout << "\n";  // next up, add items into the
+                                      // player's inventory
                 } else {
                   sellmenu.set_successCheck(false);
                   sellmenu.set_failureCheck(true);
@@ -451,8 +483,8 @@ class EverythingDriver {
                   player->add120shells();
                   inventory.subtractBlueberryCount();
                   std::cout << "Remaining shells: " << player->get_shells();
-                  std::cout << "\n";  // next up, add items into the player's
-                                      // inventory
+                  std::cout << "\n";  // next up, add items into the
+                                      // player's inventory
                 } else {
                   sellmenu.set_successCheck(false);
                   sellmenu.set_failureCheck(true);
@@ -522,6 +554,8 @@ class EverythingDriver {
           menu.set_controlVisi(false);
           menu.set_htpVisi(false);
           menu.set_saveVisi(false);
+          menu.set_saveSuccess(false);
+          menu.set_saveFail(false);
 
         } else {
           menu.set_walletVisibility(false);
@@ -583,6 +617,13 @@ class EverythingDriver {
       }
       if (sellmenu.get_successCheck() == true) {
         sellmenu.drawSellSuccess(win);
+      }
+
+      if (menu.get_saveSuccess() == true && menu.get_visibility() == false) {
+        menu.drawSuccess(win);
+      }
+      if (menu.get_saveFail() == true && menu.get_visibility() == false) {
+        menu.drawFail(win);
       }
 
       // drawing the clock

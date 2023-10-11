@@ -25,6 +25,9 @@ class Menu {
   bool saveVisible;
   bool isMainMenuOpen;
   bool walletVisibility;
+  bool saveSuccessVisible;
+  bool saveFailVisible;
+
   Font font;
   Text title;
   Text wallet;
@@ -33,14 +36,17 @@ class Menu {
 
   int x, y;
   int selectedOption;
+  int saveSelect;
   int length, width;
   int maxOption;
   Text menu[4];
   bool turnOn;
 
   // The text information for each window
+  Text saveSuccess[2];
   Text howToPlayText;
   Text controlText;
+  Text saveText[2];
 
  public:
   Menu(int len, int wid) {
@@ -49,13 +55,16 @@ class Menu {
     x = 25;
     y = 25;
     maxOption = 4;
-    turnOn = true;
+    turnOn = false;
 
     howToPlayVisible = false;
     controlVisible = false;
     saveVisible = false;
     isMainMenuOpen = false;
     walletVisibility = false;
+
+    saveFailVisible = false;
+    saveSuccessVisible = false;
 
     // creating background — maybe change into another function
     background = new RectangleShape(Vector2f(360, 150));
@@ -132,6 +141,35 @@ class Menu {
 
     selectedOption = 0;
     menu[selectedOption].setFillColor(Color::Yellow);
+
+    // save text
+    saveText[0].setFont(font);
+    saveText[0].setString("yes");
+    saveText[0].setCharacterSize(10);
+    saveText[0].setFillColor(Color::Black);
+    saveText[0].setPosition(150 + 15, 150 + 15);
+
+    saveText[1].setFont(font);
+    saveText[1].setString("no");
+    saveText[1].setCharacterSize(10);
+    saveText[1].setFillColor(Color::Black);
+    saveText[1].setPosition(150 + 15, 150 + 50);
+
+    saveSelect = 0;
+    saveText[saveSelect].setFillColor(Color::Green);
+
+    // save success
+    saveSuccess[0].setFont(font);
+    saveSuccess[0].setString("save successful!");
+    saveSuccess[0].setCharacterSize(10);
+    saveSuccess[0].setFillColor(Color::Black);
+    saveSuccess[0].setPosition(150 + 15, 150 + 70);
+
+    saveSuccess[1].setFont(font);
+    saveSuccess[1].setString("save unsuccessful :(");
+    saveSuccess[1].setCharacterSize(10);
+    saveSuccess[1].setFillColor(Color::Black);
+    saveSuccess[1].setPosition(150 + 15, 150 + 90);
   };
 
   void draw(RenderWindow* win) {
@@ -207,7 +245,15 @@ class Menu {
     win->draw(controlText);
   }
 
-  void drawSave(RenderWindow* win) { win->draw(*saveBg); }
+  void drawSave(RenderWindow* win) {
+    win->draw(*saveBg);
+    for (int i = 0; i < 2; i++) {
+      win->draw(saveText[i]);
+    }
+  }
+
+  void drawSuccess(RenderWindow* win) { win->draw(saveSuccess[0]); }
+  void drawFail(RenderWindow* win) { win->draw(saveSuccess[1]); }
 
   void drawWallet(RenderWindow* win, Player* player) {
     int tempNo = player->get_shells();
@@ -248,6 +294,20 @@ class Menu {
     }
   }
 
+  void scrollSave() {
+    if (saveSelect + 1 <= 2) {
+      saveText[saveSelect].setFillColor(Color::Black);
+      saveSelect++;
+      if (saveSelect > 1) {
+        saveSelect = 0;
+      }
+      if (saveSelect == 0) {
+        saveText[saveSelect].setFillColor(Color::Green);
+      }
+      saveText[saveSelect].setFillColor(Color::Green);
+    }
+  }
+
   // changing visibility
 
   bool get_walletVisibility() { return walletVisibility; }
@@ -266,6 +326,14 @@ class Menu {
   bool get_saveVisi() { return saveVisible; }
   void setPressed(int selected) { selectedOption = selected; }
   int menuPressed() { return selectedOption; }
+
+  void set_saveSuccess(bool visi) { saveSuccessVisible = visi; }
+  void set_saveFail(bool visi) { saveFailVisible = visi; }
+  bool get_saveSuccess() { return saveSuccessVisible; }
+  bool get_saveFail() { return saveFailVisible; }
+
+  int get_saveSelect() { return saveSelect; }
+  void set_saveSelect(int sel) { saveSelect = sel; }
   // ~Menu();
 };
 #endif

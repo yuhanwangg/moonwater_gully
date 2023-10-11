@@ -39,22 +39,17 @@ class tile {
   // virtual void killPlant(tile *backgroundTilePtr){};
   void set_x(int _x) { x = _x; };
   void set_y(int _y) { y = _y; };
-  void set_isPlantable(bool isPlantable) {
-    this->isPlantable = isPlantable;
+  void set_isPlantable(bool isPlantable) { this->isPlantable = isPlantable; };
+  void set_size(int size) { this->size = size; };
+  void set_hydrationLevel(int hydrationLevel) {
+    this->hydrationLevel = hydrationLevel;
   };
-  void set_size(int size) {this->size = size;};
-  void set_hydrationLevel(int hydrationLevel) {this->hydrationLevel = hydrationLevel;};
 
-
-  int get_x() {return x;};
-  int get_y() {return y;};
-  bool get_isPlantable() {
-    return isPlantable;
-  };
-  int get_size() {return size;};
-  int get_hydrationLevel() {return hydrationLevel;}
-
-
+  int get_x() { return x; };
+  int get_y() { return y; };
+  bool get_isPlantable() { return isPlantable; };
+  int get_size() { return size; };
+  int get_hydrationLevel() { return hydrationLevel; }
 
   void set_texture(std::string TextureName) {
     Texture* texture;
@@ -74,7 +69,6 @@ class tile {
 
   ~tile(){};
 
-
   // Getters and Setters
 
   void set_imageDescription(std::string imageDescription) {
@@ -87,10 +81,10 @@ class tile {
     return;
   }
 
-  virtual int get_growthStage(){return 0;};
+  virtual int get_growthStage() { return 0; };
+
   std::string get_imageDescription() { return imageDescription; };
-  std::string get_className() {return className; };
-  
+  std::string get_className() { return className; };
 };
 
 #endif

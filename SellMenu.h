@@ -71,6 +71,10 @@ class SellMenu : public Menu {
     sellCatalogue[3].setFillColor(Color::White);
     sellCatalogue[3].setPosition(textX, 130);
 
+    sellSelect = 0;
+
+    sellCatalogue[sellSelect].setFillColor(Color::Yellow);
+    
     // creating purchase box list:
     sellSuccess[0].setFont(font);
     sellSuccess[0].setString("sell item?");
@@ -82,13 +86,14 @@ class SellMenu : public Menu {
     sellSuccess[1].setString("sold!");
     sellSuccess[1].setCharacterSize(10);
     sellSuccess[1].setFillColor(Color::White);
-    sellSuccess[1].setPosition(310, 50);
+    sellSuccess[1].setPosition(310, 50 + 200);
 
     sellSuccess[2].setFont(font);
     sellSuccess[2].setString("you don't have any of this item to sell!");
     sellSuccess[2].setCharacterSize(10);
     sellSuccess[2].setFillColor(Color::White);
     sellSuccess[2].setPosition(310, 50 + 200);
+
 
     sellBackground->setPosition(x, y);
     sellBox->setPosition(280, 25 + 200);
@@ -106,7 +111,7 @@ class SellMenu : public Menu {
       sellCatalogue[sellSelect].setFillColor(sf::Color::Yellow);
     } else if (sellSelect == 3) {
       sellCatalogue[sellSelect].setFillColor(sf::Color::Yellow);
-    } else {
+    } else { // should technically never implement because it is covered by above statements
       sellSelect = 0;
       sellCatalogue[sellSelect].setFillColor(sf::Color::Yellow);
     }

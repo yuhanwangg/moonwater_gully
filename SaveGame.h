@@ -9,11 +9,17 @@
 #include "Inventory.h"
 #include "Player.h"
 #include "tile.h"
+using namespace sf;
 
 class SaveGame {
  protected:
   std::fstream saveFile;
   RectangleShape* loadAsk;
+  bool loadAskVisible;
+  int x, y;
+  Text confirm[2];
+  int selection;
+  Font font;
 
  public:
   // saving game
@@ -24,8 +30,63 @@ class SaveGame {
     // }
   }
 
-  SaveGame(std::vector<tile*> background, int size, Inventory* inventory,
-           Player* player, Day* day) {
+  SaveGame(int len, int width) {
+    // writing first pop up when game is booted up
+    x = 150;
+    y = 150;
+    selection = 0;
+
+    loadAskVisible = true;
+    loadAsk = new RectangleShape(Vector2f(300, 150));
+    loadAsk->setFillColor(Color::Green);
+    loadAsk->setPosition(x, y);
+
+    // loading font
+    font.loadFromFile("textures/font_texture/TTF/dogica.ttf");
+    if (!font.loadFromFile("textures/font_texture/TTF/dogica.ttf")) {
+      std::cout << "error loading font" << std::endl;  // error testing
+    }
+
+    // creating options for text
+    confirm[0].setFont(font);
+    confirm[0].setString("load last save");
+    confirm[0].setCharacterSize(15);
+    confirm[0].setFillColor(Color::White);
+    confirm[0].setPosition(x + 15, y + 15);
+
+    confirm[1].setFont(font);
+    confirm[1].setString("start new game");
+    confirm[1].setCharacterSize(15);
+    confirm[1].setFillColor(Color::White);
+    confirm[1].setPosition(x + 15, y + 100);
+
+    confirm[selection].setFillColor(Color::Yellow);  // use to navigate
+  }
+
+  void scrollLoad() {
+    if (selection + 1 <= 2) {
+      confirm[selection].setFillColor(Color::White);
+      selection++;
+      if (selection > 1) {
+        selection = 0;
+      }
+      if (selection == 0) {
+        confirm[selection].setFillColor(Color::Yellow);
+      }
+
+      confirm[selection].setFillColor(Color::Yellow);
+    }
+  }
+
+  void drawLoad(RenderWindow* win) {
+    win->draw(*loadAsk);
+    for (int i = 0; i < 2; i++) {
+      win->draw(confirm[i]);
+    }
+  }
+
+  void save(std::vector<tile*> background, int size, Inventory* inventory,
+            Player* player, Day* day) {
     saveFile.open("save.txt", std::ios::out);
     if (!saveFile.is_open()) {
       std::cout << "File could not be opened for saving." << std::endl;
@@ -132,9 +193,16 @@ class SaveGame {
     std::cout << "LOADING WORKS" << std::endl;
   }
 
-  clearFile() {
+  void clearFile() {
     saveFile.open("save.txt", std::ofstream::out | std::ofstream::trunc);
     saveFile.close();
+    std::cout << "cleared successfully" << std::endl;
   }
+
+  // getters and setters
+  bool get_loadVisibility() { return loadAskVisible; }
+  void set_loadVisibility(bool visi) { loadAskVisible = visi; }
+  int get_select() { return selection; }
+  void set_select(int sel) { selection = sel; }
 };
 #endif

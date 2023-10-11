@@ -90,20 +90,20 @@ class BuyMenu : public Menu {
     purchase[0].setFont(font);
     purchase[0].setString("purchase item?");
     purchase[0].setCharacterSize(10);
-    purchase[0].setFillColor(Color::White);
+    purchase[0].setFillColor(Color::Black);
     purchase[0].setPosition(290, 35+300);
 
     purchase[1].setFont(font);
-    purchase[1].setString("insufficient funds!");
+    purchase[1].setString("Insufficient funds!");
     purchase[1].setCharacterSize(10);
-    purchase[1].setFillColor(Color::White);
-    purchase[1].setPosition(310, 50+300);
+    purchase[1].setFillColor(Color::Black);
+    purchase[1].setPosition(290, 50+320);
 
     purchase[2].setFont(font);
-    purchase[2].setString("purchase success!");
+    purchase[2].setString("Purchase success!");
     purchase[2].setCharacterSize(10);
-    purchase[2].setFillColor(Color::White);
-    purchase[2].setPosition(310, 50+300);
+    purchase[2].setFillColor(Color::Black);
+    purchase[2].setPosition(290, 50+320);
 
     buyBackground->setPosition(x, y);
     purchaseBox->setPosition(280, 25+300);

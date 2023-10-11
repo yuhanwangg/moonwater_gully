@@ -215,8 +215,8 @@ class Menu {
     wallet.setFont(font);
     wallet.setString("shells: " + walletNumber);  // concatenating the string
     wallet.setCharacterSize(10);
-    wallet.setFillColor(Color::White);
-    wallet.setPosition(290, 275);
+    wallet.setFillColor(Color::Black);
+    wallet.setPosition(290, 405);
     win->draw(wallet);
   }
 

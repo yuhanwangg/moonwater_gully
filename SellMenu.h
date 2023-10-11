@@ -34,10 +34,10 @@ class SellMenu : public Menu {
     failureCheck = false;
 
     // background boxes
-    sellBackground = new RectangleShape(Vector2f(length, width));
+    sellBackground = new RectangleShape(Vector2f(length, width + 100));
     sellBackground->setFillColor(Color::White);
 
-    sellBox = new RectangleShape(Vector2f(230, 100));
+    sellBox = new RectangleShape(Vector2f(230, 200));
     sellBox->setFillColor(Color::White);
 
     // loading in textures:
@@ -74,7 +74,7 @@ class SellMenu : public Menu {
     sellSelect = 0;
 
     sellCatalogue[sellSelect].setFillColor(Color::Yellow);
-    
+
     // creating purchase box list:
     sellSuccess[0].setFont(font);
     sellSuccess[0].setString("sell item?");
@@ -83,16 +83,17 @@ class SellMenu : public Menu {
     sellSuccess[0].setPosition(290, 35 + 200);
 
     sellSuccess[1].setFont(font);
-    sellSuccess[1].setString("sold!");
+    sellSuccess[1].setString("Sold!");
     sellSuccess[1].setCharacterSize(10);
-    sellSuccess[1].setFillColor(Color::White);
-    sellSuccess[1].setPosition(310, 50 + 200);
+    sellSuccess[1].setFillColor(Color::Black);
+    sellSuccess[1].setPosition(290, 50 + 260);
 
     sellSuccess[2].setFont(font);
-    sellSuccess[2].setString("you don't have any of this item to sell!");
+    sellSuccess[2].setString("You don't have any\n\n"
+    "of this item to sell!");
     sellSuccess[2].setCharacterSize(10);
-    sellSuccess[2].setFillColor(Color::White);
-    sellSuccess[2].setPosition(310, 50 + 200);
+    sellSuccess[2].setFillColor(Color::Black);
+    sellSuccess[2].setPosition(290, 50 + 260);
 
 
     sellBackground->setPosition(x, y);

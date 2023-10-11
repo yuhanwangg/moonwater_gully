@@ -9,7 +9,7 @@ using namespace sf;
 
 
 //g++ RootPlant.cpp -o rootplant -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
-class tileDriver {
+class TileDriver {
  private:
   RenderWindow* win;
   //   tile** background = new tile*[400];  // array of tile pointers
@@ -17,7 +17,7 @@ class tileDriver {
   Strawberry s = Strawberry(100, 100);
 
  public:
-  tileDriver(int size, std::string title) {
+  TileDriver(int size, std::string title) {
     win = new sf::RenderWindow(sf::VideoMode(size, size), title);
     s.set_hydrationLevel(1);
     
@@ -109,7 +109,7 @@ int main() {
   std::cout << "the Strawberry is in growthStage 2:" << s2.get_growthStage() << std::endl;
 
 
-  tileDriver driver(600, "TEST");
+  TileDriver driver(600, "TEST");
   driver.makeBackground();
   driver.run();
   return 0;

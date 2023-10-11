@@ -12,11 +12,11 @@ class Menu {
  protected:
   // rectangle shape for menu size
   RectangleShape* background;
-  RectangleShape* how_to_play_bg;
-  RectangleShape* control_bg;
-  RectangleShape* save_bg;
+  RectangleShape* howToPlayBg;
+  RectangleShape* controlBg;
+  RectangleShape* saveBg;
 
-  Texture bg_texture;
+  Texture bgTexture;
   Texture howToPlayTexture;
   Texture controlTexture;
 
@@ -32,7 +32,7 @@ class Menu {
   std::string walletNumber;
 
   int x, y;
-  int selected_option;
+  int selectedOption;
   int length, width;
   int maxOption;
   Text menu[4];
@@ -62,30 +62,30 @@ class Menu {
     background->setPosition(x - 5, y);
 
     // how to play image
-    how_to_play_bg = new RectangleShape(Vector2f(550, 500));
-    how_to_play_bg->setFillColor(Color::White);
-    how_to_play_bg->setPosition(x, 80);
+    howToPlayBg = new RectangleShape(Vector2f(550, 500));
+    howToPlayBg->setFillColor(Color::White);
+    howToPlayBg->setPosition(x, 80);
 
     // controls image
-    control_bg = new RectangleShape(Vector2f(330, 400));
-    control_bg->setFillColor(Color::White);
-    control_bg->setPosition(245, 85);
+    controlBg = new RectangleShape(Vector2f(330, 400));
+    controlBg->setFillColor(Color::White);
+    controlBg->setPosition(245, 85);
 
-    save_bg = new RectangleShape(Vector2f(length, width));
-    save_bg->setPosition(150, 150);
+    saveBg = new RectangleShape(Vector2f(length, width));
+    saveBg->setPosition(150, 150);
 
     // loading in textures:
-    bg_texture.loadFromFile("textures/main_menu.png");
+    bgTexture.loadFromFile("textures/main_menu.png");
     howToPlayTexture.loadFromFile("textures/beigeBackground.png");
     controlTexture.loadFromFile("textures/beigeBackground.png");
-    background->setTexture(&bg_texture);
-    how_to_play_bg->setTexture(&howToPlayTexture);
-    control_bg->setTexture(&controlTexture);
-    save_bg->setTexture(&bg_texture);
+    background->setTexture(&bgTexture);
+    howToPlayBg->setTexture(&howToPlayTexture);
+    controlBg->setTexture(&controlTexture);
+    saveBg->setTexture(&bgTexture);
     background->setTextureRect(IntRect(0, 0, len, wid));
-    how_to_play_bg->setTextureRect(IntRect(0, 0, 550, 500));
-    control_bg->setTextureRect(IntRect(0, 0, 330, 400));
-    save_bg->setTextureRect(IntRect(0, 0, len, wid));
+    howToPlayBg->setTextureRect(IntRect(0, 0, 550, 500));
+    controlBg->setTextureRect(IntRect(0, 0, 330, 400));
+    saveBg->setTextureRect(IntRect(0, 0, len, wid));
 
     // loading font
     font.loadFromFile("textures/font_texture/TTF/dogica.ttf");
@@ -130,8 +130,8 @@ class Menu {
     menu[3].setFillColor(Color::White);
     menu[3].setPosition(x + 15, y + 115);
 
-    selected_option = 0;
-    menu[selected_option].setFillColor(Color::Yellow);
+    selectedOption = 0;
+    menu[selectedOption].setFillColor(Color::Yellow);
   };
 
   void draw(RenderWindow* win) {
@@ -174,7 +174,7 @@ class Menu {
     howToPlayText.setCharacterSize(8);
     howToPlayText.setFillColor(Color::Black);
     howToPlayText.setPosition(40, 90);
-    win->draw(*how_to_play_bg);
+    win->draw(*howToPlayBg);
     win->draw(howToPlayText);
   }
 
@@ -203,11 +203,11 @@ class Menu {
     controlText.setCharacterSize(8);
     controlText.setFillColor(Color::Black);
     controlText.setPosition(250, 90);
-    win->draw(*control_bg);
+    win->draw(*controlBg);
     win->draw(controlText);
   }
 
-  void drawSave(RenderWindow* win) { win->draw(*save_bg); }
+  void drawSave(RenderWindow* win) { win->draw(*saveBg); }
 
   void drawWallet(RenderWindow* win, Player* player) {
     int tempNo = player->get_shells();
@@ -222,29 +222,29 @@ class Menu {
 
   virtual void moveDown() {
     // checking array
-    if (selected_option + 1 < maxOption) {
+    if (selectedOption + 1 < maxOption) {
       // changing text colour
-      menu[selected_option].setFillColor(sf::Color::White);
+      menu[selectedOption].setFillColor(sf::Color::White);
       // iterating array
-      selected_option++;
+      selectedOption++;
       // changing text colour
-      menu[selected_option].setFillColor(sf::Color::Yellow);
-    } else if (selected_option == 3) {
-      menu[selected_option].setFillColor(sf::Color::Yellow);
+      menu[selectedOption].setFillColor(sf::Color::Yellow);
+    } else if (selectedOption == 3) {
+      menu[selectedOption].setFillColor(sf::Color::Yellow);
     } else {
-      selected_option = 0;
-      menu[selected_option].setFillColor(sf::Color::Yellow);
+      selectedOption = 0;
+      menu[selectedOption].setFillColor(sf::Color::Yellow);
     }
   }
   virtual void moveUp() {
     // checking array
-    if (selected_option - 1 >= 0) {
-      menu[selected_option].setFillColor(sf::Color::White);
-      selected_option--;
+    if (selectedOption - 1 >= 0) {
+      menu[selectedOption].setFillColor(sf::Color::White);
+      selectedOption--;
       // changing text colour
-      menu[selected_option].setFillColor(sf::Color::Yellow);
+      menu[selectedOption].setFillColor(sf::Color::Yellow);
     } else {
-      selected_option = 0;
+      selectedOption = 0;
     }
   }
 
@@ -264,8 +264,8 @@ class Menu {
 
   void set_saveVisi(bool visible) { saveVisible = visible; }
   bool get_saveVisi() { return saveVisible; }
-  void setPressed(int selected) { selected_option = selected; }
-  int menuPressed() { return selected_option; }
+  void setPressed(int selected) { selectedOption = selected; }
+  int menuPressed() { return selectedOption; }
   // ~Menu();
 };
 #endif

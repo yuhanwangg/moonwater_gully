@@ -7,7 +7,7 @@ using namespace sf;
 
 
 //g++ RootPlant.cpp -o rootplant -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
-class tileDriver {
+class TileDriver {
  private:
   RenderWindow* win;
   //   tile** background = new tile*[400];  // array of tile pointers
@@ -15,7 +15,7 @@ class tileDriver {
   RootPlant rp = RootPlant(250, 250);
 
  public:
-  tileDriver(int size, std::string title) {
+  TileDriver(int size, std::string title) {
     win = new sf::RenderWindow(sf::VideoMode(size, size), title);
     rp.set_sellPrice(40);
     rp.set_harvestEquipment(2);
@@ -103,7 +103,7 @@ int main() {
   std::cout << "the rootplant is in growthStage 1:" << rp2.get_growthStage() << std::endl;
 
 
-  tileDriver driver(600, "TEST");
+  TileDriver driver(600, "TEST");
   driver.makeBackground();
   driver.run();
   return 0;

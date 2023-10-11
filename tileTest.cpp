@@ -3,14 +3,14 @@
 using namespace sf;
 #include "tile.h"
 
-class tileDriver {
+class TileDriver {
  private:
   RenderWindow* win;
   //   tile** background = new tile*[400];  // array of tile pointers
   std::vector<tile*> background;
 
  public:
-  tileDriver(int size, std::string title) {
+  TileDriver(int size, std::string title) {
     win = new sf::RenderWindow(sf::VideoMode(size, size), title);
   };
 
@@ -51,7 +51,7 @@ class tileDriver {
 };
 
 int main() {
-  tileDriver driver(600, "TEST");
+  TileDriver driver(600, "TEST");
   driver.makeBackground();
   driver.run();
   return 0;

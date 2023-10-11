@@ -22,7 +22,7 @@ using namespace sf;
 #include "SellMenu.h"
 #include "tile.h"
 
-class everythingDriver {
+class EverythingDriver {
  private:
   RenderWindow* win;
   std::vector<tile*> background;
@@ -38,7 +38,7 @@ class everythingDriver {
   bool visibleInventory = true;
 
  public:
-  everythingDriver(int size, std::string title) {
+  EverythingDriver(int size, std::string title) {
     win = new sf::RenderWindow(sf::VideoMode(size, size), title);
     player = new Player(10, 50, 50);
     visibleBuy = false;
@@ -81,47 +81,28 @@ class everythingDriver {
                   // inventory
                   if (inventory.get_blueberrySeedsCount() > 0) {
                     player->seedPlant(2, &background);
-<<<<<<< HEAD
-                    inventory.subtract_blueberrySeedsCount();
-                  } else {
-                    std::cout << "No blueberry seeds! You can buy some from "
-                                 "the shop.";
-=======
                     inventory.subtractBlueberrySeedsCount();
                     } else {
                     std::cout
                         << "No blueberry seeds! You can buy some from the shop.";
->>>>>>> main
                     std::cout << "\n";
                   }
                   break;
                 case 4:
                   if (inventory.get_strawberrySeedsCount() > 0) {
                     player->seedPlant(4, &background);
-<<<<<<< HEAD
-                    inventory.subtract_strawberrySeedsCount();
-                  } else {
-                    std::cout << "No strawberry seeds! You can buy some from "
-                                 "the shop.";
-=======
                     inventory.subtractStrawberrySeedsCount();
                     } else {
                     std::cout
                         << "No strawberry seeds! You can buy some from the shop.";
->>>>>>> main
                     std::cout << "\n";
                   }
                   break;
                 case 6:
                   if (inventory.get_potatoSeedsCount() > 0) {
                     player->seedPlant(6, &background);
-<<<<<<< HEAD
-                    inventory.subtract_potatoSeedsCount();
-                  } else {
-=======
                     inventory.subtractPotatoSeedsCount();
                     } else {
->>>>>>> main
                     std::cout
                         << "No potato seeds! You can buy some from the shop.";
                     std::cout << "\n";
@@ -130,13 +111,8 @@ class everythingDriver {
                 case 8:
                   if (inventory.get_carrotSeedsCount() > 0) {
                     player->seedPlant(8, &background);
-<<<<<<< HEAD
-                    inventory.subtract_carrotSeedsCount();
-                  } else {
-=======
                     inventory.subtractCarrotSeedsCount();
                     } else {
->>>>>>> main
                     std::cout
                         << "No carrot seeds! You can buy some from the shop.";
                     std::cout << "\n";
@@ -383,14 +359,8 @@ class everythingDriver {
               (buymenu.get_buyOn() == false) &&
               (menu.get_visibility() == false)) {
             // opening the rectangles of the options
-<<<<<<< HEAD
-
-            int item_no_sell = sellmenu.get_sellSelect();
-            switch (item_no_sell) {
-=======
             int itemNoSell = sellmenu.get_sellSelect();
             switch (itemNoSell) {
->>>>>>> main
               case 0:
                 if (sellmenu.purchaseStatus(&inventory, 0) == true) {
                   sellmenu.set_successCheck(true);
@@ -600,7 +570,7 @@ class everythingDriver {
 };
 
 int main() {
-  everythingDriver driver(600, "TEST");
+  EverythingDriver driver(600, "TEST");
   driver.makeBackground();
   driver.run();
   return 0;

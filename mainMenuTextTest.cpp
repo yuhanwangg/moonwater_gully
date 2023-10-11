@@ -22,7 +22,7 @@ using namespace sf;
 #include "SellMenu.h"
 #include "tile.h"
 
-class everythingDriver {
+class EverythingDriver {
  private:
   RenderWindow* win;
   std::vector<tile*> background;
@@ -38,7 +38,7 @@ class everythingDriver {
   bool visibleInventory = true;
 
  public:
-  everythingDriver(int size, std::string title) {
+  EverythingDriver(int size, std::string title) {
     win = new sf::RenderWindow(sf::VideoMode(size, size), title);
     player = new Player(10, 50, 50);
     visibleBuy = false;
@@ -536,7 +536,7 @@ class everythingDriver {
 };
 
 int main() {
-  everythingDriver driver(600, "TEST");
+  EverythingDriver driver(600, "TEST");
   driver.makeBackground();
   driver.run();
   return 0;

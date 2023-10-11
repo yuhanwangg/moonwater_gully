@@ -36,7 +36,6 @@ int main() {
       background.push_back(newTile);
     }
   }
-  SaveGame save = SaveGame(background, &inventory, player, &day);
-
-  save.open_saveFile();
+  int size = background.size();
+  SaveGame save = SaveGame(background, size, &inventory, player, &day);
 }

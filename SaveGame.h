@@ -11,29 +11,20 @@
 #include "tile.h"
 
 class SaveGame {
- private:
-  int flag;
-  std::map<std::string, int> token;
-  std::string tileName;
+ protected:
   std::fstream saveFile;
 
  public:
   // saving game
   SaveGame() {
-    saveFile.open("save.txt", std::ios::out);
-    if (!saveFile.is_open()) {
-      std::cout << "File could not be opened for saving." << std::endl;
-    }
+    // saveFile.open("save.txt", std::ios::out);
+    // if (!saveFile.is_open()) {
+    //   std::cout << "File could not be opened for saving." << std::endl;
+    // }
   }
 
-  // ~SaveGame() {
-  //   if (saveFile.is_open()) {
-  //     saveFile.close();
-  //   }
-  // }
-
-  SaveGame(std::vector<tile*> background, Inventory* inventory, Player* player,
-           Day* day) {
+  SaveGame(std::vector<tile*> background, int size, Inventory* inventory,
+           Player* player, Day* day) {
     saveFile.open("save.txt", std::ios::out);
     if (!saveFile.is_open()) {
       std::cout << "File could not be opened for saving." << std::endl;
@@ -41,17 +32,19 @@ class SaveGame {
     }
 
     // save a vector of tiles
-    for (int i = 0; i < 144; i++) {
-      saveFile << background[i]->get_className() << ",";
+    for (int i = 0; i < size; i++) {
+      saveFile << background[i]->get_className()
+               << ",";  // comma used as a deliminator when using get_line()
       saveFile << background[i]->get_growthStage() << ",";
       saveFile << background[i]->get_hydrationLevel() << ",";
-      std::cout << "newTile";
+      saveFile << "newTile";  // in file when reading through to load, check if
+                              // newTile then get next tile to load info
     }
 
-    std::cout << "inventory";
-
+    saveFile << "\n";
+    saveFile << "inventory: ";  // in file， check when u see "inventory"
     // save inventory count of each item
-    for (int i = 0; inventory->get_inventorySize(); i++) {
+    for (int i = 0; i < inventory->get_inventorySize(); i++) {
       saveFile << inventory->get_inventory()[i] << ",";
     }
     std::cout << "shellNumber";
@@ -74,6 +67,12 @@ class SaveGame {
   void loadGame() {}
 
   // getter and setter
-  void open_saveFile() { saveFile.open(); }
+  // void open_saveFile() { saveFile.open(); }
+
+  // ~SaveGame() {
+  //   if (saveFile.is_open()) {
+  //     saveFile.close();
+  //   }
+  // }
 };
 #endif

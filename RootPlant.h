@@ -26,12 +26,14 @@ class RootPlant: public Plant {
 
         RootPlant(): RootPlant(0,0){}; 
 
-        // harvest yield is random value between 1-3
         int harvestYield () {
-            srand(time(NULL)); // This code needs to only be put in once, in the main file 
+            // harvest yield will return a random yield value between 1-3 (inclusive)
+            srand(time(NULL));
             yield = (rand() %3 ) +1;
             return yield;
         }
+
+        ~RootPlant(){};
 };
 
 #endif

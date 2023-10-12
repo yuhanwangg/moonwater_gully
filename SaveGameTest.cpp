@@ -10,7 +10,6 @@ using namespace sf;
 #include "Day.h"
 #include "Menu.h"
 #include "Player.h"
-#include "PlayerInteraction.h"
 #include "Potato.h"
 #include "Strawberry.h"
 #include "tile.h"

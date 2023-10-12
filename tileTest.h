@@ -10,7 +10,7 @@ class tile {
   int size;
   RectangleShape* square;
   Texture grass;
-  // texture placeholder
+
  public:
   tile(int _x, int _y) {
     x = _x;
@@ -25,8 +25,24 @@ class tile {
     }
     square->setPosition(x, y);
   };
-  void set_x(int _x) { x = _x; };
-  void set_y(int _y) { y = _y; };
+
+  tile() : tile(0, 0) { size = 50; };
+
+  void draw(RenderWindow* win) { 
+    // Draws a tile in the window when given a RenderWindow pointer
+    win->draw(*square);
+    return;
+  };
+
+  // Setters
+  void set_x(int _x) { 
+    x = _x;
+    return;
+  };
+  void set_y(int _y) {
+    y = _y;
+    return;
+  };
 
   void set_texture(std::string TextureName) {
     Texture texture;
@@ -36,13 +52,19 @@ class tile {
     if (!texture.loadFromFile(TextureName)) {
       std::cout << "error loading texture" << std::endl;
     };
+    return;
   }
 
-  // setter for colour/texture
+  // Getters
 
-  tile() : tile(0, 0) { size = 50; };
+  int get_x() {
+    return x;
+  }
 
-  void draw(RenderWindow* win) { win->draw(*square); };
+  int get_y() {
+    return y;
+  }
+
 
   ~tile();
 };

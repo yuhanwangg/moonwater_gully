@@ -7,11 +7,9 @@
 using namespace sf;
 
 
-//g++ RootPlant.cpp -o rootplant -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
 class TileDriver {
  private:
   RenderWindow* win;
-  //   tile** background = new tile*[400];  // array of tile pointers
   std::vector<tile*> background;
   Potato p = Potato(350, 350);
 
@@ -25,15 +23,18 @@ class TileDriver {
   };
 
   void makeBackground() {
+    // Creates game background
     for (int r = 0; r < 600; r += 50) {
       for (int c = 0; c < 600; c += 50) {
         tile* newTile = new tile(r, c);  // Pass coordinates to tile constructor
         background.push_back(newTile);
       }
     }
+    return;
   };
 
   void run() {
+    // Runs game
     while (win->isOpen()) {
       Event e;
       while (win->pollEvent(e)) {
@@ -51,12 +52,14 @@ class TileDriver {
 
       win->display();
     }
+    return;
   };
-  //   ~tileDriver();
+  
 
-  // setters and getters
-
+  // getter
   std::vector<tile*> get_background() { return background; }
+
+  ~TileDriver();
 };
 
 int main() {
@@ -69,15 +72,12 @@ int main() {
 
   std::cout << "The potato plant has harvest yield of (number 1-3):" << p1.get_yield() << std::endl;
 
-  // p1.killPlant();
-
   std::cout << "The potato plant has hydration level 0:" << p1.get_hydrationLevel() << ", and is alive (should be 1):" << p1.get_alive() << std::endl; 
 
   p1.set_hydrationLevel(1);
   std::cout << "The potato plant has hydration level 1:" << p1.get_hydrationLevel() << ", and is alive (should be 1):" << p1.get_alive() << std::endl;
 
 
-  // don't know how to change it so it updates everytime it runs to show first blueberry picture then new grow picture?
   p1.grow();
   p1.newDayGrowth();
 

@@ -28,11 +28,10 @@ class Strawberry: public BerryPlant {
 
         Strawberry(): BerryPlant(0,0){}; 
         
-        // changes growth image and plant values if growth criteria has been met
+        
         void grow() {
+            // changes growth image if growth criteria has been met
             if (hydrationLevel == 0 && alive && growthStage <= growTime) {
-                // hydrationLevel = 0;
-                // growthStage++;
                 int size = 50;
                 square = new RectangleShape(Vector2f(size, size));
                 // sets new image for each growth stage
@@ -59,8 +58,10 @@ class Strawberry: public BerryPlant {
                 square->setPosition(x, y);
                 
             };
+            return;
 
         };
+        ~Strawberry(){};
 };
 
 #endif

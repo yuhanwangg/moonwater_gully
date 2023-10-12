@@ -142,6 +142,7 @@ class Inventory {
       }
       inventoryName[inventoryIndex].setFillColor(Color::Green);
     }
+    return;
   }
 
   void drawInventory(RenderWindow* win) {
@@ -149,6 +150,7 @@ class Inventory {
       itemPtr->drawInventoryItems(win);
     }
     win->draw(*selection);
+    return;
   }
 
   void drawCounter(RenderWindow* win) {
@@ -163,16 +165,26 @@ class Inventory {
 
       win->draw(itemText[i]);
     }
+    return;
   }
 
   // getters and setters
   std::vector<int> get_inventory() { return inventory; }
-  void set_inventory(std::vector<int> invent) { inventory = invent; }
+  void set_inventory(std::vector<int> invent) { 
+    inventory = invent;
+    return;
+  }
   int get_inventorySize() { return inventorySize; }
   int get_inventoryIndex() { return inventoryIndex; }
-  void set_inventoryIndex(int ind) { inventoryIndex = ind; }
+  void set_inventoryIndex(int ind) { 
+    inventoryIndex = ind;
+    return;
+  }
 
-  void set_visibility(bool visible) { this->visible = visible; }
+  void set_visibility(bool visible) { 
+    this->visible = visible;
+    return;
+  }
   bool get_visibility() { return visible; }
 
   int get_shovelCount() { return inventory[0]; }
@@ -187,41 +199,139 @@ class Inventory {
   int get_carrotCount() { return inventory[9]; }
   int get_fromPos(int plantPos) { return inventory[plantPos]; }
 
-  void set_shovelCount(int shovel) { inventory[0] = shovel; }
-  void set_gloveCount(int glove) { inventory[1] = glove; }
-  void set_blueberrySeedsCount(int blue_seeds) { inventory[2] = blue_seeds; }
-  void set_blueberryCount(int blue) { inventory[3] = blue; }
-  void set_strawberrySeedsCount(int straw_seeds) { inventory[4] = straw_seeds; }
-  void set_strawberryCount(int straw) { inventory[5] = straw; }
-  void set_potatoSeedsCount(int potato_seed) { inventory[6] = potato_seed; }
-  void set_potatoCount(int potato) { inventory[7] = potato; }
-  void set_carrotSeedsCount(int carrot_seed) { inventory[8] = carrot_seed; }
-  void set_carrotCount(int carrot) { inventory[9] = carrot; }
-  void set_fromPos(int plantPos, int amount) { inventory[plantPos] = amount; }
+  void set_shovelCount(int shovel) { 
+    inventory[0] = shovel;
+    return;
+  }
+  void set_gloveCount(int glove) { 
+    inventory[1] = glove;
+    return;
+  }
+  void set_blueberrySeedsCount(int blue_seeds) { 
+    inventory[2] = blue_seeds;
+    return;
+  }
+  void set_blueberryCount(int blue) { 
+    inventory[3] = blue;
+    return;
+  }
+  void set_strawberrySeedsCount(int straw_seeds) { 
+    inventory[4] = straw_seeds;
+    return;
+  }
+  void set_strawberryCount(int straw) { 
+    inventory[5] = straw;
+    return;
+  }
+  void set_potatoSeedsCount(int potato_seed) { 
+    inventory[6] = potato_seed;
+    return;
+  }
+  void set_potatoCount(int potato) { 
+    inventory[7] = potato;
+    return;
+  }
+  void set_carrotSeedsCount(int carrot_seed) { 
+    inventory[8] = carrot_seed;
+    return;
+  }
+  void set_carrotCount(int carrot) { 
+    inventory[9] = carrot;
+    return;
+  }
+  void set_fromPos(int plantPos, int amount) { 
+    inventory[plantPos] = amount;
+    return;
+  }
 
-  void addShovelCount() { inventory[0] += 1; }
-  void addGloveCount() { inventory[1] += 1; }
-  void addBlueberrySeedsCount() { inventory[2] += 1; }
-  void addBlueberryCount() { inventory[3] += 1; }
-  void addStrawberrySeedsCount() { inventory[4] += 1; }
-  void addstrawberryCount() { inventory[5] += 1; }
-  void addPotatoSeedsCount() { inventory[6] += 1; }
-  void addPotatoCount() { inventory[7] += 1; }
-  void addCarrotSeedsCount() { inventory[8] += 1; }
-  void addCarrotCount() { inventory[9] += 1; }
+  void addShovelCount() { 
+    inventory[0] += 1;
+    return;
+  }
+  void addGloveCount() { 
+    inventory[1] += 1;
+    return;
+  }
+  void addBlueberrySeedsCount() { 
+    inventory[2] += 1;
+    return;
+  }
+  void addBlueberryCount() { 
+    inventory[3] += 1;
+    return;
+  }
+  void addStrawberrySeedsCount() { 
+    inventory[4] += 1;
+    return;
+  }
+  void addstrawberryCount() { 
+    inventory[5] += 1;
+    return; 
+  }
+  void addPotatoSeedsCount() { 
+    inventory[6] += 1;
+    return; 
+  }
+  void addPotatoCount() { 
+    inventory[7] += 1;
+    return;
+  }
+  void addCarrotSeedsCount() { 
+    inventory[8] += 1;
+    return;
+  }
+  void addCarrotCount() { 
+    inventory[9] += 1;
+    return;
+  }
 
-  void subtractShovelCount() { inventory[0] -= 1; }
-  void subtractGloveCount() { inventory[1] -= 1; }
-  void subtractBlueberrySeedsCount() { inventory[2] -= 1; }
-  void subtractBlueberryCount() { inventory[3] -= 1; }
-  void subtractStrawberrySeedsCount() { inventory[4] -= 1; }
-  void subtractStrawberryCount() { inventory[5] -= 1; }
-  void subtractPotatoSeedsCount() { inventory[6] -= 1; }
-  void subtractPotatoCount() { inventory[7] -= 1; }
-  void subtractCarrotSeedsCount() { inventory[8] -= 1; }
-  void subtractCarrotCount() { inventory[9] -= 1; }
+  void subtractShovelCount() { 
+    inventory[0] -= 1;
+    return;
+  }
+  void subtractGloveCount() { 
+    inventory[1] -= 1;
+    return;
+  }
+  void subtractBlueberrySeedsCount() { 
+    inventory[2] -= 1;
+    return;
+  }
+  void subtractBlueberryCount() { 
+    inventory[3] -= 1;
+    return;
+  }
+  void subtractStrawberrySeedsCount() { 
+    inventory[4] -= 1;
+    return;
+  }
+  void subtractStrawberryCount() { 
+    inventory[5] -= 1;
+    return;
+  }
+  void subtractPotatoSeedsCount() { 
+    inventory[6] -= 1;
+    return;
+  }
+  void subtractPotatoCount() { 
+    inventory[7] -= 1;
+    return;
+  }
+  void subtractCarrotSeedsCount() { 
+    inventory[8] -= 1;
+    return;
+  }
+  void subtractCarrotCount() { 
+    inventory[9] -= 1;
+    return;
+  }
 
-  //   ~Inventory() { delete[] inventory; }
+  ~Inventory() { 
+    for (InventoryItems* item : hotBar) {
+        delete item;
+    }
+    delete selection;
+  }
 };
 
 #endif

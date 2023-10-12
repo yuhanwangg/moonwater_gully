@@ -8,11 +8,9 @@ using namespace sf;
 
 
 
-//g++ RootPlant.cpp -o rootplant -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
 class TileDriver {
  private:
   RenderWindow* win;
-  //   tile** background = new tile*[400];  // array of tile pointers
   std::vector<tile*> background;
   Strawberry s = Strawberry(100, 100);
 
@@ -28,15 +26,18 @@ class TileDriver {
   };
 
   void makeBackground() {
+    // Creates game background
     for (int r = 0; r < 600; r += 50) {
       for (int c = 0; c < 600; c += 50) {
         tile* newTile = new tile(r, c);  // Pass coordinates to tile constructor
         background.push_back(newTile);
       }
     }
+    return;
   };
 
   void run() {
+    // Runs game
     while (win->isOpen()) {
       Event e;
       while (win->pollEvent(e)) {
@@ -54,12 +55,14 @@ class TileDriver {
 
       win->display();
     }
+    return;
   };
-  //   ~tileDriver();
+ 
 
-  // setters and getters
+  //getter
 
   std::vector<tile*> get_background() { return background; }
+  ~TileDriver();
 };
 
 int main() {
@@ -71,8 +74,6 @@ int main() {
   s1.harvestYield();
 
   std::cout << "The Strawberry plant has harvest yield of (number 3-6):" << s1.get_yield() << std::endl;
-
-  // s1.killPlant();
 
   std::cout << "The Strawberry plant has hydration level 0:" << s1.get_hydrationLevel() << ", and is alive (should be 1):" << s1.get_alive() << std::endl; 
 

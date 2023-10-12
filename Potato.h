@@ -28,11 +28,11 @@ class Potato: public RootPlant {
 
         Potato(): RootPlant(0,0){}; 
 
-        // changes growth image and plant values if growth criteria has been met
+        
         void grow() {
+            // Changes growth image if growth criteria has been met
+
             if (hydrationLevel == 0 && alive && growthStage <= growTime) {
-                // hydrationLevel = 0;
-                // growthStage++;
                 int size = 50;
                 square = new RectangleShape(Vector2f(size, size));
                 // sets image to new growth image
@@ -40,7 +40,7 @@ class Potato: public RootPlant {
                     case 1: 
                         imageDescription = "textures/potatoGrown.png";
                         break;
-                    default: // checks to see if program broke by planting cheese
+                    default: // testing to see if it breaks by planting cheese
                         imageDescription = "textures/cheese.png";
                         break;
                 }
@@ -54,8 +54,11 @@ class Potato: public RootPlant {
                 square->setPosition(x, y);
                 
             };
+            return;
 
         };
+
+        ~Potato(){};
 
 };
 

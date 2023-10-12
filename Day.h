@@ -53,7 +53,6 @@ class Day {
             dayTexture.loadFromFile("textures/clock_bg.png");
             dayClockBg->setTexture(&dayTexture);
 
-            // try re-sizing the image, then setting it to 0,0,160,50)
             dayClockBg->setTextureRect(IntRect(0, 0, 165, 50));
 
 
@@ -87,13 +86,15 @@ class Day {
             currentDayValue.setCharacterSize(10);
             currentDayValue.setFillColor(Color::Black);
             currentDayValue.setPosition(x + 65, y + 25);
-
-
         };
 
         
         void dayCountdown(std::vector<tile*>* background){
-            //check if 3 mins has passed
+            // dayCountdown will countdown and change the displayed time every second 
+            // and changes the displayed day and plant growth once 3 minutes (a full day) has passed.
+            // It akes in a vector pointer containing tile pointers and returns nothing but changes object parameters.
+
+            //Check if 3 mins has passed
             if (timeInSec > 0) {
                 //updating time to countdown every second
                 if ((time(NULL) - oneSecond) == 1) {
@@ -130,7 +131,8 @@ class Day {
         };
 
         void drawDayDracker(RenderWindow* win){
-            //std::cout<< "timeInSec: " << timeInSec << " , timeInSecString: " <<timeInSecString << ", dayCount: " << dayCount << ", dayCountString: " << dayCountString <<std::endl;
+            // drawDayDracker will draw the window of the countdown timer in the window.
+            //  It takes in a RenderWindow pointer to the background.
             timeLeftWord.setFont(font);
             timeLeftWord.setString("Time left: ");
             timeLeftWord.setCharacterSize(10);
@@ -167,6 +169,8 @@ class Day {
         };
 
         void daySkip(std::vector<tile*>* background) {
+            // daySkip will start a new day, changing the day values and plant object parameters to reflect a new day.
+            // It takes in a vector pointer of tile pointers and will return nothing.
             timeInSec = 180;
             newDayTime = time(NULL);
             oneSecond = time(NULL);
@@ -189,45 +193,34 @@ class Day {
                 
             }
             std::cout << "day has been skipped" << std::endl;
-
-            // newDayTime = time(NULL);
-            // oneSecond = time(NULL);
-            // dayCount++;
-            // dayCountString = std::to_string(dayCount);
-
             return;
         }
-
-        // void drawDayTime(){
-
-        // };
-
 
         //the getters and setters
         int get_dayCount() {return dayCount;};
         void set_dayCount(int dayCount) {
             this->dayCount = dayCount;
             return;
-            };
+        };
 
 
         time_t get_gameStartTime() {return gameStartTime;};
         void set_gameStartTime(time_t gameStartTime) {
             this->gameStartTime = gameStartTime;
             return;
-            };
+        };
         
         time_t get_newDayTime() {return newDayTime;};
         void set_newDayTime(time_t newDayTime) {
             this->newDayTime = newDayTime;
             return;
-            };
+        };
 
         time_t get_oneSecond() {return oneSecond;};
         void set_oneSecond(time_t oneSecond) {
             this->oneSecond = oneSecond;
             return;
-            };    
+        };    
 
         std::string get_dayCountString() {return dayCountString;};
         void set_dayCountString(std::string dayCountString) {
@@ -304,7 +297,7 @@ class Day {
         void set_visibility(bool visible) { this->visible = visible; }
         bool get_visibility() { return visible; }
 
-
+        ~Day(){};
 };
 
 #endif

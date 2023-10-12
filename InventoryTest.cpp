@@ -27,15 +27,18 @@ class InventoryDriver {
   };
 
   void makeBackground() {
+    // Creates game background 
     for (int r = 0; r < 600; r += 50) {
       for (int c = 0; c < 600; c += 50) {
         tile* newTile = new tile(r, c);  // Pass coordinates to tile constructor
         background.push_back(newTile);
       }
     }
+    return;
   };
 
   void run() {
+    // runs the game
     while (win->isOpen()) {
       Event e;
       while (win->pollEvent(e)) {
@@ -305,11 +308,14 @@ class InventoryDriver {
 
       win->display();
     }
+    return;
   };
 
-  // setters and getters
-
+  // getter
   std::vector<tile*> get_background() { return background; }
+
+  ~InventoryDriver(){};
+
 };
 
 int main() {

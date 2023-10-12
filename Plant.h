@@ -6,19 +6,14 @@
 #include "tile.h"
 using namespace sf;
 
-// when making each subclass like blueberries thats when in the constructor you
-// initialise the protected values
 class Plant : public tile {
  protected:
   int growTime;
   int seedingTime;  // how many days ago it was seeded
   int costPrice;
   int sellPrice;
-  // int hydrationLevel;  // value 1 is watered, value 0 needs to be watered, -1
-                       // means its now dead
   bool alive;
-  int growthStage;  // associated with time after planting, needs to be rounded
-                    // to days to be correlated with growTime
+  int growthStage;  // associated with time after planting
   int yield;
   int harvestEquipment;
   Texture growthImage;
@@ -37,13 +32,12 @@ class Plant : public tile {
       std::cout << "error loading texture" << std::endl;
     }
     square->setPosition(_x, _y);
-    // tile::set_texture(imageDescription);
+
     // necessary values
     growthStage = 0;
     alive = true;
     hydrationLevel = 0;
     seedingTime = 0;
-    // this->imageDescription = imageDescription;
 
     // arbitrary placeholder values (initialise everything to 0)
     growTime = 0;
@@ -55,12 +49,13 @@ class Plant : public tile {
 
   Plant() : Plant(0, 0){};
 
-  // for testing no pure virtual functions allowed
-  // may need to be changed into just a virtual function in the tile class
+  // Harvest yield will produce a different harvest yeild 
+  // for each sub category of plant. Plants by themselves do not have harvest yeild.
   virtual int harvestYield() = 0;
 
-  // plant growth for each new day
+  
   void newDayGrowth() {
+    // Plant growth will change the plant values for each new day, returns nothing.
     if (hydrationLevel == 0) {
       alive = false;
     }
@@ -68,132 +63,50 @@ class Plant : public tile {
     if (growthStage < growTime && alive == true) {
       growthStage++;
     }
-    //hydration level may conflict and be taken away twice with the grow() function
     hydrationLevel--;
     seedingTime++;
     return;
   };
 
-  // void killPlant(tile *backgroundTilePtr) {
-  //   if (backgroundTilePtr->get_hydrationLevel() < 0) {
-  //     //create normal grass tile with original positions of old tile
-  //     tile* farmland = new tile(backgroundTilePtr->get_x(), backgroundTilePtr->get_y());
-  //     delete *backgroundTilePtr;
-  //     backgroundTilePtr = farmland;
-
-      
-  //   }
-
-  //   if (backgroundTiilePtr->gehydrationLevel < 0) {
-      
-      
-  //     tile* farmland = new tile(backgroundTile->get_x(), backgroundTile->get_y());
-      
-  //     backgroundTile = farmland;
-
-  //   }
-  //   // for (int i = 0; i < 144; i++) {
-  //   //     tile* currentTile = (*backgroundTiles)[i];  // Access the current tile
-  //   //                                                 // pointer in the vector
-
-  //   //     // determine which tile the player is on
-  //   //     if (currentTile->get_hydrationLevel() < 0) {
-  //   //         delete currentTile;
-  //   //         tile* farmland = new tile(currentTile->get_x(), currentTile->get_y());
-  //   //         (*backgroundTiles)[i] = farmland;
-  //   //     }
-  //   // }
-  // };
-
-  // void killPlant(std::vector<tile*>* backgroundTiles) {
-  //   for (int i = 0; i < 144; i++) {
-  //     tile* currentTile = (*backgroundTiles)[i];  // Access the current tile
-  //                                                 // pointer in the vector
-
-  //     // determine which tile the player is on
-  //     if (currentTile->get_hydrationLevel() < 0) {
-  //       delete currentTile;
-  //       currentTile->
-  //       Tile* farmland = new Tile(currentTile->get_x, currentTile->get_y)
-  //       (*backgroundTiles)[i] = farmland;
-  //     }
-  //   }
-  // };
-
-  // void killPlant() {
-  //   if (hydrationLevel < 0) {
-  //     alive = false;
-  //   }
-  //   return;
-  // };
-
-  // checks plant meets criteria and makes it grow
-  // virtual void grow() {
-  //   if (hydrationLevel == 1 && alive && growthStage < growTime) {
-  //     hydrationLevel = 0;
-  //     growthStage++;
-  //   //   int size = 50;
-  //   //   square = new RectangleShape(Vector2f(size, size));
-  //   //   growthImage.loadFromFile(imageDescription);
-  //   //   square->setTexture(&growthImage);
-  //   //   square->setTextureRect(IntRect(0, 0, size, size));
-  //   //   if (!growthImage.loadFromFile(imageDescription)) {
-  //   //     std::cout << "error loading texture" << std::endl;
-  //   //   }
-  //   //   square->setPosition(x, y);
-  //   //   this->imageDescription = imageDescription;
-  //   }
-  //   return;
-  // }
-
-  // The setters
+// The setters
   void set_growTime(int growTime) {
     this->growTime = growTime;
-    return;
+    return; 
   };
-  void set_seedingTime(int seedingTime) {
+  void set_seedingTime(int seedingTime) { 
     this->seedingTime = seedingTime;
-    return;
+    return;  
   };
-  void set_costPrice(int costPrice) {
+  void set_costPrice(int costPrice) { 
     this->costPrice = costPrice;
-    return;
+    return;  
   };
-  void set_sellPrice(int sellPrice) {
+  void set_sellPrice(int sellPrice) { 
     this->sellPrice = sellPrice;
-    return;
+    return; 
   };
-  // void set_hydrationLevel(int hydrationLevel) {
-  //   this->hydrationLevel = hydrationLevel;
-  //   return;
-  // };
-  void set_alive(bool alive) {
+  void set_alive(bool alive) { 
     this->alive = alive;
-    return;
+    return; 
   };
-  void set_growthStage(int growthStage) {
+  void set_growthStage(int growthStage) { 
     this->growthStage = growthStage;
-    return;
+    return; 
   };
-  void set_yield(int yield) {
+  void set_yield(int yield) { 
     this->yield = yield;
-    return;
+    return; 
   };
-  void set_harvestEquipment(int harvestEquipment) {
+  void set_harvestEquipment(int harvestEquipment) { 
     this->harvestEquipment = harvestEquipment;
-    return;
+    return; 
   };
-  // void set_imageDescription(std::string imageDescription) {
-  //   this->imageDescription = imageDescription;
-  //   return;
-  // };
 
   // The getters
   int get_growTime() { return growTime; };
   int get_seedingTime() { return seedingTime; };
   int get_costPrice() { return costPrice; };
   int get_sellPrice() { return sellPrice; };
-  // int get_hydrationLevel() { return hydrationLevel; };
   bool get_alive() { return alive; };
   int get_growthStage() { return growthStage; };
   int get_yield() { return yield; };

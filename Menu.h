@@ -66,7 +66,7 @@ class Menu {
     saveFailVisible = false;
     saveSuccessVisible = false;
 
-    // creating background — maybe change into another function
+    // creating background 
     background = new RectangleShape(Vector2f(360, 150));
     background->setPosition(x - 5, y);
 
@@ -173,14 +173,17 @@ class Menu {
   };
 
   void draw(RenderWindow* win) {
+    // Draws the menu in the window after taking in a RenderWindow pointer
     win->draw(*background);
     win->draw(title);
     for (int i = 0; i < maxOption; i++) {
       win->draw(menu[i]);
     }
+    return;
   };
 
   void drawHtp(RenderWindow* win) {
+    // Draws the how to play menu in the window after taking in a RenderWindow pointer
     howToPlayText.setFont(font);
     howToPlayText.setString(
         "How To Play: \n\n\n"
@@ -214,9 +217,12 @@ class Menu {
     howToPlayText.setPosition(40, 90);
     win->draw(*howToPlayBg);
     win->draw(howToPlayText);
+
+    return;
   }
 
   void drawControl(RenderWindow* win) {
+    // Draws the control menu in the window after taking in a RenderWindow pointer
     controlText.setFont(font);
     controlText.setString(
         "Controls: Press special keys to activate\n\n\n\n\n"
@@ -243,19 +249,31 @@ class Menu {
     controlText.setPosition(250, 90);
     win->draw(*controlBg);
     win->draw(controlText);
+    return;
   }
 
   void drawSave(RenderWindow* win) {
+    // Draws the save menu in the window after taking in a RenderWindow pointer
     win->draw(*saveBg);
     for (int i = 0; i < 2; i++) {
       win->draw(saveText[i]);
     }
+    return;
   }
 
-  void drawSuccess(RenderWindow* win) { win->draw(saveSuccess[0]); }
-  void drawFail(RenderWindow* win) { win->draw(saveSuccess[1]); }
+  void drawSuccess(RenderWindow* win) { 
+    // Draws the save success message after taking in a RenderWindow pointer
+    win->draw(saveSuccess[0]); 
+    return;
+  }
+  void drawFail(RenderWindow* win) {
+    // Draws the save fail message after taking in a RenderWindow pointer
+    win->draw(saveSuccess[1]);
+    return;
+  }
 
   void drawWallet(RenderWindow* win, Player* player) {
+    // Draws the wallet shell count after taking in a RenderWindow pointer and a player pointer
     int tempNo = player->get_shells();
     walletNumber = std::to_string(tempNo);  // converting int to string
     wallet.setFont(font);
@@ -264,9 +282,12 @@ class Menu {
     wallet.setFillColor(Color::Black);
     wallet.setPosition(290, 405);
     win->draw(wallet);
+    return;
   }
 
   virtual void moveDown() {
+    // Moves selected option down if there is a below option, returns nothing
+
     // checking array
     if (selectedOption + 1 < maxOption) {
       // changing text colour
@@ -281,8 +302,11 @@ class Menu {
       selectedOption = 0;
       menu[selectedOption].setFillColor(sf::Color::Yellow);
     }
+    return;
   }
   virtual void moveUp() {
+    // Moves selected option up if there is a above option, returns nothing
+
     // checking array
     if (selectedOption - 1 >= 0) {
       menu[selectedOption].setFillColor(sf::Color::White);
@@ -292,9 +316,11 @@ class Menu {
     } else {
       selectedOption = 0;
     }
+    return;
   }
 
   void scrollSave() {
+    // Moves option up and down, returns nothing.
     if (saveSelect + 1 <= 2) {
       saveText[saveSelect].setFillColor(Color::Black);
       saveSelect++;
@@ -306,34 +332,65 @@ class Menu {
       }
       saveText[saveSelect].setFillColor(Color::Green);
     }
+    return;
   }
 
   // changing visibility
 
+  //Getters and setters
+  void set_walletVisibility(bool visible) { 
+    walletVisibility = visible;
+    return;
+  }
   bool get_walletVisibility() { return walletVisibility; }
-  void set_walletVisibility(bool visible) { walletVisibility = visible; }
 
-  void set_visibility(bool visible) { turnOn = visible; }
+  void set_visibility(bool visible) { 
+    turnOn = visible;
+    return;
+  }
   bool get_visibility() { return turnOn; }
 
-  void set_htpVisi(bool visible) { howToPlayVisible = visible; }
+  void set_htpVisi(bool visible) { 
+    howToPlayVisible = visible;
+    return; 
+  }
   bool get_htpVisi() { return howToPlayVisible; }
 
-  void set_controlVisi(bool visible) { controlVisible = visible; }
+  void set_controlVisi(bool visible) { 
+    controlVisible = visible;
+    return;
+  }
   bool get_controlVisi() { return controlVisible; }
 
-  void set_saveVisi(bool visible) { saveVisible = visible; }
+  void set_saveVisi(bool visible) { 
+    saveVisible = visible;
+    return;
+  }
   bool get_saveVisi() { return saveVisible; }
-  void setPressed(int selected) { selectedOption = selected; }
+
+  void setPressed(int selected) { 
+    selectedOption = selected;
+    return;
+  }
   int menuPressed() { return selectedOption; }
 
-  void set_saveSuccess(bool visi) { saveSuccessVisible = visi; }
-  void set_saveFail(bool visi) { saveFailVisible = visi; }
+  void set_saveSuccess(bool visi) { 
+    saveSuccessVisible = visi;
+    return;
+  }
+  void set_saveFail(bool visi) { 
+    saveFailVisible = visi;
+    return;
+  }
   bool get_saveSuccess() { return saveSuccessVisible; }
   bool get_saveFail() { return saveFailVisible; }
 
   int get_saveSelect() { return saveSelect; }
-  void set_saveSelect(int sel) { saveSelect = sel; }
-  // ~Menu();
+  void set_saveSelect(int sel) { 
+    saveSelect = sel;
+    return;
+  }
+  
+  ~Menu(){};
 };
 #endif

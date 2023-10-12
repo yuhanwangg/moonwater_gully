@@ -6,12 +6,9 @@
 #include "tile.h"
 using namespace sf;
 
-// g++ Plant.cpp -o plant -I include -L lib -l sfml-system -l sfml-window -l
-// sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
 class TileDriver {
  private:
   RenderWindow* win;
-  //   tile** background = new tile*[400];  // array of tile pointers
   std::vector<tile*> background;
   Plant p = Plant(50, 50);
 
@@ -28,15 +25,18 @@ class TileDriver {
   };
 
   void makeBackground() {
+    // Creates game background 
     for (int r = 0; r < 600; r += 50) {
       for (int c = 0; c < 600; c += 50) {
         tile* newTile = new tile(r, c);  // Pass coordinates to tile constructor
         background.push_back(newTile);
       }
     }
+    return;
   };
 
   void run() {
+    // Runs game
     while (win->isOpen()) {
       Event e;
       while (win->pollEvent(e)) {
@@ -54,12 +54,14 @@ class TileDriver {
 
       win->display();
     }
+    return;
   };
-  //   ~tileDriver();
 
-  // setters and getters
+  //getter
 
   std::vector<tile*> get_background() { return background; }
+
+  ~TileDriver();
 };
 
 int main() {

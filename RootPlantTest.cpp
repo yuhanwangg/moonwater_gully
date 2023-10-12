@@ -6,11 +6,9 @@
 using namespace sf;
 
 
-//g++ RootPlant.cpp -o rootplant -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
 class TileDriver {
  private:
   RenderWindow* win;
-  //   tile** background = new tile*[400];  // array of tile pointers
   std::vector<tile*> background;
   RootPlant rp = RootPlant(250, 250);
 
@@ -21,19 +19,22 @@ class TileDriver {
     rp.set_harvestEquipment(2);
     rp.set_hydrationLevel(1);
     
-    ////rp.grow();
+    //rp.grow();
   };
 
   void makeBackground() {
+    // Create game background
     for (int r = 0; r < 600; r += 50) {
       for (int c = 0; c < 600; c += 50) {
         tile* newTile = new tile(r, c);  // Pass coordinates to tile constructor
         background.push_back(newTile);
       }
     }
+    return;
   };
 
   void run() {
+    // Run game
     while (win->isOpen()) {
       Event e;
       while (win->pollEvent(e)) {
@@ -51,12 +52,15 @@ class TileDriver {
 
       win->display();
     }
+    return;
   };
-  //   ~tileDriver();
+ 
 
-  // setters and getters
+  //getter
 
   std::vector<tile*> get_background() { return background; }
+
+  ~TileDriver(){};
 };
 
 int main() {
@@ -68,8 +72,6 @@ int main() {
   rp1.harvestYield();
 
   std::cout << "The root plant has harvest yield of (number 1-3):" << rp1.get_yield() << std::endl;
-
-  // rp1.killPlant();
 
   std::cout << "The root plant has hydration level 0:" << rp1.get_hydrationLevel() << ", and is alive (should be 1):" << rp1.get_alive() << std::endl; 
 

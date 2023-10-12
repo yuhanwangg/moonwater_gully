@@ -62,7 +62,14 @@ class InventoryItems {
     }
     item->setPosition(x, y);
   }
-  void drawInventoryItems(RenderWindow* win) { win->draw(*item); }
+  void drawInventoryItems(RenderWindow* win) { 
+    // Will draw the inventory item iamge in the hotbar after taking in a RenderWindow pointer to the window
+    win->draw(*item); 
+    return;
+  
+  }
+
+  ~InventoryItems(){};
 };
 
 #endif

@@ -28,18 +28,24 @@ class TextBox {
   };
 
   void draw(RenderWindow* win) {
+    // Draws the textbox in the window when given a RenderWindow pointer, returns nothing
     win->draw(*textbox);
-    // if (isVisible == true) {
-    //   win->draw(*textbox);
-    // }
+    return;
   };
-
-  ~TextBox() { delete[] textbox; };
 
   // getters and setters
   Text get_text() { return text; }
-  void set_visible(bool visible) { isVisible = visible; }
-  void set_text(Text _text) { text = _text; }
+  bool get_visible() {return isVisible;}
+  void set_visible(bool visible) { 
+    isVisible = visible;
+    return;
+  }
+  void set_text(Text _text) { 
+    text = _text;
+    return;
+  }
+
+  ~TextBox() { delete[] textbox; };
 };
 
 #endif

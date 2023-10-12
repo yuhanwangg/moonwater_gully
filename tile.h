@@ -14,7 +14,7 @@ class tile {
   int hydrationLevel;
   std::string imageDescription;
   std::string className;
-  // texture placeholder
+
  public:
   tile(int _x, int _y) {
     x = _x;
@@ -34,17 +34,41 @@ class tile {
     square->setPosition(x, y);
   };
 
+  // Virtual functions for tile growth and new day growth (for plant tiles)
   virtual void grow(){};
   virtual void newDayGrowth(){};
-  // virtual void killPlant(tile *backgroundTilePtr){};
-  void set_x(int _x) { x = _x; };
-  void set_y(int _y) { y = _y; };
-  void set_isPlantable(bool isPlantable) { this->isPlantable = isPlantable; };
-  void set_size(int size) { this->size = size; };
+
+
+  tile() : tile(0, 0) { size = 50; };
+
+  void draw(RenderWindow* win) { 
+    // Draws a tile in the window when given a RenderWindow pointer
+    win->draw(*square);
+    return; };
+
+  // Setters
+  void set_x(int _x) { 
+    x = _x;
+    return;
+  };
+  void set_y(int _y) { 
+    y = _y;
+    return;
+  };
+  void set_isPlantable(bool isPlantable) { 
+    this->isPlantable = isPlantable;
+    return;
+  };
+  void set_size(int size) { 
+    this->size = size;
+    return;
+  };
   void set_hydrationLevel(int hydrationLevel) {
     this->hydrationLevel = hydrationLevel;
+    return;
   };
 
+  // Getters
   int get_x() { return x; };
   int get_y() { return y; };
   bool get_isPlantable() { return isPlantable; };
@@ -60,14 +84,6 @@ class tile {
       std::cout << "error loading texture" << std::endl;
     };
   }
-
-  // setter for colour/texture
-
-  tile() : tile(0, 0) { size = 50; };
-
-  void draw(RenderWindow* win) { win->draw(*square); };
-
-  ~tile(){};
 
   // Getters and Setters
 
@@ -85,6 +101,8 @@ class tile {
 
   std::string get_imageDescription() { return imageDescription; };
   std::string get_className() { return className; };
+
+  ~tile(){};
 };
 
 #endif

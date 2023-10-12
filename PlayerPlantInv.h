@@ -30,23 +30,41 @@ class Player {
     body->setOrigin(r / 2, r / 2);
     body->setPosition(x, y);
   }
-  void draw(RenderWindow* win) { win->draw(*body); }
+  void draw(RenderWindow* win) { 
+    // draws the players body in the game window when given a RenderWindow pointer, returns nothing
+    win->draw(*body);
+    return;
+  }
 
   void addPlant(Plant* plant) {
+    // Adds plant object to inventory, when given a plant pointer, returns nothing
     if (plantInventory.size() < 10) {
       plantInventory.push_back(plant);
     } else {
       std::cout << "Inventory is full. Cannot add more plants." << std::endl;
     }
+    return;
   }
 
   // movement of the player
-  void moveRight() { body->move(speed, 0); }
-  void moveLeft() { body->move(-speed, 0); }
-  void moveUp() { body->move(0, -speed); }
-  void moveDown() { body->move(0, speed); }
+  void moveRight() { 
+    body->move(speed, 0);
+    return;
+  }
+  void moveLeft() { 
+    body->move(-speed, 0);
+    return;
+  }
+  void moveUp() { 
+    body->move(0, -speed);
+    return;
+  }
+  void moveDown() { 
+    body->move(0, speed);
+    return;
+  }
 
-  // getters and setters
+  // getters
   int get_plantCount() { return plantCount; }
   // accessing plant inventory
   std::vector<Plant*>& get_plantInventory() { return plantInventory; }

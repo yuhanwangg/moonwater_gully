@@ -10,7 +10,6 @@ using namespace sf;
 #include "Day.h"
 #include "Menu.h"
 #include "Player.h"
-#include "PlayerInteraction.h"
 #include "Potato.h"
 #include "Strawberry.h"
 #include "tile.h"
@@ -48,15 +47,18 @@ class EverythingDriver {
   };
 
   void makeBackground() {
+    // Creates game background
     for (int r = 0; r < 600; r += 50) {
       for (int c = 0; c < 600; c += 50) {
         tile* newTile = new tile(r, c);  // Pass coordinates to tile constructor
         background.push_back(newTile);
       }
     }
+    return;
   };
 
   void run() {
+    // Runs game
     while (win->isOpen()) {
       Event e;
       while (win->pollEvent(e)) {
@@ -528,11 +530,13 @@ class EverythingDriver {
 
       win->display();
     }
+    return;
   };
 
-  // setters and getters
-
+  // getter
   std::vector<tile*> get_background() { return background; }
+
+  ~EverythingDriver(){};
 };
 
 int main() {

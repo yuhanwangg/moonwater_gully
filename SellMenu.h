@@ -102,6 +102,8 @@ class SellMenu : public Menu {
     sellOn = false;
   }
   void moveDown() {
+    // Moves the sellSelect option down if there is an option below, returns nothing.
+
     // checking array
     if (sellSelect + 1 < maxOption) {
       // changing text colour
@@ -116,8 +118,11 @@ class SellMenu : public Menu {
       sellSelect = 0;
       sellCatalogue[sellSelect].setFillColor(sf::Color::Yellow);
     }
+    return;
   }
   void moveUp() {
+    // Moves the sellSelect option up if there is an option above, returns nothing.
+
     // checking array
     if (sellSelect - 1 >= 0 && sellSelect < maxOption) {
       sellCatalogue[sellSelect].setFillColor(sf::Color::White);
@@ -130,9 +135,12 @@ class SellMenu : public Menu {
       sellSelect = 0;
       sellCatalogue[sellSelect].setFillColor(sf::Color::Yellow);
     }
+    return;
   }
 
   bool purchaseStatus(Inventory* inventory, int itemNo) {
+    // Returns a bool value if the purchase the player wishes to make is allowed,
+    // takes in a pointer to the inventory, and the itemNo the player wishes to purchase
     switch (itemNo) {
       case 0:  // carrot
         if (inventory->get_carrotCount() >= 1) {
@@ -167,31 +175,56 @@ class SellMenu : public Menu {
     }
   }
   void draw(RenderWindow* win) {
+    // Draws the sell window in the game window when given a RenderWindow pointer
     win->draw(*sellBackground);
     win->draw(*sellBox);
     for (int i = 0; i < maxOption; i++) {
       win->draw(sellCatalogue[i]);
     }
     win->draw(sellSuccess[0]);
+    return;
   }
 
-  void drawSellSuccess(RenderWindow* win) { win->draw(sellSuccess[1]); }
-  void drawSellFailure(RenderWindow* win) { win->draw(sellSuccess[2]); };
+  void drawSellSuccess(RenderWindow* win) { 
+    // Draws the sell success message in the window when given a RenderWindow pointer
+    win->draw(sellSuccess[1]);
+    return;
+  }
+  void drawSellFailure(RenderWindow* win) { 
+    // Draws the sell failure message in the window when given a RenderWindow pointer
+    win->draw(sellSuccess[2]);
+    return;
+  };
 
   // setters and getters
   bool get_successCheck() { return successCheck; }
-  void set_successCheck(bool su) { successCheck = su; }
+  void set_successCheck(bool su) { 
+    successCheck = su;
+    return;
+  }
   bool get_failureCheck() { return failureCheck; }
-  void set_failureCheck(bool fa) { failureCheck = fa; }
+  void set_failureCheck(bool fa) { 
+    failureCheck = fa;
+    return;
+  }
 
-  void set_sellSelect(int select) { sellSelect = select; }
+  void set_sellSelect(int select) { 
+    sellSelect = select;
+    return;
+  }
   int get_sellSelect() { return sellSelect; }
 
-  void set_maxOption(int max) { maxOption = max; }
+  void set_maxOption(int max) { 
+    maxOption = max;
+    return;
+  }
   int get_maxOption() { return maxOption; }
 
   bool get_sellOn() { return sellOn; }
-  void set_sellOn(bool visible) { sellOn = visible; }
+  void set_sellOn(bool visible) { 
+    sellOn = visible;
+    return;
+  }
 
   ~SellMenu() {
     delete[] sellBackground;

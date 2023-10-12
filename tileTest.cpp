@@ -6,7 +6,6 @@ using namespace sf;
 class TileDriver {
  private:
   RenderWindow* win;
-  //   tile** background = new tile*[400];  // array of tile pointers
   std::vector<tile*> background;
 
  public:
@@ -15,6 +14,7 @@ class TileDriver {
   };
 
   void makeBackground() {
+    // Creates game background
     for (int r = 0; r < 600; r += 50) {
       for (int c = 0; c < 600; c += 50) {
         tile* newTile = new tile(r, c);  // Pass coordinates to
@@ -23,9 +23,11 @@ class TileDriver {
       }
     }
     background[10]->set_texture("textures/grass_texture.png");
+    return;
   };
 
   void run() {
+    // Runs game
     while (win->isOpen()) {
       Event e;
       while (win->pollEvent(e)) {
@@ -42,12 +44,13 @@ class TileDriver {
 
       win->display();
     }
+    return;
   };
-  //   ~tileDriver();
 
-  // setters and getters
-
+  //getter
   std::vector<tile*> get_background() { return background; }
+
+  ~TileDriver(){};
 };
 
 int main() {

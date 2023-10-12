@@ -10,7 +10,6 @@ using namespace sf;
 #include "Day.h"
 #include "Menu.h"
 #include "Player.h"
-#include "PlayerInteraction.h"
 #include "Potato.h"
 #include "Strawberry.h"
 #include "tile.h"
@@ -48,15 +47,18 @@ class EverythingDriver {
   };
 
   void makeBackground() {
+    // Creates game background
     for (int r = 0; r < 600; r += 50) {
       for (int c = 0; c < 600; c += 50) {
         tile* newTile = new tile(r, c);  // Pass coordinates to tile constructor
         background.push_back(newTile);
       }
     }
+    return;
   };
 
   void run() {
+    // Runs game
     while (win->isOpen()) {
       Event e;
       while (win->pollEvent(e)) {
@@ -68,9 +70,6 @@ class EverythingDriver {
           if (Keyboard::isKeyPressed(Keyboard::P)) {
             switch (inventory.get_inventoryIndex()) {
               case 2:
-                // the is plantable function only checks when planting the
-                // plant, so we need to check again when subtracting from
-                // inventory
                 if (inventory.get_blueberrySeedsCount() > 0) {
                   player->seedPlant(2, &background);
                   inventory.subtractBlueberrySeedsCount();
@@ -121,13 +120,6 @@ class EverythingDriver {
 
             int playerX = (floor(player->get_x() / 50) * 50);
             int playerY = (floor(player->get_y() / 50) * 50);
-
-            // for (int i = 0; i < 144; i++) {
-            //   if (background[i]->get_x() == playerX &&
-            //       background[i]->get_y() == playerY) {
-            //     (*background[i]).grow();
-            //   }
-            // }
           }
         }
 
@@ -540,11 +532,13 @@ class EverythingDriver {
 
       win->display();
     }
+    return;
   };
 
-  // setters and getters
-
+  // getter
   std::vector<tile*> get_background() { return background; }
+
+  ~EverythingDriver(){};
 };
 
 int main() {

@@ -28,13 +28,12 @@ class Blueberry: public BerryPlant {
 
         Blueberry(): BerryPlant(0,0){}; 
 
-        // changes growth image and plant values if growth criteria has been met
         void grow() {
+            // changes growth image if growth criteria has been met
             if (hydrationLevel == 0 && alive && growthStage <= growTime) {
-                // hydrationLevel = 0;
-                // growthStage++;
                 int size = 50;
                 square = new RectangleShape(Vector2f(size, size));
+
                 // sets new growth image for each stage of growth
                 switch(growthStage) {
                     case 1:
@@ -42,10 +41,10 @@ class Blueberry: public BerryPlant {
                         break;
 
                     case 2:
-                        imageDescription = "textures/blueberrybushGrown.png"; // image from https://www.linkedin.com/posts/michael-mollica-47383a175_been-working-for-a-while-on-foliage-for-a-activity-6982498457068482560-dIGK/?trk=public_profile_like_view
+                        imageDescription = "textures/blueberrybushGrown.png";
                         break;
                     
-                    default: // to know when it breaks it plants cheese
+                    default: // testing to see if it breaks by planting cheese
                         imageDescription = "textures/cheese.png";
                         break;
                 }
@@ -59,8 +58,10 @@ class Blueberry: public BerryPlant {
                 square->setPosition(x, y);
                 
             };
-
+            return;
         };
+
+        ~Blueberry(){};
 };
 
 #endif

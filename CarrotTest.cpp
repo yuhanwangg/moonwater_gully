@@ -11,7 +11,6 @@ using namespace sf;
 class TileDriver {
  private:
   RenderWindow* win;
-  //   tile** background = new tile*[400];  // array of tile pointers
   std::vector<tile*> background;
   Carrot c = Carrot(300, 300);
 
@@ -25,12 +24,14 @@ class TileDriver {
   };
 
   void makeBackground() {
+    // Creates game background;
     for (int r = 0; r < 600; r += 50) {
       for (int c = 0; c < 600; c += 50) {
         tile* newTile = new tile(r, c);  // Pass coordinates to tile constructor
         background.push_back(newTile);
       }
     }
+    return;
   };
 
   void run() {
@@ -51,10 +52,12 @@ class TileDriver {
 
       win->display();
     }
+    return;
   };
-  //   ~tileDriver();
+  
+  ~TileDriver();
 
-  // setters and getters
+  //getters
 
   std::vector<tile*> get_background() { return background; }
 };
@@ -68,8 +71,6 @@ int main() {
   c1.harvestYield();
 
   std::cout << "The carrot plant has harvest yield of (number 1-3):" << c1.get_yield() << std::endl;
-
-  // c1.killPlant();
 
   std::cout << "The carrot plant has hydration level 0:" << c1.get_hydrationLevel() << ", and is alive (should be 1):" << c1.get_alive() << std::endl; 
 

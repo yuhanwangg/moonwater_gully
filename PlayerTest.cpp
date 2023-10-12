@@ -25,15 +25,19 @@ class PlayerDriver {
   };
 
   void makeBackground() {
+    // Creates game background
     for (int r = 0; r < 600; r += 50) {
       for (int c = 0; c < 600; c += 50) {
         tile* newTile = new tile(r, c);  // Pass coordinates to tile constructor
         background.push_back(newTile);
       }
     }
+    return;
   };
 
+
   void run() {
+    // Runs the game
     while (win->isOpen()) {
       Event e;
       while (win->pollEvent(e)) {
@@ -51,9 +55,7 @@ class PlayerDriver {
       } else if (Keyboard::isKeyPressed(Keyboard::S)) {
         player->moveDown();
       }
-      // Plant* inventory = player->get_plantInventory();
-      // std::cout << "Plant in inventory: " << inventory[0];
-      // << std::endl;
+
 
       // drawing the tiles
       for (auto tilePtr : background) {
@@ -64,9 +66,12 @@ class PlayerDriver {
 
       win->display();
     }
+    return;
   };
 
   std::vector<tile*> get_background() { return background; };
+
+  ~PlayerDriver(){};
 };
 
 int main() {

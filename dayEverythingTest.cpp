@@ -10,7 +10,6 @@ using namespace sf;
 #include "Day.h"
 #include "Menu.h"
 #include "Player.h"
-#include "PlayerInteraction.h"
 #include "Potato.h"
 #include "Strawberry.h"
 #include "tile.h"
@@ -22,7 +21,7 @@ using namespace sf;
 #include "SellMenu.h"
 #include "tile.h"
 
-class everythingDriver {
+class EverythingDriver {
  private:
   RenderWindow* win;
   std::vector<tile*> background;
@@ -37,7 +36,7 @@ class everythingDriver {
   bool visibleSell = false;
 
  public:
-  everythingDriver(int size, std::string title) {
+  EverythingDriver(int size, std::string title) {
     win = new sf::RenderWindow(sf::VideoMode(size, size), title);
     player = new Player(10, 50, 50);
     visibleBuy = false;
@@ -46,15 +45,18 @@ class everythingDriver {
   };
 
   void makeBackground() {
+    // creates game background
     for (int r = 0; r < 600; r += 50) {
       for (int c = 0; c < 600; c += 50) {
         tile* newTile = new tile(r, c);  // Pass coordinates to tile constructor
         background.push_back(newTile);
       }
     }
+    return;
   };
 
   void run() {
+    // runs the game
     while (win->isOpen()) {
       Event e;
       while (win->pollEvent(e)) {
@@ -116,13 +118,6 @@ class everythingDriver {
 
             int playerX = (floor(player->get_x() / 50) * 50);
             int playerY = (floor(player->get_y() / 50) * 50);
-
-            // for (int i = 0; i < 144; i++) {
-            //   if (background[i]->get_x() == playerX &&
-            //       background[i]->get_y() == playerY) {
-            //     (*background[i]).grow();
-            //   }
-            // }
           }
         }
 
@@ -517,15 +512,17 @@ class everythingDriver {
 
       win->display();
     }
+    return;
   };
 
-  // setters and getters
-
+  // getter
   std::vector<tile*> get_background() { return background; }
+
+  ~EverythingDriver(){};
 };
 
 int main() {
-  everythingDriver driver(600, "TEST");
+  EverythingDriver driver(600, "TEST");
   driver.makeBackground();
   driver.run();
   return 0;

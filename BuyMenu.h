@@ -24,16 +24,17 @@ class BuyMenu : public Menu {
 
  public:
   BuyMenu(int len, int wid) : Menu(len, wid) {
+    // Constructor
     x = 25;
     y = 25;
-    length = len;  // 250
-    width = wid;   // 400
+    length = len;  
+    width = wid;   
     maxOption = 6;
 
     successCheck = false;
     failureCheck = false;
 
-    // creating background
+    // Creating background
     buyBackground = new RectangleShape(Vector2f(length, width));
     buyBackground->setFillColor(Color::White);
 
@@ -44,7 +45,7 @@ class BuyMenu : public Menu {
     buyBackground->setTexture(&bgTexture);
     purchaseBox->setTexture(&bgTexture);
 
-    // setting buying items text
+    // Setting buying items text
     int textX = 35;
     catalogue[0].setFont(font);
     catalogue[0].setString("1x carrot seed       50");
@@ -86,7 +87,7 @@ class BuyMenu : public Menu {
 
     catalogue[buySelect].setFillColor(Color::Yellow);
 
-    // creating purchase box list:
+    // Creating purchase box list:
     purchase[0].setFont(font);
     purchase[0].setString("purchase item?");
     purchase[0].setCharacterSize(10);
@@ -107,13 +108,15 @@ class BuyMenu : public Menu {
 
     buyBackground->setPosition(x, y);
     purchaseBox->setPosition(280, 25+300);
-    // turning on and off
+    // Turning on and off
     buyOn = false;
   }
 
-  // move up and down values in menu items
+  // Move up and down values in menu items
 
   void moveDown() {
+    // moveDown will change the selected menu item to the item below if there is an item below
+
     // checking array
     if (buySelect + 1 < maxOption) {
       // changing text colour
@@ -128,8 +131,11 @@ class BuyMenu : public Menu {
       buySelect = 0;
       catalogue[buySelect].setFillColor(sf::Color::Yellow);
     }
+    return;
   }
   void moveUp() {
+    // moveUp will change the selected menu item to the item above if there is an item above
+
     // checking array
     if (buySelect - 1 >= 0) {
       catalogue[buySelect].setFillColor(sf::Color::White);
@@ -139,10 +145,12 @@ class BuyMenu : public Menu {
     } else {
       buySelect = 0;
     }
+    return;
   }
 
   // draw function
   void draw(RenderWindow* win) {
+    // draw will take in a RenderWindow pointer to the game window and draw the buy menu
     win->draw(*buyBackground);
     win->draw(*purchaseBox);
     win->draw(titleBuy);
@@ -150,10 +158,13 @@ class BuyMenu : public Menu {
     for (int i = 0; i < maxOption; i++) {
       win->draw(catalogue[i]);
     }
+    return;
   }
 
   // checker if the player has sufficient funds to purchase good
   bool purchaseStatus(Player* player, int itemNo) {
+    // purchaseSatus checks to see if a player has sufficient funds to purchase goods, 
+    // it takes in the player object, and the itemNo they wish to purchase and will return a bool value
     switch (itemNo) {
       case 0:  // carrot
         if (player->get_shells() >= 50) {
@@ -203,24 +214,49 @@ class BuyMenu : public Menu {
     }
   }
 
-  // drawing success or purchase error
-  void drawPurchaseError(RenderWindow* win) { win->draw(purchase[1]); }
-  void drawPurchaseSuccess(RenderWindow* win) { win->draw(purchase[2]); }
+  
+  void drawPurchaseError(RenderWindow* win) { 
+    // Drawing purchase error takes in a RenderWindow pointer to
+    // the game window and the window draws the purchase error message.
+    win->draw(purchase[1]); 
+    return;
+  }
+  void drawPurchaseSuccess(RenderWindow* win) {
+    // Drawing purchase success takes in a RenderWindow pointer to
+    // the game window and the window draws the purchase success message. 
+    win->draw(purchase[2]); 
+    return;
+  }
 
   // setters and getters
   bool get_successCheck() { return successCheck; }
-  void set_successCheck(bool su) { successCheck = su; }
+  void set_successCheck(bool su) { 
+    successCheck = su;
+    return;
+  }
   bool get_failureCheck() { return failureCheck; }
-  void set_failureCheck(bool fa) { failureCheck = fa; }
+  void set_failureCheck(bool fa) { 
+    failureCheck = fa;
+    return;
+  }
 
-  void set_buySelect(int select) { buySelect = select; }
+  void set_buySelect(int select) { 
+    buySelect = select;
+    return;
+  }
   int get_buySelect() { return buySelect; }
 
-  void set_maxOption(int max) { maxOption = max; }
+  void set_maxOption(int max) { 
+    maxOption = max;
+    return;
+  }
   int get_maxOption() { return maxOption; }
 
   bool get_buyOn() { return buyOn; }
-  void set_buyOn(bool visible) { buyOn = visible; }
+  void set_buyOn(bool visible) { 
+    buyOn = visible;
+    return;
+  }
 
   ~BuyMenu() {
     delete[] buyBackground;

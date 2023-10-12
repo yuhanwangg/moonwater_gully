@@ -26,16 +26,20 @@ class TileDriver {
     b.grow();
   };
 
+
   void makeBackground() {
+    // Creates the tile game background
     for (int r = 0; r < 600; r += 50) {
       for (int c = 0; c < 600; c += 50) {
         tile* newTile = new tile(r, c);  // Pass coordinates to tile constructor
         background.push_back(newTile);
       }
     }
+    return;
   };
 
   void run() {
+    // Running the game
     while (win->isOpen()) {
       Event e;
       while (win->pollEvent(e)) {
@@ -53,10 +57,11 @@ class TileDriver {
 
       win->display();
     }
+    return;
   };
-  //   ~tileDriver();
+     ~TileDriver();
 
-  // setters and getters
+  // getter
 
   std::vector<tile*> get_background() { return background; }
 };
@@ -70,8 +75,6 @@ int main() {
   b1.harvestYield();
 
   std::cout << "The blueberry plant has harvest yield of (number 3-6):" << b1.get_yield() << std::endl;
-
-  // b1.killPlant();
 
   std::cout << "The blueberry plant has hydration level 0:" << b1.get_hydrationLevel() << ", and is alive (should be 1):" << b1.get_alive() << std::endl; 
 

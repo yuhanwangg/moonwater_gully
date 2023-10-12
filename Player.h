@@ -16,13 +16,20 @@ using namespace sf;
 #include "Strawberry.h"
 // #include "PlayerInteraction.h"
 
+
+
 class Player {
  private:
   std::string name;
-  CircleShape* body;
+  RectangleShape* body;
   int x, y;
   float speed;
   int shells;
+  Texture playerTexture;
+  std::string textureName;
+  // these two variables are for player walking animation
+  int countSteps;
+  bool imgAppears;
   // Inventory* inventory = new Inventory(550, 50);
 
   std::unordered_map<std::string, int> plantLocationMap{
@@ -40,14 +47,24 @@ class Player {
 
  public:
   Player(int r, int _x, int _y) {
-    body = new CircleShape();
+    body = new RectangleShape();
     x = _x;
     y = _y;
-    shells = 5000;
+    shells = 500;
     speed = 2;
+    countSteps = 0;
+    imgAppears = 0;
 
-    body->setRadius(r);
-    body->setFillColor(Color::Blue);
+    textureName = "textures/facingBack1.png";
+    playerTexture.loadFromFile(textureName);
+    if(!playerTexture.loadFromFile(textureName)){
+      std::cout << "Could not load the default texture" << std::endl;
+      return;
+    }
+    body->setSize(Vector2f(25,45));
+    body->setTexture(&playerTexture);
+    body->setTextureRect(IntRect(0,0,25,45));
+    // body->setFillColor(Color::Blue);
     body->setOrigin(r / 2, r / 2);
     body->setPosition(x, y);
   }
@@ -272,24 +289,172 @@ class Player {
 
   // movement of the player
   void moveRight() {
+
+    countSteps++;
+    // Moving player
     if (body->getPosition().x < 590) {
       body->move(speed, 0);
     }
+    // checking if texture has already been loaded
+
+    if(textureName == "textures/facingRight1.png"){
+      imgAppears = 1;
+    } else if (textureName == "textures/facingRight2.png"){
+      imgAppears = 1;
+    } else if (textureName == "textures/facingRight3.png"){
+      imgAppears = 1;
+    } else {
+      imgAppears = 0;
+    }
+
+    
+    if (!imgAppears){
+      
+      textureName = "textures/facingRight1.png";
+      playerTexture.loadFromFile(textureName);
+      body->setTexture(&playerTexture);
+      countSteps = 0;
+
+    } else if(countSteps == 15){ // checking if image should be changed
+
+      textureName = "textures/facingRight2.png";
+      playerTexture.loadFromFile(textureName);
+      body->setTexture(&playerTexture);
+
+    } else if(countSteps == 30){ 
+
+      textureName = "textures/facingRight3.png";
+      playerTexture.loadFromFile(textureName);
+      body->setTexture(&playerTexture);
+      countSteps = 0;
+
+    } 
+
+    
   }
   void moveLeft() {
+
+    countSteps++;
+
     if (body->getPosition().x > 0) {
       body->move(-speed, 0);
     }
+    // checking if texture has already been loaded
+
+    if(textureName == "textures/facingLeft1.png"){
+      imgAppears = 1;
+    } else if (textureName == "textures/facingLeft2.png"){
+      imgAppears = 1;
+    } else if (textureName == "textures/facingLeft3.png"){
+      imgAppears = 1;
+    } else {
+      imgAppears = 0;
+    }
+
+    
+    if (!imgAppears){
+      
+      textureName = "textures/facingLeft1.png";
+      playerTexture.loadFromFile(textureName);
+      body->setTexture(&playerTexture);
+      countSteps = 0;
+
+    } else if(countSteps == 15){ // checking if image should be changed
+
+      textureName = "textures/facingLeft2.png";
+      playerTexture.loadFromFile(textureName);
+      body->setTexture(&playerTexture);
+
+    } else if(countSteps == 30){ 
+
+      textureName = "textures/facingLeft3.png";
+      playerTexture.loadFromFile(textureName);
+      body->setTexture(&playerTexture);
+      countSteps = 0;
+
+    } 
   }
   void moveUp() {
+
+    countSteps++;
+
     if (body->getPosition().y > 0) {
       body->move(0, -speed);
     }
+
+    if(textureName == "textures/facingForward1.png"){
+      imgAppears = 1;
+    } else if (textureName == "textures/facingForward2.png"){
+      imgAppears = 1;
+    } else if (textureName == "textures/facingForward3.png"){
+      imgAppears = 1;
+    } else {
+      imgAppears = 0;
+    }
+
+    if (!imgAppears){
+      
+      textureName = "textures/facingForward1.png";
+      playerTexture.loadFromFile(textureName);
+      body->setTexture(&playerTexture);
+      countSteps = 0;
+
+    } else if(countSteps == 15){ // checking if image should be changed
+
+      textureName = "textures/facingForward2.png";
+      playerTexture.loadFromFile(textureName);
+      body->setTexture(&playerTexture);
+
+    } else if(countSteps == 30){ 
+
+      textureName = "textures/facingForward3.png";
+      playerTexture.loadFromFile(textureName);
+      body->setTexture(&playerTexture);
+      countSteps = 0;
+
+    } 
   }
   void moveDown() {
+
+    countSteps++;
+    
     if (body->getPosition().y < 590) {
       body->move(0, speed);
     }
+
+    if(textureName == "textures/facingBack1.png"){
+      imgAppears = 1;
+    } else if (textureName == "textures/facingBack2.png"){
+      imgAppears = 1;
+    } else if (textureName == "textures/facingBack1.png"){
+      imgAppears = 1;
+    } else {
+      imgAppears = 0;
+    }
+    
+    if (!imgAppears){
+      
+      textureName = "textures/facingBack1.png";
+      playerTexture.loadFromFile(textureName);
+      body->setTexture(&playerTexture);
+      countSteps = 0;
+
+    } else if(countSteps == 15){ // checking if image should be changed
+
+      textureName = "textures/facingBack2.png";
+      playerTexture.loadFromFile(textureName);
+      body->setTexture(&playerTexture);
+
+    } else if(countSteps == 30){ 
+
+      textureName = "textures/facingBack1.png";
+      playerTexture.loadFromFile(textureName);
+      body->setTexture(&playerTexture);
+      countSteps = 0;
+
+    } 
+
+  
   }
 
   // getters and setters

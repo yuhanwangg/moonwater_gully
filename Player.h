@@ -16,13 +16,20 @@ using namespace sf;
 #include "Strawberry.h"
 // #include "PlayerInteraction.h"
 
+
+
 class Player {
  private:
   std::string name;
-  CircleShape* body;
+  RectangleShape* body;
   int x, y;
   float speed;
   int shells;
+  Texture playerTexture;
+  std::string textureName;
+  // these two variables are for player walking animation
+  int countSteps;
+  bool imgAppears;
   // Inventory* inventory = new Inventory(550, 50);
 
   std::unordered_map<std::string, int> plantLocationMap{
@@ -40,14 +47,24 @@ class Player {
 
  public:
   Player(int r, int _x, int _y) {
-    body = new CircleShape();
+    body = new RectangleShape();
     x = _x;
     y = _y;
-    shells = 5000;
+    shells = 500;
     speed = 2;
+    countSteps = 0;
+    imgAppears = 0;
 
-    body->setRadius(r);
-    body->setFillColor(Color::Blue);
+    textureName = "textures/facingBack1.png";
+    playerTexture.loadFromFile(textureName);
+    if(!playerTexture.loadFromFile(textureName)){
+      std::cout << "Could not load the default texture" << std::endl;
+      return;
+    }
+    body->setSize(Vector2f(25,45));
+    body->setTexture(&playerTexture);
+    body->setTextureRect(IntRect(0,0,25,45));
+    // body->setFillColor(Color::Blue);
     body->setOrigin(r / 2, r / 2);
     body->setPosition(x, y);
   }
@@ -121,82 +138,6 @@ class Player {
     }
   }
 
-  // void seedPlant(int seedType, std::vector<tile*>* backgroundTiles) {
-  //   int playerX = (floor(body->getPosition().x / 50) * 50);
-  //   int playerY = (floor(body->getPosition().y / 50) * 50);
-
-  //   for (int i = 0; i < 144; i++) {
-  //     tile* currentTile = (*backgroundTiles)[i];  // Access the current tile
-  //                                                 // pointer in the vector
-
-  //     // determine which tile the player is on
-  //     if (currentTile->get_x() == playerX &&
-  //         currentTile->get_y() == playerY) {
-  //       if (currentTile->get_isPlantable() == true) {
-  //         switch (seedType) {
-  //           case 2:  // type 2 is blueberry seeds in inventory position 2
-  //           {
-  //             // create a new bluebbery tile (in the heap) with cooridnates
-  //             of
-  //             // player position and set blueberry as a pointer to the
-  //             blueberry
-  //             // tile
-  //             Blueberry* blueberry = new Blueberry(playerX, playerY);
-  //             // remove old tile from vector and replace with new carrot tile
-  //             delete currentTile;
-  //             // sets the current tile player is on to be a carrot tile
-  //             (*backgroundTiles)[i] = blueberry;
-  //             break;
-  //           }
-
-  //           case 4:  // type 4 is strawberry seeds in inventory position 4
-  //           {
-  //             // create a new strawberry tile (in the heap) with cooridnates
-  //             of
-  //             // player position and set strawberry as a pointer to the
-  //             // strawberry tile
-  //             Strawberry* strawberry = new Strawberry(playerX, playerY);
-  //             // remove old tile from vector and replace with new carrot tile
-  //             delete currentTile;
-  //             // sets the current tile player is on to be a carrot tile
-  //             (*backgroundTiles)[i] = strawberry;
-  //             break;
-  //           }
-
-  //           case 6:  // type 6 is potato seeds in inventory position 6
-  //           {
-  //             // create a new potato tile (in the heap) with cooridnates of
-  //             // player position and set potato as a pointer to the potato
-  //             tile Potato* potato = new Potato(playerX, playerY);
-  //             // remove old tile from vector and replace with new carrot tile
-  //             delete currentTile;
-  //             // sets the current tile player is on to be a carrot tile
-  //             (*backgroundTiles)[i] = potato;
-  //             break;
-  //           }
-
-  //           case 8:  // type 8 is carrot seeds in inventory position 8
-  //           {
-  //             // create a new carrot tile (in the heap) with cooridnates of
-  //             // player position and set carrot as a pointer to the carrot
-  //             tile Carrot* carrot = new Carrot(playerX, playerY);
-  //             // remove old tile from vector and replace with new carrot tile
-  //             delete currentTile;
-  //             // sets the current tile player is on to be a carrot tile
-  //             (*backgroundTiles)[i] = carrot;
-  //             break;
-  //           }
-
-  //           default:
-  //             std::cout << "error: could not plant as type was invalid"
-  //                       << std::endl;
-  //         };
-  //         break;  // stops looping through for loop
-  //       }
-  //     }
-  //   }
-  //   return;
-  // }
 
   // Water plant
 
@@ -272,24 +213,172 @@ class Player {
 
   // movement of the player
   void moveRight() {
+
+    countSteps++;
+    // Moving player
     if (body->getPosition().x < 590) {
       body->move(speed, 0);
     }
+    // checking if texture has already been loaded
+
+    if(textureName == "textures/facingRight1.png"){
+      imgAppears = 1;
+    } else if (textureName == "textures/facingRight2.png"){
+      imgAppears = 1;
+    } else if (textureName == "textures/facingRight3.png"){
+      imgAppears = 1;
+    } else {
+      imgAppears = 0;
+    }
+
+    
+    if (!imgAppears){
+      
+      textureName = "textures/facingRight1.png";
+      playerTexture.loadFromFile(textureName);
+      body->setTexture(&playerTexture);
+      countSteps = 0;
+
+    } else if(countSteps == 15){ // checking if image should be changed
+
+      textureName = "textures/facingRight2.png";
+      playerTexture.loadFromFile(textureName);
+      body->setTexture(&playerTexture);
+
+    } else if(countSteps == 30){ 
+
+      textureName = "textures/facingRight3.png";
+      playerTexture.loadFromFile(textureName);
+      body->setTexture(&playerTexture);
+      countSteps = 0;
+
+    } 
+
+    
   }
   void moveLeft() {
+
+    countSteps++;
+
     if (body->getPosition().x > 0) {
       body->move(-speed, 0);
     }
+    // checking if texture has already been loaded
+
+    if(textureName == "textures/facingLeft1.png"){
+      imgAppears = 1;
+    } else if (textureName == "textures/facingLeft2.png"){
+      imgAppears = 1;
+    } else if (textureName == "textures/facingLeft3.png"){
+      imgAppears = 1;
+    } else {
+      imgAppears = 0;
+    }
+
+    
+    if (!imgAppears){
+      
+      textureName = "textures/facingLeft1.png";
+      playerTexture.loadFromFile(textureName);
+      body->setTexture(&playerTexture);
+      countSteps = 0;
+
+    } else if(countSteps == 15){ // checking if image should be changed
+
+      textureName = "textures/facingLeft2.png";
+      playerTexture.loadFromFile(textureName);
+      body->setTexture(&playerTexture);
+
+    } else if(countSteps == 30){ 
+
+      textureName = "textures/facingLeft3.png";
+      playerTexture.loadFromFile(textureName);
+      body->setTexture(&playerTexture);
+      countSteps = 0;
+
+    } 
   }
   void moveUp() {
+
+    countSteps++;
+
     if (body->getPosition().y > 0) {
       body->move(0, -speed);
     }
+
+    if(textureName == "textures/facingForward1.png"){
+      imgAppears = 1;
+    } else if (textureName == "textures/facingForward2.png"){
+      imgAppears = 1;
+    } else if (textureName == "textures/facingForward3.png"){
+      imgAppears = 1;
+    } else {
+      imgAppears = 0;
+    }
+
+    if (!imgAppears){
+      
+      textureName = "textures/facingForward1.png";
+      playerTexture.loadFromFile(textureName);
+      body->setTexture(&playerTexture);
+      countSteps = 0;
+
+    } else if(countSteps == 15){ // checking if image should be changed
+
+      textureName = "textures/facingForward2.png";
+      playerTexture.loadFromFile(textureName);
+      body->setTexture(&playerTexture);
+
+    } else if(countSteps == 30){ 
+
+      textureName = "textures/facingForward3.png";
+      playerTexture.loadFromFile(textureName);
+      body->setTexture(&playerTexture);
+      countSteps = 0;
+
+    } 
   }
   void moveDown() {
+
+    countSteps++;
+    
     if (body->getPosition().y < 590) {
       body->move(0, speed);
     }
+
+    if(textureName == "textures/facingBack1.png"){
+      imgAppears = 1;
+    } else if (textureName == "textures/facingBack2.png"){
+      imgAppears = 1;
+    } else if (textureName == "textures/facingBack1.png"){
+      imgAppears = 1;
+    } else {
+      imgAppears = 0;
+    }
+    
+    if (!imgAppears){
+      
+      textureName = "textures/facingBack1.png";
+      playerTexture.loadFromFile(textureName);
+      body->setTexture(&playerTexture);
+      countSteps = 0;
+
+    } else if(countSteps == 15){ // checking if image should be changed
+
+      textureName = "textures/facingBack2.png";
+      playerTexture.loadFromFile(textureName);
+      body->setTexture(&playerTexture);
+
+    } else if(countSteps == 30){ 
+
+      textureName = "textures/facingBack1.png";
+      playerTexture.loadFromFile(textureName);
+      body->setTexture(&playerTexture);
+      countSteps = 0;
+
+    } 
+
+  
   }
 
   // getters and setters

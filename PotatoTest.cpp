@@ -59,7 +59,7 @@ class TileDriver {
   // getter
   std::vector<tile*> get_background() { return background; }
 
-  ~TileDriver();
+  ~TileDriver(){};
 };
 
 int main() {
@@ -106,6 +106,19 @@ int main() {
   p2.newDayGrowth();
   std::cout << "the rootplant is in growthStage 1:" << p2.get_growthStage() << std::endl;
 
+
+   // Ensuring that it catches error thrown in carrot
+  Potato p3(150,150);
+  
+  p3.set_hydrationLevel(1);
+  p3.newDayGrowth();
+
+  try {p3.grow();
+    p3.set_hydrationLevel(1);
+    p3.newDayGrowth();
+  } catch (const char * msg) {
+    std::cerr << msg << std::endl;
+  }
 
   TileDriver driver(600, "TEST");
   driver.makeBackground();

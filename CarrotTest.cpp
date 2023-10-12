@@ -55,7 +55,7 @@ class TileDriver {
     return;
   };
   
-  ~TileDriver();
+  ~TileDriver(){};
 
   //getters
 
@@ -77,7 +77,10 @@ int main() {
   c1.set_hydrationLevel(1);
   std::cout << "The carrot plant has hydration level 1:" << c1.get_hydrationLevel() << ", and is alive (should be 1):" << c1.get_alive() << std::endl;
 
-  c1.grow();
+  try {c1.grow();
+  } catch (const char * msg) {
+    std::cerr << msg << std::endl;
+  }
   c1.newDayGrowth();
 
   std::cout << "the carrot is in growthStage 1:" << c1.get_growthStage() << ", has hydration level 0: " << c1.get_hydrationLevel() << ", and image description textures/carrotGrown.png:" << c1.get_imageDescription() << std::endl;
@@ -102,6 +105,21 @@ int main() {
   c2.set_hydrationLevel(1);
   c2.newDayGrowth();
   std::cout << "the rootplant is in growthStage 1:" << c2.get_growthStage() << std::endl;
+
+  
+  
+  // Ensuring that it catches error thrown in carrot
+  Carrot c3(150,150);
+  
+  c3.set_hydrationLevel(1);
+  c3.newDayGrowth();
+
+  try {c3.grow();
+    c3.set_hydrationLevel(1);
+    c3.newDayGrowth();
+  } catch (const char * msg) {
+    std::cerr << msg << std::endl;
+  }
 
 
   TileDriver driver(600, "TEST");

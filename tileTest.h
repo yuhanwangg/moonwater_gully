@@ -66,7 +66,7 @@ class tile {
   }
 
 
-  ~tile();
+  ~tile(){};
 };
 
 #endif

@@ -46,6 +46,8 @@ class Blueberry: public BerryPlant {
                     
                     default: // testing to see if it breaks by planting cheese
                         imageDescription = "textures/cheese.png";
+                        //shouldn't get to default case, throws error and terminates program
+                        throw "Blueberry growth stage unregistered";
                         break;
                 }
                 // loads new growth image

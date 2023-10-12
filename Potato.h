@@ -42,6 +42,8 @@ class Potato: public RootPlant {
                         break;
                     default: // testing to see if it breaks by planting cheese
                         imageDescription = "textures/cheese.png";
+                        //shouldn't get to default case, throws error and terminates program
+                        throw "Potato growth stage unregistered";
                         break;
                 }
                 // loads new growth image

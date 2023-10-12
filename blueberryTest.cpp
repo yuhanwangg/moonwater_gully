@@ -59,7 +59,7 @@ class TileDriver {
     }
     return;
   };
-     ~TileDriver();
+     ~TileDriver(){};
 
   // getter
 
@@ -110,6 +110,18 @@ int main() {
   b2.newDayGrowth();
   std::cout << "the blueberry is in growthStage 2:" << b2.get_growthStage() << std::endl;
 
+    // Ensuring that it catches error thrown in carrot
+  Blueberry b3(150,150);
+  
+  b3.set_hydrationLevel(1);
+  b3.newDayGrowth();
+
+  try {b3.grow();
+    b3.set_hydrationLevel(1);
+    b3.newDayGrowth();
+  } catch (const char * msg) {
+    std::cerr << msg << std::endl;
+  }
 
   TileDriver driver(600, "TEST");
   driver.makeBackground();

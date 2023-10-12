@@ -61,7 +61,7 @@ class TileDriver {
 
   std::vector<tile*> get_background() { return background; }
 
-  ~TileDriver();
+  ~TileDriver(){};
 };
 
 int main() {

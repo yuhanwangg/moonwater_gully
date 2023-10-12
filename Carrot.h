@@ -30,7 +30,7 @@ class Carrot: public RootPlant {
 
         void grow() {
             // Changes growth image if growth criteria has been met
-            std::cout << "hydration level: " << hydrationLevel << " alive: " << alive << std::endl;
+            // std::cout << "hydration level: " << hydrationLevel << " alive: " << alive << std::endl;
 
             if (hydrationLevel == 0 && alive && growthStage <= growTime) {
 
@@ -43,6 +43,8 @@ class Carrot: public RootPlant {
                         break;
                     default: // testing to see if it breaks by planting cheese
                         imageDescription = "textures/cheese.png";
+                        //shouldn't get to default case, throws error and terminates program
+                        throw "Carrot growth stage unregistered";
                         break;
                 }
                 // loads the growth image

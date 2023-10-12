@@ -58,7 +58,7 @@ class TileDriver {
     return;
   };
 
-  ~TileDriver();
+  ~TileDriver(){};
 
   // getter
 

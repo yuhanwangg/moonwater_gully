@@ -30,12 +30,11 @@ class Player {
   // these two variables are for player walking animation
   int countSteps;
   bool imgAppears;
-  // Inventory* inventory = new Inventory(550, 50);
-
+  
   std::unordered_map<std::string, int> plantLocationMap{
       {"Carrot", 9}, {"Potato", 7}, {"Strawberry", 5}, {"Blueberry", 3}};
 
-  // Doing the useless map
+  // Doing the map
   Carrot* carrot = new Carrot(650, 650);
   Potato* potato = new Potato(650, 650);
   Strawberry* strawberry = new Strawberry(650, 650);
@@ -64,19 +63,20 @@ class Player {
     body->setSize(Vector2f(25,45));
     body->setTexture(&playerTexture);
     body->setTextureRect(IntRect(0,0,25,45));
-    // body->setFillColor(Color::Blue);
     body->setOrigin(r / 2, r / 2);
     body->setPosition(x, y);
   }
 
   void draw(RenderWindow* win) {
     win->draw(*body);
-    // inventory->drawInventory(win);
-  }
+    }
 
   // Seeding plant
 
   void seedPlant(int seedType, std::vector<tile*>* backgroundTiles) {
+    // Seeds a plant by changing the tile the player is on to a seed type tile (carrot, potato, blueberry, strawberry)
+    // Takes in an int representing seedType and a pointer to a vector of tile pointers
+
     int playerX = (floor(body->getPosition().x / 50));
     int playerY = (floor(body->getPosition().y / 50));
     if ((*backgroundTiles)[playerX * 12 + playerY]->get_isPlantable() == true) {
@@ -142,6 +142,8 @@ class Player {
   // Water plant
 
   void waterPlant(std::vector<tile*>* backgroundTiles) {
+    // Waters the tile by increasing the hydration level, takes in a pointer to a vector of tile pointers
+    
     // changes the x and y coordinates of the player to valid tile positions
     int playerX = (floor(body->getPosition().x / 50));
     int playerY = (floor(body->getPosition().y / 50));
@@ -151,6 +153,10 @@ class Player {
   };
 
   void harvestPlant(std::vector<tile*>* backgroundTiles, Inventory* inventory) {
+    // Takes the fully grown plant tile and changes it back to grass tile, and increases the number of plants in the inventory
+    // Takes in a pointer to the vector of tile pointers and a pointer to the inventory
+
+    
     // Use a map once you have the type of function
 
     int playerX = (floor(body->getPosition().x / 50));
@@ -213,7 +219,7 @@ class Player {
 
   // movement of the player
   void moveRight() {
-
+    // Moves the player right, takes nothing, returns nothing
     countSteps++;
     // Moving player
     if (body->getPosition().x < 590) {
@@ -257,7 +263,7 @@ class Player {
     
   }
   void moveLeft() {
-
+    // Moves the player left, takes nothing, returns nothing
     countSteps++;
 
     if (body->getPosition().x > 0) {
@@ -299,6 +305,7 @@ class Player {
     } 
   }
   void moveUp() {
+    // Moves player up, takes nothing, returns nothing
 
     countSteps++;
 
@@ -339,7 +346,7 @@ class Player {
     } 
   }
   void moveDown() {
-
+    // Moves player down, takes nothing, returns nothing
     countSteps++;
     
     if (body->getPosition().y < 590) {
@@ -382,7 +389,6 @@ class Player {
   }
 
   // getters and setters
-  // std::vector<int> get_inventory() { return inventory->get_inventory(); }
   int get_x() { return body->getPosition().x; }
   int get_y() { return body->getPosition().y; }
 

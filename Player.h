@@ -14,6 +14,7 @@ using namespace sf;
 #include "Player.h"
 #include "Potato.h"
 #include "Strawberry.h"
+
 // #include "PlayerInteraction.h"
 
 
@@ -61,9 +62,9 @@ class Player {
       std::cout << "Could not load the default texture" << std::endl;
       return;
     }
-    body->setSize(Vector2f(25,45));
+    body->setSize(Vector2f(40,60));
     body->setTexture(&playerTexture);
-    body->setTextureRect(IntRect(0,0,25,45));
+    body->setTextureRect(IntRect(0,0,40,60));
     // body->setFillColor(Color::Blue);
     body->setOrigin(r / 2, r / 2);
     body->setPosition(x, y);
@@ -138,82 +139,6 @@ class Player {
     }
   }
 
-  // void seedPlant(int seedType, std::vector<tile*>* backgroundTiles) {
-  //   int playerX = (floor(body->getPosition().x / 50) * 50);
-  //   int playerY = (floor(body->getPosition().y / 50) * 50);
-
-  //   for (int i = 0; i < 144; i++) {
-  //     tile* currentTile = (*backgroundTiles)[i];  // Access the current tile
-  //                                                 // pointer in the vector
-
-  //     // determine which tile the player is on
-  //     if (currentTile->get_x() == playerX &&
-  //         currentTile->get_y() == playerY) {
-  //       if (currentTile->get_isPlantable() == true) {
-  //         switch (seedType) {
-  //           case 2:  // type 2 is blueberry seeds in inventory position 2
-  //           {
-  //             // create a new bluebbery tile (in the heap) with cooridnates
-  //             of
-  //             // player position and set blueberry as a pointer to the
-  //             blueberry
-  //             // tile
-  //             Blueberry* blueberry = new Blueberry(playerX, playerY);
-  //             // remove old tile from vector and replace with new carrot tile
-  //             delete currentTile;
-  //             // sets the current tile player is on to be a carrot tile
-  //             (*backgroundTiles)[i] = blueberry;
-  //             break;
-  //           }
-
-  //           case 4:  // type 4 is strawberry seeds in inventory position 4
-  //           {
-  //             // create a new strawberry tile (in the heap) with cooridnates
-  //             of
-  //             // player position and set strawberry as a pointer to the
-  //             // strawberry tile
-  //             Strawberry* strawberry = new Strawberry(playerX, playerY);
-  //             // remove old tile from vector and replace with new carrot tile
-  //             delete currentTile;
-  //             // sets the current tile player is on to be a carrot tile
-  //             (*backgroundTiles)[i] = strawberry;
-  //             break;
-  //           }
-
-  //           case 6:  // type 6 is potato seeds in inventory position 6
-  //           {
-  //             // create a new potato tile (in the heap) with cooridnates of
-  //             // player position and set potato as a pointer to the potato
-  //             tile Potato* potato = new Potato(playerX, playerY);
-  //             // remove old tile from vector and replace with new carrot tile
-  //             delete currentTile;
-  //             // sets the current tile player is on to be a carrot tile
-  //             (*backgroundTiles)[i] = potato;
-  //             break;
-  //           }
-
-  //           case 8:  // type 8 is carrot seeds in inventory position 8
-  //           {
-  //             // create a new carrot tile (in the heap) with cooridnates of
-  //             // player position and set carrot as a pointer to the carrot
-  //             tile Carrot* carrot = new Carrot(playerX, playerY);
-  //             // remove old tile from vector and replace with new carrot tile
-  //             delete currentTile;
-  //             // sets the current tile player is on to be a carrot tile
-  //             (*backgroundTiles)[i] = carrot;
-  //             break;
-  //           }
-
-  //           default:
-  //             std::cout << "error: could not plant as type was invalid"
-  //                       << std::endl;
-  //         };
-  //         break;  // stops looping through for loop
-  //       }
-  //     }
-  //   }
-  //   return;
-  // }
 
   // Water plant
 
@@ -223,6 +148,47 @@ class Player {
     int playerY = (floor(body->getPosition().y / 50));
 
     (*backgroundTiles)[playerX * 12 + playerY]->set_hydrationLevel(1);
+
+    // Animating water plant
+
+    std::string textureHold;
+    textureHold = textureName;
+
+    if(textureName == "textures/facingRight1.png" || textureName == "textures/facingRight2.png" || textureName == "textures/facingRight3.png"){
+      textureName = "textures/waterRight.png";
+      playerTexture.loadFromFile(textureName);
+      if(!playerTexture.loadFromFile(textureName)){
+        std::cout << "Error loading waterRight texture" << std::endl;
+        return;
+      }
+      body->setTexture(&playerTexture);
+    } else if(textureName == "textures/facingLeft1.png" || textureName == "textures/facingLeft2.png" || textureName == "textures/facingLeft3.png"){
+      textureName = "textures/waterLeft.png";
+      playerTexture.loadFromFile(textureName);
+      if(!playerTexture.loadFromFile(textureName)){
+        std::cout << "Error loading waterLeft texture" << std::endl;
+        return;
+      }
+      body->setTexture(&playerTexture);
+    } else if(textureName == "textures/facingForward1.png" || textureName == "textures/facingForward2.png" || textureName == "textures/facingForward3.png"){
+      textureName = "textures/waterForward.png";
+      playerTexture.loadFromFile(textureName);
+      if(!playerTexture.loadFromFile(textureName)){
+        std::cout << "Error loading waterForward texture" << std::endl;
+        return;
+      }
+      body->setTexture(&playerTexture);
+    } else if(textureName == "textures/facingBack1.png" || textureName == "textures/facingBack2.png" || textureName == "textures/facingBack3.png"){
+      textureName = "textures/waterBack.png";
+      playerTexture.loadFromFile(textureName);
+      if(!playerTexture.loadFromFile(textureName)){
+        std::cout << "Error loading waterBack texture" << std::endl;
+        return;
+      }
+      body->setTexture(&playerTexture);
+    }
+
+
     return;
   };
 

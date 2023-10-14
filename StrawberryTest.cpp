@@ -1,9 +1,13 @@
+#include "Strawberry.h"
+#include "BerryPlant.h"
+#include "Plant.h"
+#include "tile.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include "tile.h"
-#include "Plant.h"
-#include "BerryPlant.h"
-#include "Strawberry.h"
+
+
+
+
 using namespace sf;
 
 

@@ -107,3 +107,15 @@ saveTest: SaveGameTest.cpp SaveGame.h Day.h BuyMenu.h menu.h Player.h Strawberry
 Play: Game.cpp Game.h Day.h BuyMenu.h menu.h Player.h Strawberry.h Blueberry.h Carrot.h Potato.h RootPlant.h BerryPlant.h Plant.h tile.h InventoryItems.h
 	clang++ Game.cpp -o Game -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
 	./Game
+
+
+clean: 
+	rm tile player plantInventory plantImage rootplant berryPlantImage carrot potato blueberry strawberry plantMove text buymenu menu inventory playerInteraction day sellmenu everythingDay inven menuText killPlants harvestTest saveTest Game
+
+all:
+	make rootPlant
+	make berryPlant
+	make carrot
+	make potato
+	make strawberry
+	make blueberry

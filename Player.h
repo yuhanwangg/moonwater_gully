@@ -286,6 +286,10 @@ class Player {
       
       textureName = "textures/facingRight1.png";
       playerTexture.loadFromFile(textureName);
+      if(!playerTexture.loadFromFile(textureName)){
+        std::cout << "Error loading texture" << std::endl;
+        return;
+      }
       body->setTexture(&playerTexture);
       countSteps = 0;
 
@@ -293,12 +297,20 @@ class Player {
 
       textureName = "textures/facingRight2.png";
       playerTexture.loadFromFile(textureName);
+      if(!playerTexture.loadFromFile(textureName)){
+        std::cout << "Error loading texture" << std::endl;
+        return;
+      }
       body->setTexture(&playerTexture);
 
     } else if(countSteps == 30){ 
 
       textureName = "textures/facingRight3.png";
       playerTexture.loadFromFile(textureName);
+      if(!playerTexture.loadFromFile(textureName)){
+        std::cout << "Error loading texture" << std::endl;
+        return;
+      }
       body->setTexture(&playerTexture);
       countSteps = 0;
 
@@ -327,6 +339,10 @@ class Player {
       
       textureName = "textures/facingLeft1.png";
       playerTexture.loadFromFile(textureName);
+      if(!playerTexture.loadFromFile(textureName)){
+        std::cout << "Error loading texture" << std::endl;
+        return;
+      }
       body->setTexture(&playerTexture);
       countSteps = 0;
 
@@ -334,12 +350,20 @@ class Player {
 
       textureName = "textures/facingLeft2.png";
       playerTexture.loadFromFile(textureName);
+      if(!playerTexture.loadFromFile(textureName)){
+        std::cout << "Error loading texture" << std::endl;
+        return;
+      }
       body->setTexture(&playerTexture);
 
     } else if(countSteps == 30){ 
 
       textureName = "textures/facingLeft3.png";
       playerTexture.loadFromFile(textureName);
+      if(!playerTexture.loadFromFile(textureName)){
+        std::cout << "Error loading texture" << std::endl;
+        return;
+      }
       body->setTexture(&playerTexture);
       countSteps = 0;
 
@@ -367,6 +391,10 @@ class Player {
       
       textureName = "textures/facingForward1.png";
       playerTexture.loadFromFile(textureName);
+      if(!playerTexture.loadFromFile(textureName)){
+        std::cout << "Error loading texture" << std::endl;
+        return;
+      }
       body->setTexture(&playerTexture);
       countSteps = 0;
 
@@ -374,12 +402,20 @@ class Player {
 
       textureName = "textures/facingForward2.png";
       playerTexture.loadFromFile(textureName);
+      if(!playerTexture.loadFromFile(textureName)){
+        std::cout << "Error loading texture" << std::endl;
+        return;
+      }
       body->setTexture(&playerTexture);
 
     } else if(countSteps == 30){ 
 
       textureName = "textures/facingForward3.png";
       playerTexture.loadFromFile(textureName);
+      if(!playerTexture.loadFromFile(textureName)){
+        std::cout << "Error loading texture" << std::endl;
+        return;
+      }
       body->setTexture(&playerTexture);
       countSteps = 0;
 
@@ -407,6 +443,10 @@ class Player {
       
       textureName = "textures/facingBack1.png";
       playerTexture.loadFromFile(textureName);
+      if(!playerTexture.loadFromFile(textureName)){
+        std::cout << "Error loading texture" << std::endl;
+        return;
+      }
       body->setTexture(&playerTexture);
       countSteps = 0;
 
@@ -414,12 +454,20 @@ class Player {
 
       textureName = "textures/facingBack2.png";
       playerTexture.loadFromFile(textureName);
+      if(!playerTexture.loadFromFile(textureName)){
+        std::cout << "Error loading texture" << std::endl;
+        return;
+      }
       body->setTexture(&playerTexture);
 
     } else if(countSteps == 30){ 
 
       textureName = "textures/facingBack1.png";
       playerTexture.loadFromFile(textureName);
+      if(!playerTexture.loadFromFile(textureName)){
+        std::cout << "Error loading texture" << std::endl;
+        return;
+      }
       body->setTexture(&playerTexture);
       countSteps = 0;
 

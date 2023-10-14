@@ -34,8 +34,8 @@ blueberry: BlueberryTest.cpp Blueberry.h BerryPlant.h Plant.h tile.h
 	g++ BlueberryTest.cpp -o blueberry -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
 	./blueberry
 
-strawberry: StrawberryTest.cpp Strawberry.h BerryPlant.h Plant.h tile.h 
-	g++ StrawberryTest.cpp -o strawberry -I /include -L /lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
+strawberry: strawberryTest.cpp Strawberry.h BerryPlant.h Plant.h tile.h 
+	g++ strawberryTest.cpp -o strawberry -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
 	./strawberry
 
 plantAndPlayerTest: PlayerPlantInv.h PlayerTest.cpp tile.h Plant.h

@@ -7,7 +7,7 @@
 using namespace sf;
 
 
-
+//g++ RootPlant.cpp -o rootplant -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
 class TileDriver {
  private:
   RenderWindow* win;
@@ -25,8 +25,9 @@ class TileDriver {
     s.grow();
   };
 
+
   void makeBackground() {
-    // Creates game background
+    // Creates the tile game background
     for (int r = 0; r < 600; r += 50) {
       for (int c = 0; c < 600; c += 50) {
         tile* newTile = new tile(r, c);  // Pass coordinates to tile constructor
@@ -37,7 +38,7 @@ class TileDriver {
   };
 
   void run() {
-    // Runs game
+    // Running the game
     while (win->isOpen()) {
       Event e;
       while (win->pollEvent(e)) {
@@ -57,19 +58,18 @@ class TileDriver {
     }
     return;
   };
- 
+     ~TileDriver(){};
 
-  //getter
+  // getter
 
   std::vector<tile*> get_background() { return background; }
-  ~TileDriver(){};
 };
 
 int main() {
 
   Strawberry s1(50,50);
 
-  std::cout << "The Strawberry plant has a cost price of 70:" << s1.get_costPrice() << ", a sell price of 200:" << s1.get_sellPrice() << ", a growTime of 2:" << s1.get_growTime() << ", requires havestEquipment level 1:" << s1.get_harvestEquipment() << ", and has image description textures/StrawberrySeeds.png:" << s1.get_imageDescription() << std::endl;
+  std::cout << "The Strawberry plant has a cost price of 70:" << s1.get_costPrice() << ", a sell price of 200:" << s1.get_sellPrice() << ", a growTime of 2:" << s1.get_growTime() << ", requires havestEquipment level 1:" << s1.get_harvestEquipment() << ", and has image description textures/strawberrySeeds.png:" << s1.get_imageDescription() << std::endl;
 
   s1.harvestYield();
 
@@ -85,17 +85,17 @@ int main() {
   s1.grow();
   
 
-  std::cout << "the Strawberry is in growthStage 1:" << s1.get_growthStage() << ", has hydration level 0: " << s1.get_hydrationLevel() << ", and image description StrawberrySeedling.png:" << s1.get_imageDescription() << std::endl;
+  std::cout << "the Strawberry is in growthStage 1:" << s1.get_growthStage() << ", has hydration level 0: " << s1.get_hydrationLevel() << ", and image description textures/strawberrySeedling.png:" << s1.get_imageDescription() << std::endl;
 
 
   s1.newDayGrowth();
-  std::cout << "The Strawberry plant has hydration level -1:" << s1.get_hydrationLevel() << ", The Strawberry plant was seeded 2 days ago:" << s1.get_seedingTime() <<", plant is alive (should be 0):" << s1.get_alive() << std::endl;
+  std::cout << "The blueberry plant has hydration level -1:" << s1.get_hydrationLevel() << ", The blueberry plant was seeded 2 days ago:" << s1.get_seedingTime() <<", plant is alive (should be 0):" << s1.get_alive() << std::endl;
 
   s1.set_alive(true);
   s1.set_hydrationLevel(1);
   s1.newDayGrowth();
   s1.grow();
-  std::cout << "the Strawberry plant is in growthStage 2:" << s1.get_growthStage() << ", has hydration level 0: " << s1.get_hydrationLevel() << ", and image description StrawberrybushGrown.png:" << s1.get_imageDescription() << std::endl;
+  std::cout << "the blueberry plant is in growthStage 2:" << s1.get_growthStage() << ", has hydration level 0: " << s1.get_hydrationLevel() << ", and image description textures/strawberrybushGrown.png:" << s1.get_imageDescription() << std::endl;
 
   Strawberry s2(50,50);
   // test to see that it doesn't exceed growth of 2
@@ -109,9 +109,7 @@ int main() {
   s2.newDayGrowth();
   std::cout << "the Strawberry is in growthStage 2:" << s2.get_growthStage() << std::endl;
 
-
-  
-  // Ensuring that it catches error thrown in carrot
+    // Ensuring that it catches error thrown in carrot
   Strawberry s3(150,150);
   
   s3.set_hydrationLevel(1);

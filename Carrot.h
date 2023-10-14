@@ -1,6 +1,7 @@
-#include <SFML/Graphics.hpp>
+
 #ifndef CARROT_H
 #define CARROT_H
+#include <SFML/Graphics.hpp>
 #include <iostream>
 #include "tile.h"
 #include "Plant.h"

@@ -1,6 +1,6 @@
-#include <SFML/Graphics.hpp>
 #ifndef TILE_H
 #define TILE_H
+#include <SFML/Graphics.hpp>
 #include <iostream>
 using namespace sf;
 

@@ -1,6 +1,7 @@
-#include <SFML/Graphics.hpp>
+
 #ifndef BLUEBERRY_H
 #define BLUEBERRY_H
+#include <SFML/Graphics.hpp>
 #include <iostream>
 #include "tile.h"
 #include "Plant.h"

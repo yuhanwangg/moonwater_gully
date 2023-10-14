@@ -1,6 +1,7 @@
-#include <SFML/Graphics.hpp>
+
 #ifndef PLANT_H
 #define PLANT_H
+#include <SFML/Graphics.hpp>
 #include <iostream>
 
 #include "tile.h"

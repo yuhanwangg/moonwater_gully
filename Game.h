@@ -18,6 +18,7 @@ using namespace sf;
 #include "SellMenu.h"
 #include "tile.h"
 
+
 class Game {
  private:
   RenderWindow* win;
@@ -33,6 +34,8 @@ class Game {
   bool visibleBuy = false;
   bool visibleSell = false;
   bool visibleInventory = true;
+
+  bool onKeyHold = false;
 
  public:
   Game(int size, std::string title) {
@@ -172,7 +175,16 @@ class Game {
         if (e.type == Event::KeyPressed) {
           // Skipping ahead by 1 day
           if (Keyboard::isKeyPressed(Keyboard::Num0)) {
-            day.daySkip(&background);
+            if (!onKeyHold) {
+              day.daySkip(&background);
+            }
+            onKeyHold = true;
+          }
+        }
+
+        else if (e.type == Event::KeyReleased) {
+          if (e.key.code == Keyboard::Num0) {
+            onKeyHold = false;
           }
         }
 

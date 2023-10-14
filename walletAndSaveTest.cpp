@@ -141,8 +141,8 @@ class EverythingDriver {
 
         if (e.type == Event::KeyPressed) {
           if (Keyboard::isKeyPressed(Keyboard::H)) {
+            std::cout << "Harvesting Plant" << std::endl;
             player->harvestPlant(&background, &inventory);
-            std::cout << "Harvested Plant" << std::endl;
           }
         }
 

@@ -37,7 +37,7 @@ newTile,tile 100 550 0 0
 newTile,tile 150 0 0 0 
 newTile,tile 150 50 0 0 
 newTile,tile 150 100 0 0 
-newTile,Potato 150 150 0 0 
+newTile,Carrot 150 150 0 0 
 newTile,tile 150 200 0 0 
 newTile,tile 150 250 0 0 
 newTile,tile 150 300 0 0 
@@ -49,7 +49,7 @@ newTile,tile 150 550 0 0
 newTile,tile 200 0 0 0 
 newTile,tile 200 50 0 0 
 newTile,tile 200 100 0 0 
-newTile,Potato 200 150 0 0 
+newTile,tile 200 150 0 0 
 newTile,tile 200 200 0 0 
 newTile,tile 200 250 0 0 
 newTile,tile 200 300 0 0 
@@ -150,8 +150,8 @@ inventory,0
 inventory,0 
 inventory,0 
 inventory,0 
-inventory,2 
 inventory,0 
-shellNumber,300
-dayCount,0
-dayTime,170
+inventory,0 
+shellNumber,250
+dayCount,2
+dayTime,171

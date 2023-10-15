@@ -59,6 +59,7 @@ class EverythingDriver {
   };
 
   void run() {
+    makeBackground();
     while (win->isOpen()) {
       Event e;
 
@@ -653,7 +654,7 @@ class EverythingDriver {
 
 int main() {
   EverythingDriver driver(600, "TEST");
-  driver.makeBackground();
+  // driver.makeBackground();
   driver.run();
   return 0;
 }

@@ -1,6 +1,8 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 using namespace sf;
+#include <json/json.h>
+
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
@@ -87,7 +89,7 @@ class EverythingDriver {
             int select = saver.get_select();
             switch (select) {
               case 0:
-                saver.loadGame(background, &inventory, player, &day);
+                saver.load(background, &inventory, player, &day);
                 // create pop up
                 saver.set_loadVisibility(false);
                 menu.set_visibility(true);

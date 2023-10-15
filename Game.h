@@ -9,15 +9,14 @@ using namespace sf;
 #include "BuyMenu.h"
 #include "Carrot.h"
 #include "Day.h"
+#include "Inventory.h"
 #include "Menu.h"
 #include "Player.h"
 #include "Potato.h"
-#include "Strawberry.h"
-#include "Inventory.h"
 #include "SaveGame.h"
 #include "SellMenu.h"
+#include "Strawberry.h"
 #include "tile.h"
-
 
 class Game {
  private:
@@ -88,7 +87,7 @@ class Game {
             int select = saver.get_select();
             switch (select) {
               case 0:
-                saver.loadGame(background, &inventory, player, &day);
+                saver.load(background, &inventory, player, &day);
                 // create pop up
                 saver.set_loadVisibility(false);
                 menu.set_visibility(true);
@@ -108,7 +107,7 @@ class Game {
             if (background[player->get_x() / 50 * 12 + player->get_y() / 50]
                     ->get_isPlantable() == true) {
               switch (inventory.get_inventoryIndex()) {
-                case 2: // Blueberry seeds
+                case 2:  // Blueberry seeds
                   if (inventory.get_blueberrySeedsCount() > 0) {
                     player->seedPlant(2, &background);
                     inventory.subtractBlueberrySeedsCount();
@@ -118,7 +117,7 @@ class Game {
                     std::cout << "\n";
                   }
                   break;
-                case 4: // Strawberry seeds
+                case 4:  // Strawberry seeds
                   if (inventory.get_strawberrySeedsCount() > 0) {
                     player->seedPlant(4, &background);
                     inventory.subtractStrawberrySeedsCount();
@@ -128,7 +127,7 @@ class Game {
                     std::cout << "\n";
                   }
                   break;
-                case 6: // Potato seeds
+                case 6:  // Potato seeds
                   if (inventory.get_potatoSeedsCount() > 0) {
                     player->seedPlant(6, &background);
                     inventory.subtractPotatoSeedsCount();
@@ -138,7 +137,7 @@ class Game {
                     std::cout << "\n";
                   }
                   break;
-                case 8: // Carrot seeds
+                case 8:  // Carrot seeds
                   if (inventory.get_carrotSeedsCount() > 0) {
                     player->seedPlant(8, &background);
                     inventory.subtractCarrotSeedsCount();
@@ -293,7 +292,7 @@ class Game {
             // opening the rectangles of the options
             int itemNo = buymenu.get_buySelect();
             switch (itemNo) {
-              case 0: // Purchasing carrot seeds
+              case 0:  // Purchasing carrot seeds
                 if (buymenu.purchaseStatus(player, 0) == true) {
                   buymenu.set_successCheck(true);
                   buymenu.set_failureCheck(false);
@@ -301,7 +300,7 @@ class Game {
                   std::cout << "Shells: " << player->get_shells();
                   std::cout << "\n";
                   std::cout << "Remaining shells: " << player->get_shells();
-                  std::cout << "\n"; 
+                  std::cout << "\n";
                   inventory.addCarrotSeedsCount();
                   std::cout << "Carrot seeds in inventory: "
                             << inventory.get_carrotSeedsCount() << std::endl;
@@ -310,7 +309,7 @@ class Game {
                   buymenu.set_failureCheck(true);
                 }
                 break;
-              case 1: // Purchasing potato seeeds
+              case 1:  // Purchasing potato seeeds
                 if (buymenu.purchaseStatus(player, 1) == true) {
                   buymenu.set_successCheck(true);
                   buymenu.set_failureCheck(false);
@@ -329,7 +328,7 @@ class Game {
                   buymenu.set_failureCheck(true);
                 }
                 break;
-              case 2: // Purchasing strawberry seeds
+              case 2:  // Purchasing strawberry seeds
                 if (buymenu.purchaseStatus(player, 2) == true) {
                   buymenu.set_successCheck(true);
                   buymenu.set_failureCheck(false);
@@ -350,7 +349,7 @@ class Game {
                   buymenu.set_failureCheck(true);
                 }
                 break;
-              case 3: // Purchasing blueberry seeds
+              case 3:  // Purchasing blueberry seeds
                 if (buymenu.purchaseStatus(player, 3) == true) {
                   buymenu.set_successCheck(true);
                   buymenu.set_failureCheck(false);
@@ -370,7 +369,7 @@ class Game {
                   buymenu.set_failureCheck(true);
                 }
                 break;
-              case 4: // Purchasing shovel
+              case 4:  // Purchasing shovel
                 if (buymenu.purchaseStatus(player, 4) == true) {
                   buymenu.set_successCheck(true);
                   buymenu.set_failureCheck(false);
@@ -390,7 +389,7 @@ class Game {
                   buymenu.set_failureCheck(true);
                 }
                 break;
-              case 5: // Purchasing gloves
+              case 5:  // Purchasing gloves
                 if (buymenu.purchaseStatus(player, 5) == true) {
                   buymenu.set_successCheck(true);
                   buymenu.set_failureCheck(false);
@@ -423,7 +422,7 @@ class Game {
             // opening the rectangles of the options
             int itemNoSell = sellmenu.get_sellSelect();
             switch (itemNoSell) {
-              case 0: // Selling carrot
+              case 0:  // Selling carrot
                 if (sellmenu.purchaseStatus(&inventory, 0) == true) {
                   sellmenu.set_successCheck(true);
                   sellmenu.set_failureCheck(false);
@@ -439,7 +438,7 @@ class Game {
                   sellmenu.set_failureCheck(true);
                 }
                 break;
-              case 1: // Selling potato
+              case 1:  // Selling potato
                 if (sellmenu.purchaseStatus(&inventory, 1) == true) {
                   sellmenu.set_successCheck(true);
                   sellmenu.set_failureCheck(false);
@@ -455,7 +454,7 @@ class Game {
                   sellmenu.set_failureCheck(true);
                 }
                 break;
-              case 2: // Selling strawberry
+              case 2:  // Selling strawberry
                 if (sellmenu.purchaseStatus(&inventory, 2) == true) {
                   sellmenu.set_successCheck(true);
                   sellmenu.set_failureCheck(false);
@@ -471,7 +470,7 @@ class Game {
                   sellmenu.set_failureCheck(true);
                 }
                 break;
-              case 3: // Selling Blueberry
+              case 3:  // Selling Blueberry
                 if (sellmenu.purchaseStatus(&inventory, 3) == true) {
                   sellmenu.set_successCheck(true);
                   sellmenu.set_failureCheck(false);
@@ -644,4 +643,3 @@ class Game {
 };
 
 #endif
-

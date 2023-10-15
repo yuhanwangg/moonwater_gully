@@ -1,6 +1,5 @@
 #ifndef SAVEGAME_H
 #define SAVEGAME_H
-#include <json/json.h>
 
 #include <SFML/Graphics.hpp>
 #include <fstream>
@@ -8,9 +7,17 @@
 #include <sstream>
 #include <string>
 
+#include "Blueberry.h"
+#include "BuyMenu.h"
+#include "Carrot.h"
 #include "Day.h"
 #include "Inventory.h"
+#include "Menu.h"
 #include "Player.h"
+#include "Potato.h"
+#include "SaveGame.h"
+#include "SellMenu.h"
+#include "Strawberry.h"
 #include "tile.h"
 using namespace sf;
 
@@ -23,7 +30,6 @@ class SaveGame {
   Text confirm[2];
   int selection;
   Font font;
-  std::vector<int> temp_inv;
 
  public:
   // saving game
@@ -89,191 +95,261 @@ class SaveGame {
     }
   }
 
-  void save(std::vector<tile*> background, int size, Inventory* inventory,
+  void save(std::vector<tile*>& background, int size, Inventory* inventory,
             Player* player, Day* day) {
-    Json::Value root;
-
+    saveFile.open("save.txt", std::ios::out);
+    if (!saveFile.is_open()) {
+      std::cout << "file could not be opened for saving." << std::endl;
+      return;  // error handling
+    }
+    // in file when reading through to load, check
+    // newTile then get next tile to load info
+    // save a vector of tiles
     for (int i = 0; i < size; i++) {
-      Json::Value tileData;
-      tileData["class"] = background[i]->get_className();
-      tileData["growthStage"] = background[i]->get_growthStage();
-      tileData["hydrationLevel"] = background[i]->get_hydrationLevel();
-      root["tiles"].append(tileData);
+      saveFile << "newTile,";
+
+      saveFile << background[i]->get_className()
+               << " ";  // comma used as a deliminator when using get_line()
+      // get coordinates
+      saveFile << background[i]->get_x() << " ";
+
+      saveFile << background[i]->get_y() << " ";
+
+      saveFile << background[i]->get_growthStage() << " ";
+
+      saveFile << background[i]->get_hydrationLevel() << " ";
+
+      saveFile << "\n";
     }
 
-    Json::Value inventoryData;
-    for (int i = 0; i < inventory->get_inventorySize(); i++) {
-      inventoryData.append(inventory->get_inventory()[i]);
+    // save inventory count of each item
+    for (int i = 0; i < (inventory->get_inventorySize()); i++) {
+      saveFile << "inventory,";  // in file， check when u see "inventory"
+      saveFile << inventory->get_inventory()[i] << " ";
+      saveFile << "\n";
     }
-    root["inventory"] = inventoryData;
 
-    root["shellNumber"] = player->get_shells();
-    root["DayCount"] = day->get_dayCount();
-    root["DayTime"] = day->get_timeInSec();
+    saveFile << "shellNumber,";
 
-    std::ofstream saveFile("save.json");
-    if (saveFile.is_open()) {
-      Json::StreamWriterBuilder writer;
-      writer["indentation"] = "  ";
-      saveFile << Json::writeString(writer, root);
-      saveFile.close();
-      std::cout << "Game saved." << std::endl;
-    } else {
-      std::cout << "File could not be opened for saving." << std::endl;
-    }
-  }
+    // save player shell number
+    saveFile << player->get_shells();
 
-  void load(std::vector<tile*>& background, Inventory* inventory,
-            Player* player, Day* day) {
-    std::ifstream loadFile("save.json");
-    if (!loadFile.is_open()) {
+    saveFile << "\n";  // line by line approach
+
+    // save day number
+
+    saveFile << "dayCount,";
+    saveFile << day->get_dayCount();
+    saveFile << "\n";  // line by line approach
+
+    // save time left in day
+    saveFile << "dayTime,";
+    saveFile << day->get_timeInSec();
+    saveFile << "\n";  // line by line approach
+
+    saveFile.close();
+    std::cout << "game saved,";  // if statement to check when to stop
+  };
+
+  void load(std::vector<tile*> background, Inventory* inventory, Player* player,
+            Day* day) {
+    std::ifstream saveFile("save.txt");
+
+    if (!saveFile.is_open()) {
       std::cout << "File could not be opened for loading." << std::endl;
-      return;
+      return;  // Error handling
     }
 
-    Json::Value root;
-    loadFile >> root;
+    std::string line;
+    // temporary background;
+    std::vector<tile*> tempBg;
+    // temporary inventory
+    std::vector<int> tempInv;
 
-    const Json::Value& tilesData = root["tiles"];
-    for (int i = 0; i < tilesData.size() && i < background.size(); i++) {
-      const Json::Value& tileData = tilesData[i];
-      background[i]->set_className(tileData["class"].asString());
-      background[i]->set_growthStage(tileData["growthStage"].asInt());
-      background[i]->set_hydrationLevel(tileData["hydrationLevel"].asInt());
+    while (std::getline(saveFile, line)) {
+      std::istringstream iss(line);
+      std::string token;
+
+      // split line via commas
+      while (std::getline(iss, token, ',')) {
+        // determine the data type based on the first token
+        if (token == "newTile") {
+          // reading in tile data
+          int x, y, growthStage, hydrationLevel;
+          std::string className;
+
+          if (iss >> x >> y >> className >> growthStage >>
+              hydrationLevel) {  // reads via line spaced
+            // switch case to add tile to background
+            if (className == "tile") {
+              tile* newTile = new tile(x, y);
+              newTile->set_hydrationLevel(hydrationLevel);
+
+              std::cout << "tile created";
+              tempBg.push_back(newTile);
+
+            } else if (className == "Carrot") {
+              Carrot* carrotTile = new Carrot(x, y);
+              carrotTile->set_hydrationLevel(hydrationLevel);
+              carrotTile->set_growthStage(growthStage);
+
+              tempBg.push_back(carrotTile);
+
+            } else if (className == "Potato") {
+              Potato* potatoTile = new Potato(x, y);
+              potatoTile->set_hydrationLevel(hydrationLevel);
+              potatoTile->set_growthStage(growthStage);
+
+              tempBg.push_back(potatoTile);
+
+            } else if (className == "Strawberry") {
+              Strawberry* strawberryTile = new Strawberry(x, y);
+              strawberryTile->set_hydrationLevel(hydrationLevel);
+              strawberryTile->set_growthStage(growthStage);
+
+              tempBg.push_back(strawberryTile);
+
+            } else if (className == "Blueberry") {
+              Blueberry* blueberryTile = new Blueberry(x, y);
+              blueberryTile->set_hydrationLevel(hydrationLevel);
+              blueberryTile->set_growthStage(growthStage);
+
+              tempBg.push_back(blueberryTile);
+            }
+          }
+        } else if (token == "inventory") {
+          // read into inventory
+          int item;
+          if (iss >> item) {
+            // Add the item to the inventory
+            tempInv.push_back(item);
+          }
+        } else if (token == "shellNumber") {
+          // Read player shell number
+          int shells;
+          if (iss >> shells) {
+            player->set_shells(shells);
+          }
+        } else if (token == "dayCount") {
+          // Read day count
+          int dayCount;
+          if (iss >> dayCount) {
+            day->set_dayCount(dayCount);
+          }
+        } else if (token == "dayTime") {
+          // Read day time
+          int dayTime;
+          if (iss >> dayTime) {
+            day->set_timeInSec(dayTime);
+          }
+        }
+      }
+
+      background = tempBg;
+      inventory->set_inventory(tempInv);
     }
 
-    const Json::Value& inventoryData = root["inventory"];
-    for (int i = 0; i < inventoryData.size(); i++) {
-      inventory->set_inventoryItemAt(i, inventoryData[i].asInt());
-    }
-
-    player->set_shells(root["shellNumber"].asInt());
-    day->set_dayCount(root["DayCount"].asInt());
-    day->set_timeInSec(root["DayTime"].asInt());
-
-    loadFile.close();
+    saveFile.close();
     std::cout << "Game loaded." << std::endl;
   }
 
-  // void save(std::vector<tile*> background, int size, Inventory* inventory,
-  //           Player* player, Day* day) {
-  //   saveFile.open("save.txt", std::ios::out);
-  //   if (!saveFile.is_open()) {
-  //     std::cout << "File could not be opened for saving." << std::endl;
-  //     return;  // Handle the error and return if the file couldn't be opened.
-  //   }
-
-  //   saveFile << "newTile,";  // in file when reading through to load, check
-  //   if
-  //                            // newTile then get next tile to load info
-  //   // save a vector of tiles
-  //   for (int i = 0; i < size; i++) {
-  //     saveFile << background[i]->get_className()
-  //              << ",";  // comma used as a deliminator when using get_line()
-  //     saveFile << background[i]->get_growthStage() << ",";
-  //     saveFile << background[i]->get_hydrationLevel() << ",";
-
-  //     saveFile << "done,";
-  //   }
-
-  //   saveFile << "inventory,";  // in file， check when u see "inventory"
-  //   // save inventory count of each item
-  //   for (int i = 0; i < (inventory->get_inventorySize()); i++) {
-  //     saveFile << inventory->get_inventory()[i] << ",";
-  //   }
-
-  //   saveFile << "shellNumber,";
-
-  //   // save player shell number
-  //   saveFile << player->get_shells() << std::endl;
-
-  //   // save day number
-
-  //   saveFile << "DayCount,";
-  //   saveFile << day->get_dayCount() << std::endl;
-
-  //   // save time left in day
-  //   saveFile << "DayTime,";
-  //   saveFile << day->get_timeInSec() << std::endl;
-
-  //   saveFile.close();
-  //   std::cout << "Game saved,";
-  // };
-
   // void load(std::vector<tile*>& background, Inventory* inventory,
   //           Player* player, Day* day) {
-  //   std::ifstream loadFile("save.txt");
+  //   std::ifstream saveFile("save.txt");
 
-  //   if (!loadFile.is_open()) {
+  //   if (!saveFile.is_open()) {
   //     std::cout << "File could not be opened for loading." << std::endl;
-  //     return;
+  //     return;  // Error handling
   //   }
 
   //   std::string line;
-  //   std::string token;
+  //   std::vector<tile*> tempBg;
+  //   std::vector<int> tempInv;
+  //   int tempDayCount = -1;
+  //   int tempDayTime = -1;
 
-  //   while (std::getline(loadFile, line)) {
+  //   while (std::getline(saveFile, line)) {
   //     std::istringstream iss(line);
-  //     iss >> token;
+  //     std::string token;
 
-  //     if (token == "newTile,") {
-  //       int position;
-  //       int growthStage;
-  //       int hydrationLevel;
+  //     while (std::getline(iss, token, ',')) {
+  //       if (token == "tileClass") {
+  //         std::string className;
+  //         int x = -1, y = -1, growthStage = -1, hydrationLevel = -1;
+  //         if (iss >> className >> token >> x >> token >> y >> token >>
+  //             growthStage >> token >> hydrationLevel) {
+  //           if (className == "tile") {
+  //             tile* newTile = new tile(x, y);
+  //             newTile->set_hydrationLevel(hydrationLevel);
 
-  //       while (true) {
-  //         iss >> position >> growthStage >> hydrationLevel;
+  //             std::cout << "tile read";
+  //             tempBg.push_back(newTile);
+  //           } else if (className == "Potato") {
+  //             Potato* potatoTile = new Potato(x, y);
+  //             potatoTile->set_growthStage(growthStage);
+  //             potatoTile->set_hydrationLevel(hydrationLevel);
 
-  //         if (position >= background.size() || position < 0) {
-  //           // Invalid position, skip this entry
-  //           break;
+  //             std::cout << "potato read";
+  //             tempBg.push_back(potatoTile);
+  //           } else if (className == "Carrot") {
+  //             Carrot* carrotTile = new Carrot(x, y);
+  //             carrotTile->set_growthStage(growthStage);
+  //             carrotTile->set_hydrationLevel(hydrationLevel);
+
+  //             std::cout << "carrot read";
+  //             tempBg.push_back(carrotTile);
+  //           } else if (className == "Strawberry") {
+  //             Strawberry* strawberryTile = new Strawberry(x, y);
+  //             strawberryTile->set_hydrationLevel(hydrationLevel);
+  //             strawberryTile->set_growthStage(growthStage);
+
+  //             std::cout << "strawberry read";
+  //             tempBg.push_back(strawberryTile);
+
+  //           } else if (className == "Blueberry") {
+  //             Blueberry* blueberryTile = new Blueberry(x, y);
+  //             blueberryTile->set_hydrationLevel(hydrationLevel);
+  //             blueberryTile->set_growthStage(growthStage);
+
+  //             tempBg.push_back(blueberryTile);
+  //           }
   //         }
-
-  //         // Update the tile at the specified position in the background
-  //         vector
-  //         // background[position]->set_growthStage(growthStage);
-  //         background[position]->set_hydrationLevel(hydrationLevel);
-
-  //         std::cout << position;
-
-  //         std::string delimiter;
-  //         iss >> delimiter;
-
-  //         if (delimiter == "done") {
-  //           break;  // End of tile entry
+  //       } else if (token == "inventory") {
+  //         int item = -1;
+  //         if (iss >> item) {
+  //           // Add the item to the inventory
+  //           tempInv.push_back(item);
   //         }
-
-  //         std::cout << "complete tile entry";
+  //       } else if (token == "shellNumber") {
+  //         int shells = -1;
+  //         if (iss >> shells) {
+  //           player->set_shells(shells);
+  //         }
+  //       } else if (token == "dayCount") {
+  //         if (iss >> tempDayCount) {
+  //           // Do nothing here; we will set the day count after reading the
+  //           day
+  //           // time
+  //         }
+  //       } else if (token == "dayTime") {
+  //         if (iss >> tempDayTime) {
+  //           // Set the day time in your Day object
+  //           day->set_timeInSec(tempDayTime);
+  //           // Set the day count in your Day object (if it was loaded)
+  //           if (tempDayCount != -1) {
+  //             day->set_dayCount(tempDayCount);
+  //           }
+  //         }
   //       }
-  //     } else if (token == "inventory,") {
-  //       int item;
-  //       int i = 0;
-  //       while (iss >> item) {
-  //         inventory->set_inventoryItemAt(i, item);
-  //         i++;
-  //       }
-  //     } else if (token == "shellNumber,") {
-  //       int shells;
-  //       iss >> shells;
-  //       player->set_shells(shells);
-  //     } else if (token == "DayCount,") {
-  //       int dayCount;
-  //       iss >> dayCount;
-  //       day->set_dayCount(dayCount);
-  //     } else if (token == "DayTime,") {
-  //       int dayTime;
-  //       iss >> dayTime;
-  //       day->set_timeInSec(dayTime);
   //     }
   //   }
 
-  //   loadFile.close();
-  //   std::cout << "Game loaded." << std::endl;
-  // }
+  //   // After reading the entire file, update the background
+  //   background = tempBg;
+  //   inventory->set_inventory(tempInv);
 
-  //   // closing and checking the load worked
   //   saveFile.close();
-  //   std::cout << "LoaDING WORKS." << std::endl;
+  //   std::cout << "Game loaded." << std::endl;
   // }
 
   void clearFile() {

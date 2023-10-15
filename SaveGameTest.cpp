@@ -1,7 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 using namespace sf;
-#include <json/json.h>
 
 #include <SFML/Graphics.hpp>
 #include <iostream>

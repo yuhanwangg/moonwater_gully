@@ -14,6 +14,7 @@ using namespace sf;
 #include "Player.h"
 #include "Potato.h"
 #include "Strawberry.h"
+#include "TextBox.h"
 
 // #include "PlayerInteraction.h"
 
@@ -219,6 +220,7 @@ class Player {
     // Making sure all conditions are met
     if ((*backgroundTiles)[playerX * 12 + playerY]->get_className() == "tile") {
       std::cout << "Land cannot be harvested" << std::endl;
+      // TextBox harvestWarning(100,50);
       return;
     } else if ((*backgroundTiles)[playerX * 12 + playerY]->get_growthStage() !=
                currentPlant->get_growTime()) {
@@ -319,6 +321,9 @@ class Player {
     
   }
   void moveLeft() {
+
+    countSteps++;
+
     if (body->getPosition().x > 0) {
       body->move(-speed, 0);
     }

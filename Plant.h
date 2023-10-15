@@ -53,6 +53,7 @@ class Plant : public tile {
   // Harvest yield will produce a different harvest yeild 
   // for each sub category of plant. Plants by themselves do not have harvest yeild.
   virtual int harvestYield() = 0;
+  
 
   
   void newDayGrowth() {

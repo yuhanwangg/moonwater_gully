@@ -159,8 +159,8 @@ class Game {
             player->waterPlant(&background);
             std::cout << "watered plant" << std::endl;
 
-            int playerX = (floor(player->get_x() / 50) * 50);
-            int playerY = (floor(player->get_y() / 50) * 50);
+            // int playerX = (floor(player->get_x() / 50) * 50);
+            // int playerY = (floor(player->get_y() / 50) * 50);
           }
         }
 

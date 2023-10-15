@@ -1,6 +1,6 @@
-#include <SFML/Graphics.hpp>
 #ifndef POTATO_H
 #define POTATO_H
+#include <SFML/Graphics.hpp>
 #include <iostream>
 #include "tile.h"
 #include "Plant.h"

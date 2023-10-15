@@ -78,17 +78,28 @@ int main() {
   std::cout << "The potato plant has hydration level 1:" << p1.get_hydrationLevel() << ", and is alive (should be 1):" << p1.get_alive() << std::endl;
 
 
-  p1.grow();
   p1.newDayGrowth();
+  try {p1.grow();
+  } catch (const char * msg) {
+    std::cerr << msg << std::endl;
+  }
 
   std::cout << "the potato is in growthStage 1:" << p1.get_growthStage() << ", has hydration level 0: " << p1.get_hydrationLevel() << ", and image description textures/potatoGrown.png:" << p1.get_imageDescription() << std::endl;
 
 
   p1.newDayGrowth();
+  try {p1.grow();
+  } catch (const char * msg) {
+    std::cerr << msg << std::endl;
+  }
   std::cout << "The potato plant has hydration level -1:" << p1.get_hydrationLevel() << ", The root plant was seeded 2 days ago:" << p1.get_seedingTime() <<", plant is alive (should be 0):" << p1.get_alive() << std::endl;
 
 
   p1.grow();
+  try {p1.grow();
+  } catch (const char * msg) {
+    std::cerr << msg << std::endl;
+  }
   p1.newDayGrowth();
   std::cout << "the potato plant is in growthStage 1:" << p1.get_growthStage() << ", has hydration level -2: " << p1.get_hydrationLevel() << ", and image description textures/potatGrown.png:" << p1.get_imageDescription() << std::endl;
 

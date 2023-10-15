@@ -77,19 +77,28 @@ int main() {
   c1.set_hydrationLevel(1);
   std::cout << "The carrot plant has hydration level 1:" << c1.get_hydrationLevel() << ", and is alive (should be 1):" << c1.get_alive() << std::endl;
 
+
+  c1.newDayGrowth();
   try {c1.grow();
   } catch (const char * msg) {
     std::cerr << msg << std::endl;
   }
-  c1.newDayGrowth();
 
   std::cout << "the carrot is in growthStage 1:" << c1.get_growthStage() << ", has hydration level 0: " << c1.get_hydrationLevel() << ", and image description textures/carrotGrown.png:" << c1.get_imageDescription() << std::endl;
 
 
   c1.newDayGrowth();
+  try {c1.grow();
+  } catch (const char * msg) {
+    std::cerr << msg << std::endl;
+  }
   std::cout << "The carrot plant has hydration level -1:" << c1.get_hydrationLevel() << ", The root plant was seeded 2 days ago:" << c1.get_seedingTime() <<", plant is alive (should be 0):" << c1.get_alive() << std::endl;
 
   c1.newDayGrowth();
+  try {c1.grow();
+  } catch (const char * msg) {
+    std::cerr << msg << std::endl;
+  }
   std::cout << "the carrot plant is in growthStage 1:" << c1.get_growthStage() << ", has hydration level -2: " << c1.get_hydrationLevel() << ", and image description textures/carrotGrown.png:" << c1.get_imageDescription() << std::endl;
 
 

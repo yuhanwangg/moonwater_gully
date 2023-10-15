@@ -1,6 +1,6 @@
-#include <SFML/Graphics.hpp>
 #ifndef TILE_TEST
 #define TILE_TEST
+#include <SFML/Graphics.hpp>
 #include <iostream>
 using namespace sf;
 

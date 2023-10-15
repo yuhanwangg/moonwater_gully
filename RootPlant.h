@@ -1,6 +1,6 @@
-#include <SFML/Graphics.hpp>
 #ifndef ROOTPLANT_H
 #define ROOTPLANT_H
+#include <SFML/Graphics.hpp>
 #include <iostream>
 #include "tile.h"
 #include "Plant.h"

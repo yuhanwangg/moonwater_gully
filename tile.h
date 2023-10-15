@@ -1,6 +1,6 @@
-#include <SFML/Graphics.hpp>
 #ifndef TILE_H
 #define TILE_H
+#include <SFML/Graphics.hpp>
 #include <iostream>
 using namespace sf;
 
@@ -76,7 +76,7 @@ class tile {
   int get_hydrationLevel() { return hydrationLevel; }
 
   void set_texture(std::string TextureName) {
-    Texture* texture;
+    Texture* texture = nullptr;
     texture->loadFromFile(TextureName);
     square->setTexture(texture);
     square->setTextureRect(IntRect(0, 0, size, size));
@@ -102,7 +102,7 @@ class tile {
   std::string get_imageDescription() { return imageDescription; };
   std::string get_className() { return className; };
 
-  ~tile(){};
+  virtual ~tile(){};
 };
 
 #endif

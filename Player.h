@@ -3,10 +3,11 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 using namespace sf;
+#include <unistd.h>
+
 #include <cmath>
 #include <typeinfo>
 #include <unordered_map>
-#include <unistd.h>
 
 #include "Blueberry.h"
 #include "Carrot.h"
@@ -17,8 +18,6 @@ using namespace sf;
 #include "Strawberry.h"
 
 // #include "PlayerInteraction.h"
-
-
 
 class Player {
  private:
@@ -61,13 +60,13 @@ class Player {
 
     textureName = "textures/facingBack1.png";
     playerTexture.loadFromFile(textureName);
-    if(!playerTexture.loadFromFile(textureName)){
+    if (!playerTexture.loadFromFile(textureName)) {
       std::cout << "Could not load the default texture" << std::endl;
       return;
     }
-    body->setSize(Vector2f(40,60));
+    body->setSize(Vector2f(40, 60));
     body->setTexture(&playerTexture);
-    body->setTextureRect(IntRect(0,0,40,60));
+    body->setTextureRect(IntRect(0, 0, 40, 60));
     // body->setFillColor(Color::Blue);
     body->setOrigin(r / 2, r / 2);
     body->setPosition(x, y);
@@ -75,24 +74,23 @@ class Player {
     // text box font
     font.loadFromFile("textures/font_texture/TTF/dogica.ttf");
     if (!font.loadFromFile("textures/font_texture/TTF/dogica.ttf")) {
-      std::cout << "error loading font in player" << std::endl;  // error testing
+      std::cout << "error loading font in player"
+                << std::endl;  // error testing
     }
 
     warningText.setFont(font);
     warningText.setCharacterSize(20);
-    warningText.setPosition(100,200);
-
+    warningText.setPosition(100, 200);
   }
 
-  void draw(RenderWindow* win) {
-    win->draw(*body);
-    }
+  void draw(RenderWindow* win) { win->draw(*body); }
 
   // Seeding plant
 
   void seedPlant(int seedType, std::vector<tile*>* backgroundTiles) {
-    // Seeds a plant by changing the tile the player is on to a seed type tile (carrot, potato, blueberry, strawberry)
-    // Takes in an int representing seedType and a pointer to a vector of tile pointers
+    // Seeds a plant by changing the tile the player is on to a seed type tile
+    // (carrot, potato, blueberry, strawberry) Takes in an int representing
+    // seedType and a pointer to a vector of tile pointers
 
     int playerX = (floor(body->getPosition().x / 50));
     int playerY = (floor(body->getPosition().y / 50));
@@ -155,12 +153,12 @@ class Player {
     }
   }
 
-
   // Water plant
 
   void waterPlant(std::vector<tile*>* backgroundTiles) {
-    // Waters the tile by increasing the hydration level, takes in a pointer to a vector of tile pointers
-    
+    // Waters the tile by increasing the hydration level, takes in a pointer to
+    // a vector of tile pointers
+
     // changes the x and y coordinates of the player to valid tile positions
     int playerX = (floor(body->getPosition().x / 50));
     int playerY = (floor(body->getPosition().y / 50));
@@ -172,49 +170,56 @@ class Player {
     std::string textureHold;
     textureHold = textureName;
 
-    if(textureName == "textures/facingRight1.png" || textureName == "textures/facingRight2.png" || textureName == "textures/facingRight3.png"){
+    if (textureName == "textures/facingRight1.png" ||
+        textureName == "textures/facingRight2.png" ||
+        textureName == "textures/facingRight3.png") {
       textureName = "textures/waterRight.png";
       playerTexture.loadFromFile(textureName);
-      if(!playerTexture.loadFromFile(textureName)){
+      if (!playerTexture.loadFromFile(textureName)) {
         std::cout << "Error loading waterRight texture" << std::endl;
         return;
       }
       body->setTexture(&playerTexture);
-    } else if(textureName == "textures/facingLeft1.png" || textureName == "textures/facingLeft2.png" || textureName == "textures/facingLeft3.png"){
+    } else if (textureName == "textures/facingLeft1.png" ||
+               textureName == "textures/facingLeft2.png" ||
+               textureName == "textures/facingLeft3.png") {
       textureName = "textures/waterLeft.png";
       playerTexture.loadFromFile(textureName);
-      if(!playerTexture.loadFromFile(textureName)){
+      if (!playerTexture.loadFromFile(textureName)) {
         std::cout << "Error loading waterLeft texture" << std::endl;
         return;
       }
       body->setTexture(&playerTexture);
-    } else if(textureName == "textures/facingForward1.png" || textureName == "textures/facingForward2.png" || textureName == "textures/facingForward3.png"){
+    } else if (textureName == "textures/facingForward1.png" ||
+               textureName == "textures/facingForward2.png" ||
+               textureName == "textures/facingForward3.png") {
       textureName = "textures/waterForward.png";
       playerTexture.loadFromFile(textureName);
-      if(!playerTexture.loadFromFile(textureName)){
+      if (!playerTexture.loadFromFile(textureName)) {
         std::cout << "Error loading waterForward texture" << std::endl;
         return;
       }
       body->setTexture(&playerTexture);
-    } else if(textureName == "textures/facingBack1.png" || textureName == "textures/facingBack2.png" || textureName == "textures/facingBack3.png"){
+    } else if (textureName == "textures/facingBack1.png" ||
+               textureName == "textures/facingBack2.png" ||
+               textureName == "textures/facingBack3.png") {
       textureName = "textures/waterBack.png";
       playerTexture.loadFromFile(textureName);
-      if(!playerTexture.loadFromFile(textureName)){
+      if (!playerTexture.loadFromFile(textureName)) {
         std::cout << "Error loading waterBack texture" << std::endl;
         return;
       }
       body->setTexture(&playerTexture);
     }
 
-
     return;
   };
 
   void harvestPlant(std::vector<tile*>* backgroundTiles, Inventory* inventory) {
-    // Takes the fully grown plant tile and changes it back to grass tile, and increases the number of plants in the inventory
-    // Takes in a pointer to the vector of tile pointers and a pointer to the inventory
+    // Takes the fully grown plant tile and changes it back to grass tile, and
+    // increases the number of plants in the inventory Takes in a pointer to the
+    // vector of tile pointers and a pointer to the inventory
 
-    
     // Use a map once you have the type of function
 
     int playerX = (floor(body->getPosition().x / 50));
@@ -233,7 +238,6 @@ class Player {
     // Making sure all conditions are met
     if ((*backgroundTiles)[playerX * 12 + playerY]->get_className() == "tile") {
       warningText.setString("Land cannot be harvested");
-      sleep(0.5);
       warningText.setString("");
       std::cout << "Land cannot be harvested" << std::endl;
       return;
@@ -280,7 +284,6 @@ class Player {
 
   // movement of the player
   void moveRight() {
-
     countSteps++;
     // Moving player
     if (body->getPosition().x < 590) {
@@ -288,52 +291,46 @@ class Player {
     }
     // checking if texture has already been loaded
 
-    if(textureName == "textures/facingRight1.png"){
+    if (textureName == "textures/facingRight1.png") {
       imgAppears = 1;
-    } else if (textureName == "textures/facingRight2.png"){
+    } else if (textureName == "textures/facingRight2.png") {
       imgAppears = 1;
-    } else if (textureName == "textures/facingRight3.png"){
+    } else if (textureName == "textures/facingRight3.png") {
       imgAppears = 1;
     } else {
       imgAppears = 0;
     }
 
-    
-    if (!imgAppears){
-      
+    if (!imgAppears) {
       textureName = "textures/facingRight1.png";
       playerTexture.loadFromFile(textureName);
-      if(!playerTexture.loadFromFile(textureName)){
+      if (!playerTexture.loadFromFile(textureName)) {
         std::cout << "Error loading texture" << std::endl;
         return;
       }
       body->setTexture(&playerTexture);
       countSteps = 0;
 
-    } else if(countSteps == 15){ // checking if image should be changed
+    } else if (countSteps == 15) {  // checking if image should be changed
 
       textureName = "textures/facingRight2.png";
       playerTexture.loadFromFile(textureName);
-      if(!playerTexture.loadFromFile(textureName)){
+      if (!playerTexture.loadFromFile(textureName)) {
         std::cout << "Error loading texture" << std::endl;
         return;
       }
       body->setTexture(&playerTexture);
 
-    } else if(countSteps == 30){ 
-
+    } else if (countSteps == 30) {
       textureName = "textures/facingRight3.png";
       playerTexture.loadFromFile(textureName);
-      if(!playerTexture.loadFromFile(textureName)){
+      if (!playerTexture.loadFromFile(textureName)) {
         std::cout << "Error loading texture" << std::endl;
         return;
       }
       body->setTexture(&playerTexture);
       countSteps = 0;
-
-    } 
-
-    
+    }
   }
   void moveLeft() {
     if (body->getPosition().x > 0) {
@@ -341,156 +338,142 @@ class Player {
     }
     // checking if texture has already been loaded
 
-    if(textureName == "textures/facingLeft1.png"){
+    if (textureName == "textures/facingLeft1.png") {
       imgAppears = 1;
-    } else if (textureName == "textures/facingLeft2.png"){
+    } else if (textureName == "textures/facingLeft2.png") {
       imgAppears = 1;
-    } else if (textureName == "textures/facingLeft3.png"){
+    } else if (textureName == "textures/facingLeft3.png") {
       imgAppears = 1;
     } else {
       imgAppears = 0;
     }
 
-    
-    if (!imgAppears){
-      
+    if (!imgAppears) {
       textureName = "textures/facingLeft1.png";
       playerTexture.loadFromFile(textureName);
-      if(!playerTexture.loadFromFile(textureName)){
+      if (!playerTexture.loadFromFile(textureName)) {
         std::cout << "Error loading texture" << std::endl;
         return;
       }
       body->setTexture(&playerTexture);
       countSteps = 0;
 
-    } else if(countSteps == 15){ // checking if image should be changed
+    } else if (countSteps == 15) {  // checking if image should be changed
 
       textureName = "textures/facingLeft2.png";
       playerTexture.loadFromFile(textureName);
-      if(!playerTexture.loadFromFile(textureName)){
+      if (!playerTexture.loadFromFile(textureName)) {
         std::cout << "Error loading texture" << std::endl;
         return;
       }
       body->setTexture(&playerTexture);
 
-    } else if(countSteps == 30){ 
-
+    } else if (countSteps == 30) {
       textureName = "textures/facingLeft3.png";
       playerTexture.loadFromFile(textureName);
-      if(!playerTexture.loadFromFile(textureName)){
+      if (!playerTexture.loadFromFile(textureName)) {
         std::cout << "Error loading texture" << std::endl;
         return;
       }
       body->setTexture(&playerTexture);
       countSteps = 0;
-
-    } 
+    }
   }
   void moveUp() {
-
     countSteps++;
 
     if (body->getPosition().y > 0) {
       body->move(0, -speed);
     }
 
-    if(textureName == "textures/facingForward1.png"){
+    if (textureName == "textures/facingForward1.png") {
       imgAppears = 1;
-    } else if (textureName == "textures/facingForward2.png"){
+    } else if (textureName == "textures/facingForward2.png") {
       imgAppears = 1;
-    } else if (textureName == "textures/facingForward3.png"){
+    } else if (textureName == "textures/facingForward3.png") {
       imgAppears = 1;
     } else {
       imgAppears = 0;
     }
 
-    if (!imgAppears){
-      
+    if (!imgAppears) {
       textureName = "textures/facingForward1.png";
       playerTexture.loadFromFile(textureName);
-      if(!playerTexture.loadFromFile(textureName)){
+      if (!playerTexture.loadFromFile(textureName)) {
         std::cout << "Error loading texture" << std::endl;
         return;
       }
       body->setTexture(&playerTexture);
       countSteps = 0;
 
-    } else if(countSteps == 15){ // checking if image should be changed
+    } else if (countSteps == 15) {  // checking if image should be changed
 
       textureName = "textures/facingForward2.png";
       playerTexture.loadFromFile(textureName);
-      if(!playerTexture.loadFromFile(textureName)){
+      if (!playerTexture.loadFromFile(textureName)) {
         std::cout << "Error loading texture" << std::endl;
         return;
       }
       body->setTexture(&playerTexture);
 
-    } else if(countSteps == 30){ 
-
+    } else if (countSteps == 30) {
       textureName = "textures/facingForward3.png";
       playerTexture.loadFromFile(textureName);
-      if(!playerTexture.loadFromFile(textureName)){
+      if (!playerTexture.loadFromFile(textureName)) {
         std::cout << "Error loading texture" << std::endl;
         return;
       }
       body->setTexture(&playerTexture);
       countSteps = 0;
-
-    } 
+    }
   }
   void moveDown() {
-
     countSteps++;
-    
+
     if (body->getPosition().y < 590) {
       body->move(0, speed);
     }
 
-    if(textureName == "textures/facingBack1.png"){
+    if (textureName == "textures/facingBack1.png") {
       imgAppears = 1;
-    } else if (textureName == "textures/facingBack2.png"){
+    } else if (textureName == "textures/facingBack2.png") {
       imgAppears = 1;
-    } else if (textureName == "textures/facingBack1.png"){
+    } else if (textureName == "textures/facingBack1.png") {
       imgAppears = 1;
     } else {
       imgAppears = 0;
     }
-    
-    if (!imgAppears){
-      
+
+    if (!imgAppears) {
       textureName = "textures/facingBack1.png";
       playerTexture.loadFromFile(textureName);
-      if(!playerTexture.loadFromFile(textureName)){
+      if (!playerTexture.loadFromFile(textureName)) {
         std::cout << "Error loading texture" << std::endl;
         return;
       }
       body->setTexture(&playerTexture);
       countSteps = 0;
 
-    } else if(countSteps == 15){ // checking if image should be changed
+    } else if (countSteps == 15) {  // checking if image should be changed
 
       textureName = "textures/facingBack2.png";
       playerTexture.loadFromFile(textureName);
-      if(!playerTexture.loadFromFile(textureName)){
+      if (!playerTexture.loadFromFile(textureName)) {
         std::cout << "Error loading texture" << std::endl;
         return;
       }
       body->setTexture(&playerTexture);
 
-    } else if(countSteps == 30){ 
-
+    } else if (countSteps == 30) {
       textureName = "textures/facingBack1.png";
       playerTexture.loadFromFile(textureName);
-      if(!playerTexture.loadFromFile(textureName)){
+      if (!playerTexture.loadFromFile(textureName)) {
         std::cout << "Error loading texture" << std::endl;
         return;
       }
       body->setTexture(&playerTexture);
       countSteps = 0;
-
-    } 
-
-  
+    }
   }
 
   // getters and setters

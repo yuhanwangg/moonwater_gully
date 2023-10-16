@@ -66,7 +66,7 @@ class Menu {
     saveFailVisible = false;
     saveSuccessVisible = false;
 
-    // creating background 
+    // creating background
     background = new RectangleShape(Vector2f(360, 150));
     background->setPosition(x - 5, y);
 
@@ -183,7 +183,8 @@ class Menu {
   };
 
   void drawHtp(RenderWindow* win) {
-    // Draws the how to play menu in the window after taking in a RenderWindow pointer
+    // Draws the how to play menu in the window after taking in a RenderWindow
+    // pointer
     howToPlayText.setFont(font);
     howToPlayText.setString(
         "How To Play: \n\n\n"
@@ -222,7 +223,8 @@ class Menu {
   }
 
   void drawControl(RenderWindow* win) {
-    // Draws the control menu in the window after taking in a RenderWindow pointer
+    // Draws the control menu in the window after taking in a RenderWindow
+    // pointer
     controlText.setFont(font);
     controlText.setString(
         "Controls: Press special keys to activate\n\n\n\n\n"
@@ -261,9 +263,9 @@ class Menu {
     return;
   }
 
-  void drawSuccess(RenderWindow* win) { 
+  void drawSuccess(RenderWindow* win) {
     // Draws the save success message after taking in a RenderWindow pointer
-    win->draw(saveSuccess[0]); 
+    win->draw(saveSuccess[0]);
     return;
   }
   void drawFail(RenderWindow* win) {
@@ -273,7 +275,8 @@ class Menu {
   }
 
   void drawWallet(RenderWindow* win, Player* player) {
-    // Draws the wallet shell count after taking in a RenderWindow pointer and a player pointer
+    // Draws the wallet shell count after taking in a RenderWindow pointer and a
+    // player pointer
     int tempNo = player->get_shells();
     walletNumber = std::to_string(tempNo);  // converting int to string
     wallet.setFont(font);
@@ -337,48 +340,48 @@ class Menu {
 
   // changing visibility
 
-  //Getters and setters
-  void set_walletVisibility(bool visible) { 
+  // Getters and setters
+  void set_walletVisibility(bool visible) {
     walletVisibility = visible;
     return;
   }
   bool get_walletVisibility() { return walletVisibility; }
 
-  void set_visibility(bool visible) { 
+  void set_visibility(bool visible) {
     turnOn = visible;
     return;
   }
   bool get_visibility() { return turnOn; }
 
-  void set_htpVisi(bool visible) { 
+  void set_htpVisi(bool visible) {
     howToPlayVisible = visible;
-    return; 
+    return;
   }
   bool get_htpVisi() { return howToPlayVisible; }
 
-  void set_controlVisi(bool visible) { 
+  void set_controlVisi(bool visible) {
     controlVisible = visible;
     return;
   }
   bool get_controlVisi() { return controlVisible; }
 
-  void set_saveVisi(bool visible) { 
+  void set_saveVisi(bool visible) {
     saveVisible = visible;
     return;
   }
   bool get_saveVisi() { return saveVisible; }
 
-  void setPressed(int selected) { 
+  void setPressed(int selected) {
     selectedOption = selected;
     return;
   }
   int menuPressed() { return selectedOption; }
 
-  void set_saveSuccess(bool visi) { 
+  void set_saveSuccess(bool visi) {
     saveSuccessVisible = visi;
     return;
   }
-  void set_saveFail(bool visi) { 
+  void set_saveFail(bool visi) {
     saveFailVisible = visi;
     return;
   }
@@ -386,11 +389,11 @@ class Menu {
   bool get_saveFail() { return saveFailVisible; }
 
   int get_saveSelect() { return saveSelect; }
-  void set_saveSelect(int sel) { 
+  void set_saveSelect(int sel) {
     saveSelect = sel;
     return;
   }
-  
+
   ~Menu(){};
 };
 #endif

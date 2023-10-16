@@ -98,6 +98,7 @@ class Game {
                 menu.set_visibility(true);
                 break;
             }
+            break;
           }
         }
 
@@ -222,11 +223,11 @@ class Game {
             }
           }
 
-          // scrolling through save options
-          if ((Keyboard::isKeyPressed(Keyboard::Space)) &&
-              (menu.get_saveVisi() == true)) {
-            menu.scrollSave();
-          }
+          // // scrolling through save options
+          // if ((Keyboard::isKeyPressed(Keyboard::Space)) &&
+          //     (menu.get_saveVisi() == true)) {
+          //   menu.scrollSave();
+          // }
 
           if (Keyboard::isKeyPressed(Keyboard::Return) &&
               (menu.get_visibility() == true) &&
@@ -268,19 +269,25 @@ class Game {
               (sellmenu.get_sellOn() == false) &&
               (Keyboard::isKeyPressed(Keyboard::Return))) {
             int saveSelect = menu.get_saveSelect();
+            menu.set_saveSuccess(false);
             menu.set_saveSelect(0);
             switch (saveSelect) {
               case 0:
                 saver.save(background, 144, &inventory, player,
                            &day);  // saving game into save.txt
                                    // otherwise, exiting
-                menu.set_saveSuccess(true);
-                menu.set_saveFail(false);
+                if (saver.get_saveCheck() == true) {
+                  menu.set_saveSuccess(true);
+                  menu.set_saveFail(false);
+                }
                 break;
               case 1:
+                if (saver.get_saveCheck() == false) {
+                  menu.set_saveSuccess(false);
+                }
                 menu.set_visibility(false);  // otherwise, exiting
                 menu.set_saveVisi(false);
-                menu.set_saveSuccess(false);
+
                 break;
             }
           }

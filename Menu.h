@@ -142,21 +142,7 @@ class Menu {
     selectedOption = 0;
     menu[selectedOption].setFillColor(Color::Yellow);
 
-    // save text
-    saveText[0].setFont(font);
-    saveText[0].setString("yes");
-    saveText[0].setCharacterSize(10);
-    saveText[0].setFillColor(Color::Black);
-    saveText[0].setPosition(150 + 15, 150 + 15);
-
-    saveText[1].setFont(font);
-    saveText[1].setString("no");
-    saveText[1].setCharacterSize(10);
-    saveText[1].setFillColor(Color::Black);
-    saveText[1].setPosition(150 + 15, 150 + 50);
-
     saveSelect = 0;
-    saveText[saveSelect].setFillColor(Color::Green);
 
     // save success
     saveSuccess[0].setFont(font);
@@ -258,7 +244,7 @@ class Menu {
     // Draws the save menu in the window after taking in a RenderWindow pointer
     win->draw(*saveBg);
     for (int i = 0; i < 2; i++) {
-      win->draw(saveText[i]);
+      win->draw(saveText[0]);
     }
     return;
   }
@@ -322,21 +308,21 @@ class Menu {
     return;
   }
 
-  void scrollSave() {
-    // Moves option up and down, returns nothing.
-    if (saveSelect + 1 <= 2) {
-      saveText[saveSelect].setFillColor(Color::Black);
-      saveSelect++;
-      if (saveSelect > 1) {
-        saveSelect = 0;
-      }
-      if (saveSelect == 0) {
-        saveText[saveSelect].setFillColor(Color::Green);
-      }
-      saveText[saveSelect].setFillColor(Color::Green);
-    }
-    return;
-  }
+  // void scrollSave() {
+  //   // Moves option up and down, returns nothing.
+  //   if (saveSelect + 1 <= 2) {
+  //     saveText[saveSelect].setFillColor(Color::Black);
+  //     saveSelect++;
+  //     if (saveSelect > 1) {
+  //       saveSelect = 0;
+  //     }
+  //     if (saveSelect == 0) {
+  //       saveText[saveSelect].setFillColor(Color::Green);
+  //     }
+  //     saveText[saveSelect].setFillColor(Color::Green);
+  //   }
+  //   return;
+  // }
 
   // changing visibility
 

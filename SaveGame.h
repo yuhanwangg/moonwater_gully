@@ -110,6 +110,8 @@ class SaveGame {
     if (!saveFile.is_open()) {
       std::cout << "file could not be opened for saving." << std::endl;
       return;  // error handling
+    } else {
+      saveCheck = true;
     }
     // in file when reading through to load, check
     // newTile then get next tile to load info
@@ -159,7 +161,6 @@ class SaveGame {
     saveFile.close();
 
     std::cout << "game saved,";  // if statement to check when to stop
-    saveCheck = true;
   };
 
   void load(std::vector<tile*>& background, Inventory* inventory,

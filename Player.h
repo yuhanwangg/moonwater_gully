@@ -34,8 +34,8 @@ class Player {
   int countSteps;
   bool imgAppears;
   // For warnings
-  Font font;
-  Text warningText;
+  RectangleShape warningMessage;
+  Texture warningTexture;
 
   std::unordered_map<std::string, int> plantLocationMap{
       {"Carrot", 9}, {"Potato", 7}, {"Strawberry", 5}, {"Blueberry", 3}};
@@ -74,27 +74,22 @@ class Player {
     body->setPosition(x, y);
 
     // text box font
-    font.loadFromFile("textures/font_texture/TTF/dogica.ttf");
-    if (!font.loadFromFile("textures/font_texture/TTF/dogica.ttf")) {
-      std::cout << "error loading font in player"
-                << std::endl;  // error testing
-    }
 
-    warningText.setFont(font);
-    warningText.setCharacterSize(20);
-    warningText.setFillColor(Color::Red);
-    warningText.setPosition(100,200);
-    warningText.setString("penis");
+    // warning ~ image is 90x48
+    warningMessage.setSize(Vector2f(90,48));
+    warningTexture.loadFromFile("textures/cantHarvest.png");
+    warningMessage.setTexture(&warningTexture);
+    warningMessage.setTextureRect(IntRect(0, 0, 90, 48));
+    warningMessage.setPosition(700,700);
+    
 
   }
 
   void draw(RenderWindow* win) {
     win->draw(*body);
+    win->draw(warningMessage);
   }
 
-  void drawWarning(RenderWindow* win){
-    win->draw(warningText);
-  }
 
   // Seeding plant
 
@@ -250,7 +245,7 @@ class Player {
     return;
   };
 
-  void harvestPlant(std::vector<tile*>* backgroundTiles, Inventory* inventory, RenderWindow* win) {
+  void harvestPlant(std::vector<tile*>* backgroundTiles, Inventory* inventory) {
     // Takes the fully grown plant tile and changes it back to grass tile, and increases the number of plants in the inventory
     // Takes in a pointer to the vector of tile pointers and a pointer to the inventory
 
@@ -275,25 +270,27 @@ class Player {
 
     // Making sure all conditions are met
     if ((*backgroundTiles)[playerX * 12 + playerY]->get_className() == "tile") {
-      warningText.setString("Land cannot be harvested");      
-      std::this_thread::sleep_for(std::chrono::milliseconds(300));
+      warningMessage.setPosition(body->getPosition().x - 75,body->getPosition().y - 45);  
       std::cout << "Land cannot be harvested" << std::endl;
-      warningText.setString("");
+      // warningMessage.setPosition(300,20);
       return;
     } else if ((*backgroundTiles)[playerX * 12 + playerY]->get_growthStage() !=
                currentPlant->get_growTime()) {
+      warningMessage.setPosition(body->getPosition().x - 75,body->getPosition().y - 45);
       std::cout << "Please wait until plant is fully grown" << std::endl;
       return;
     } else if ((*backgroundTiles)[playerX * 12 + playerY]->get_className() ==
                    "Carrot" &&
                (inventory->get_inventoryIndex() != 1 ||
                 inventory->get_gloveCount() == 0)) {
+      warningMessage.setPosition(body->getPosition().x - 75,body->getPosition().y - 45);
       std::cout << "Must hold gloves to harvest this plant" << std::endl;
       return;
     } else if ((*backgroundTiles)[playerX * 12 + playerY]->get_className() ==
                    "Potato" &&
                (inventory->get_inventoryIndex() != 0 ||
                 inventory->get_shovelCount() == 0)) {
+      warningMessage.setPosition(body->getPosition().x - 75,body->getPosition().y - 45);
       std::cout << "Must hold a shovel to harvest this plant" << std::endl;
       return;
     }
@@ -341,6 +338,7 @@ class Player {
     }
 
     if (!imgAppears) {
+      warningMessage.setPosition(700, 700);
       textureName = "textures/facingRight1.png";
       playerTexture.loadFromFile(textureName);
       if (!playerTexture.loadFromFile(textureName)) {
@@ -390,6 +388,7 @@ class Player {
     }
 
     if (!imgAppears) {
+      warningMessage.setPosition(700, 700);
       textureName = "textures/facingLeft1.png";
       playerTexture.loadFromFile(textureName);
       if (!playerTexture.loadFromFile(textureName)) {
@@ -438,6 +437,7 @@ class Player {
     }
 
     if (!imgAppears) {
+      warningMessage.setPosition(700, 700);
       textureName = "textures/facingForward1.png";
       playerTexture.loadFromFile(textureName);
       if (!playerTexture.loadFromFile(textureName)) {
@@ -486,6 +486,7 @@ class Player {
     }
 
     if (!imgAppears) {
+      warningMessage.setPosition(700, 700);
       textureName = "textures/facingBack1.png";
       playerTexture.loadFromFile(textureName);
       if (!playerTexture.loadFromFile(textureName)) {

@@ -24,7 +24,7 @@ newTile,tile 50 500 0 0
 newTile,tile 50 550 0 0 
 newTile,tile 100 0 0 0 
 newTile,tile 100 50 0 0 
-newTile,Blueberry 100 100 1 1 
+newTile,tile 100 100 0 0 
 newTile,tile 100 150 0 0 
 newTile,tile 100 200 0 0 
 newTile,tile 100 250 0 0 
@@ -36,7 +36,7 @@ newTile,tile 100 500 0 0
 newTile,tile 100 550 0 0 
 newTile,tile 150 0 0 0 
 newTile,tile 150 50 0 0 
-newTile,Strawberry 150 100 1 1 
+newTile,tile 150 100 0 0 
 newTile,tile 150 150 0 0 
 newTile,tile 150 200 0 0 
 newTile,tile 150 250 0 0 
@@ -48,7 +48,7 @@ newTile,tile 150 500 0 0
 newTile,tile 150 550 0 0 
 newTile,tile 200 0 0 0 
 newTile,tile 200 50 0 0 
-newTile,Potato 200 100 1 1 
+newTile,tile 200 100 0 0 
 newTile,tile 200 150 0 0 
 newTile,tile 200 200 0 0 
 newTile,tile 200 250 0 0 
@@ -72,7 +72,7 @@ newTile,tile 250 500 0 0
 newTile,tile 250 550 0 0 
 newTile,tile 300 0 0 0 
 newTile,tile 300 50 0 0 
-newTile,Carrot 300 100 1 1 
+newTile,tile 300 100 0 0 
 newTile,tile 300 150 0 0 
 newTile,tile 300 200 0 0 
 newTile,tile 300 250 0 0 
@@ -143,7 +143,6 @@ newTile,tile 550 450 0 0
 newTile,tile 550 500 0 0 
 newTile,tile 550 550 0 0 
 inventory,0 
-inventory,1 
 inventory,0 
 inventory,0 
 inventory,0 
@@ -152,6 +151,7 @@ inventory,0
 inventory,0 
 inventory,0 
 inventory,0 
-shellNumber,260
-dayCount,1
-dayTime,142
+inventory,0 
+shellNumber,500
+dayCount,0
+dayTime,173

@@ -83,7 +83,8 @@ class SaveGame {
 
   void scrollLoad() {
     if (selection + 1 <= 2) {
-      confirm[selection].setFillColor(Color::Black);
+      confirm[selection].setFillColor(
+          Color::Black);  // scrolling through the options, similar to inventory
       selection++;
       if (selection > 1) {
         selection = 0;

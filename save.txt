@@ -10,7 +10,7 @@ newTile,tile 0 400 0 0
 newTile,tile 0 450 0 0 
 newTile,tile 0 500 0 0 
 newTile,tile 0 550 0 0 
-newTile,tile 50 0 0 0 
+newTile,tile 50 0 0 1 
 newTile,tile 50 50 0 0 
 newTile,tile 50 100 0 0 
 newTile,tile 50 150 0 0 
@@ -52,7 +52,7 @@ newTile,tile 200 100 0 0
 newTile,tile 200 150 0 0 
 newTile,tile 200 200 0 0 
 newTile,tile 200 250 0 0 
-newTile,Carrot 200 300 1 0 
+newTile,tile 200 300 0 0 
 newTile,tile 200 350 0 0 
 newTile,tile 200 400 0 0 
 newTile,tile 200 450 0 0 
@@ -62,8 +62,8 @@ newTile,tile 250 0 0 0
 newTile,tile 250 50 0 0 
 newTile,tile 250 100 0 0 
 newTile,tile 250 150 0 0 
-newTile,tile 250 200 0 0 
-newTile,tile 250 250 0 0 
+newTile,tile 250 200 0 1 
+newTile,tile 250 250 0 1 
 newTile,tile 250 300 0 0 
 newTile,tile 250 350 0 0 
 newTile,tile 250 400 0 0 
@@ -143,15 +143,15 @@ newTile,tile 550 450 0 0
 newTile,tile 550 500 0 0 
 newTile,tile 550 550 0 0 
 inventory,1 
+inventory,1 
 inventory,0 
 inventory,0 
 inventory,0 
 inventory,0 
+inventory,1 
 inventory,0 
 inventory,0 
 inventory,0 
-inventory,0 
-inventory,0 
-shellNumber,80
-dayCount,3
-dayTime,169
+shellNumber,340
+dayCount,4
+dayTime,102

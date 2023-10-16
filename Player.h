@@ -5,11 +5,11 @@
 using namespace sf;
 #include <unistd.h>
 
+#include <chrono>
 #include <cmath>
+#include <thread>
 #include <typeinfo>
 #include <unordered_map>
-#include <chrono>
-#include <thread>
 
 #include "Blueberry.h"
 #include "Carrot.h"
@@ -83,18 +83,13 @@ class Player {
     warningText.setFont(font);
     warningText.setCharacterSize(20);
     warningText.setFillColor(Color::Red);
-    warningText.setPosition(100,200);
+    warningText.setPosition(100, 200);
     warningText.setString("penis");
-
   }
 
-  void draw(RenderWindow* win) {
-    win->draw(*body);
-  }
+  void draw(RenderWindow* win) { win->draw(*body); }
 
-  void drawWarning(RenderWindow* win){
-    win->draw(warningText);
-  }
+  void drawWarning(RenderWindow* win) { win->draw(warningText); }
 
   // Seeding plant
 
@@ -177,27 +172,66 @@ class Player {
     (*backgroundTiles)[playerX * 12 + playerY]->set_hydrationLevel(1);
 
     // animating plant watered
-    
-    if((*backgroundTiles)[playerX * 12 + playerY]->get_growthStage() == 0 && (*backgroundTiles)[playerX * 12 + playerY]->get_className() == "Carrot"){
-      (*backgroundTiles)[playerX * 12 + playerY]->set_texture("textures/carrotSeedsWatered.png");
-    } else if((*backgroundTiles)[playerX * 12 + playerY]->get_growthStage() == 0 && (*backgroundTiles)[playerX * 12 + playerY]->get_className() == "Potato"){
-      (*backgroundTiles)[playerX * 12 + playerY]->set_texture("textures/potatoSeedsWatered.png");
-    } else if((*backgroundTiles)[playerX * 12 + playerY]->get_growthStage() == 0 && (*backgroundTiles)[playerX * 12 + playerY]->get_className() == "Strawberry"){
-      (*backgroundTiles)[playerX * 12 + playerY]->set_texture("textures/strawberrySeedsWatered.png");
-    } else if((*backgroundTiles)[playerX * 12 + playerY]->get_growthStage() == 0 && (*backgroundTiles)[playerX * 12 + playerY]->get_className() == "Blueberry"){
-      (*backgroundTiles)[playerX * 12 + playerY]->set_texture("textures/blueberrySeedsWatered.png");
-    } else if((*backgroundTiles)[playerX * 12 + playerY]->get_growthStage() == 1 && (*backgroundTiles)[playerX * 12 + playerY]->get_className() == "Carrot"){
-      (*backgroundTiles)[playerX * 12 + playerY]->set_texture("textures/carrotWatered.png");
-    } else if((*backgroundTiles)[playerX * 12 + playerY]->get_growthStage() == 1 && (*backgroundTiles)[playerX * 12 + playerY]->get_className() == "Potato"){
-      (*backgroundTiles)[playerX * 12 + playerY]->set_texture("textures/potatoWatered.png");
-    } else if((*backgroundTiles)[playerX * 12 + playerY]->get_growthStage() == 1 && (*backgroundTiles)[playerX * 12 + playerY]->get_className() == "Strawberry"){
-      (*backgroundTiles)[playerX * 12 + playerY]->set_texture("textures/strawberrySeedlingWatered.png");
-    } else if((*backgroundTiles)[playerX * 12 + playerY]->get_growthStage() == 1 && (*backgroundTiles)[playerX * 12 + playerY]->get_className() == "Blueberry"){
-      (*backgroundTiles)[playerX * 12 + playerY]->set_texture("textures/blueberrySeedlingWatered.png");
-    } else if((*backgroundTiles)[playerX * 12 + playerY]->get_growthStage() == 2 && (*backgroundTiles)[playerX * 12 + playerY]->get_className() == "Strawberry"){
-      (*backgroundTiles)[playerX * 12 + playerY]->set_texture("textures/strawberryWatered.png");
-    } else if((*backgroundTiles)[playerX * 12 + playerY]->get_growthStage() == 2 && (*backgroundTiles)[playerX * 12 + playerY]->get_className() == "Blueberry"){
-      (*backgroundTiles)[playerX * 12 + playerY]->set_texture("textures/blueberryWatered.png");
+
+    if ((*backgroundTiles)[playerX * 12 + playerY]->get_growthStage() == 0 &&
+        (*backgroundTiles)[playerX * 12 + playerY]->get_className() ==
+            "Carrot") {
+      (*backgroundTiles)[playerX * 12 + playerY]->set_texture(
+          "textures/carrotSeedsWatered.png");
+    } else if ((*backgroundTiles)[playerX * 12 + playerY]->get_growthStage() ==
+                   0 &&
+               (*backgroundTiles)[playerX * 12 + playerY]->get_className() ==
+                   "Potato") {
+      (*backgroundTiles)[playerX * 12 + playerY]->set_texture(
+          "textures/potatoSeedsWatered.png");
+    } else if ((*backgroundTiles)[playerX * 12 + playerY]->get_growthStage() ==
+                   0 &&
+               (*backgroundTiles)[playerX * 12 + playerY]->get_className() ==
+                   "Strawberry") {
+      (*backgroundTiles)[playerX * 12 + playerY]->set_texture(
+          "textures/strawberrySeedsWatered.png");
+    } else if ((*backgroundTiles)[playerX * 12 + playerY]->get_growthStage() ==
+                   0 &&
+               (*backgroundTiles)[playerX * 12 + playerY]->get_className() ==
+                   "Blueberry") {
+      (*backgroundTiles)[playerX * 12 + playerY]->set_texture(
+          "textures/blueberrySeedsWatered.png");
+    } else if ((*backgroundTiles)[playerX * 12 + playerY]->get_growthStage() ==
+                   1 &&
+               (*backgroundTiles)[playerX * 12 + playerY]->get_className() ==
+                   "Carrot") {
+      (*backgroundTiles)[playerX * 12 + playerY]->set_texture(
+          "textures/carrotWatered.png");
+    } else if ((*backgroundTiles)[playerX * 12 + playerY]->get_growthStage() ==
+                   1 &&
+               (*backgroundTiles)[playerX * 12 + playerY]->get_className() ==
+                   "Potato") {
+      (*backgroundTiles)[playerX * 12 + playerY]->set_texture(
+          "textures/potatoWatered.png");
+    } else if ((*backgroundTiles)[playerX * 12 + playerY]->get_growthStage() ==
+                   1 &&
+               (*backgroundTiles)[playerX * 12 + playerY]->get_className() ==
+                   "Strawberry") {
+      (*backgroundTiles)[playerX * 12 + playerY]->set_texture(
+          "textures/strawberrySeedlingWatered.png");
+    } else if ((*backgroundTiles)[playerX * 12 + playerY]->get_growthStage() ==
+                   1 &&
+               (*backgroundTiles)[playerX * 12 + playerY]->get_className() ==
+                   "Blueberry") {
+      (*backgroundTiles)[playerX * 12 + playerY]->set_texture(
+          "textures/blueberrySeedlingWatered.png");
+    } else if ((*backgroundTiles)[playerX * 12 + playerY]->get_growthStage() ==
+                   2 &&
+               (*backgroundTiles)[playerX * 12 + playerY]->get_className() ==
+                   "Strawberry") {
+      (*backgroundTiles)[playerX * 12 + playerY]->set_texture(
+          "textures/strawberryWatered.png");
+    } else if ((*backgroundTiles)[playerX * 12 + playerY]->get_growthStage() ==
+                   2 &&
+               (*backgroundTiles)[playerX * 12 + playerY]->get_className() ==
+                   "Blueberry") {
+      (*backgroundTiles)[playerX * 12 + playerY]->set_texture(
+          "textures/blueberryWatered.png");
     }
 
     // Animating water plant
@@ -250,9 +284,11 @@ class Player {
     return;
   };
 
-  void harvestPlant(std::vector<tile*>* backgroundTiles, Inventory* inventory, RenderWindow* win) {
-    // Takes the fully grown plant tile and changes it back to grass tile, and increases the number of plants in the inventory
-    // Takes in a pointer to the vector of tile pointers and a pointer to the inventory
+  void harvestPlant(std::vector<tile*>* backgroundTiles, Inventory* inventory,
+                    RenderWindow* win) {
+    // Takes the fully grown plant tile and changes it back to grass tile, and
+    // increases the number of plants in the inventory Takes in a pointer to the
+    // vector of tile pointers and a pointer to the inventory
 
     // Takes the fully grown plant tile and changes it back to grass tile, and
     // increases the number of plants in the inventory Takes in a pointer to the
@@ -275,7 +311,7 @@ class Player {
 
     // Making sure all conditions are met
     if ((*backgroundTiles)[playerX * 12 + playerY]->get_className() == "tile") {
-      warningText.setString("Land cannot be harvested");      
+      warningText.setString("Land cannot be harvested");
       std::this_thread::sleep_for(std::chrono::milliseconds(300));
       std::cout << "Land cannot be harvested" << std::endl;
       warningText.setString("");
@@ -372,7 +408,6 @@ class Player {
     }
   }
   void moveLeft() {
-
     countSteps++;
     if (body->getPosition().x > 0) {
       body->move(-speed, 0);

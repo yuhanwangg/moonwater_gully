@@ -24,7 +24,7 @@ class Plant : public tile {
     x = _x;
     y = _y;
     int size = 50;
-    isPlantable = false; //cannot plant ontop of another plant tile
+    isPlantable = false;  // cannot plant ontop of another plant tile
     square = new RectangleShape(Vector2f(size, size));
     growthImage.loadFromFile("textures/cheese.png");
     square->setTexture(&growthImage);
@@ -50,14 +50,14 @@ class Plant : public tile {
 
   Plant() : Plant(0, 0){};
 
-  // Harvest yield will produce a different harvest yeild 
-  // for each sub category of plant. Plants by themselves do not have harvest yeild.
+  // Harvest yield will produce a different harvest yeild
+  // for each sub category of plant. Plants by themselves do not have harvest
+  // yeild.
   virtual int harvestYield() = 0;
-  
 
-  
   void newDayGrowth() {
-    // Plant growth will change the plant values for each new day, returns nothing.
+    // Plant growth will change the plant values for each new day, returns
+    // nothing.
     if (hydrationLevel == 0) {
       alive = false;
     }
@@ -70,38 +70,38 @@ class Plant : public tile {
     return;
   };
 
-// The setters
+  // The setters
   void set_growTime(int growTime) {
     this->growTime = growTime;
-    return; 
+    return;
   };
-  void set_seedingTime(int seedingTime) { 
+  void set_seedingTime(int seedingTime) {
     this->seedingTime = seedingTime;
-    return;  
+    return;
   };
-  void set_costPrice(int costPrice) { 
+  void set_costPrice(int costPrice) {
     this->costPrice = costPrice;
-    return;  
+    return;
   };
-  void set_sellPrice(int sellPrice) { 
+  void set_sellPrice(int sellPrice) {
     this->sellPrice = sellPrice;
-    return; 
+    return;
   };
-  void set_alive(bool alive) { 
+  void set_alive(bool alive) {
     this->alive = alive;
-    return; 
+    return;
   };
-  void set_growthStage(int growthStage) { 
+  void set_growthStage(int growthStage) {
     this->growthStage = growthStage;
-    return; 
+    return;
   };
-  void set_yield(int yield) { 
+  void set_yield(int yield) {
     this->yield = yield;
-    return; 
+    return;
   };
-  void set_harvestEquipment(int harvestEquipment) { 
+  void set_harvestEquipment(int harvestEquipment) {
     this->harvestEquipment = harvestEquipment;
-    return; 
+    return;
   };
 
   // The getters

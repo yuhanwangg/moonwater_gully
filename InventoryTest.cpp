@@ -27,7 +27,7 @@ class InventoryDriver {
   };
 
   void makeBackground() {
-    // Creates game background 
+    // Creates game background
     for (int r = 0; r < 600; r += 50) {
       for (int c = 0; c < 600; c += 50) {
         tile* newTile = new tile(r, c);  // Pass coordinates to tile constructor
@@ -315,7 +315,6 @@ class InventoryDriver {
   std::vector<tile*> get_background() { return background; }
 
   ~InventoryDriver(){};
-
 };
 
 int main() {

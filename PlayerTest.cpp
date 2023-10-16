@@ -35,7 +35,6 @@ class PlayerDriver {
     return;
   };
 
-
   void run() {
     // Runs the game
     while (win->isOpen()) {
@@ -55,7 +54,6 @@ class PlayerDriver {
       } else if (Keyboard::isKeyPressed(Keyboard::S)) {
         player->moveDown();
       }
-
 
       // drawing the tiles
       for (auto tilePtr : background) {

@@ -55,20 +55,18 @@ class DayDriver {
         tilePtr->draw(win);
       }
 
-
       player->draw(win);
 
       // drawing the clock
       day.drawDayDracker(win);
       day.dayCountdown(&background);
 
-
       win->display();
     }
     return;
   };
 
-  //getter
+  // getter
   std::vector<tile*> get_background() { return background; };
 
   ~DayDriver(){};

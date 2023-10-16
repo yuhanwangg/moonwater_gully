@@ -1,8 +1,7 @@
-#include "Plant.h"
-
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
+#include "Plant.h"
 #include "tile.h"
 using namespace sf;
 
@@ -25,7 +24,7 @@ class TileDriver {
   };
 
   void makeBackground() {
-    // Creates game background 
+    // Creates game background
     for (int r = 0; r < 600; r += 50) {
       for (int c = 0; c < 600; c += 50) {
         tile* newTile = new tile(r, c);  // Pass coordinates to tile constructor
@@ -57,7 +56,7 @@ class TileDriver {
     return;
   };
 
-  //getter
+  // getter
 
   std::vector<tile*> get_background() { return background; }
 
@@ -65,8 +64,6 @@ class TileDriver {
 };
 
 int main() {
-
-
   Plant p1 = Plant(50, 50);
 
   p1.set_costPrice(20);

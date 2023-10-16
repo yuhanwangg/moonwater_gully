@@ -518,7 +518,7 @@ class EverythingDriver {
       }
 
       // drawing the clock
-      
+
       day.drawDayDracker(win);
       day.dayCountdown(&background);
 
@@ -526,7 +526,6 @@ class EverythingDriver {
         inventory.drawInventory(win);
         inventory.drawCounter(win);
       }
-      
 
       win->display();
     }

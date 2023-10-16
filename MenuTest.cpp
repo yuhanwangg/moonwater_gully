@@ -145,7 +145,7 @@ class MenuDriver {
     return;
   };
 
-  //getter
+  // getter
   std::vector<tile*> get_background() { return background; };
 
   ~MenuDriver(){};

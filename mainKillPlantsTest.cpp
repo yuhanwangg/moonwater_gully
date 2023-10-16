@@ -428,8 +428,7 @@ class EverythingDriver {
 
       if (Keyboard::isKeyPressed(Keyboard::B) &&
           (menu.get_visibility() == false) && (menu.get_htpVisi() == false) &&
-          (menu.get_saveVisi() == false) &&
-          (menu.get_controlVisi() == false) &&
+          (menu.get_saveVisi() == false) && (menu.get_controlVisi() == false) &&
           (sellmenu.get_sellOn() == false)) {
         visibleBuy = true;
         buymenu.set_buyOn(visibleBuy);

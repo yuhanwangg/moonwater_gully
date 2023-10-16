@@ -30,14 +30,14 @@ class BerryPlant : public Plant {
     square->setPosition(_x, _y);
   };
 
-
-  BerryPlant() : BerryPlant(0, 0){
-    // Default onstructor for BerryPlant
-  };
-
+  BerryPlant()
+      : BerryPlant(0, 0){
+            // Default onstructor for BerryPlant
+        };
 
   int harvestYield() {
-    // Creates and returns a randomised yield value between 3 and 6 (inclusive) for all BerryPlants
+    // Creates and returns a randomised yield value between 3 and 6 (inclusive)
+    // for all BerryPlants
     srand(time(NULL));
     yield = (rand() % 3) + 3;
     return yield;

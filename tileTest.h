@@ -28,14 +28,14 @@ class tile {
 
   tile() : tile(0, 0) { size = 50; };
 
-  void draw(RenderWindow* win) { 
+  void draw(RenderWindow* win) {
     // Draws a tile in the window when given a RenderWindow pointer
     win->draw(*square);
     return;
   };
 
   // Setters
-  void set_x(int _x) { 
+  void set_x(int _x) {
     x = _x;
     return;
   };
@@ -57,14 +57,9 @@ class tile {
 
   // Getters
 
-  int get_x() {
-    return x;
-  }
+  int get_x() { return x; }
 
-  int get_y() {
-    return y;
-  }
-
+  int get_y() { return y; }
 
   ~tile(){};
 };

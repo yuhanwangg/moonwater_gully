@@ -84,9 +84,9 @@ class EverythingDriver {
                   if (inventory.get_blueberrySeedsCount() > 0) {
                     player->seedPlant(2, &background);
                     inventory.subtractBlueberrySeedsCount();
-                    } else {
-                    std::cout
-                        << "No blueberry seeds! You can buy some from the shop.";
+                  } else {
+                    std::cout << "No blueberry seeds! You can buy some from "
+                                 "the shop.";
                     std::cout << "\n";
                   }
                   break;
@@ -94,9 +94,9 @@ class EverythingDriver {
                   if (inventory.get_strawberrySeedsCount() > 0) {
                     player->seedPlant(4, &background);
                     inventory.subtractStrawberrySeedsCount();
-                    } else {
-                    std::cout
-                        << "No strawberry seeds! You can buy some from the shop.";
+                  } else {
+                    std::cout << "No strawberry seeds! You can buy some from "
+                                 "the shop.";
                     std::cout << "\n";
                   }
                   break;
@@ -104,7 +104,7 @@ class EverythingDriver {
                   if (inventory.get_potatoSeedsCount() > 0) {
                     player->seedPlant(6, &background);
                     inventory.subtractPotatoSeedsCount();
-                    } else {
+                  } else {
                     std::cout
                         << "No potato seeds! You can buy some from the shop.";
                     std::cout << "\n";
@@ -114,7 +114,7 @@ class EverythingDriver {
                   if (inventory.get_carrotSeedsCount() > 0) {
                     player->seedPlant(8, &background);
                     inventory.subtractCarrotSeedsCount();
-                    } else {
+                  } else {
                     std::cout
                         << "No carrot seeds! You can buy some from the shop.";
                     std::cout << "\n";
@@ -447,8 +447,7 @@ class EverythingDriver {
 
       if (Keyboard::isKeyPressed(Keyboard::B) &&
           (menu.get_visibility() == false) && (menu.get_htpVisi() == false) &&
-          (menu.get_saveVisi() == false) &&
-          (menu.get_controlVisi() == false) &&
+          (menu.get_saveVisi() == false) && (menu.get_controlVisi() == false) &&
           (sellmenu.get_sellOn() == false)) {
         visibleBuy = true;
         buymenu.set_buyOn(visibleBuy);
@@ -560,7 +559,7 @@ class EverythingDriver {
     return;
   };
 
-  //getter
+  // getter
   std::vector<tile*> get_background() { return background; }
 
   ~EverythingDriver(){};

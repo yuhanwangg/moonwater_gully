@@ -105,7 +105,7 @@ saveTest: SaveGameTest.cpp SaveGame.h Day.h BuyMenu.h menu.h Player.h Strawberry
 
 
 Play: Game.cpp Game.h Day.h BuyMenu.h menu.h Player.h Strawberry.h Blueberry.h Carrot.h Potato.h RootPlant.h BerryPlant.h Plant.h tile.h InventoryItems.h
-	clang++ Game.cpp -o release/Game -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 ./lib
+	clang++ Game.cpp -o release/Game -I include -L lib -l sfml-system -l sfml-window -l sfml-graphics -l sfml-audio -l sfml-network -Wl,-rpath -std=c++11 -Wall -Werror ./lib
 	./release/Game
 
 

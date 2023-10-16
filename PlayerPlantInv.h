@@ -30,14 +30,16 @@ class Player {
     body->setOrigin(r / 2, r / 2);
     body->setPosition(x, y);
   }
-  void draw(RenderWindow* win) { 
-    // draws the players body in the game window when given a RenderWindow pointer, returns nothing
+  void draw(RenderWindow* win) {
+    // draws the players body in the game window when given a RenderWindow
+    // pointer, returns nothing
     win->draw(*body);
     return;
   }
 
   void addPlant(Plant* plant) {
-    // Adds plant object to inventory, when given a plant pointer, returns nothing
+    // Adds plant object to inventory, when given a plant pointer, returns
+    // nothing
     if (plantInventory.size() < 10) {
       plantInventory.push_back(plant);
     } else {
@@ -47,19 +49,19 @@ class Player {
   }
 
   // movement of the player
-  void moveRight() { 
+  void moveRight() {
     body->move(speed, 0);
     return;
   }
-  void moveLeft() { 
+  void moveLeft() {
     body->move(-speed, 0);
     return;
   }
-  void moveUp() { 
+  void moveUp() {
     body->move(0, -speed);
     return;
   }
-  void moveDown() { 
+  void moveDown() {
     body->move(0, speed);
     return;
   }

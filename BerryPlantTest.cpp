@@ -1,8 +1,7 @@
-#include "BerryPlant.h"
-
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
+#include "BerryPlant.h"
 #include "Plant.h"
 #include "tile.h"
 using namespace sf;
@@ -90,9 +89,7 @@ int main() {
             << bp1.get_hydrationLevel()
             << ", and is alive (should be 1):" << bp1.get_alive() << std::endl;
 
-
   bp1.newDayGrowth();
-
 
   std::cout << "the berryplant is in growthStage 1:" << bp1.get_growthStage()
             << ", has hydration level 0: " << bp1.get_hydrationLevel()

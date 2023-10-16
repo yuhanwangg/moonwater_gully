@@ -520,7 +520,8 @@ class Game {
       if (Keyboard::isKeyPressed(Keyboard::B) &&
           (menu.get_visibility() == false) && (menu.get_htpVisi() == false) &&
           (menu.get_saveVisi() == false) && (menu.get_controlVisi() == false) &&
-          (sellmenu.get_sellOn() == false)) {
+          (sellmenu.get_sellOn() == false) &&
+          (saver.get_loadVisibility() == false)) {
         visibleBuy = true;
         menu.set_walletVisibility(true);
         buymenu.set_buyOn(visibleBuy);
@@ -529,7 +530,8 @@ class Game {
       if (Keyboard::isKeyPressed(Keyboard::N) &&
           (buymenu.get_buyOn() == false) && (menu.get_visibility() == false) &&
           (menu.get_htpVisi() == false) && (menu.get_saveVisi() == false) &&
-          (menu.get_controlVisi() == false)) {
+          (menu.get_controlVisi() == false) &&
+          (saver.get_loadVisibility() == false)) {
         visibleSell = true;
         menu.set_walletVisibility(true);
         sellmenu.set_sellOn(true);
@@ -538,7 +540,8 @@ class Game {
       if (Keyboard::isKeyPressed(Keyboard::M) &&
           (buymenu.get_buyOn() == false) && (sellmenu.get_sellOn() == false)) {
         if ((menu.get_controlVisi() == false) &&
-            (menu.get_htpVisi() == false) && (menu.get_saveVisi() == false)) {
+            (menu.get_htpVisi() == false) && (menu.get_saveVisi() == false) &&
+            (saver.get_loadVisibility() == false)) {
           visibleMenu = true;
           menu.set_visibility(visibleMenu);
         }

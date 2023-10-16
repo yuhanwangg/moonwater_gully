@@ -38,28 +38,28 @@ class tile {
   virtual void grow(){};
   virtual void newDayGrowth(){};
 
-
   tile() : tile(0, 0) { size = 50; };
 
-  void draw(RenderWindow* win) { 
+  void draw(RenderWindow* win) {
     // Draws a tile in the window when given a RenderWindow pointer
     win->draw(*square);
-    return; };
+    return;
+  };
 
   // Setters
-  void set_x(int _x) { 
+  void set_x(int _x) {
     x = _x;
     return;
   };
-  void set_y(int _y) { 
+  void set_y(int _y) {
     y = _y;
     return;
   };
-  void set_isPlantable(bool isPlantable) { 
+  void set_isPlantable(bool isPlantable) {
     this->isPlantable = isPlantable;
     return;
   };
-  void set_size(int size) { 
+  void set_size(int size) {
     this->size = size;
     return;
   };
@@ -101,7 +101,6 @@ class tile {
 
   std::string get_imageDescription() { return imageDescription; };
   std::string get_className() { return className; };
-
 
   virtual ~tile(){};
 };

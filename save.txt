@@ -154,4 +154,4 @@ inventory,0
 inventory,0 
 shellNumber,500
 dayCount,0
-dayTime,177
+dayTime,172

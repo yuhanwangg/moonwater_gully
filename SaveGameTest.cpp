@@ -257,8 +257,6 @@ class EverythingDriver {
             }
           }
 
-          std::cout << menu.get_saveSuccess();
-
           if ((menu.get_saveVisi() == true) && (buymenu.get_buyOn() == false) &&
               (menu.get_visibility() == false) &&
               (sellmenu.get_sellOn() == false) &&

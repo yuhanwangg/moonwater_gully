@@ -232,17 +232,17 @@ class SaveGame {
           // read into inventory
           int item;
           if (iss >> item) {
-            // Add the item to the inventory
+            // add the item to the inventory
             tempInv.push_back(item);
           }
         } else if (token == "shellNumber") {
-          // Read player shell number
+          // read player shell number
           int shells;
           if (iss >> shells) {
             player->set_shells(shells);
           }
         } else if (token == "dayCount") {
-          // Read day count
+          // read day count
           int dayCount;
           if (iss >> dayCount) {
             day->set_dayCount(

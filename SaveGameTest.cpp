@@ -88,18 +88,19 @@ class EverythingDriver {
               (saver.get_loadVisibility() == true)) {
             int select = saver.get_select();
             switch (select) {
-              case 0:
+              case 0:  // load old game
                 saver.load(background, &inventory, player, &day);
                 // create pop up
                 saver.set_loadVisibility(false);
                 menu.set_visibility(true);
                 break;
-              case 1:
+              case 1:  // load new game
                 saver.clearFile();
                 saver.set_loadVisibility(false);
                 menu.set_visibility(true);
                 break;
             }
+            break;  // make sure to return to menu right after loading game
           }
         }
 
@@ -165,13 +166,6 @@ class EverythingDriver {
 
             int playerX = (floor(player->get_x() / 50) * 50);
             int playerY = (floor(player->get_y() / 50) * 50);
-
-            // for (int i = 0; i < 144; i++) {
-            //   if (background[i]->get_x() == playerX &&
-            //       background[i]->get_y() == playerY) {
-            //     (*background[i]).grow();
-            //   }
-            // }
           }
         }
 
@@ -263,18 +257,23 @@ class EverythingDriver {
             }
           }
 
+          std::cout << menu.get_saveSuccess();
+
           if ((menu.get_saveVisi() == true) && (buymenu.get_buyOn() == false) &&
               (menu.get_visibility() == false) &&
               (sellmenu.get_sellOn() == false) &&
               (Keyboard::isKeyPressed(Keyboard::Return))) {
             int saveSelect = menu.get_saveSelect();
+            menu.set_saveSuccess(false);  // ensuring you can't see success yet
             menu.set_saveSelect(0);
             switch (saveSelect) {
               case 0:
                 saver.save(background, 144, &inventory, player,
                            &day);  // saving game into save.txt
                                    // otherwise, exiting
-                menu.set_saveSuccess(true);
+                if (saver.get_saveCheck() == true) {
+                  menu.set_saveSuccess(true);
+                }
                 menu.set_saveFail(false);
                 break;
               case 1:

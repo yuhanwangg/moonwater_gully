@@ -25,7 +25,9 @@ class SaveGame {
  protected:
   std::fstream saveFile;
   RectangleShape* loadAsk;
+  Texture loadTexture;
   bool loadAskVisible;
+  bool saveCheck;
   int x, y;
   Text confirm[2];
   int selection;
@@ -42,13 +44,19 @@ class SaveGame {
 
   SaveGame(int len, int width) {
     // writing first pop up when game is booted up
-    x = 150;
+    x = 125;
     y = 150;
     selection = 0;
 
+    saveCheck = false;
+
+    // texture loading
+    loadTexture.loadFromFile("textures/main_menu.png");
+
     loadAskVisible = true;
-    loadAsk = new RectangleShape(Vector2f(300, 150));
-    loadAsk->setFillColor(Color::Green);
+    loadAsk = new RectangleShape(Vector2f(360, 150));
+
+    loadAsk->setTexture(&loadTexture);
     loadAsk->setPosition(x, y);
 
     // loading font
@@ -61,21 +69,21 @@ class SaveGame {
     confirm[0].setFont(font);
     confirm[0].setString("load last save");
     confirm[0].setCharacterSize(15);
-    confirm[0].setFillColor(Color::White);
-    confirm[0].setPosition(x + 15, y + 15);
+    confirm[0].setFillColor(Color::Black);
+    confirm[0].setPosition(x + 25, y + 25);
 
     confirm[1].setFont(font);
     confirm[1].setString("start new game");
     confirm[1].setCharacterSize(15);
-    confirm[1].setFillColor(Color::White);
-    confirm[1].setPosition(x + 15, y + 100);
+    confirm[1].setFillColor(Color::Black);
+    confirm[1].setPosition(x + 25, y + 100);
 
     confirm[selection].setFillColor(Color::Yellow);  // use to navigate
   }
 
   void scrollLoad() {
     if (selection + 1 <= 2) {
-      confirm[selection].setFillColor(Color::White);
+      confirm[selection].setFillColor(Color::Black);
       selection++;
       if (selection > 1) {
         selection = 0;
@@ -148,7 +156,9 @@ class SaveGame {
     saveFile << "\n";  // line by line approach
 
     saveFile.close();
+
     std::cout << "game saved,";  // if statement to check when to stop
+    saveCheck = true;
   };
 
   void load(std::vector<tile*>& background, Inventory* inventory,
@@ -222,20 +232,23 @@ class SaveGame {
           // read into inventory
           int item;
           if (iss >> item) {
-            // Add the item to the inventory
+            // add the item to the inventory
             tempInv.push_back(item);
           }
         } else if (token == "shellNumber") {
-          // Read player shell number
+          // read player shell number
           int shells;
           if (iss >> shells) {
             player->set_shells(shells);
           }
         } else if (token == "dayCount") {
-          // Read day count
+          // read day count
           int dayCount;
           if (iss >> dayCount) {
-            day->set_dayCount(dayCount);
+            day->set_dayCount(
+                dayCount);  // reason why it won't work is probably bc there
+                            // needs to be a separate function in drawing the
+                            // day count?
           }
         } else if (token == "dayTime") {
           // Read day time
@@ -265,5 +278,8 @@ class SaveGame {
   void set_loadVisibility(bool visi) { loadAskVisible = visi; }
   int get_select() { return selection; }
   void set_select(int sel) { selection = sel; }
+
+  bool get_saveCheck() { return saveCheck; }
+  void set_saveCheck(bool check) { saveCheck = check; }
 };
 #endif

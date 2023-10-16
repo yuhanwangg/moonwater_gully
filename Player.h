@@ -6,6 +6,7 @@ using namespace sf;
 #include <cmath>
 #include <typeinfo>
 #include <unordered_map>
+#include <unistd.h>
 
 #include "Blueberry.h"
 #include "Carrot.h"
@@ -31,7 +32,9 @@ class Player {
   // these two variables are for player walking animation
   int countSteps;
   bool imgAppears;
-  // Inventory* inventory = new Inventory(550, 50);
+  // For warnings
+  Font font;
+  Text warningText;
 
   std::unordered_map<std::string, int> plantLocationMap{
       {"Carrot", 9}, {"Potato", 7}, {"Strawberry", 5}, {"Blueberry", 3}};
@@ -68,6 +71,17 @@ class Player {
     // body->setFillColor(Color::Blue);
     body->setOrigin(r / 2, r / 2);
     body->setPosition(x, y);
+
+    // text box font
+    font.loadFromFile("textures/font_texture/TTF/dogica.ttf");
+    if (!font.loadFromFile("textures/font_texture/TTF/dogica.ttf")) {
+      std::cout << "error loading font in player" << std::endl;  // error testing
+    }
+
+    warningText.setFont(font);
+    warningText.setCharacterSize(20);
+    warningText.setPosition(100,200);
+
   }
 
   void draw(RenderWindow* win) {
@@ -218,6 +232,9 @@ class Player {
 
     // Making sure all conditions are met
     if ((*backgroundTiles)[playerX * 12 + playerY]->get_className() == "tile") {
+      warningText.setString("Land cannot be harvested");
+      sleep(0.5);
+      warningText.setString("");
       std::cout << "Land cannot be harvested" << std::endl;
       return;
     } else if ((*backgroundTiles)[playerX * 12 + playerY]->get_growthStage() !=

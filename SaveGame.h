@@ -245,10 +245,11 @@ class SaveGame {
           // read day count
           int dayCount;
           if (iss >> dayCount) {
-            day->set_dayCount(
-                dayCount);  // reason why it won't work is probably bc there
-                            // needs to be a separate function in drawing the
-                            // day count?
+            day->set_dayCount(dayCount);
+            day->set_dayCountString(std::to_string(
+                dayCount));  // reason why it won't work is probably bc there
+                             // needs to be a separate function in drawing the
+                             // day count?
           }
         } else if (token == "dayTime") {
           // Read day time

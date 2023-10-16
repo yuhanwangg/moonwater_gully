@@ -168,7 +168,7 @@ class Game {
           // Harvesting plants
           if (Keyboard::isKeyPressed(Keyboard::H)) {
             std::cout << "Harvested Plant" << std::endl;
-            player->harvestPlant(&background, &inventory);
+            player->harvestPlant(&background, &inventory, win);
           }
         }
 
@@ -577,6 +577,7 @@ class Game {
       }
 
       player->draw(win);
+      player->drawWarning(win);
 
       // Drawing the menus
       if (menu.get_visibility() == true) {

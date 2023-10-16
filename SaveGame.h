@@ -268,12 +268,14 @@ class SaveGame {
 
     saveFile.close();
     std::cout << "Game loaded." << std::endl;
+    return;
   }
 
-  void clearFile() {
+  void clearFile() {  // function clears the text file
     saveFile.open("save.txt", std::ofstream::out | std::ofstream::trunc);
     saveFile.close();
     std::cout << "cleared successfully" << std::endl;
+    return;
   }
 
   // getters and setters

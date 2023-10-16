@@ -65,6 +65,7 @@ class tile {
   };
   void set_hydrationLevel(int hydrationLevel) {
     this->hydrationLevel = hydrationLevel;
+
     return;
   };
 
@@ -76,11 +77,10 @@ class tile {
   int get_hydrationLevel() { return hydrationLevel; }
 
   void set_texture(std::string TextureName) {
-    Texture* texture = nullptr;
-    texture->loadFromFile(TextureName);
-    square->setTexture(texture);
+    grass.loadFromFile(TextureName);
+    square->setTexture(&grass);
     square->setTextureRect(IntRect(0, 0, size, size));
-    if (!texture->loadFromFile(TextureName)) {
+    if (!grass.loadFromFile(TextureName)) {
       std::cout << "error loading texture" << std::endl;
     };
   }
@@ -101,6 +101,7 @@ class tile {
 
   std::string get_imageDescription() { return imageDescription; };
   std::string get_className() { return className; };
+
 
   virtual ~tile(){};
 };

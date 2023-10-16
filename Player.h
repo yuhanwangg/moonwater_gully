@@ -254,8 +254,6 @@ class Player {
     // Takes the fully grown plant tile and changes it back to grass tile, and increases the number of plants in the inventory
     // Takes in a pointer to the vector of tile pointers and a pointer to the inventory
 
-    
-  void harvestPlant(std::vector<tile*>* backgroundTiles, Inventory* inventory) {
     // Takes the fully grown plant tile and changes it back to grass tile, and
     // increases the number of plants in the inventory Takes in a pointer to the
     // vector of tile pointers and a pointer to the inventory

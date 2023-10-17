@@ -86,8 +86,10 @@ class Player {
   }
 
   void draw(RenderWindow* win) {
+    // Draws warning message in window, takes in a RenderWindow pointer, returns nothing
     win->draw(*body);
     win->draw(warningMessage);
+    return;
   }
 
 
@@ -157,6 +159,7 @@ class Player {
                     << std::endl;
       };
     }
+    return;
   }
 
   // Water plant
@@ -355,6 +358,7 @@ class Player {
 
     (*backgroundTiles)[playerX * 12 + playerY] =
         new tile(playerX * 50, playerY * 50);
+    return;
   }
 
   // movement of the player
@@ -407,6 +411,7 @@ class Player {
       body->setTexture(&playerTexture);
       countSteps = 0;
     }
+    return;
   }
   void moveLeft() {
     countSteps++;
@@ -456,6 +461,7 @@ class Player {
       body->setTexture(&playerTexture);
       countSteps = 0;
     }
+    return;
   }
   void moveUp() {
     countSteps++;
@@ -505,6 +511,7 @@ class Player {
       body->setTexture(&playerTexture);
       countSteps = 0;
     }
+    return;
   }
   void moveDown() {
     countSteps++;
@@ -554,6 +561,7 @@ class Player {
       body->setTexture(&playerTexture);
       countSteps = 0;
     }
+    return;
   }
 
   // getters and setters

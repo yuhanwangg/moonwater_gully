@@ -38,7 +38,8 @@ class SaveGame {
   SaveGame() {}
 
   SaveGame(int len, int width) {
-    // writing first pop up when game is booted up, takes in length and width of load game menu
+    // writing first pop up when game is booted up, takes in length and width of
+    // load game menu
     x = 125;
     y = 150;
     selection = 0;
@@ -77,10 +78,10 @@ class SaveGame {
   }
 
   void scrollLoad() {
-    // Scrolling through the options, similar to inventory, takes in and returns nothing
+    // Scrolling through the options, similar to inventory, takes in and returns
+    // nothing
     if (selection + 1 <= 2) {
-      confirm[selection].setFillColor(
-          Color::Black);  
+      confirm[selection].setFillColor(Color::Black);
       selection++;
       if (selection > 1) {
         selection = 0;
@@ -104,7 +105,9 @@ class SaveGame {
 
   void save(std::vector<tile*>& background, int size, Inventory* inventory,
             Player* player, Day* day) {
-    // Creates a txt file containing all game information, takes in a vector of tile pointers, size, an inventory pointer, a player pointer, and a day pointer.
+    // Creates a txt file containing all game information, takes in a vector of
+    // tile pointers, size, an inventory pointer, a player pointer, and a day
+    // pointer.
     saveFile.open("save.txt", std::ios::out);
     if (!saveFile.is_open()) {
       std::cout << "file could not be opened for saving." << std::endl;
@@ -167,7 +170,9 @@ class SaveGame {
 
   void load(std::vector<tile*>& background, Inventory* inventory,
             Player* player, Day* day) {
-    // Loads the old game from the txt file, takes in a vector of tile pointers, an inventory pointer, a player pointer, and a day pointer, returns nothing
+    // Loads the old game from the txt file, takes in a vector of tile pointers,
+    // an inventory pointer, a player pointer, and a day pointer, returns
+    // nothing
     std::ifstream saveFile("save.txt");
 
     if (!saveFile.is_open()) {
@@ -196,8 +201,10 @@ class SaveGame {
           if (iss >> className >> x >> y >> growthStage >> hydrationLevel >>
               imageDescription) {  // reads via line spaced
             // switch case to add tile to background
+            // switch case needed as it adds a different type of tile depending
+            // on the save file
             if (className == "tile") {
-              tile* newTile = new tile(x, y);
+              tile* newTile = new tile(x, y);  // creates new tile
               newTile->set_hydrationLevel(hydrationLevel);
               newTile->set_texture(imageDescription);
 
@@ -206,7 +213,10 @@ class SaveGame {
             } else if (className == "Carrot") {
               Carrot* carrotTile = new Carrot(x, y);
               carrotTile->set_hydrationLevel(hydrationLevel);
-              carrotTile->set_growthStage(growthStage);
+              carrotTile->set_growthStage(
+                  growthStage);  // updates growth stage. needed as plants only
+                                 // have growth stage but parent class of tile
+                                 // does not
               carrotTile->set_texture(imageDescription);
 
               std::cout << "carrot created";
@@ -278,9 +288,9 @@ class SaveGame {
     std::cout << "Game loaded." << std::endl;
     return;
   }
-
-  void clearFile() {  
-    // function clears the text file
+  // function clears the text file when you want to start a new game with no
+  // save
+  void clearFile() {
     saveFile.open("save.txt", std::ofstream::out | std::ofstream::trunc);
     saveFile.close();
     std::cout << "cleared successfully" << std::endl;

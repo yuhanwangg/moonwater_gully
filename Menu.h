@@ -274,7 +274,7 @@ class Menu {
     return;
   }
 
-  virtual void moveDown() {
+  virtual void moveDown() {  // virtual function of move
     // Moves selected option down if there is a below option, returns nothing
 
     // checking array
@@ -307,24 +307,6 @@ class Menu {
     }
     return;
   }
-
-  // void scrollSave() {
-  //   // Moves option up and down, returns nothing.
-  //   if (saveSelect + 1 <= 2) {
-  //     saveText[saveSelect].setFillColor(Color::Black);
-  //     saveSelect++;
-  //     if (saveSelect > 1) {
-  //       saveSelect = 0;
-  //     }
-  //     if (saveSelect == 0) {
-  //       saveText[saveSelect].setFillColor(Color::Green);
-  //     }
-  //     saveText[saveSelect].setFillColor(Color::Green);
-  //   }
-  //   return;
-  // }
-
-  // changing visibility
 
   // Getters and setters
   void set_walletVisibility(bool visible) {

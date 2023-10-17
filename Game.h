@@ -646,6 +646,7 @@ class Game {
       }
       clock.restart();
     }
+    return;
   };
 
   // Getter

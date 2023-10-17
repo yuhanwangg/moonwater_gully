@@ -35,15 +35,10 @@ class SaveGame {
 
  public:
   // saving game
-  SaveGame() {
-    // saveFile.open("save.txt", std::ios::out);
-    // if (!saveFile.is_open()) {
-    //   std::cout << "File could not be opened for saving." << std::endl;
-    // }
-  }
+  SaveGame() {}
 
   SaveGame(int len, int width) {
-    // writing first pop up when game is booted up
+    // writing first pop up when game is booted up, takes in length and width of load game menu
     x = 125;
     y = 150;
     selection = 0;
@@ -82,9 +77,10 @@ class SaveGame {
   }
 
   void scrollLoad() {
+    // Scrolling through the options, similar to inventory, takes in and returns nothing
     if (selection + 1 <= 2) {
       confirm[selection].setFillColor(
-          Color::Black);  // scrolling through the options, similar to inventory
+          Color::Black);  
       selection++;
       if (selection > 1) {
         selection = 0;
@@ -98,14 +94,17 @@ class SaveGame {
   }
 
   void drawLoad(RenderWindow* win) {
+    // Draws load menu screen, takes in a RenderWindow pointer, returns nothing
     win->draw(*loadAsk);
     for (int i = 0; i < 2; i++) {
       win->draw(confirm[i]);
     }
+    return;
   }
 
   void save(std::vector<tile*>& background, int size, Inventory* inventory,
             Player* player, Day* day) {
+    // Creates a txt file containing all game information, takes in a vector of tile pointers, size, an inventory pointer, a player pointer, and a day pointer.
     saveFile.open("save.txt", std::ios::out);
     if (!saveFile.is_open()) {
       std::cout << "file could not be opened for saving." << std::endl;
@@ -163,10 +162,12 @@ class SaveGame {
     saveFile.close();
 
     std::cout << "game saved,";  // if statement to check when to stop
+    return;
   };
 
   void load(std::vector<tile*>& background, Inventory* inventory,
             Player* player, Day* day) {
+    // Loads the old game from the txt file, takes in a vector of tile pointers, an inventory pointer, a player pointer, and a day pointer, returns nothing
     std::ifstream saveFile("save.txt");
 
     if (!saveFile.is_open()) {
@@ -278,7 +279,8 @@ class SaveGame {
     return;
   }
 
-  void clearFile() {  // function clears the text file
+  void clearFile() {  
+    // function clears the text file
     saveFile.open("save.txt", std::ofstream::out | std::ofstream::trunc);
     saveFile.close();
     std::cout << "cleared successfully" << std::endl;

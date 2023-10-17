@@ -12,10 +12,10 @@ newTile,tile 0 500 0 0 textures/grass_texture_light.png
 newTile,tile 0 550 0 0 textures/grass_texture_light.png 
 newTile,tile 50 0 0 0 textures/grass_texture_light.png 
 newTile,tile 50 50 0 0 textures/grass_texture_light.png 
-newTile,tile 50 100 0 0 textures/grass_texture_light.png 
+newTile,Blueberry 50 100 2 0 textures/blueberrybushGrown.png 
 newTile,tile 50 150 0 0 textures/grass_texture_light.png 
 newTile,tile 50 200 0 0 textures/grass_texture_light.png 
-newTile,tile 50 250 0 0 textures/grass_texture_light.png 
+newTile,tile 50 250 0 1 textures/grass_texture_light.png 
 newTile,tile 50 300 0 0 textures/grass_texture_light.png 
 newTile,tile 50 350 0 0 textures/grass_texture_light.png 
 newTile,tile 50 400 0 0 textures/grass_texture_light.png 
@@ -23,7 +23,7 @@ newTile,tile 50 450 0 0 textures/grass_texture_light.png
 newTile,tile 50 500 0 0 textures/grass_texture_light.png 
 newTile,tile 50 550 0 0 textures/grass_texture_light.png 
 newTile,tile 100 0 0 0 textures/grass_texture_light.png 
-newTile,Blueberry 100 50 1 0 textures/blueberrySeedling.png 
+newTile,tile 100 50 0 0 textures/grass_texture_light.png 
 newTile,tile 100 100 0 0 textures/grass_texture_light.png 
 newTile,tile 100 150 0 0 textures/grass_texture_light.png 
 newTile,tile 100 200 0 0 textures/grass_texture_light.png 
@@ -35,8 +35,8 @@ newTile,tile 100 450 0 0 textures/grass_texture_light.png
 newTile,tile 100 500 0 0 textures/grass_texture_light.png 
 newTile,tile 100 550 0 0 textures/grass_texture_light.png 
 newTile,tile 150 0 0 0 textures/grass_texture_light.png 
-newTile,Strawberry 150 50 1 0 textures/strawberrySeedling.png 
-newTile,tile 150 100 0 0 textures/grass_texture_light.png 
+newTile,tile 150 50 0 0 textures/grass_texture_light.png 
+newTile,Potato 150 100 1 0 textures/potatoGrown.png 
 newTile,tile 150 150 0 0 textures/grass_texture_light.png 
 newTile,tile 150 200 0 0 textures/grass_texture_light.png 
 newTile,tile 150 250 0 0 textures/grass_texture_light.png 
@@ -47,7 +47,7 @@ newTile,tile 150 450 0 0 textures/grass_texture_light.png
 newTile,tile 150 500 0 0 textures/grass_texture_light.png 
 newTile,tile 150 550 0 0 textures/grass_texture_light.png 
 newTile,tile 200 0 0 0 textures/grass_texture_light.png 
-newTile,Potato 200 50 1 0 textures/potatoGrown.png 
+newTile,tile 200 50 0 0 textures/grass_texture_light.png 
 newTile,tile 200 100 0 0 textures/grass_texture_light.png 
 newTile,tile 200 150 0 0 textures/grass_texture_light.png 
 newTile,tile 200 200 0 0 textures/grass_texture_light.png 
@@ -59,7 +59,7 @@ newTile,tile 200 450 0 0 textures/grass_texture_light.png
 newTile,tile 200 500 0 0 textures/grass_texture_light.png 
 newTile,tile 200 550 0 0 textures/grass_texture_light.png 
 newTile,tile 250 0 0 0 textures/grass_texture_light.png 
-newTile,Carrot 250 50 1 0 textures/carrotGrown.png 
+newTile,tile 250 50 0 0 textures/grass_texture_light.png 
 newTile,tile 250 100 0 0 textures/grass_texture_light.png 
 newTile,tile 250 150 0 0 textures/grass_texture_light.png 
 newTile,tile 250 200 0 0 textures/grass_texture_light.png 
@@ -71,7 +71,7 @@ newTile,tile 250 450 0 0 textures/grass_texture_light.png
 newTile,tile 250 500 0 0 textures/grass_texture_light.png 
 newTile,tile 250 550 0 0 textures/grass_texture_light.png 
 newTile,tile 300 0 0 0 textures/grass_texture_light.png 
-newTile,Carrot 300 50 1 0 textures/carrotGrown.png 
+newTile,tile 300 50 0 0 textures/grass_texture_light.png 
 newTile,tile 300 100 0 0 textures/grass_texture_light.png 
 newTile,tile 300 150 0 0 textures/grass_texture_light.png 
 newTile,tile 300 200 0 0 textures/grass_texture_light.png 
@@ -142,16 +142,16 @@ newTile,tile 550 400 0 0 textures/grass_texture_light.png
 newTile,tile 550 450 0 0 textures/grass_texture_light.png 
 newTile,tile 550 500 0 0 textures/grass_texture_light.png 
 newTile,tile 550 550 0 0 textures/grass_texture_light.png 
+inventory,2 
+inventory,2 
 inventory,0 
 inventory,0 
 inventory,0 
+inventory,4 
 inventory,0 
+inventory,3 
 inventory,0 
-inventory,0 
-inventory,0 
-inventory,0 
-inventory,0 
-inventory,0 
-shellNumber,210
-dayCount,1
-dayTime,178
+inventory,2 
+shellNumber,1060
+dayCount,4
+dayTime,173

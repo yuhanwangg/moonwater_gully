@@ -130,6 +130,8 @@ class SaveGame {
 
       saveFile << background[i]->get_hydrationLevel() << " ";
 
+      saveFile << background[i]->get_imageDescription() << " ";
+
       saveFile << "\n";
     }
 
@@ -188,14 +190,15 @@ class SaveGame {
         if (token == "newTile") {
           // reading in tile data
           int x, y, growthStage, hydrationLevel;
-          std::string className;
+          std::string className, imageDescription;
 
-          if (iss >> className >> x >> y >> growthStage >>
-              hydrationLevel) {  // reads via line spaced
+          if (iss >> className >> x >> y >> growthStage >> hydrationLevel >>
+              imageDescription) {  // reads via line spaced
             // switch case to add tile to background
             if (className == "tile") {
               tile* newTile = new tile(x, y);
               newTile->set_hydrationLevel(hydrationLevel);
+              newTile->set_texture(imageDescription);
 
               tempBg.push_back(newTile);
 
@@ -203,6 +206,7 @@ class SaveGame {
               Carrot* carrotTile = new Carrot(x, y);
               carrotTile->set_hydrationLevel(hydrationLevel);
               carrotTile->set_growthStage(growthStage);
+              carrotTile->set_texture(imageDescription);
 
               std::cout << "carrot created";
 
@@ -212,6 +216,7 @@ class SaveGame {
               Potato* potatoTile = new Potato(x, y);
               potatoTile->set_hydrationLevel(hydrationLevel);
               potatoTile->set_growthStage(growthStage);
+              potatoTile->set_texture(imageDescription);
 
               tempBg.push_back(potatoTile);
 
@@ -219,6 +224,7 @@ class SaveGame {
               Strawberry* strawberryTile = new Strawberry(x, y);
               strawberryTile->set_hydrationLevel(hydrationLevel);
               strawberryTile->set_growthStage(growthStage);
+              strawberryTile->set_texture(imageDescription);
 
               tempBg.push_back(strawberryTile);
 
@@ -226,6 +232,7 @@ class SaveGame {
               Blueberry* blueberryTile = new Blueberry(x, y);
               blueberryTile->set_hydrationLevel(hydrationLevel);
               blueberryTile->set_growthStage(growthStage);
+              blueberryTile->set_texture(imageDescription);
 
               tempBg.push_back(blueberryTile);
             }
